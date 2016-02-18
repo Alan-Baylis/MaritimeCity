@@ -226,41 +226,41 @@ public class LowLevelDialogueController : HighLevelDialogueController
 		NewDialogueUIState = DialogueControllerState.Closed;
 	}
 
-	//Provides some sort of Sequencing and Type Safety
-	public void PopulateScript()
-	{
-		Debug.Log ("Not Active Yet");
-		
-		FileName = BrendanAudioDialogue [0].ToString ();
+    //Provides some sort of Sequencing and Type Safety
+    public void PopulateScript()
+    {
+        Debug.Log("Not Active Yet");
 
-		if (FileName.Contains ("B1_S1")) 
-		{
-			DefineScript (DefineScriptEnum.Brendan, "Hi name is Brendan from Maritime Children's Services Safeguarding Team");
-			Debug.Log ("B1_S1 Active");
-		}
+        FileName = BrendanAudioDialogue[0].ToString();
+
+        if (FileName.Contains("B1_S1"))
+        {
+            DefineScript(DefineScriptEnum.Brendan, "Hi name is Brendan from Maritime Children's Services Safeguarding Team");
+            Debug.Log("B1_S1 Active");
+        }
 
         //Brendan First Paragraph
 
-		FileName = BrendanAudioDialogue[1].ToString ();
+        FileName = BrendanAudioDialogue[1].ToString();
 
-		if (FileName.Contains ("B1_S2")) 
-		{
-			DefineScript (DefineScriptEnum.Brendan, "Are you Ms Grove...Elli?");
-		}
+        if (FileName.Contains("B1_S2"))
+        {
+            DefineScript(DefineScriptEnum.Brendan, "Are you Ms Grove...Elli?");
+        }
 
-		FileName = BrendanAudioDialogue [2].ToString ();
+        FileName = BrendanAudioDialogue[2].ToString();
 
-		if (FileName.Contains ("B1_S3"))
-		{
-			DefineScript (DefineScriptEnum.Brendan, "We have had an referral from an anonymous source rasing concerns about the children living here");
-		}
+        if (FileName.Contains("B1_S3"))
+        {
+            DefineScript(DefineScriptEnum.Brendan, "We have had an referral from an anonymous source rasing concerns about the children living here");
+        }
 
-		FileName = BrendanAudioDialogue [3].ToString ();
+        FileName = BrendanAudioDialogue[3].ToString();
 
-		if (FileName.Contains ("B1_S4")) 
-		{
-			DefineScript (DefineScriptEnum.Brendan, "Can I come in and talk to you about this");
-		}
+        if (FileName.Contains("B1_S4"))
+        {
+            DefineScript(DefineScriptEnum.Brendan, "Can I come in and talk to you about this");
+        }
 
         //Brendan Second Paragraph
 
@@ -286,7 +286,7 @@ public class LowLevelDialogueController : HighLevelDialogueController
         }
 
         FileName = BrendanAudioDialogue[7].ToString();
-        
+
         if (FileName.Contains("B3_S1"))
         {
             DefineScript(DefineScriptEnum.Brendan, "Erm, I like dogs");
@@ -308,7 +308,7 @@ public class LowLevelDialogueController : HighLevelDialogueController
 
         FileName = BrendanAudioDialogue[10].ToString();
 
-        if(FileName.Contains("B4_S1"))
+        if (FileName.Contains("B4_S1"))
         {
             DefineScript(DefineScriptEnum.Brendan, "Could I ask if you could take her upstairs or tie her outside if that's OK, I think she is a bit overexcited and I wouldn't like her to harm anyone.");
         }
@@ -338,7 +338,7 @@ public class LowLevelDialogueController : HighLevelDialogueController
 
         if (FileName.Contains("B6_S2"))
         {
-             DefineScript(DefineScriptEnum.Brendan, "I’m here under Section 47 of the Children’s Act to investigate an anonymous referral that the two children living here have been heard crying and thought to be extremely distressed.");
+            DefineScript(DefineScriptEnum.Brendan, "I’m here under Section 47 of the Children’s Act to investigate an anonymous referral that the two children living here have been heard crying and thought to be extremely distressed.");
         }
 
         FileName = BrendanAudioDialogue[15].ToString();
@@ -446,7 +446,7 @@ public class LowLevelDialogueController : HighLevelDialogueController
 
         if (FileName.Contains("B16_S1"))
         {
-            DefineScript(DefineScriptEnum.Brendan,"I think the teat might glass or something on it");
+            DefineScript(DefineScriptEnum.Brendan, "I think the teat might glass or something on it");
         }
 
         FileName = BrendanAudioDialogue[30].ToString();
@@ -513,6 +513,100 @@ public class LowLevelDialogueController : HighLevelDialogueController
         {
             DefineScript(DefineScriptEnum.Brendan, "Right... and what about Tara, where did you say she was?");
         }
+
+        FileName = BrendanAudioDialogue[39].ToString();
+
+        if (FileName.Contains("B23_S1"))
+        {
+            DefineScript(DefineScriptEnum.Brendan, "And where's that?");
+        }
+
+        FileName = BrendanAudioDialogue[40].ToString();
+
+        if (FileName.Contains("B24_S1"))
+        {
+            DefineScript(DefineScriptEnum.Brendan, "Perhaps I could go and see Tara at her grandma's");
+        }
+
+        FileName = BrendanAudioDialogue[41].ToString();
+
+        if (FileName.Contains("B25_S1"))
+        {
+            DefineScript(DefineScriptEnum.Brendan, "So, I can go over and see Tara at her grandma's");
+
+        }
+
+        FileName = BrendanAudioDialogue[42].ToString();
+
+        if (FileName.Contains("B26_S1"))
+        {
+            DefineScript(DefineScriptEnum.Brendan, "OK, I'll go but I do need to see Tara and I am not very happy about Liam");
+        }
+
+        FileName = BrendanAudioDialogue[43].ToString();
+
+        if (FileName.Contains("B26_S2"))
+        {
+            DefineScript(DefineScriptEnum.Brendan, "I really think he should be looked at by a doctor Elli, today, can you manage that?");
+
+        }
+
+        FileName = BrendanAudioDialogue[44].ToString();
+
+        if (FileName.Contains("B27_S1"))
+        {
+            DefineScript(DefineScriptEnum.Brendan, "Luke there is no need to be abusive");
+        }
+
+        FileName = BrendanAudioDialogue[45].ToString();
+
+        if (FileName.Contains("B27_S2"))
+        {
+            DefineScript(DefineScriptEnum.Brendan, "I have a duty to ensure that the children are safe");
+        }
+
+        FileName = BrendanAudioDialogue[46].ToString();
+
+        if (FileName.Contains("B27_S3"))
+        {
+            DefineScript(DefineScriptEnum.Brendan, "If I go now I'll only need to come back again later today with my senior, possibly a police officer");
+        }
+
+        FileName = BrendanAudioDialogue[47].ToString();
+
+        if (FileName.Contains("B28_S1"))
+        {
+            DefineScript(DefineScriptEnum.Brendan, "Here is my card, I am going back to my office now and will come back in an hor with a colleague to see Tara, do you understand Elli?");
+        }
+
+        FileName = BrendanAudioDialogue[48].ToString();
+
+        if (FileName.Contains("B29_S1"))
+        {
+            DefineScript(DefineScriptEnum.Brendan, "Hi Steve, it's Me");
+        }
+
+        FileName = BrendanAudioDialogue[49].ToString();
+
+        if (FileName.Contains("B29_S2"))
+        {
+            DefineScript(DefineScriptEnum.Brendan, "Err, things not too good here - no, I'm not alright. I didn't get to see Tara and Liam was in a state");
+        }
+
+        FileName = BrendanAudioDialogue[50].ToString();
+
+        if (FileName.Contains("B29_S3"))
+        {
+            DefineScript(DefineScriptEnum.Brendan, "Yeah, I'm a bit shaken to be honest, this guy Luke seems to have moved in with a seriously scary dog, I wasn't expecting that, he was real piece of work");
+        }
+
+        FileName = BrendanAudioDialogue[51].ToString();
+
+        if (FileName.Contains("B29_S4"))
+        {
+            DefineScript(DefineScriptEnum.Brendan, "I am going to call the Police we really need to get back in there");
+        }
+
 
 		FileName = ElliAudioDialogue [0].ToString ();
 
