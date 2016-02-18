@@ -30,6 +30,14 @@ public class SelectionScreenComponent : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+
+        Text.print("Selection Screen Component Operational");
+
+        MenuText.gameObject.SetActive(false);
+        ContinueButton.gameObject.SetActive(false);
+        ReturnToMenuButton.gameObject.SetActive(false);
+        ExitButton.gameObject.SetActive(false);
+
         InitializeAnimation(Animation_ContinueButtonFadeIn, ContinueButtonFadeIn, "Continue Button Fade In");
         InitializeAnimation(Animation_ContinueButtonFadeOut, ContinueButtonFadeOut, "Continue Button Fade Out");
         InitializeAnimation(Animation_ReturnToMenuButtonFadein, ReturnToMenuButtonFadeIn, "Return To Menu Fade In");
@@ -65,6 +73,7 @@ public class SelectionScreenComponent : MonoBehaviour
         ContinueButton.colors = cb;
 
         //Alternative way #3 of alterating Colors
+        //We will invoke UnityEvents to meet the correct coniditions 
         Color.Lerp(new Color(0.0f, 0.75f, 1.00f, 0.0f), new Color(0.0f, 0.75f, 1.00f, 255.0f), 5.0f);
         ContinueButtonFadeIn.frameRate = 30.0f;
 
@@ -73,6 +82,8 @@ public class SelectionScreenComponent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
 
     }
 
