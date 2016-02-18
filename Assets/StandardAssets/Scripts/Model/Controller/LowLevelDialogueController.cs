@@ -615,8 +615,6 @@ public class LowLevelDialogueController : HighLevelDialogueController
 			DefineScript (DefineScriptEnum.Elli, "Yeah, I'm Elli Grove");
 		}
 
-      
-			
 		FileName = ElliAudioDialogue [1].ToString ();
 
 		if (FileName.Contains ("E1_S2")) 
@@ -641,8 +639,67 @@ public class LowLevelDialogueController : HighLevelDialogueController
 		
 		}
 
+        FileName = ElliAudioDialogue[4].ToString();
 
+        if (FileName.Contains("E1_S5"))
+        {
+            DefineScript(DefineScriptEnum.Elli, "Could you come back tommorow");
+        }
+
+        FileName = ElliAudioDialogue[5].ToString();
+
+        if (FileName.Contains("E2_S1"))
+        {
+            DefineScript(DefineScriptEnum.Elli, "Well, OK, only for a little while");
+        }
+
+        FileName = ElliAudioDialogue[6].ToString();
+
+        if (FileName.Contains("E2_S2"))
+        {
+            DefineScript(DefineScriptEnum.Elli, "You'll have to get past Mable though, she don't like strangers");
+        }
+
+        FileName = ElliAudioDialogue[7].ToString();
+
+        if (FileName.Contains("E3_S1"))
+        {
+            DefineScript(DefineScriptEnum.Elli, "I told you, she don't like strangers");
+        }
+
+        FileName = ElliAudioDialogue[8].ToString();
+
+        if (FileName.Contains("E3_S2"))
+        {
+            DefineScript(DefineScriptEnum.Elli, "Anyway she ain't my dog");
+        }
+
+        FileName = ElliAudioDialogue[9].ToString();
+
+        if (FileName.Contains("E3_S3"))
+        {
+            DefineScript(DefineScriptEnum.Elli, "'ere, I'll hold her while you get by");
+        }
+
+        FileName = ElliAudioDialogue[10].ToString();
+
+        if (FileName.Contains("E4_S1"))
+        {
+            DefineScript(DefineScriptEnum.Elli, "Oh, err, just a friend");
+        }
+
+    
 	}
+
+
+    void EventSystem_AudioDialogue(AudioClip[] Elli, AudioClip[] Brendan, AudioClip[] Luke)
+    {
+        //Template for Events Mechanism
+        if("E4_S1" == Elli[AudioIterator].ToString())
+        {
+            UnityEvent_DogBarking.Invoke();
+        }
+    }
 		
 	void QueryConversationState() 
 	{
