@@ -15,6 +15,7 @@ public class SelectionScreenAnimations : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
+        /*
 		AnimationEvent ContinueButtonFadeOut_AnimationEvent = new AnimationEvent();
 		ContinueButtonFadeOut_AnimationEvent.functionName = "Return To Game";
 		ContinueButtonFadeOut.AddEvent (ContinueButtonFadeOut_AnimationEvent);
@@ -26,7 +27,7 @@ public class SelectionScreenAnimations : MonoBehaviour {
 		AnimationEvent ExitButtonFadeOut_AnimationEvent = new AnimationEvent ();
 		ExitButtonFadeOut_AnimationEvent.functionName = "Exit Game";
 		ExitButtonFadeOut.AddEvent (ExitButtonFadeOut_AnimationEvent);
-	
+	*/
 	}
 	
 	// Update is called once per frame

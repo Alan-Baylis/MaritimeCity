@@ -168,38 +168,7 @@ public class Core : MonoBehaviour {
 /// <summary>
 /// Work on this later, could be useful
 /// </summary>
-public class G_Array<T> : MonoBehaviour
-{
-	T[] Backend_G_Array = new T[20];
-	
 
-	public G_Array()
-	{
-
-
-	}
-		
-	public T Add(T ElementType)
-	{
-		T a = default(T);
-
-		return ElementType;
-	
-	}
-
-	public void Append(G_Array <T> OtherElement)
-	{
-
-
-	}
-
-	public T AddUnique (T ElementType)
-	{
-
-		return ElementType;
-	}
-
-}
 	
 
 public interface IKeyEvents : IEventSystemHandler
