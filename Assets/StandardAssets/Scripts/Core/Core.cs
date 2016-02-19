@@ -8,189 +8,235 @@ using System.Collections.Generic;
 using System.Threading;
 
 
-public class Core : MonoBehaviour {
+namespace CoreSystems {
 
+    public class Core : MonoBehaviour {
 
-	//UnityAction StartButton = new UnityAction(GUIEvent_StartButtonEvent());
 
+        public enum SceneState { Cutscene, Dicussion_Box, Conversation, MainMenu };
 
-	/// <summary>
-	/// Dialogue Element: Signifies when the Conversation has Ended
-	/// </summary>
-	public UnityEvent UnityEvent_ConversationFinished = new UnityEvent();
+        //UnityAction StartButton = new UnityAction(GUIEvent_StartButtonEvent());
 
+        UnityEventCallState NewCallState = UnityEventCallState.Off;
 
-	/// <summary>
-	/// Dialogue Element: Signifies when Brendan knocks on the Door, the Dog starts barking
-	/// </summary>
-	public UnityEvent UnityEvent_DogBarking = new UnityEvent();
+        void Awake()
+        {
+            NewCallState = UnityEventCallState.EditorAndRuntime;
+            InitializeListeners();
+        }
 
 
-	/// <summary>
-	/// GUI Element: Signifies when the Discussion Box Appears
-	/// </summary>
-	public UnityEvent UnityEvent_DiscussionBoxAppears = new UnityEvent();
+        void InitializeListeners()
+        {
 
-	/// <summary>
-	/// GUI Element: Signifies when the Discussion Box Disappears
-	/// </summary>
-	public UnityEvent UnityEvent_DiscussionBoxDisappears = new UnityEvent();
+            //UnityEvent_ConversationFinished.AddListener ("tbd");
+            UnityEvent_DogBarking.AddListener(SceneEvent_DogStartsBarking);
+            UnityEvent_DiscussionBoxAppears.AddListener(GUIEvent_DiscussionBoxOpen);
+            UnityEvent_DiscussionBoxDisappears.AddListener(GUIEvent_DiscussionBoxClose);
+            UnityEvent_StartButtonEvent.AddListener(GUIEvent_StartButtonEvent);
+            UnityEvent_OptionsButtonEvent.AddListener(GUIEvent_ExitButtonEvent);
+            UnityEvent_InteractObjectClick.AddListener(GUIEvent_InteractObject);
 
-	/// <summary>
-	/// GUI Element: Signifies when the User is interacting with Objects
-	/// </summary>
-	public UnityEvent UnityEvent_InteractObjectClick = new UnityEvent();
+            //Initialize the call states
+            UnityEvent_OptionsButtonEvent.SetPersistentListenerState(1, NewCallState);
 
-	/// <summary>
-	/// GUIElement: Signifies when the User has pressed the Start Button
-	/// </summary>
-	public UnityEvent UnityEvent_StartButtonEvent = new UnityEvent();
+        }
 
-	/// <summary>
-	/// GUIElement: Signifies when the User has pressed the Options Button
-	/// </summary>
-	public UnityEvent UnityEvent_OptionsButtonEvent = new UnityEvent();
+        /// <summary>
+        /// Dialogue Element: Signifies when the Conversation has Ended
+        /// </summary>
+        public UnityEvent UnityEvent_ConversationFinished = new UnityEvent();
 
 
-	/// <summary>
-	/// GUIElement: Signifies when the User has pressed the Exit Button
-	/// </summary>
-	public UnityEvent UnityEvent_ExitButtionEvent = new UnityEvent();
+        /// <summary>
+        /// Dialogue Element: Signifies when Brendan knocks on the Door, the Dog starts barking
+        /// </summary>
+        public UnityEvent UnityEvent_DogBarking = new UnityEvent();
 
-	RuntimePlatform MaritimeRuntimePlatform = RuntimePlatform.OSXEditor;
 
-	public Core()
-	{
-		if (MaritimeRuntimePlatform == RuntimePlatform.WindowsEditor) {
+        /// <summary>
+        /// GUI Element: Signifies when the Discussion Box Appears
+        /// </summary>
+        public UnityEvent UnityEvent_DiscussionBoxAppears = new UnityEvent();
 
-			Debug.Log ("Optimised for Windows");
+        /// <summary>
+        /// GUI Element: Signifies when the Discussion Box Disappears
+        /// </summary>
+        public UnityEvent UnityEvent_DiscussionBoxDisappears = new UnityEvent();
 
-		} else if (MaritimeRuntimePlatform == RuntimePlatform.WindowsPlayer) {
+        /// <summary>
+        /// GUI Element: Signifies when the User is interacting with Objects
+        /// </summary>
+        public UnityEvent UnityEvent_InteractObjectClick = new UnityEvent();
 
-			Debug.Log ("Optimised for Windows");
+        /// <summary>
+        /// GUIElement: Signifies when the User has pressed the Start Button
+        /// </summary>
+        public UnityEvent UnityEvent_StartButtonEvent = new UnityEvent();
 
-		}
+        /// <summary>
+        /// GUIElement: Signifies when the User has pressed the Options Button
+        /// </summary>
+        public UnityEvent UnityEvent_OptionsButtonEvent = new UnityEvent();
 
 
-			
-	}
-		
-	virtual public void SceneEvent_BrendanKnocksDoor()
-	{
+        /// <summary>
+        /// GUIElement: Signifies when the User has pressed the Exit Button
+        /// </summary>
+        public UnityEvent UnityEvent_ExitButtionEvent = new UnityEvent();
 
 
-	}
 
-	virtual public void SceneEvent_EllieKnocksDoor()
-	{
+        RuntimePlatform MaritimeRuntimePlatform = RuntimePlatform.OSXEditor;
 
+        public Core()
+        {
+            if (MaritimeRuntimePlatform == RuntimePlatform.WindowsEditor) {
 
-	}
+                Debug.Log("Optimised for Windows");
 
-	virtual public void SceneEvent_DogStartsBarking()
-	{
-		
+            } else if (MaritimeRuntimePlatform == RuntimePlatform.WindowsPlayer) {
 
-	}
+                Debug.Log("Optimised for Windows");
 
+            }
 
-	virtual public void GUIEvent_DiscussionBoxOpen()
-	{
-		gameObject.SetActive (true);
+    }
 
-	}
+        virtual public void SceneEvent_BrendanKnocksDoor()
+        {
 
 
-	virtual public void GUIEvent_DiscussionBoxClose()
-	{
-		gameObject.SetActive (false);
+        }
 
-	}
+        virtual public void SceneEvent_EllieKnocksDoor()
+        {
 
-	virtual public void GUIEvent_InteractObject()
-	{
-       //Implement click handler code here
 
+        }
 
-		//Include mechnanism for showing us if the mouse is over the GUI Box
-		if (Input.GetKeyDown (KeyCode.Mouse0)) 
-		{
-			//etc
+        virtual public void SceneEvent_DogStartsBarking()
+        {
 
-		}
 
-		if (Input.GetKeyUp (KeyCode.Mouse0)) {
+        }
 
-			AnimationClip KeyUp_ = new AnimationClip();
-			Animation NewAnimation = new Animation();
-			NewAnimation.AddClip (KeyUp_, "Key Up Animation");
-			NewAnimation.Play ();
 
-		} else if (Input.GetKeyUp (KeyCode.Mouse0)) {
+        virtual public void GUIEvent_DiscussionBoxOpen()
+        {
+            gameObject.SetActive(true);
 
-			//Animation NewAnimation = GameObject.Find ("SecondObject_Interact_Demo");
-			//NewAnimation.Play ();
-		}
+        }
 
-	}
 
-	virtual public void GUIEvent_StartButtonEvent()
-	{
+        virtual public void GUIEvent_DiscussionBoxClose()
+        {
+            gameObject.SetActive(false);
 
+        }
 
-	}
-		
+        virtual public void GUIEvent_InteractObject()
+        {
+            //Implement click handler code here
 
-	virtual public void GUIEvent_ExitButtonEvent()
-	{
 
+            //Include mechnanism for showing us if the mouse is over the GUI Box
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                //etc
 
-	}
+            }
 
+            if (Input.GetKeyUp(KeyCode.Mouse0)) {
 
-	// Use this for initialization
-	void Start () 
-	{
+                AnimationClip KeyUp_ = new AnimationClip();
+                Animation NewAnimation = new Animation();
+                NewAnimation.AddClip(KeyUp_, "Key Up Animation");
+                NewAnimation.Play();
 
-		UnityEvent_StartButtonEvent.Invoke ();
+            } else if (Input.GetKeyUp(KeyCode.Mouse0)) {
 
-	}
-	
-	// Update is called once per frame
-	void Update () 
-	{
+                //Animation NewAnimation = GameObject.Find ("SecondObject_Interact_Demo");
+                //NewAnimation.Play ();
+            }
 
+        }
 
-	}
+        virtual public void GUIEvent_StartButtonEvent()
+        {
 
-}
 
-/// <summary>
-/// Work on this later, could be useful
-/// </summary>
+        }
 
-	
 
-public interface IKeyEvents : IEventSystemHandler
-{
+        virtual public void GUIEvent_ExitButtonEvent()
+        {
 
-	void SceneEvent_BrendanKnocksDoor();
 
-	void SceneEvent_EllieKnocksDoor();
+        }
 
-	void SceneEvent_DogStartsBarking();
 
-	void GUIEvent_DiscussionBox();
+        // Use this for initialization
+        void Start()
+        {
 
-	void GUIEvent_InteractObject();
+            UnityEvent_StartButtonEvent.Invoke();
 
-	void GUIEvent_StartButtonEvent();
+        }
 
-	void GUIEvent_OptionsButtonEvent();
+        // Update is called once per frame
+        void Update()
+        {
 
-	void GUIEvent_ExitButtonEvent();
 
+        }
 
-}
-	
+    }
 
+
+    namespace UI
+    {
+        public class CoreUI : Core
+        {
+
+            public CoreUI()
+            {
+
+
+            }
+
+
+        }
+
+        
+    }
+
+    namespace EventSystems
+    {
+        public class CoreEventSystems : Core
+
+        {
+            public CoreEventSystems()
+            {
+
+            }
+
+        }
+
+    }
+
+    namespace DialogueSystem
+    {
+        public class CoreDialogueSystems : Core
+
+        {
+           public CoreDialogueSystems()
+           {
+
+           }
+
+        }
+
+    }
+
+    }

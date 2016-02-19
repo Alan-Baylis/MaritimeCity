@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
 
-public class HighLevelDialogueController : MaritimeSceneManager, IPointerClickHandler
+public class HighLevelDialogueController : CoreSystems.Core
 {
 
 

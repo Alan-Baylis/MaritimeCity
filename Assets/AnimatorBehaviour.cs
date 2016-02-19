@@ -18,7 +18,7 @@ public class AnimatorBehaviour : StateMachineBehaviour {
 
 		if (stateInfo.loop) 
 	    {
-
+            //animator.bodyRotation = 10.0f;
 
 		}
 
