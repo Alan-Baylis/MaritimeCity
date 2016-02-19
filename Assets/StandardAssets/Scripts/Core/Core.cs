@@ -11,10 +11,7 @@ using System.Threading;
 namespace CoreSystems {
 
     public class Core : MonoBehaviour {
-
-       public int Russia = 1;
-
-
+        
         public enum SceneState { Cutscene, Dicussion_Box, Conversation, MainMenu };
 
         //UnityAction StartButton = new UnityAction(GUIEvent_StartButtonEvent());
