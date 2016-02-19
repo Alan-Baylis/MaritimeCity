@@ -254,17 +254,17 @@ namespace CoreSystems {
 
             //Non Serialized Types
             [System.NonSerialized]
-            public List<string> LukeDialogue = new List<string>(30);
+            public List<AudioClip> LukeAudio = new List<AudioClip>(30);
+            [System.NonSerialized]
+            public List<AudioClip> ElliAudio = new List<AudioClip>(30);
+            [System.NonSerialized]
+            public List<AudioClip> BrendanAudio = new List<AudioClip>(30);
             [System.NonSerialized]
             public List<string> DialogueIDSequencer;
             [System.NonSerialized]
-            public List<string> ElliDialogue = new List<string>(30);
-            [System.NonSerialized]
             public int MaxScript = 100;
             [System.NonSerialized]
-            public static int AudioIterator = 0;
-            [System.NonSerialized]
-            public static int ScriptIterator = 0;
+            public int MaritimeDialogueIterator = 0;
             [System.NonSerialized]
             public GameObject DialogueObject;
             [System.NonSerialized]
@@ -279,9 +279,13 @@ namespace CoreSystems {
             //Defined Types
             public ElliController Elli = new ElliController();
             public LukeController Luke = new LukeController();
+            public BrendanPOVController Brendan = new BrendanPOVController();
             public Text DialogueText;
             public enum ScriptID { Elli, Brendan, Luke };
+            public enum DialogueStateID {None, Elli, Brendan, Luke};
+            public DialogueStateID DialogueState;
             private int SequencerIterator = 0;
+            
 
             /// <summary>
             /// Need's to be revamped
@@ -292,7 +296,7 @@ namespace CoreSystems {
            void EventIdentifier(AudioClip[] Elli, AudioClip[] Brendan, AudioClip[] Luke)
            {
                 //Dog Barkiing Iterator
-                if ("E4_S1" == Elli[AudioIterator].ToString())
+                if ("E4_S1" == Elli[MaritimeDialogueIterator].ToString())
                 {
                     //UnityEvent_DogBarking.Invoke();
                 }
@@ -308,15 +312,16 @@ namespace CoreSystems {
                     //int BrendanScriptLogger = 0;
                     //BrendanScriptLogger++;
 
-                    if (BrendanScript[ScriptIterator] == "")
+                    if (BrendanScript[MaritimeDialogueIterator] == "")
                     {
-                        BrendanScript[ScriptIterator] = DefineScript;
-                        DialogueText.text = BrendanScript[ScriptIterator];
+                        BrendanScript[MaritimeDialogueIterator] = DefineScript;
+                        DialogueText.text = BrendanScript[MaritimeDialogueIterator];
                         //Makes sure that the entry point is in the next array
-                        ScriptIterator++;
+                        //Sneak in Co-routine to evaluate the term by seeing if the Audio is finished first
+                        //MaritimeDialogueIterator++;
                     }
 
-                }
+             }
 
                 /*
                 else if (ScriptIdentification == ScriptID.Elli)
@@ -352,11 +357,13 @@ namespace CoreSystems {
                 }
 
          
-                if (DynamicDialogueScript[ScriptIterator] == "")
+                if (DynamicDialogueScript[MaritimeDialogueIterator] == "")
                 {
-                    DynamicDialogueScript[ScriptIterator] = Script;
-                    DialogueText.text = DynamicDialogueScript[ScriptIterator];
-                    ScriptIterator++; 
+                    DynamicDialogueScript[MaritimeDialogueIterator] = Script;
+                    DialogueText.text = DynamicDialogueScript[MaritimeDialogueIterator];
+
+                   //Same as above
+                   //MaritimeDialogueIterator++;
                 }
 
             }
@@ -380,15 +387,16 @@ namespace CoreSystems {
 
             void DialogueIterator()
             {
-                if (DialogueIDSequencer[1] == BrendanScript[ScriptIterator])
+                if (DialogueIDSequencer[1] == BrendanScript[MaritimeDialogueIterator])
                 {
+                    //Add relevant Dialogue code
 
-                } else if (DialogueIDSequencer[1] == ElliScript[ScriptIterator])
+                } else if (DialogueIDSequencer[1] == ElliScript[MaritimeDialogueIterator])
                 {
                     Elli.PlayAudio(AudioID:"E1_S1");
                     Elli.DisplayScript(ScriptID:"E1_S1");
 
-                } else if (DialogueIDSequencer[1] == LukeScript[ScriptIterator])
+                } else if (DialogueIDSequencer[1] == LukeScript[MaritimeDialogueIterator])
                 {
 
                     Luke.PlayAudio(DialogueID: "L1_S1");
@@ -407,15 +415,52 @@ namespace CoreSystems {
 
             }
 
-           void PassCurrentAudio()
-           {
+          public AudioClip PassCurrentAudio()
+          {
+                if (DialogueState == DialogueStateID.Brendan)
+                {
+                    return BrendanAudio[MaritimeDialogueIterator];
 
-           }
+                } else if (DialogueState == DialogueStateID.Elli)
+    
+                {
+                    return ElliAudio[MaritimeDialogueIterator];
 
-           void PassCurrentScript()
-           {
+                } else if (DialogueState == DialogueStateID.Luke)
 
-           }
+                {
+                    return LukeAudio[MaritimeDialogueIterator];
+                }
+
+             return null;  
+
+          }
+
+        
+  
+
+          public string PassCurrentScript()
+          {
+
+                if (DialogueState == DialogueStateID.Brendan)
+                {
+                    return BrendanScript[MaritimeDialogueIterator];
+
+                }
+                else if (DialogueState == DialogueStateID.Elli)
+
+                {
+                    return ElliScript[MaritimeDialogueIterator];
+
+                }
+                else if (DialogueState == DialogueStateID.Luke)
+
+                {
+                    return LukeScript[MaritimeDialogueIterator];
+                }
+
+                return null;
+          }
 
            void Start()
            {

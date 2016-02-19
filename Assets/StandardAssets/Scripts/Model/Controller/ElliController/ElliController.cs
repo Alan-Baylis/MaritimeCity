@@ -19,6 +19,8 @@ public class ElliController : CoreDialogueSystems, IDialogueSystems {
     {
 
     }
+
+    
 	
 	// Update is called once per frame
 	void Update () {

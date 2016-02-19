@@ -61,9 +61,6 @@ public class LowLevelDialogueController : HighLevelDialogueController
         Sequencer[5] = "E2_S2";
 
         //Add the functions to be implemented as listeners
-        
-
-    
         //Add if statements to add invoke events when it is time for them
         //template
         if (AudioIterator == 1)
@@ -101,9 +98,9 @@ public class LowLevelDialogueController : HighLevelDialogueController
 	{
 		if (PrimarySource.isPlaying == false && NewDialogueState == DialogueState.Brendan) {
 			//PrimarySource.clip.UnloadAudioData ();
-			PrimarySource.clip = BrendanAudioDialogue [AudioIterator];
+			PrimarySource.clip = BrendanAudioDialogue [MaritimeDialogueIterator];
 			PrimarySource.Play ();
-			AudioIterator++;
+			MaritimeDialogueIterator++;
 
 
 		}
@@ -120,9 +117,9 @@ public class LowLevelDialogueController : HighLevelDialogueController
 		{
 			//StopCoroutine(BrendanDialogueController());
 			PrimarySource.Stop ();
-			AudioIterator = 0;
-			ElliSource.clip = ElliAudioDialogue [AudioIterator];
-			AudioIterator++;    
+			MaritimeDialogueIterator = 0;
+			ElliSource.clip = ElliAudioDialogue [MaritimeDialogueIterator];
+			MaritimeDialogueIterator++;    
 		}
 			
 		yield return null;

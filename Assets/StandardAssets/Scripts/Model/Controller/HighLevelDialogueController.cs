@@ -62,7 +62,6 @@ public class HighLevelDialogueController : CoreDialogueSystems
 		
 	public void OnPointerClick(PointerEventData eventData)
 	{
-		ScriptIterator++;
 
 	}
 
