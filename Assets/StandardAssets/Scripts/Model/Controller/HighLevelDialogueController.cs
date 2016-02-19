@@ -66,15 +66,11 @@ public class HighLevelDialogueController : CoreSystems.Core
 
 	}
 		
-
 	public void OnPointerClick(PointerEventData eventData)
 	{
 		ScriptIterator++;
 
 	}
-
-
-
 
 	bool bFinishedPlaying()
 	{
