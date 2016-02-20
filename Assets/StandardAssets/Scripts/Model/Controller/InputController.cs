@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+[System.Obsolete]
 public class InputController : MonoBehaviour
 {
 	private static int LocationIterator = 0;
