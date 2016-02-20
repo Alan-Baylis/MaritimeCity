@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BrendanAnimationController : MonoBehaviour {
+public class MableController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

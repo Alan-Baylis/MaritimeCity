@@ -18,7 +18,7 @@ public class SelectionScreenComponent : MonoBehaviour
     public AnimationClip ExitButtonFadeIn;
     public AnimationClip ExitButtonFadeOut;
 
-    AnimationClipController ClipController;
+    
 
     Animation Animation_ContinueButtonFadeIn = new Animation();
     Animation Animation_ContinueButtonFadeOut = new Animation();

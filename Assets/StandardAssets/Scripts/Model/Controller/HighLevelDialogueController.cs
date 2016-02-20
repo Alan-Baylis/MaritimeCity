@@ -2,28 +2,22 @@
 using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using CoreSystems.DialogueSystem;
 using System.Collections;
 using System.Collections.Generic;
 
-public class HighLevelDialogueController : MaritimeSceneManager, IPointerClickHandler
+public class HighLevelDialogueController : CoreDialogueSystems
 {
-
 
 	public UnityEvent UnityEvent_DialogueBoxOpen;
 	public UnityEvent UnityEvent_DialogueBoxClose;
 
 
-	public static int AudioIterator = 0;
-	public static int ScriptIterator = 0;
+	
 	public static int Dialogue_ScriptIterator = 0;
 	public static float _Time = 0;
 
-    public static string[] SequencerArray = new string[100];
-	public static string[] BrendanScript = new string[50];
-    public static string[] ElliScript = new string[50];
-    public static string[] LukeScript = new string[50];
-    
-
+   
 	public AudioClip[] BrendanAudioDialogue = new AudioClip[10];
 	public AudioClip[] LukeAudioDialogue = new AudioClip[10];
 	public AudioClip[] ElliAudioDialogue = new AudioClip[10];
@@ -32,7 +26,7 @@ public class HighLevelDialogueController : MaritimeSceneManager, IPointerClickHa
 	public bool bConversationActive = false;
 	public bool bConversationEnd = false;
 
-	public GameObject DialogueObject;
+	
 
 	public AudioSource PrimarySource; //Brendan
 	public AudioSource ElliSource;
@@ -66,15 +60,10 @@ public class HighLevelDialogueController : MaritimeSceneManager, IPointerClickHa
 
 	}
 		
-
 	public void OnPointerClick(PointerEventData eventData)
 	{
-		ScriptIterator++;
 
 	}
-
-
-
 
 	bool bFinishedPlaying()
 	{

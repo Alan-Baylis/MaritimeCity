@@ -8,189 +8,488 @@ using System.Collections.Generic;
 using System.Threading;
 
 
-public class Core : MonoBehaviour {
+namespace CoreSystems {
 
+    public class Core : MonoBehaviour {
+        
+        public enum SceneState { Cutscene, Dicussion_Box, Conversation, MainMenu };
 
-	//UnityAction StartButton = new UnityAction(GUIEvent_StartButtonEvent());
+        //UnityAction StartButton = new UnityAction(GUIEvent_StartButtonEvent());
 
+    
 
-	/// <summary>
-	/// Dialogue Element: Signifies when the Conversation has Ended
-	/// </summary>
-	public UnityEvent UnityEvent_ConversationFinished = new UnityEvent();
+        RuntimePlatform MaritimeRuntimePlatform = RuntimePlatform.OSXEditor;
 
+        public Core()
+        {
+            if (MaritimeRuntimePlatform == RuntimePlatform.WindowsEditor) {
 
-	/// <summary>
-	/// Dialogue Element: Signifies when Brendan knocks on the Door, the Dog starts barking
-	/// </summary>
-	public UnityEvent UnityEvent_DogBarking = new UnityEvent();
+                Debug.Log("Optimised for Windows");
 
+            } else if (MaritimeRuntimePlatform == RuntimePlatform.WindowsPlayer) {
 
-	/// <summary>
-	/// GUI Element: Signifies when the Discussion Box Appears
-	/// </summary>
-	public UnityEvent UnityEvent_DiscussionBoxAppears = new UnityEvent();
+                Debug.Log("Optimised for Windows");
 
-	/// <summary>
-	/// GUI Element: Signifies when the Discussion Box Disappears
-	/// </summary>
-	public UnityEvent UnityEvent_DiscussionBoxDisappears = new UnityEvent();
+            }
 
-	/// <summary>
-	/// GUI Element: Signifies when the User is interacting with Objects
-	/// </summary>
-	public UnityEvent UnityEvent_InteractObjectClick = new UnityEvent();
+    }
 
-	/// <summary>
-	/// GUIElement: Signifies when the User has pressed the Start Button
-	/// </summary>
-	public UnityEvent UnityEvent_StartButtonEvent = new UnityEvent();
+        // Use this for initialization
+        void Start()
+        {
 
-	/// <summary>
-	/// GUIElement: Signifies when the User has pressed the Options Button
-	/// </summary>
-	public UnityEvent UnityEvent_OptionsButtonEvent = new UnityEvent();
 
+        }
 
-	/// <summary>
-	/// GUIElement: Signifies when the User has pressed the Exit Button
-	/// </summary>
-	public UnityEvent UnityEvent_ExitButtionEvent = new UnityEvent();
+        // Update is called once per frame
+        void Update()
+        {
 
-	RuntimePlatform MaritimeRuntimePlatform = RuntimePlatform.OSXEditor;
 
-	public Core()
-	{
-		if (MaritimeRuntimePlatform == RuntimePlatform.WindowsEditor) {
+        }
 
-			Debug.Log ("Optimised for Windows");
+    }
 
-		} else if (MaritimeRuntimePlatform == RuntimePlatform.WindowsPlayer) {
 
-			Debug.Log ("Optimised for Windows");
+    namespace UI
+    {
+        public class CoreUI : Core
+        {
 
-		}
+            public CoreUI()
+            {
 
 
-			
-	}
-		
-	virtual public void SceneEvent_BrendanKnocksDoor()
-	{
+            }
 
 
-	}
 
-	virtual public void SceneEvent_EllieKnocksDoor()
-	{
+            public void DialogueBoxOpen()
+            {
+                GameObject DialogueBox = GameObject.Find("Dialog Box");
 
+                DialogueBox.gameObject.SetActive(true);
 
-	}
+                //NewDialogueUIState = DialogueControllerState.Open;
+            }
 
-	virtual public void SceneEvent_DogStartsBarking()
-	{
-		
+            public void DialogueBoxClose()
+            {
+                GameObject DialogueBox = GameObject.Find("Dialog Box");
 
-	}
+                DialogueBox.gameObject.SetActive(false);
 
+                //NewDialogueUIState = DialogueControllerState.Closed;
+            }
 
-	virtual public void GUIEvent_DiscussionBoxOpen()
-	{
-		gameObject.SetActive (true);
 
-	}
+        }
 
+        
+    }
 
-	virtual public void GUIEvent_DiscussionBoxClose()
-	{
-		gameObject.SetActive (false);
+    namespace EventSystems
+    {
+        public class CoreEventSystems : Core
 
-	}
+        {
+            public CoreEventSystems()
+            {
 
-	virtual public void GUIEvent_InteractObject()
-	{
-       //Implement click handler code here
+            }
 
+            UnityEventCallState MaritimeCallState = UnityEventCallState.Off;
 
-		//Include mechnanism for showing us if the mouse is over the GUI Box
-		if (Input.GetKeyDown (KeyCode.Mouse0)) 
-		{
-			//etc
+            void Awake()
+            {
+                MaritimeCallState = UnityEventCallState.EditorAndRuntime;
+                InitializeListeners();
+            }
 
-		}
 
-		if (Input.GetKeyUp (KeyCode.Mouse0)) {
+            void InitializeListeners()
+            {
+                //UnityEvent_ConversationFinished.AddListener ("tbd");
+                UnityEvent_DogBarking.AddListener(SceneEvent_DogStartsBarking);
+                UnityEvent_DiscussionBoxAppears.AddListener(GUIEvent_DiscussionBoxOpen);
+                UnityEvent_DiscussionBoxDisappears.AddListener(GUIEvent_DiscussionBoxClose);
+                UnityEvent_StartButtonEvent.AddListener(GUIEvent_StartButtonEvent);
+                UnityEvent_OptionsButtonEvent.AddListener(GUIEvent_ExitButtonEvent);
+                UnityEvent_InteractObjectClick.AddListener(GUIEvent_InteractObject);
 
-			AnimationClip KeyUp_ = new AnimationClip();
-			Animation NewAnimation = new Animation();
-			NewAnimation.AddClip (KeyUp_, "Key Up Animation");
-			NewAnimation.Play ();
+                //Initialize the call states
+                UnityEvent_OptionsButtonEvent.SetPersistentListenerState(1, MaritimeCallState);
 
-		} else if (Input.GetKeyUp (KeyCode.Mouse0)) {
+            }
 
-			//Animation NewAnimation = GameObject.Find ("SecondObject_Interact_Demo");
-			//NewAnimation.Play ();
-		}
+            /// <summary>
+            /// Dialogue Element: Signifies when the Conversation has Ended
+            /// </summary>
+            public UnityEvent UnityEvent_ConversationFinished = new UnityEvent();
 
-	}
 
-	virtual public void GUIEvent_StartButtonEvent()
-	{
+            /// <summary>
+            /// Dialogue Element: Signifies when Brendan knocks on the Door, the Dog starts barking
+            /// </summary>
+            public UnityEvent UnityEvent_DogBarking = new UnityEvent();
 
 
-	}
-		
+            /// <summary>
+            /// GUI Element: Signifies when the Discussion Box Appears
+            /// </summary>
+            public UnityEvent UnityEvent_DiscussionBoxAppears = new UnityEvent();
 
-	virtual public void GUIEvent_ExitButtonEvent()
-	{
+            /// <summary>
+            /// GUI Element: Signifies when the Discussion Box Disappears
+            /// </summary>
+            public UnityEvent UnityEvent_DiscussionBoxDisappears = new UnityEvent();
 
+            /// <summary>
+            /// GUI Element: Signifies when the User is interacting with Objects
+            /// </summary>
+            public UnityEvent UnityEvent_InteractObjectClick = new UnityEvent();
 
-	}
+            /// <summary>
+            /// GUIElement: Signifies when the User has pressed the Start Button
+            /// </summary>
+            public UnityEvent UnityEvent_StartButtonEvent = new UnityEvent();
 
+            /// <summary>
+            /// GUIElement: Signifies when the User has pressed the Options Button
+            /// </summary>
+            public UnityEvent UnityEvent_OptionsButtonEvent = new UnityEvent();
 
-	// Use this for initialization
-	void Start () 
-	{
 
-		UnityEvent_StartButtonEvent.Invoke ();
+            /// <summary>
+            /// GUIElement: Signifies when the User has pressed the Exit Button
+            /// </summary>
+            public UnityEvent UnityEvent_ExitButtonEvent = new UnityEvent();
 
-	}
-	
-	// Update is called once per frame
-	void Update () 
-	{
 
+            virtual public void SceneEvent_BrendanKnocksDoor()
+            {
 
-	}
 
-}
+            }
 
-/// <summary>
-/// Work on this later, could be useful
-/// </summary>
+            virtual public void SceneEvent_EllieKnocksDoor()
+            {
 
-	
 
-public interface IKeyEvents : IEventSystemHandler
-{
+            }
 
-	void SceneEvent_BrendanKnocksDoor();
+            virtual public void SceneEvent_DogStartsBarking()
+            {
 
-	void SceneEvent_EllieKnocksDoor();
 
-	void SceneEvent_DogStartsBarking();
+            }
 
-	void GUIEvent_DiscussionBox();
 
-	void GUIEvent_InteractObject();
+            virtual public void GUIEvent_DiscussionBoxOpen()
+            {
+                gameObject.SetActive(true);
 
-	void GUIEvent_StartButtonEvent();
+            }
 
-	void GUIEvent_OptionsButtonEvent();
 
-	void GUIEvent_ExitButtonEvent();
+            virtual public void GUIEvent_DiscussionBoxClose()
+            {
+                gameObject.SetActive(false);
 
+            }
 
-}
-	
+            virtual public void GUIEvent_InteractObject()
+            {
+                //Implement click handler code here
 
+
+                //Include mechnanism for showing us if the mouse is over the GUI Box
+                if (Input.GetKeyDown(KeyCode.Mouse0))
+                {
+                    //etc
+
+                }
+
+                if (Input.GetKeyUp(KeyCode.Mouse0))
+                {
+
+                    AnimationClip KeyUp_ = new AnimationClip();
+                    Animation NewAnimation = new Animation();
+                    NewAnimation.AddClip(KeyUp_, "Key Up Animation");
+                    NewAnimation.Play();
+
+                }
+                else if (Input.GetKeyUp(KeyCode.Mouse0))
+                {
+
+                    //Animation NewAnimation = GameObject.Find ("SecondObject_Interact_Demo");
+                    //NewAnimation.Play ();
+                }
+
+            }
+
+            virtual public void GUIEvent_StartButtonEvent()
+            {
+
+
+            }
+
+
+            virtual public void GUIEvent_ExitButtonEvent()
+            {
+
+
+            }
+
+
+        }
+
+    }
+
+    namespace DialogueSystem
+    {
+
+        public class CoreDialogueSystems : Core
+        {
+
+            //Non Serialized Types
+            [System.NonSerialized]
+            public List<AudioClip> LukeAudio = new List<AudioClip>(30);
+            [System.NonSerialized]
+            public List<AudioClip> ElliAudio = new List<AudioClip>(30);
+            [System.NonSerialized]
+            public List<AudioClip> BrendanAudio = new List<AudioClip>(30);
+            [System.NonSerialized]
+            public List<string> DialogueIDSequencer;
+            [System.NonSerialized]
+            public int MaxScript = 100;
+            [System.NonSerialized]
+            public int MaritimeDialogueIterator = 0;
+            [System.NonSerialized]
+            public GameObject DialogueObject;
+            [System.NonSerialized]
+            public static string[] BrendanScript = new string[50];
+            [System.NonSerialized]
+            public static string[] ElliScript = new string[50];
+            [System.NonSerialized]
+            public static string[] LukeScript = new string[50];
+            [System.NonSerialized]
+            public Dictionary<string, UnityAction> SequenceOfEvents;
+
+            //Defined Types
+            public ElliController Elli = new ElliController();
+            public LukeController Luke = new LukeController();
+            public BrendanPOVController Brendan = new BrendanPOVController();
+            public Text DialogueText;
+            public enum ScriptID { Elli, Brendan, Luke };
+            public enum DialogueStateID {None, Elli, Brendan, Luke};
+            public DialogueStateID DialogueState;
+            private int SequencerIterator = 0;
+            
+
+            /// <summary>
+            /// Need's to be revamped
+            /// </summary>
+            /// <param name="Elli"></param>
+            /// <param name="Brendan"></param>
+            /// <param name="Luke"></param>
+           void EventIdentifier(AudioClip[] Elli, AudioClip[] Brendan, AudioClip[] Luke)
+           {
+                //Dog Barkiing Iterator
+                if ("E4_S1" == Elli[MaritimeDialogueIterator].ToString())
+                {
+                    //UnityEvent_DogBarking.Invoke();
+                }
+
+           }
+
+
+            public void ScriptIDDefinition(ScriptID ScriptIdentification, string DefineScript)
+            {
+                if (ScriptIdentification == ScriptID.Brendan)
+                {
+                    //Use logger to check conditions, use iterators for dymanic functions
+                    //int BrendanScriptLogger = 0;
+                    //BrendanScriptLogger++;
+
+                    if (BrendanScript[MaritimeDialogueIterator] == "")
+                    {
+                        BrendanScript[MaritimeDialogueIterator] = DefineScript;
+                        DialogueText.text = BrendanScript[MaritimeDialogueIterator];
+                        //Makes sure that the entry point is in the next array
+                        //Sneak in Co-routine to evaluate the term by seeing if the Audio is finished first
+                        //MaritimeDialogueIterator++;
+                    }
+
+             }
+
+                /*
+                else if (ScriptIdentification == ScriptID.Elli)
+                {
+                    //Move to the higher level code
+
+                    ScriptIterator = 0;
+                    if (ElliScript[ScriptIterator] == "")
+                    {
+                        ElliScript[ScriptIterator] = _DefineScript;
+                        DialogueText.alignment = TextAnchor.MiddleCenter;
+                        DialogueText.text = ElliScript[ScriptIterator];
+                        ScriptIterator++;
+
+                    }
+
+                    else if (ElliScript[ScriptIterator] != "")
+                    {
+                        ScriptIterator++;
+                    }
+
+                */
+
+                //}
+
+            }
+
+            public void ScriptIDDefinition(List <string> DynamicDialogueScript, string Script)
+            {
+                if (DynamicDialogueScript.Capacity > 1)
+                {
+                    DynamicDialogueScript.Capacity = 100;
+                }
+
+         
+                if (DynamicDialogueScript[MaritimeDialogueIterator] == "")
+                {
+                    DynamicDialogueScript[MaritimeDialogueIterator] = Script;
+                    DialogueText.text = DynamicDialogueScript[MaritimeDialogueIterator];
+
+                   //Same as above
+                   //MaritimeDialogueIterator++;
+                }
+
+            }
+
+           void Awake()
+           {
+                DialogueIDSequencer.Capacity = MaxScript;
+                DialogueObject = GameObject.Find("Dialog Text");
+                DialogueText = GetComponent<Text>();
+                DialogueObject.AddComponent<AudioSource>();
+                DialogueObject.AddComponent<AudioSource>();
+                DialogueObject.AddComponent<AudioSource>();
+
+                DialogueIDSequencer.Add("B1_S1");
+                DialogueIDSequencer.Add("B1_S2");
+                DialogueIDSequencer.Add("B1_S3");
+                DialogueIDSequencer.Add("B1_S4");
+            
+            }
+
+
+            void DialogueIterator()
+            {
+                if (DialogueIDSequencer[1] == BrendanScript[MaritimeDialogueIterator])
+                {
+                    //Add relevant Dialogue code
+
+                } else if (DialogueIDSequencer[1] == ElliScript[MaritimeDialogueIterator])
+                {
+                    Elli.PlayAudio(AudioID:"E1_S1");
+                    Elli.DisplayScript(ScriptID:"E1_S1");
+
+                } else if (DialogueIDSequencer[1] == LukeScript[MaritimeDialogueIterator])
+                {
+
+                    Luke.PlayAudio(DialogueID: "L1_S1");
+                    Luke.DisplayScript(ScriptID: "E1_S1");
+
+                }
+
+                SequencerIterator++;
+
+            }
+
+            void InitializeDialogueEvents()
+            {
+                UnityAction ElliWalkMableUpstairs = null;
+                SequenceOfEvents.Add("B4_S2", ElliWalkMableUpstairs);
+
+            }
+
+          public AudioClip PassCurrentAudio()
+          {
+                if (DialogueState == DialogueStateID.Brendan)
+                {
+                    return BrendanAudio[MaritimeDialogueIterator];
+
+                } else if (DialogueState == DialogueStateID.Elli)
+    
+                {
+                    return ElliAudio[MaritimeDialogueIterator];
+
+                } else if (DialogueState == DialogueStateID.Luke)
+
+                {
+                    return LukeAudio[MaritimeDialogueIterator];
+                }
+
+             return null;  
+
+          }
+
+        
+  
+
+          public string PassCurrentScript()
+          {
+
+                if (DialogueState == DialogueStateID.Brendan)
+                {
+                    return BrendanScript[MaritimeDialogueIterator];
+
+                }
+                else if (DialogueState == DialogueStateID.Elli)
+
+                {
+                    return ElliScript[MaritimeDialogueIterator];
+
+                }
+                else if (DialogueState == DialogueStateID.Luke)
+
+                {
+                    return LukeScript[MaritimeDialogueIterator];
+                }
+
+                return null;
+          }
+
+           void Start()
+           {
+
+           }
+
+           void Update()
+           {
+
+                DialogueIterator();
+                PassCurrentAudio();
+                PassCurrentScript();
+
+           }
+
+        }
+
+
+    public interface IDialogueSystems
+    {
+
+       void PlayAudio(string AudioID);
+
+       void DisplayScript(string ScriptID);
+
+
+    }
+
+
+    }
+
+    }
