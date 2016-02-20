@@ -18,38 +18,34 @@ public class CoreDialogueSystems : MonoBehaviour {
 
     public List <AudioClip> LukeAudio = new List<AudioClip>(30);
 
-    public List<string> DialogueIDSequencer = new List<string>(50);
+    public List <string> DialogueIDSequencer = new List<string>(50);
 
     public int MaxScript = 100;
 
     public int MaritimeDialogueIterator = 0;
 
-    public GameObject DialogueObject;
+    //public GameObject DialogueObject;
 
-    public static List<string> BrendanScript = new List<string>(50);
+    public List<string> BrendanScript = new List<string>(50);
 
-    public static List<string> ElliScript = new List<string>(50);
+    public List<string> ElliScript = new List<string>(50);
 
-    public static List<string> LukeScript = new List<string>(50);
-
-
-    public AudioSource BrendanSource = new AudioSource();
-
-    public AudioSource ElliSource = new AudioSource();
-  
-    public AudioSource LukeSource;
+    public  List<string> LukeScript = new List<string>(50);
 
     public Dictionary<string, UnityAction> SequenceOfEvents;
 
 
-    public List<AudioClip> ElliAudioDialogue = new List<AudioClip>(10);
-
+    
     public enum ConversationState { Start, Active, End };
 
     //Defined Types
-    public ElliController Elli = new ElliController();
-    public LukeController Luke = new LukeController();
-    public BrendanPOVController Brendan = new BrendanPOVController();
+// public ElliController Elli = new ElliController();
+
+// public LukeController Luke = new LukeController();
+
+// public BrendanPOVController Brendan = new BrendanPOVController();
+
+
     public Text DialogueText;
     public enum ScriptID { Elli, Brendan, Luke };
     public enum DialogueStateID { None, Elli, Brendan, Luke };
@@ -76,8 +72,8 @@ public class CoreDialogueSystems : MonoBehaviour {
 
             //Makes sure that the entry point is in the next array
             //Sneak in Co-routine to evaluate the term by seeing if the Audio is finished first
-            yield return new WaitUntil(() => BrendanSource == AudioSource.FindObjectOfType<AudioSource>());
-
+            // yield return new WaitUntil(() => BrendanSource == AudioSource.FindObjectOfType<AudioSource>());
+            yield return null;
             InternalIterator++;
 
         }
@@ -255,7 +251,7 @@ public class CoreDialogueSystems : MonoBehaviour {
     }
 
 
-    IEnumerator DialogueIterator()
+  public IEnumerator DialogueIterator()
     {
         //InitializeDialogueEvents();
         //Should be moved
@@ -270,8 +266,8 @@ public class CoreDialogueSystems : MonoBehaviour {
             if (DialogueIDSequencer[Iterator] == "B1_S1")
             {
                 //Makes sure what we are seeing is valid;
-                Elli.PlayAudio(AudioID: DialogueIDSequencer[Iterator]);
-                Elli.DisplayScript(ScriptID: DialogueIDSequencer[Iterator]);
+                //Elli.PlayAudio(AudioID: DialogueIDSequencer[Iterator]);
+                //Elli.DisplayScript(ScriptID: DialogueIDSequencer[Iterator]);
 
                 //Invoke relevant Event here!
 

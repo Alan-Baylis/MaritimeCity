@@ -14,6 +14,9 @@ public class BrendanPOVController : CoreDialogueSystems {
 
     }
 
+
+    public AudioSource BrendanSource;
+
     public Destinations Destination;
     public GameObject BrendanGameObject;
 
@@ -45,7 +48,7 @@ public class BrendanPOVController : CoreDialogueSystems {
         there = Destination.ElliDoor.transform.position;
         speed = 50;
 
-        BrendanSource = DialogueObject.GetComponent<AudioSource>();
+       
 
 
         BrendanPOV.GetComponent<Camera>();

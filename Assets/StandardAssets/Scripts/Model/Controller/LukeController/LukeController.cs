@@ -8,12 +8,14 @@ public class LukeController : CoreDialogueSystems, IDialogueSystems {
 
     public GameObject LukeGameObject;
 
+
+    public AudioSource LukeSource;
+
     // Use this for initialization
     void Start ()
     {
 
-        LukeSource = DialogueObject.GetComponent<AudioSource>();
-
+        LukeSource = GetComponent<AudioSource>();
 
     }
 
