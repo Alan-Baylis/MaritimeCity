@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
-using CoreSystems.DialogueSystem;
 using System.Collections;
 
 public class ElliController : CoreDialogueSystems, IDialogueSystems {
 
     string FileName;
+
+
+    public GameObject ElliGameObject;
 
     // Use this for initialization
     void Start ()
@@ -62,7 +64,7 @@ public class ElliController : CoreDialogueSystems, IDialogueSystems {
 
         if (FileName.Contains("E1_S5"))
         {
-            ScriptIDDefinition(ScriptID.Elli, "Could you come back tommorow");
+            ScriptIDDefinition(ScriptID.Elli, "Could you come back tomorrow");
         }
 
         FileName = ElliAudioDialogue[5].ToString();
@@ -300,7 +302,7 @@ public class ElliController : CoreDialogueSystems, IDialogueSystems {
     IEnumerator ElliDialogueController()
     {
            //StopCoroutine(BrendanDialogueController());
-            PrimarySource.Stop();
+            BrendanSource.Stop();
             MaritimeDialogueIterator = 0;
             ElliSource.clip = ElliAudioDialogue[MaritimeDialogueIterator];
             MaritimeDialogueIterator++;

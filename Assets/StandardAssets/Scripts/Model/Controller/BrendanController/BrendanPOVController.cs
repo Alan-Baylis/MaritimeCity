@@ -1,11 +1,21 @@
 ﻿using UnityEngine;
-using CoreSystems.DialogueSystem;
 using System.Collections;
 
 public class BrendanPOVController : CoreDialogueSystems {
 
     public Camera BrendanPOV = new Camera();
-    public GameObject ElliDoor;
+
+   public struct Destinations
+    {
+
+       public GameObject ElliDoor;
+       public GameObject LivingRoom;
+
+
+    }
+
+    public Destinations Destination;
+    public GameObject BrendanGameObject;
 
     string FileName;
 
@@ -18,6 +28,12 @@ public class BrendanPOVController : CoreDialogueSystems {
     void Awake()
     {
 
+        BrendanGameObject.SetActive(true);
+
+        BrendanGameObject.AddComponent<AudioSource>();
+        BrendanSource = BrendanGameObject.GetComponent<AudioSource>();
+
+
         PopulateScript();
 
     }
@@ -26,10 +42,10 @@ public class BrendanPOVController : CoreDialogueSystems {
 	void Start ()
     {
         from = BrendanPOV.transform.position;
-        there = ElliDoor.transform.position;
+        there = Destination.ElliDoor.transform.position;
         speed = 50;
 
-        PrimarySource = DialogueObject.GetComponent<AudioSource>();
+        BrendanSource = DialogueObject.GetComponent<AudioSource>();
 
 
         BrendanPOV.GetComponent<Camera>();
@@ -53,7 +69,6 @@ public class BrendanPOVController : CoreDialogueSystems {
 
     void PopulateScript()
     {
-
         FileName = BrendanAudioDialogue[0].ToString();
 
         if (FileName.Contains("B1_S1"))
@@ -435,17 +450,17 @@ public class BrendanPOVController : CoreDialogueSystems {
 
     IEnumerator BrendanDialogueController()
     {
-        if (PrimarySource.isPlaying == false)
+        if (BrendanSource.isPlaying == false)
         {
             //PrimarySource.clip.UnloadAudioData ();
-            PrimarySource.clip = BrendanAudioDialogue[MaritimeDialogueIterator];
-            PrimarySource.Play();
+            BrendanSource.clip = BrendanAudioDialogue[MaritimeDialogueIterator];
+            BrendanSource.Play();
             MaritimeDialogueIterator++;
 
         }
 
         //yield return new WaitWhile (() => PrimarySource.isPlaying == false);
-        yield return new WaitForSeconds(PrimarySource.clip.length);
+        yield return new WaitForSeconds(BrendanSource.clip.length);
 
     }
 

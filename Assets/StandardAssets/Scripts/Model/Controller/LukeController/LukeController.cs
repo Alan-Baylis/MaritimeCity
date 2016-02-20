@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
-using CoreSystems.DialogueSystem;
+using System.Collections.Generic;
 using System.Collections;
 
 public class LukeController : CoreDialogueSystems, IDialogueSystems {
 
     string FileName;
 
+    public GameObject LukeGameObject;
 
     // Use this for initialization
     void Start ()
