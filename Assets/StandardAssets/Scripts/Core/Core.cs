@@ -119,7 +119,6 @@ namespace CoreSystems
 
             }
 
-
             public struct GUIEvents
             {
                 public UnityEvent MainMenuStartButtonEvent;
@@ -182,7 +181,6 @@ namespace CoreSystems
             public AudioSource ElliSource;
             [System.NonSerialized]
             public AudioSource LukeSource;
-
             [System.NonSerialized]
             public Dictionary<string, UnityAction> SequenceOfEvents;
 
@@ -223,10 +221,8 @@ namespace CoreSystems
             }
 
 
-            public void ScriptIDDefinition(ScriptID ScriptIdentification, string DefineScript)
+            public IEnumerator ScriptIDDefinition(ScriptID ScriptIdentification, string DefineScript)
             {
-                if (ScriptIdentification == ScriptID.Brendan)
-                {
                     //Use logger to check conditions, use iterators for dymanic functions
                     //int BrendanScriptLogger = 0;
                     //BrendanScriptLogger++;
@@ -235,40 +231,42 @@ namespace CoreSystems
                     {
                         BrendanScript[MaritimeDialogueIterator] = DefineScript;
                         DialogueText.text = BrendanScript[MaritimeDialogueIterator];
-                        //Makes sure that the entry point is in the next array
-                        //Sneak in Co-routine to evaluate the term by seeing if the Audio is finished first
-                        //MaritimeDialogueIterator++;
-                    }
+                    //Makes sure that the entry point is in the next array
+                    //Sneak in Co-routine to evaluate the term by seeing if the Audio is finished first
+
+                    yield return new WaitUntil(() => PrimarySource == QueryAudioSource());
+
+                    MaritimeDialogueIterator++;
 
                 }
-
-                /*
-                else if (ScriptIdentification == ScriptID.Elli)
-                {
-                    //Move to the higher level code
-
-                    ScriptIterator = 0;
-                    if (ElliScript[ScriptIterator] == "")
-                    {
-                        ElliScript[ScriptIterator] = _DefineScript;
-                        DialogueText.alignment = TextAnchor.MiddleCenter;
-                        DialogueText.text = ElliScript[ScriptIterator];
-                        ScriptIterator++;
-
-                    }
-
-                    else if (ElliScript[ScriptIterator] != "")
-                    {
-                        ScriptIterator++;
-                    }
-
-                */
-
-                //}
-
             }
 
-            public void ScriptIDDefinition(List<string> DynamicDialogueScript, string Script)
+            /// <summary>
+            /// Checks to see which Audio Source is playing 
+            /// </summary>
+            /// <returns></returns>
+            public AudioSource QueryAudioSource()
+            {
+
+                if (PrimarySource.isPlaying == true)
+                {
+                    return PrimarySource;
+                    
+                } else if (LukeSource.isPlaying == true)
+                {
+                    return LukeSource;
+
+                } else if (ElliSource.isPlaying == true)
+                {
+
+                    return ElliSource;
+                }
+
+
+                return null;
+            }
+
+            public void ScriptIDDefinition (List<string> DynamicDialogueScript, string Script)
             {
                 if (DynamicDialogueScript.Capacity > 1)
                 {
