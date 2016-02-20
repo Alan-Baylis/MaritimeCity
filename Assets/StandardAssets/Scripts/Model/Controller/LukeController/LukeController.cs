@@ -31,119 +31,119 @@ public class LukeController : CoreDialogueSystems, IDialogueSystems {
     {
 
 
-        FileName = LukeAudioDialogue[0].ToString();
+        FileName = LukeAudio[0].ToString();
 
         if (FileName.Contains("L1_S1_T1"))
         {
             ScriptIDDefinition(ScriptID.Luke, "What's it to you?");
         }
 
-        FileName = LukeAudioDialogue[1].ToString();
+        FileName = LukeAudio[1].ToString();
 
         if (FileName.Contains("L2_S1"))
         {
             ScriptIDDefinition(ScriptID.Luke, "Are you calling her a Liar");
         }
 
-        FileName = LukeAudioDialogue[2].ToString();
+        FileName = LukeAudio[2].ToString();
 
         if (FileName.Contains("L3_S1"))
         {
             ScriptIDDefinition(ScriptID.Luke, "I told ya, Brad-fucking-pitt, now piss off");
         }
 
-        FileName = LukeAudioDialogue[3].ToString();
+        FileName = LukeAudio[3].ToString();
 
         if (FileName.Contains("L4_S1"))
         {
             ScriptIDDefinition(ScriptID.Luke, "He's always bleedin' hungry");
         }
 
-        FileName = LukeAudioDialogue[4].ToString();
+        FileName = LukeAudio[4].ToString();
 
         if (FileName.Contains("L5_S1"))
         {
             ScriptIDDefinition(ScriptID.Luke, "Let him clear it up if he's so bloody worried");
         }
 
-        FileName = LukeAudioDialogue[5].ToString();
+        FileName = LukeAudio[5].ToString();
 
         if (FileName.Contains("L6_S1"))
         {
             ScriptIDDefinition(ScriptID.Luke, "Fuck off, he's nothing to do with me");
         }
 
-        FileName = LukeAudioDialogue[6].ToString();
+        FileName = LukeAudio[6].ToString();
 
         if (FileName.Contains("L7_S1"))
         {
             ScriptIDDefinition(ScriptID.Luke, "No I fucking didn't");
         }
 
-        FileName = LukeAudioDialogue[7].ToString();
+        FileName = LukeAudio[7].ToString();
 
         if (FileName.Contains("L8_S1"))
         {
             ScriptIDDefinition(ScriptID.Luke, "Just piss off and leave us alone");
         }
 
-        FileName = LukeAudioDialogue[8].ToString();
+        FileName = LukeAudio[8].ToString();
 
         if (FileName.Contains("L9_S1"))
         {
             ScriptIDDefinition(ScriptID.Luke, "Yeah, I took her and left her with her fucking granny, just like Elli said");
         }
 
-        FileName = LukeAudioDialogue[9].ToString();
+        FileName = LukeAudio[9].ToString();
 
         if (FileName.Contains("L9_S2"))
         {
             ScriptIDDefinition(ScriptID.Luke, "Kid said she wanted to see granny so I tooker her to her granny's, satisfied Mr Supernanny");
         }
 
-        FileName = LukeAudioDialogue[10].ToString();
+        FileName = LukeAudio[10].ToString();
 
         if (FileName.Contains("L9_S3"))
         {
             ScriptIDDefinition(ScriptID.Luke, "I just do what Elli and little princess asks see, got me wrapped around her little finger she has");
         }
 
-        FileName = LukeAudioDialogue[11].ToString();
+        FileName = LukeAudio[11].ToString();
 
         if (FileName.Contains("L9_S4"))
         {
             ScriptIDDefinition(ScriptID.Luke, "See what a great stepdad I am");
         }
 
-        FileName = LukeAudioDialogue[12].ToString();
+        FileName = LukeAudio[12].ToString();
 
         if (FileName.Contains("L9_S5"))
         {
             ScriptIDDefinition(ScriptID.Luke, "Do anything she wants");
         }
 
-        FileName = LukeAudioDialogue[13].ToString();
+        FileName = LukeAudio[13].ToString();
 
         if (FileName.Contains("L10_S1"))
         {
             ScriptIDDefinition(ScriptID.Luke, "Never satisifed are you, bloody social workers. Should put 'em all in a sack and drown them at Birth");
         }
 
-        FileName = LukeAudioDialogue[14].ToString();
+        FileName = LukeAudio[14].ToString();
 
         if (FileName.Contains("L11_S1"))
         {
             ScriptIDDefinition(ScriptID.Luke, "You leave my mum out of this you fucking nosy bastard now fuck off out of here before I throw you out");
         }
 
-        FileName = LukeAudioDialogue[15].ToString();
+        FileName = LukeAudio[15].ToString();
 
         if (FileName.Contains("L12_S1"))
         {
             ScriptIDDefinition(ScriptID.Luke, "Oh fuck off you old woman");
         }
 
-        FileName = LukeAudioDialogue[16].ToString();
+        FileName = LukeAudio[16].ToString();
 
         if (FileName.Contains("L13_S1"))
         {

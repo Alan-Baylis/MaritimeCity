@@ -69,7 +69,7 @@ public class BrendanPOVController : CoreDialogueSystems {
 
     void PopulateScript()
     {
-        FileName = BrendanAudioDialogue[0].ToString();
+        FileName = BrendanAudio[0].ToString();
 
         if (FileName.Contains("B1_S1"))
         {
@@ -79,21 +79,21 @@ public class BrendanPOVController : CoreDialogueSystems {
 
         //Brendan First Paragraph
 
-        FileName = BrendanAudioDialogue[1].ToString();
+        FileName = BrendanAudio[1].ToString();
 
         if (FileName.Contains("B1_S2"))
         {
             ScriptIDDefinition(ScriptID.Brendan, "Are you Ms Grove...Elli?");
         }
 
-        FileName = BrendanAudioDialogue[2].ToString();
+        FileName = BrendanAudio[2].ToString();
 
         if (FileName.Contains("B1_S3"))
         {
             ScriptIDDefinition(ScriptID.Brendan, "We have had an referral from an anonymous source rasing concerns about the children living here");
         }
 
-        FileName = BrendanAudioDialogue[3].ToString();
+        FileName = BrendanAudio[3].ToString();
 
         if (FileName.Contains("B1_S4"))
         {
@@ -102,112 +102,112 @@ public class BrendanPOVController : CoreDialogueSystems {
 
         //Brendan Second Paragraph
 
-        FileName = BrendanAudioDialogue[4].ToString();
+        FileName = BrendanAudio[4].ToString();
 
         if (FileName.Contains("B2_S1"))
         {
             ScriptIDDefinition(ScriptID.Brendan, "Erm sorry, no I can't");
         }
 
-        FileName = BrendanAudioDialogue[5].ToString();
+        FileName = BrendanAudio[5].ToString();
 
         if (FileName.Contains("B2_S2"))
         {
             ScriptIDDefinition(ScriptID.Brendan, "The refererrer has told us there have been disturbances by adults at this address and that the childrten have been heard crying, distressed and upset");
         }
 
-        FileName = BrendanAudioDialogue[6].ToString();
+        FileName = BrendanAudio[6].ToString();
 
         if (FileName.Contains("B2_S3"))
         {
             ScriptIDDefinition(ScriptID.Brendan, "I need to talk to you about this and see the children, can I come in please?");
         }
 
-        FileName = BrendanAudioDialogue[7].ToString();
+        FileName = BrendanAudio[7].ToString();
 
         if (FileName.Contains("B3_S1"))
         {
             ScriptIDDefinition(ScriptID.Brendan, "Erm, I like dogs");
         }
 
-        FileName = BrendanAudioDialogue[8].ToString();
+        FileName = BrendanAudio[8].ToString();
 
         if (FileName.Contains("B3_S2"))
         {
             ScriptIDDefinition(ScriptID.Brendan, "Got one of my own in fact, but Mable here doesn't look very friendly");
         }
 
-        FileName = BrendanAudioDialogue[9].ToString();
+        FileName = BrendanAudio[9].ToString();
 
         if (FileName.Contains("B3_S3"))
         {
             ScriptIDDefinition(ScriptID.Brendan, "Can I ask you to move her please or does she bite?");
         }
 
-        FileName = BrendanAudioDialogue[10].ToString();
+        FileName = BrendanAudio[10].ToString();
 
         if (FileName.Contains("B4_S1"))
         {
             ScriptIDDefinition(ScriptID.Brendan, "Could I ask if you could take her upstairs or tie her outside if that's OK, I think she is a bit overexcited and I wouldn't like her to harm anyone.");
         }
 
-        FileName = BrendanAudioDialogue[11].ToString();
+        FileName = BrendanAudio[11].ToString();
 
         if (FileName.Contains("B4_S2"))
         {
             ScriptIDDefinition(ScriptID.Brendan, "Who does she belong to?");
         }
 
-        FileName = BrendanAudioDialogue[12].ToString();
+        FileName = BrendanAudio[12].ToString();
 
         if (FileName.Contains("B5_S1"))
         {
             ScriptIDDefinition(ScriptID.Brendan, "Oh, shit");
         }
 
-        FileName = BrendanAudioDialogue[13].ToString();
+        FileName = BrendanAudio[13].ToString();
 
         if (FileName.Contains("B6_S1"))
         {
             ScriptIDDefinition(ScriptID.Brendan, "Hi, my name is Brendan, I’m from the Safeguarding Team at Maritime Social Services.");
         }
 
-        FileName = BrendanAudioDialogue[14].ToString();
+        FileName = BrendanAudio[14].ToString();
 
         if (FileName.Contains("B6_S2"))
         {
             ScriptIDDefinition(ScriptID.Brendan, "I’m here under Section 47 of the Children’s Act to investigate an anonymous referral that the two children living here have been heard crying and thought to be extremely distressed.");
         }
 
-        FileName = BrendanAudioDialogue[15].ToString();
+        FileName = BrendanAudio[15].ToString();
 
         if (FileName.Contains("B6_S3"))
         {
             ScriptIDDefinition(ScriptID.Brendan, "I've already met Elli and the very excitable Mable, can I ask who you are?");
         }
 
-        FileName = BrendanAudioDialogue[16].ToString();
+        FileName = BrendanAudio[16].ToString();
 
         if (FileName.Contains("B6_S4"))
         {
             ScriptIDDefinition(ScriptID.Brendan, "Can I ask who you are");
         }
 
-        FileName = BrendanAudioDialogue[17].ToString();
+        FileName = BrendanAudio[17].ToString();
 
         if (FileName.Contains("B7_S1"))
         {
             ScriptIDDefinition(ScriptID.Brendan, "I didn't know Brad lived around here!");
         }
 
-        FileName = BrendanAudioDialogue[18].ToString();
+        FileName = BrendanAudio[18].ToString();
 
         if (FileName.Contains("B7_S2"))
         {
             ScriptIDDefinition(ScriptID.Brendan, "Are you related to either of the children");
         }
 
-        FileName = BrendanAudioDialogue[19].ToString();
+        FileName = BrendanAudio[19].ToString();
 
         if (FileName.Contains("B8_S1"))
         {
@@ -215,28 +215,28 @@ public class BrendanPOVController : CoreDialogueSystems {
         }
 
 
-        FileName = BrendanAudioDialogue[20].ToString();
+        FileName = BrendanAudio[20].ToString();
 
         if (FileName.Contains("B9_S1"))
         {
             ScriptIDDefinition(ScriptID.Brendan, "Of course not, I just need to be clear who you are");
         }
 
-        FileName = BrendanAudioDialogue[21].ToString();
+        FileName = BrendanAudio[21].ToString();
 
         if (FileName.Contains("B10_S1"))
         {
             ScriptIDDefinition(ScriptID.Brendan, "I can't do that, as I've said we have had a referral that there have been late night parties, shouting, the sound of children crying and clearly distressed ");
         }
 
-        FileName = BrendanAudioDialogue[22].ToString();
+        FileName = BrendanAudio[22].ToString();
 
         if (FileName.Contains("B10_S2"))
         {
             ScriptIDDefinition(ScriptID.Brendan, "I need to be clear that the children are safe");
         }
 
-        FileName = BrendanAudioDialogue[23].ToString();
+        FileName = BrendanAudio[23].ToString();
 
         if (FileName.Contains("B10_S3"))
         {
@@ -245,77 +245,77 @@ public class BrendanPOVController : CoreDialogueSystems {
 
         //Begin UnityEvent - Discussion and Interaction Section 
 
-        FileName = BrendanAudioDialogue[24].ToString();
+        FileName = BrendanAudio[24].ToString();
 
         if (FileName.Contains("B11_S1"))
         {
             ScriptIDDefinition(ScriptID.Brendan, "I can see Liam, but where's Tara?");
         }
 
-        FileName = BrendanAudioDialogue[25].ToString();
+        FileName = BrendanAudio[25].ToString();
 
         if (FileName.Contains("B12_S1"))
         {
             ScriptIDDefinition(ScriptID.Brendan, "Really, why is that?");
         }
 
-        FileName = BrendanAudioDialogue[26].ToString();
+        FileName = BrendanAudio[26].ToString();
 
         if (FileName.Contains("B13_S1"))
         {
             ScriptIDDefinition(ScriptID.Brendan, "Liam is very wet");
         }
 
-        FileName = BrendanAudioDialogue[27].ToString();
+        FileName = BrendanAudio[27].ToString();
 
         if (FileName.Contains("B14_S1"))
         {
             ScriptIDDefinition(ScriptID.Brendan, "Is that his bottle on the floor");
         }
 
-        FileName = BrendanAudioDialogue[28].ToString();
+        FileName = BrendanAudio[28].ToString();
 
         if (FileName.Contains("B15_S1"))
         {
             ScriptIDDefinition(ScriptID.Brendan, "I'll get it");
         }
 
-        FileName = BrendanAudioDialogue[29].ToString();
+        FileName = BrendanAudio[29].ToString();
 
         if (FileName.Contains("B16_S1"))
         {
             ScriptIDDefinition(ScriptID.Brendan, "I think the teat might glass or something on it");
         }
 
-        FileName = BrendanAudioDialogue[30].ToString();
+        FileName = BrendanAudio[30].ToString();
 
         if (FileName.Contains("B16_S2"))
         {
             ScriptIDDefinition(ScriptID.Brendan, "Maybe from the broken beer bottle on the floor?");
         }
 
-        FileName = BrendanAudioDialogue[31].ToString();
+        FileName = BrendanAudio[31].ToString();
 
         if (FileName.Contains("B17_S1"))
         {
             ScriptIDDefinition(ScriptID.Brendan, "You need to consider that it is not safe having broken glass around with small children");
         }
 
-        FileName = BrendanAudioDialogue[32].ToString();
+        FileName = BrendanAudio[32].ToString();
 
         if (FileName.Contains("B18_S1"))
         {
             ScriptIDDefinition(ScriptID.Brendan, "And look at this, he's red raw");
         }
 
-        FileName = BrendanAudioDialogue[33].ToString();
+        FileName = BrendanAudio[33].ToString();
 
         if (FileName.Contains("B18_S2"))
         {
             ScriptIDDefinition(ScriptID.Brendan, "Have you seen your GP or health visitor about this nappy rash?");
         }
 
-        FileName = BrendanAudioDialogue[34].ToString();
+        FileName = BrendanAudio[34].ToString();
 
         if (FileName.Contains("B18_S3"))
         {
@@ -323,7 +323,7 @@ public class BrendanPOVController : CoreDialogueSystems {
             ScriptIDDefinition(ScriptID.Brendan, "You really must change him, perhaps err, Brad could do it whilst you sort out his bottle Eli?");
         }
 
-        FileName = BrendanAudioDialogue[35].ToString();
+        FileName = BrendanAudio[35].ToString();
 
         if (FileName.Contains("B19_S1)"))
         {
@@ -331,42 +331,42 @@ public class BrendanPOVController : CoreDialogueSystems {
         }
 
 
-        FileName = BrendanAudioDialogue[36].ToString();
+        FileName = BrendanAudio[36].ToString();
 
         if (FileName.Contains("B20_S1"))
         {
             ScriptIDDefinition(ScriptID.Brendan, "You're not Liam's father then?");
         }
 
-        FileName = BrendanAudioDialogue[37].ToString();
+        FileName = BrendanAudio[37].ToString();
 
         if (FileName.Contains("B21_S1"))
         {
             ScriptIDDefinition(ScriptID.Brendan, "And you have some cream now?");
         }
 
-        FileName = BrendanAudioDialogue[38].ToString();
+        FileName = BrendanAudio[38].ToString();
 
         if (FileName.Contains("B22_S1"))
         {
             ScriptIDDefinition(ScriptID.Brendan, "Right... and what about Tara, where did you say she was?");
         }
 
-        FileName = BrendanAudioDialogue[39].ToString();
+        FileName = BrendanAudio[39].ToString();
 
         if (FileName.Contains("B23_S1"))
         {
             ScriptIDDefinition(ScriptID.Brendan, "And where's that?");
         }
 
-        FileName = BrendanAudioDialogue[40].ToString();
+        FileName = BrendanAudio[40].ToString();
 
         if (FileName.Contains("B24_S1"))
         {
             ScriptIDDefinition(ScriptID.Brendan, "Perhaps I could go and see Tara at her grandma's");
         }
 
-        FileName = BrendanAudioDialogue[41].ToString();
+        FileName = BrendanAudio[41].ToString();
 
         if (FileName.Contains("B25_S1"))
         {
@@ -374,14 +374,14 @@ public class BrendanPOVController : CoreDialogueSystems {
 
         }
 
-        FileName = BrendanAudioDialogue[42].ToString();
+        FileName = BrendanAudio[42].ToString();
 
         if (FileName.Contains("B26_S1"))
         {
             ScriptIDDefinition(ScriptID.Brendan, "OK, I'll go but I do need to see Tara and I am not very happy about Liam");
         }
 
-        FileName = BrendanAudioDialogue[43].ToString();
+        FileName = BrendanAudio[43].ToString();
 
         if (FileName.Contains("B26_S2"))
         {
@@ -389,56 +389,56 @@ public class BrendanPOVController : CoreDialogueSystems {
 
         }
 
-        FileName = BrendanAudioDialogue[44].ToString();
+        FileName = BrendanAudio[44].ToString();
 
         if (FileName.Contains("B27_S1"))
         {
             ScriptIDDefinition(ScriptID.Brendan, "Luke there is no need to be abusive");
         }
 
-        FileName = BrendanAudioDialogue[45].ToString();
+        FileName = BrendanAudio[45].ToString();
 
         if (FileName.Contains("B27_S2"))
         {
             ScriptIDDefinition(ScriptID.Brendan, "I have a duty to ensure that the children are safe");
         }
 
-        FileName = BrendanAudioDialogue[46].ToString();
+        FileName = BrendanAudio[46].ToString();
 
         if (FileName.Contains("B27_S3"))
         {
             ScriptIDDefinition(ScriptID.Brendan, "If I go now I'll only need to come back again later today with my senior, possibly a police officer");
         }
 
-        FileName = BrendanAudioDialogue[47].ToString();
+        FileName = BrendanAudio[47].ToString();
 
         if (FileName.Contains("B28_S1"))
         {
             ScriptIDDefinition(ScriptID.Brendan, "Here is my card, I am going back to my office now and will come back in an hor with a colleague to see Tara, do you understand Elli?");
         }
 
-        FileName = BrendanAudioDialogue[48].ToString();
+        FileName = BrendanAudio[48].ToString();
 
         if (FileName.Contains("B29_S1"))
         {
             ScriptIDDefinition(ScriptID.Brendan, "Hi Steve, it's Me");
         }
 
-        FileName = BrendanAudioDialogue[49].ToString();
+        FileName = BrendanAudio[49].ToString();
 
         if (FileName.Contains("B29_S2"))
         {
             ScriptIDDefinition(ScriptID.Brendan, "Err, things not too good here - no, I'm not alright. I didn't get to see Tara and Liam was in a state");
         }
 
-        FileName = BrendanAudioDialogue[50].ToString();
+        FileName = BrendanAudio[50].ToString();
 
         if (FileName.Contains("B29_S3"))
         {
             ScriptIDDefinition(ScriptID.Brendan, "Yeah, I'm a bit shaken to be honest, this guy Luke seems to have moved in with a seriously scary dog, I wasn't expecting that, he was real piece of work");
         }
 
-        FileName = BrendanAudioDialogue[51].ToString();
+        FileName = BrendanAudio[51].ToString();
 
         if (FileName.Contains("B29_S4"))
         {
@@ -453,7 +453,7 @@ public class BrendanPOVController : CoreDialogueSystems {
         if (BrendanSource.isPlaying == false)
         {
             //PrimarySource.clip.UnloadAudioData ();
-            BrendanSource.clip = BrendanAudioDialogue[MaritimeDialogueIterator];
+            BrendanSource.clip = BrendanAudio[MaritimeDialogueIterator];
             BrendanSource.Play();
             MaritimeDialogueIterator++;
 

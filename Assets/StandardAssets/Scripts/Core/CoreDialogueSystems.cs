@@ -12,15 +12,13 @@ public class CoreDialogueSystems : MonoBehaviour {
 
 
     // [System.NonSerialized]
-    public List<AudioClip> ElliAudio = new List<AudioClip>(30);
+    public List <AudioClip> ElliAudio = new List<AudioClip>(30);
     // [System.NonSerialized]
-    public List<AudioClip> BrendanAudio = new List<AudioClip>(30);
+    public List <AudioClip> BrendanAudio = new List<AudioClip>(30);
 
     public List <AudioClip> LukeAudio = new List<AudioClip>(30);
 
-    //Dialogue Types
-
-    public List<string> DialogueIDSequencer;
+    public List<string> DialogueIDSequencer = new List<string>(50);
 
     public int MaxScript = 100;
 
@@ -34,19 +32,15 @@ public class CoreDialogueSystems : MonoBehaviour {
 
     public static List<string> LukeScript = new List<string>(50);
 
-//    [System.NonSerialized]
-    public AudioSource BrendanSource;
-  //  [System.NonSerialized]
-    public AudioSource ElliSource;
-   // [System.NonSerialized]
+
+    public AudioSource BrendanSource = new AudioSource();
+
+    public AudioSource ElliSource = new AudioSource();
+  
     public AudioSource LukeSource;
-   // [System.NonSerialized]
+
     public Dictionary<string, UnityAction> SequenceOfEvents;
 
-
-    public List<AudioClip> BrendanAudioDialogue = new List<AudioClip>(10);
-
-    public List<AudioClip> LukeAudioDialogue = new List<AudioClip>(10);
 
     public List<AudioClip> ElliAudioDialogue = new List<AudioClip>(10);
 
@@ -82,7 +76,7 @@ public class CoreDialogueSystems : MonoBehaviour {
 
             //Makes sure that the entry point is in the next array
             //Sneak in Co-routine to evaluate the term by seeing if the Audio is finished first
-            yield return new WaitUntil(() => BrendanSource == QueryAudioSource());
+            yield return new WaitUntil(() => BrendanSource == AudioSource.FindObjectOfType<AudioSource>());
 
             InternalIterator++;
 
@@ -93,6 +87,9 @@ public class CoreDialogueSystems : MonoBehaviour {
     /// Checks to see which Audio Source is playing 
     /// </summary>
     /// <returns></returns>
+    /// 
+    /// 
+    /*
     public AudioSource QueryAudioSource()
     {
 
@@ -113,9 +110,9 @@ public class CoreDialogueSystems : MonoBehaviour {
         }
 
         return null;
-    }
+    }*/
 
-    public void ScriptIDDefinition(List<string> DynamicDialogueScript, string Script)
+    IEnumerator ScriptIDDefinition(List<string> DynamicDialogueScript, string Script)
     {
         if (DynamicDialogueScript.Capacity > 1)
         {
@@ -131,6 +128,8 @@ public class CoreDialogueSystems : MonoBehaviour {
             //Same as above
             //MaritimeDialogueIterator++;
         }
+
+        yield return null;
 
     }
 
@@ -321,19 +320,19 @@ public class CoreDialogueSystems : MonoBehaviour {
 
         if (DialogueState == DialogueStateID.Brendan)
         {
-            return Brendan.BrendanAudio[MaritimeDialogueIterator];
+            return BrendanAudio[MaritimeDialogueIterator];
 
         }
         else if (DialogueState == DialogueStateID.Elli)
 
         {
-            return Elli.ElliAudio[MaritimeDialogueIterator];
+            return ElliAudio[MaritimeDialogueIterator];
 
         }
         else if (DialogueState == DialogueStateID.Luke)
 
         {
-            return Luke.LukeAudio[MaritimeDialogueIterator];
+            return LukeAudio[MaritimeDialogueIterator];
         }
 
         return null;
@@ -373,9 +372,9 @@ public class CoreDialogueSystems : MonoBehaviour {
 
     void Update()
     {
-        StartCoroutine(DialogueIterator());
-        PassCurrentAudio();
-        PassCurrentScript();
+        //StartCoroutine(DialogueIterator());
+        //PassCurrentAudio();
+        //PassCurrentScript();
 
     }
 
