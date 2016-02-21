@@ -18,11 +18,11 @@ public class CoreDialogueSystems : MonoBehaviour {
 
     public List <AudioClip> LukeAudio = new List<AudioClip>(30);
 
-    public List <string> DialogueIDSequencer = new List<string>(50);
+    public List <string> DialogueIDSequencer = new List<string>();
 
-    public int MaxScript = 100;
+    int MaxScript = 100;
 
-    public int MaritimeDialogueIterator = 0;
+    int MaritimeDialogueIterator = 0;
 
     //public GameObject DialogueObject;
 
@@ -48,10 +48,14 @@ public class CoreDialogueSystems : MonoBehaviour {
 
     public Text DialogueText;
     public enum ScriptID { Elli, Brendan, Luke };
-    public enum DialogueStateID { None, Elli, Brendan, Luke };
-    public DialogueStateID DialogueState;
+    enum DialogueStateID { None, Elli, Brendan, Luke };
+    DialogueStateID DialogueState;
     private int SequencerIterator = 0;
 
+
+    int BrendanInternalIterator = 0;
+    int ElliInternalIterator = 0;
+    int LukeInternalIterator = 0;
 
 
 
@@ -62,19 +66,60 @@ public class CoreDialogueSystems : MonoBehaviour {
         ScriptLogger++;
 
         print("Result for Script Logger is " + ScriptLogger);
+  
 
-        int InternalIterator = 0;
-
-        if (BrendanScript[InternalIterator] == "")
+        if (ScriptIdentification == ScriptID.Brendan)
         {
-            BrendanScript[InternalIterator] = DefineScript;
-            DialogueText.text = BrendanScript[InternalIterator];
+
+                BrendanScript.Add(DefineScript);
+                DialogueText.text = BrendanScript[BrendanInternalIterator];
 
             //Makes sure that the entry point is in the next array
             //Sneak in Co-routine to evaluate the term by seeing if the Audio is finished first
             // yield return new WaitUntil(() => BrendanSource == AudioSource.FindObjectOfType<AudioSource>());
-            yield return null;
-            InternalIterator++;
+
+                GameObject TestGameObject = GameObject.Find("Brendan Player");
+
+                AudioSource TestAudioSource = (AudioSource) TestGameObject.GetComponent("Brendan Source");
+        
+                yield return new WaitUntil(() => TestAudioSource.isPlaying == false);
+
+                BrendanInternalIterator++;
+
+        }
+
+        if(ScriptIdentification == ScriptID.Elli)
+        {
+
+                ElliScript.Add (DefineScript);
+                DialogueText.text = ElliScript[BrendanInternalIterator];
+
+            //Makes sure that the entry point is in the next array
+            //Sneak in Co-routine to evaluate the term by seeing if the Audio is finished first
+            // yield return new WaitUntil(() => BrendanSource == AudioSource.FindObjectOfType<AudioSource>());
+
+                AudioSource TestAudioSource = (AudioSource) GetComponent("Elli Source");
+
+                yield return new WaitUntil(() => TestAudioSource.isPlaying == false);
+
+                BrendanInternalIterator++;
+
+           
+        }
+
+
+        if(ScriptIdentification == ScriptID.Luke)
+        {
+
+                LukeScript.Add (DefineScript);
+                DialogueText.text = LukeScript[BrendanInternalIterator];
+
+                //Makes sure that the entry point is in the next array
+                //Sneak in Co-routine to evaluate the term by seeing if the Audio is finished first
+                // yield return new WaitUntil(() => BrendanSource == AudioSource.FindObjectOfType<AudioSource>());
+                yield return null;
+
+                BrendanInternalIterator++;
 
         }
     }
@@ -137,7 +182,7 @@ public class CoreDialogueSystems : MonoBehaviour {
         //DialogueObject.AddComponent<AudioSource>();
         //DialogueObject.AddComponent<AudioSource>();
         //DialogueObject.AddComponent<AudioSource>();
-        /*
+        
         DialogueIDSequencer.Add("B1_S1");
         DialogueIDSequencer.Add("B1_S2");
         DialogueIDSequencer.Add("B1_S3");
@@ -246,7 +291,7 @@ public class CoreDialogueSystems : MonoBehaviour {
         DialogueIDSequencer.Add("B29_S2");
         DialogueIDSequencer.Add("B29_S3");
         DialogueIDSequencer.Add("B29_S4");
-        */
+        
 
     }
 

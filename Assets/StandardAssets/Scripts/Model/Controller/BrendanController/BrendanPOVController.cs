@@ -451,6 +451,8 @@ public class BrendanPOVController : CoreDialogueSystems {
 
     }
 
+
+    /*
     IEnumerator BrendanDialogueController()
     {
         if (BrendanSource.isPlaying == false)
@@ -465,7 +467,7 @@ public class BrendanPOVController : CoreDialogueSystems {
         //yield return new WaitWhile (() => PrimarySource.isPlaying == false);
         yield return new WaitForSeconds(BrendanSource.clip.length);
 
-    }
+    }*/
 
     // Update is called once per frame
     void Update ()

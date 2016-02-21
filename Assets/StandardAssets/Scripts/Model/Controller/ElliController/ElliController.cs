@@ -12,6 +12,8 @@ public class ElliController : CoreDialogueSystems, IDialogueSystems {
     void Start ()
     {
 
+
+        PopulateScript();
     
 
     }
