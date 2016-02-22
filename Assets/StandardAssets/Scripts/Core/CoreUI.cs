@@ -5,6 +5,8 @@ public class CoreUI : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+        Debug.Log("Core UI Active");
 	
 	}
 	

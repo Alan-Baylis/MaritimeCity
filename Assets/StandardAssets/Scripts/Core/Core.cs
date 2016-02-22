@@ -27,6 +27,16 @@ namespace CoreSystems
 
         public Core()
         {
+           
+
+        }
+
+        // Use this for initialization
+        void Start()
+        {
+            Debug.Log("Core Active");
+
+
             if (MaritimeRuntimePlatform == RuntimePlatform.WindowsEditor)
             {
 
@@ -38,14 +48,12 @@ namespace CoreSystems
 
                 Debug.Log("Optimised for Windows");
 
+            } else if (MaritimeRuntimePlatform == RuntimePlatform.OSXEditor)
+            {
+
+                Debug.Log("Not optimized for this platform");
+
             }
-
-        }
-
-        // Use this for initialization
-        void Start()
-        {
-
 
         }
 

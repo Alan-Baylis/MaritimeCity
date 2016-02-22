@@ -98,9 +98,6 @@ namespace DialogueSystems
         void Awake()
         {
             
-            
-
-
             //DialogueIDSequencer.Capacity = MaxScript;
             //DialogueObject = GameObject.Find("Dialog Text");
             //DialogueText = GetComponent<Text>();

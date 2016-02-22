@@ -8,6 +8,8 @@ public class CoreEventSystems : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+        Debug.Log("Core Event Systems Active");
 	
 	}
 	
