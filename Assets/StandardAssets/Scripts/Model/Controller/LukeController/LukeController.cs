@@ -9,10 +9,9 @@ namespace DialogueSystems
     public class LukeController : CoreDialogueSystems, IDialogueSystems
     {
 
-        string FileName;
-
-        public GameObject LukeGameObject;
-
+        private string FileName;
+        
+        private CoreDialogueSystems Core;
         private List<string> LukeScript = new List<string>(50);
         private List<AudioClip> LukeAudio = new List<AudioClip>(30);
 
@@ -24,7 +23,11 @@ namespace DialogueSystems
 
             LukeSource = GetComponent<AudioSource>();
 
+            Core = GameObject.FindGameObjectWithTag("Core").GetComponent<CoreDialogueSystems>();
+            DialogueIDSequencer = Core.DialogueIDSequencer;
+
         }
+
 
 
 
@@ -59,63 +62,63 @@ namespace DialogueSystems
 
             if (FileName.Contains("L1_S1_T1"))
             {
-                ScriptIDDefinition(ScriptID.Luke, "What's it to you?");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "What's it to you?"));
             }
 
             FileName = LukeAudio[1].ToString();
 
             if (FileName.Contains("L2_S1"))
             {
-                ScriptIDDefinition(ScriptID.Luke, "Are you calling her a Liar");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "Are you calling her a Liar"));
             }
 
             FileName = LukeAudio[2].ToString();
 
             if (FileName.Contains("L3_S1"))
             {
-                ScriptIDDefinition(ScriptID.Luke, "I told ya, Brad-fucking-pitt, now piss off");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "I told ya, Brad-fucking-pitt, now piss off"));
             }
 
             FileName = LukeAudio[3].ToString();
 
             if (FileName.Contains("L4_S1"))
             {
-                ScriptIDDefinition(ScriptID.Luke, "He's always bleedin' hungry");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "He's always bleedin' hungry"));
             }
 
             FileName = LukeAudio[4].ToString();
 
             if (FileName.Contains("L5_S1"))
             {
-                ScriptIDDefinition(ScriptID.Luke, "Let him clear it up if he's so bloody worried");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "Let him clear it up if he's so bloody worried"));
             }
 
             FileName = LukeAudio[5].ToString();
 
             if (FileName.Contains("L6_S1"))
             {
-                ScriptIDDefinition(ScriptID.Luke, "Fuck off, he's nothing to do with me");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "Fuck off, he's nothing to do with me"));
             }
 
             FileName = LukeAudio[6].ToString();
 
             if (FileName.Contains("L7_S1"))
             {
-                ScriptIDDefinition(ScriptID.Luke, "No I fucking didn't");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "No I fucking didn't"));
             }
 
             FileName = LukeAudio[7].ToString();
 
             if (FileName.Contains("L8_S1"))
             {
-                ScriptIDDefinition(ScriptID.Luke, "Just piss off and leave us alone");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "Just piss off and leave us alone"));
             }
 
             FileName = LukeAudio[8].ToString();
 
             if (FileName.Contains("L9_S1"))
             {
-                ScriptIDDefinition(ScriptID.Luke, "Yeah, I took her and left her with her fucking granny, just like Elli said");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "Yeah, I took her and left her with her fucking granny, just like Elli said"));
             }
 
             FileName = LukeAudio[9].ToString();
