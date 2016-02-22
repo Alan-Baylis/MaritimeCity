@@ -33,11 +33,6 @@ namespace DialogueSystems
 
         // public BrendanPOVController Brendan = new BrendanPOVController();
 
-        CoreDialogueSystems Core = new CoreDialogueSystems();
-        BrendanPOVController Brendan = new BrendanPOVController();
-        ElliController Elli = new ElliController();
-        LukeController Luke = new LukeController();
-
 
         public Text DialogueText;
         public enum ScriptID { Elli, Brendan, Luke };
@@ -103,8 +98,7 @@ namespace DialogueSystems
         void Awake()
         {
             
-            DialogueText = GameObject.FindGameObjectWithTag("Dialog Text").GetComponent<Text>();
-            Brendan = GameObject.FindGameObjectWithTag("Brendan").GetComponent<BrendanPOVController>();
+            
 
 
             //DialogueIDSequencer.Capacity = MaxScript;

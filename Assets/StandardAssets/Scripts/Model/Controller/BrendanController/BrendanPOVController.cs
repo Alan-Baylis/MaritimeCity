@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 using System.Collections.Generic;
 
 namespace DialogueSystems
@@ -18,15 +19,11 @@ namespace DialogueSystems
 
         }
 
-        BrendanPOVController Brendan;
-        CoreDialogueSystems CoreObject;
-
+        static int ScriptLogger = 0;
 
         public List<string> BrendanScript = new List<string>(50);
-        public List<AudioClip> BrendanAudio = new List<AudioClip>(30);
-
+        public AudioClip[] BrendanAudio = new AudioClip[30];
         public AudioSource BrendanSource;
-
         public Destinations Destination;
         public GameObject BrendanGameObject;
 
@@ -46,29 +43,32 @@ namespace DialogueSystems
             int BrendanInternalIterator = 0;
 
             //Use logger to check conditions, use iterators for dynamic functions
-            int ScriptLogger = 0;
+            
             ScriptLogger++;
 
             print("Result for Script Logger is " + ScriptLogger);
-
 
             if (ScriptIdentification == ScriptID.Brendan)
             {
                 BrendanScript.Add(DefineScript);
                 DialogueText.text = BrendanScript[BrendanInternalIterator];
-                
+
 
                 //Makes sure that the entry point is in the next array
                 //Sneak in Co-routine to evaluate the term by seeing if the Audio is finished first
                 // yield return new WaitUntil(() => BrendanSource == AudioSource.FindObjectOfType<AudioSource>());
 
+                /*
                 GameObject TestGameObject = GameObject.Find("Brendan Player");
 
                 AudioSource TestAudioSource = (AudioSource)TestGameObject.GetComponent("Brendan Source");
 
                 yield return new WaitUntil(() => TestAudioSource.isPlaying == false);
+                */
 
                 BrendanInternalIterator++;
+
+                yield return null;
 
             }
 
@@ -77,16 +77,33 @@ namespace DialogueSystems
         // Use this for initialization
         void Start()
         {
+            BrendanPOVController Brendan;
+
+            BrendanSource = GetComponent<AudioSource>();
+
+            DialogueText = GetComponent<Text>();
+
             from = BrendanPOV.transform.position;
-            there = Destination.ElliDoor.transform.position;
+            //there = Destination.ElliDoor.transform.position;
             speed = 50;
             BrendanPOV.GetComponent<Camera>();
             BrendanPOV.ViewportToScreenPoint(position: from);
             BrendanPOV.ScreenPointToRay(position: from);
 
-            CoreObject = GameObject.FindGameObjectWithTag("Core").GetComponent<CoreDialogueSystems>();
+           
+
+        }
 
 
+      public bool BrendanFinishedTalking()
+        {
+            if (BrendanSource.isPlaying == false)
+            {
+                return true;
+            } else
+            {
+                return false;
+            }
 
         }
 
@@ -109,7 +126,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B1_S1"))
             {
-                ScriptIDDefinition(ScriptID.Brendan, "Hi name is Brendan from Maritime Children's Services Safeguarding Team");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Hi name is Brendan from Maritime Children's Services Safeguarding Team"));
                 Debug.Log("B1_S1 Active");
             }
 
@@ -119,21 +136,25 @@ namespace DialogueSystems
 
             if (FileName.Contains("B1_S2"))
             {
-                ScriptIDDefinition(ScriptID.Brendan, "Are you Ms Grove...Elli?");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Are you Ms Grove...Elli?"));
+                Debug.Log("B1_S2 Active");
             }
 
             FileName = BrendanAudio[2].ToString();
 
             if (FileName.Contains("B1_S3"))
             {
-                ScriptIDDefinition(ScriptID.Brendan, "We have had an referral from an anonymous source rasing concerns about the children living here");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "We have had an referral from an anonymous source raising concerns about the children living here"));
+                Debug.Log("B1_S3 Active");
+
             }
 
             FileName = BrendanAudio[3].ToString();
 
             if (FileName.Contains("B1_S4"))
             {
-                ScriptIDDefinition(ScriptID.Brendan, "Can I come in and talk to you about this");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Can I come in and talk to you about this"));
+                Debug.Log("B1_S4 Active");
             }
 
             //Brendan Second Paragraph
@@ -142,7 +163,8 @@ namespace DialogueSystems
 
             if (FileName.Contains("B2_S1"))
             {
-                ScriptIDDefinition(ScriptID.Brendan, "Erm sorry, no I can't");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Erm sorry, no I can't"));
+                Debug.Log("B2_S1 Active");
             }
 
             FileName = BrendanAudio[5].ToString();
@@ -489,11 +511,6 @@ namespace DialogueSystems
 
         void Awake()
         {
-
-            BrendanGameObject.SetActive(true);
-            BrendanGameObject.AddComponent<AudioSource>();
-            BrendanSource = BrendanGameObject.GetComponent<AudioSource>();
-
 
             PopulateScript();
 

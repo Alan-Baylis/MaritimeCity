@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using DialogueSystems;
 using System.Collections.Generic;
 using System.Collections;
 
@@ -9,14 +10,18 @@ namespace DialogueSystems
     {
 
         string FileName;
+        private BrendanPOVController Brendan;
+        public AudioSource ElliSource;
+        Dictionary<string, AudioClip> ClipDictionary = new Dictionary<string, AudioClip>(100);
+        List<string> ElliScript = new List<string>(capacity: 60);
+        public AudioClip[] ElliAudio = new AudioClip[10];
 
 
-
-
-        List<string> ElliScript = new List<string>(50);
-
-        public List<AudioClip> ElliAudio = new List<AudioClip>(30);
-
+        void Awake()
+        {
+            CheckBrendanValid();
+            
+        }
 
 
         public GameObject ElliGameObject;
@@ -24,7 +29,48 @@ namespace DialogueSystems
         // Use this for initialization
         void Start()
         {
+
+            Brendan = GameObject.FindGameObjectWithTag(tag: "Brendan Player").GetComponent<BrendanPOVController>();
+
+            StartCoroutine(ElliDialogueIterator());
+
+            ElliScript.Capacity = 30;
+
+
             PopulateScript();
+        }
+
+
+      public IEnumerator ElliDialogueIterator()
+        {
+
+            ClipDictionary.Add("E1_S1", ElliAudio[1]);
+
+            if (ClipDictionary.ContainsKey(DialogueIDSequencer[1]))
+            {
+               
+                foreach (KeyValuePair<string, AudioClip> kvp in ClipDictionary)
+                {
+                    ElliSource.clip = kvp.Value;
+
+                    yield return new WaitUntil(() => Brendan.BrendanFinishedTalking());
+
+                    ElliSource.Play();
+
+                }
+            }
+
+        }
+
+
+        void CheckBrendanValid()
+        {
+
+            if (Brendan != null)
+            {
+                Debug.Log("Brendan is Valid and It Works");
+            }
+
         }
 
         public void PlayAudio(string AudioID)
