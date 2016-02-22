@@ -34,7 +34,8 @@ namespace DialogueSystems
         public AudioClip[] BrendanAudio = new AudioClip[30];
         public AudioSource BrendanSource;
         public Destinations Destination;
-        public GameObject BrendanGameObject;
+
+        private CoreDialogueSystems Core;
 
         string FileName;
 
@@ -99,7 +100,9 @@ namespace DialogueSystems
             BrendanPOV.ViewportToScreenPoint(position: from);
             BrendanPOV.ScreenPointToRay(position: from);
 
-           
+
+            Core = GameObject.FindGameObjectWithTag("Core").GetComponent<CoreDialogueSystems>();
+            DialogueIDSequencer = Core.DialogueIDSequencer;
 
         }
 
@@ -561,8 +564,6 @@ namespace DialogueSystems
                 StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "I am going to call the Police we really need to get back in there"));
                 Debug.Log("B29_S4 Active");
             }
-
-
 
 
         }

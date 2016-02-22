@@ -11,18 +11,23 @@ namespace DialogueSystems
 
         string FileName;
         private BrendanPOVController Brendan;
-        public AudioSource ElliSource;
+        private LukeController Luke;
+        public AudioSource ElliSource = new AudioSource();
+        public AudioClip[] ElliAudio = new AudioClip[10];
+
+
         Dictionary<string, AudioClip> ClipDictionary = new Dictionary<string, AudioClip>(100);
         List<string> ElliScript = new List<string>(capacity: 60);
-        public AudioClip[] ElliAudio = new AudioClip[10];
+        List<string> ElliScriptID = new List<string>(capacity: 60);
+
 
 
         void Awake()
         {
-            CheckBrendanValid();
-            
-        }
 
+            ElliSource = GetComponent<AudioSource>();
+
+        }
 
         public GameObject ElliGameObject;
 
@@ -30,48 +35,18 @@ namespace DialogueSystems
         void Start()
         {
 
-            Brendan = GameObject.FindGameObjectWithTag(tag: "Brendan Player").GetComponent<BrendanPOVController>();
+            Brendan = GameObject.FindGameObjectWithTag(tag:"Brendan Player").GetComponent<BrendanPOVController>();
+            Luke = GameObject.FindGameObjectWithTag(tag:"Luke").GetComponent<LukeController>();
 
-            StartCoroutine(ElliDialogueIterator());
-
+        
             ElliScript.Capacity = 30;
-
+ 
 
             PopulateScript();
         }
 
 
-      public IEnumerator ElliDialogueIterator()
-        {
-
-            ClipDictionary.Add("E1_S1", ElliAudio[1]);
-
-            if (ClipDictionary.ContainsKey(DialogueIDSequencer[1]))
-            {
-               
-                foreach (KeyValuePair<string, AudioClip> kvp in ClipDictionary)
-                {
-                    ElliSource.clip = kvp.Value;
-
-                    yield return new WaitUntil(() => Brendan.BrendanFinishedTalking());
-
-                    ElliSource.Play();
-
-                }
-            }
-
-        }
-
-
-        void CheckBrendanValid()
-        {
-
-            if (Brendan != null)
-            {
-                Debug.Log("Brendan is Valid and It Works");
-            }
-
-        }
+ 
 
         public void PlayAudio(string AudioID)
         {
@@ -122,14 +97,14 @@ namespace DialogueSystems
 
             if (FileName.Contains("E1_S1"))
             {
-                ScriptIDDefinition(ScriptID.Elli, "Yeah, I'm Elli Grove");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "Yeah, I'm Elli Grove"));
             }
 
             FileName = ElliAudio[1].ToString();
 
             if (FileName.Contains("E1_S2"))
             {
-                ScriptIDDefinition(ScriptID.Elli, "Um, err, um, err, well you can hear that Liam is crying");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "Um, err, um, err, well you can hear that Liam is crying"));
 
             }
 
@@ -137,7 +112,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("E1_S3"))
             {
-                ScriptIDDefinition(ScriptID.Elli, "He cries, all the time with his Belly Ache. And his teething");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "He cries, all the time with his Belly Ache. And his teething"));
 
             }
 
@@ -145,7 +120,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("E1_S4"))
             {
-                ScriptIDDefinition(ScriptID.Elli, "Erm... it's not really convenient at the moment, could you come back tomorrow");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "Erm... it's not really convenient at the moment, could you come back tomorrow"));
 
             }
 
@@ -153,56 +128,56 @@ namespace DialogueSystems
 
             if (FileName.Contains("E1_S5"))
             {
-                ScriptIDDefinition(ScriptID.Elli, "Could you come back tomorrow");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "Could you come back tomorrow"));
             }
 
             FileName = ElliAudio[5].ToString();
 
             if (FileName.Contains("E2_S1"))
             {
-                ScriptIDDefinition(ScriptID.Elli, "Well, OK, only for a little while");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "Well, OK, only for a little while"));
             }
 
             FileName = ElliAudio[6].ToString();
 
             if (FileName.Contains("E2_S2"))
             {
-                ScriptIDDefinition(ScriptID.Elli, "You'll have to get past Mable though, she don't like strangers");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "You'll have to get past Mable though, she don't like strangers"));
             }
 
             FileName = ElliAudio[7].ToString();
 
             if (FileName.Contains("E3_S1"))
             {
-                ScriptIDDefinition(ScriptID.Elli, "I told you, she don't like strangers");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "I told you, she don't like strangers"));
             }
 
             FileName = ElliAudio[8].ToString();
 
             if (FileName.Contains("E3_S2"))
             {
-                ScriptIDDefinition(ScriptID.Elli, "Anyway she ain't my dog");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "Anyway she ain't my dog"));
             }
 
             FileName = ElliAudio[9].ToString();
 
             if (FileName.Contains("E3_S3"))
             {
-                ScriptIDDefinition(ScriptID.Elli, "'ere, I'll hold her while you get by");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "'ere, I'll hold her while you get by"));
             }
 
             FileName = ElliAudio[10].ToString();
 
             if (FileName.Contains("E4_S1"))
             {
-                ScriptIDDefinition(ScriptID.Elli, "Oh, err, just a friend");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "Oh, err, just a friend"));
             }
 
             FileName = ElliAudio[11].ToString();
 
             if (FileName.Contains("E5_S1"))
             {
-                ScriptIDDefinition(ScriptID.Elli, "Well, you better go into the front room now your in");
+               StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "Well, you better go into the front room now your in"));
 
             }
 
@@ -210,7 +185,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("E6_S1"))
             {
-                ScriptIDDefinition(ScriptID.Elli, "Oh...yeah, he's...Liam's dad");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "Oh...yeah, he's...Liam's dad"));
             }
 
 
@@ -218,56 +193,56 @@ namespace DialogueSystems
 
             if (FileName.Contains("E7_S1"))
             {
-                ScriptIDDefinition(ScriptID.Elli, "Yeah");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "Yeah"));
             }
 
             FileName = ElliAudio[14].ToString();
 
             if (FileName.Contains("E8_S1"))
             {
-                ScriptIDDefinition(ScriptID.Elli, "Yeah, that's right");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "Yeah, that's right"));
             }
 
             FileName = ElliAudio[15].ToString();
 
             if (FileName.Contains("E9_S1"))
             {
-                ScriptIDDefinition(ScriptID.Elli, "Oh, err, well, she usually goes to nursery, erm... but she's staying with...err.. Luke's mum at the moment");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "Oh, err, well, she usually goes to nursery, erm... but she's staying with...err.. Luke's mum at the moment"));
             }
 
             FileName = ElliAudio[16].ToString();
 
             if (FileName.Contains("E10_S1"))
             {
-                ScriptIDDefinition(ScriptID.Elli, "Cos of Liam's crying");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "Cos of Liam's crying"));
             }
 
             FileName = ElliAudio[17].ToString();
 
             if (FileName.Contains("E10_S2"))
             {
-                ScriptIDDefinition(ScriptID.Elli, "He goes on and on, all night, I'm knackered.");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "He goes on and on, all night, I'm knackered."));
             }
 
             FileName = ElliAudio[18].ToString();
 
             if (FileName.Contains("E10_S3"))
             {
-                ScriptIDDefinition(ScriptID.Elli, "I can't cope with him and her, it's too much");
+               StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "I can't cope with him and her, it's too much"));
             }
 
             FileName = ElliAudio[19].ToString();
 
             if (FileName.Contains("E11_S1"))
             {
-                ScriptIDDefinition(ScriptID.Elli, "Is he, I only just changed him, little monkey");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "Is he, I only just changed him, little monkey"));
             }
 
             FileName = ElliAudio[20].ToString();
 
             if (FileName.Contains("E11_S2"))
             {
-                ScriptIDDefinition(ScriptID.Elli, "It's all that milk");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "It's all that milk"));
 
             }
 
@@ -275,112 +250,112 @@ namespace DialogueSystems
 
             if (FileName.Contains("E12_S1"))
             {
-                ScriptIDDefinition(ScriptID.Elli, "Most have dropped it");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "Most have dropped it"));
             }
 
             FileName = ElliAudio[22].ToString();
 
             if (FileName.Contains("E12_S2"))
             {
-                ScriptIDDefinition(ScriptID.Elli, "See how tired I am");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "See how tired I am"));
             }
 
             FileName = ElliAudio[23].ToString();
 
             if (FileName.Contains("E13_S1"))
             {
-                ScriptIDDefinition(ScriptID.Elli, "Thanks");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "Thanks"));
             }
 
             FileName = ElliAudio[24].ToString();
 
             if (FileName.Contains("E14_S1"))
             {
-                ScriptIDDefinition(ScriptID.Elli, "Oh don't worry, I will clear it up");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "Oh don't worry, I will clear it up"));
             }
 
             FileName = ElliAudio[25].ToString();
 
             if (FileName.Contains("E14_S2"))
             {
-                ScriptIDDefinition(ScriptID.Elli, "I was about to pick it up when you rang the bell");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "I was about to pick it up when you rang the bell"));
             }
 
             FileName = ElliAudio[26].ToString();
 
             if (FileName.Contains("E15_S1"))
             {
-                ScriptIDDefinition(ScriptID.Elli, "I'll do his nappy in a minute");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "I'll do his nappy in a minute"));
             }
 
             FileName = ElliAudio[27].ToString();
 
             if (FileName.Contains("E15_S2"))
             {
-                ScriptIDDefinition(ScriptID.Elli, "I did ask the health visitor about the rash, said I was worried, but I ran out of cream, didn't I?");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "I did ask the health visitor about the rash, said I was worried, but I ran out of cream, didn't I?"));
             }
 
             FileName = ElliAudio[28].ToString();
 
             if (FileName.Contains("E15_S3"))
             {
-                ScriptIDDefinition(ScriptID.Elli, "Nothing to worry about really");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "Nothing to worry about really"));
             }
 
             FileName = ElliAudio[29].ToString();
 
             if (FileName.Contains("E16_S1"))
             {
-                ScriptIDDefinition(ScriptID.Elli, "I was just gonna get some");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "I was just gonna get some"));
             }
 
             FileName = ElliAudio[30].ToString();
 
             if (FileName.Contains("E17_S1"))
             {
-                ScriptIDDefinition(ScriptID.Elli, "I told you, she's with Luke's mum");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "I told you, she's with Luke's mum"));
             }
 
             FileName = ElliAudio[31].ToString();
 
             if (FileName.Contains("E18_S1"))
             {
-                ScriptIDDefinition(ScriptID.Elli, "Over near Seagulls Hospital, Luke took her yesterday");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "Over near Seagulls Hospital, Luke took her yesterday"));
             }
 
             FileName = ElliAudio[32].ToString();
 
             if (FileName.Contains("E19_S1"))
             {
-                ScriptIDDefinition(ScriptID.Elli, "Luke, please");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "Luke, please"));
             }
 
             FileName = ElliAudio[33].ToString();
 
             if (FileName.Contains("E19_S2"))
             {
-                ScriptIDDefinition(ScriptID.Elli, "He don't mean it, he's had a bad head all day; and you've just rubbed him up the wrong way");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "He don't mean it, he's had a bad head all day; and you've just rubbed him up the wrong way"));
             }
 
             FileName = ElliAudio[34].ToString();
 
             if (FileName.Contains("E19_S3"))
             {
-                ScriptIDDefinition(ScriptID.Elli, "Best if you go now, I'll ring you later and take the baby to the clinic tomorrow, just like you said.");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "Best if you go now, I'll ring you later and take the baby to the clinic tomorrow, just like you said."));
             }
 
             FileName = ElliAudio[35].ToString();
 
             if (FileName.Contains("E20_S1"))
             {
-                ScriptIDDefinition(ScriptID.Elli, "I'll show you out");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "I'll show you out"));
             }
 
             FileName = ElliAudio[36].ToString();
 
             if (FileName.Contains("E21_S1"))
             {
-                ScriptIDDefinition(ScriptID.Elli, "Yeah, OK");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "Yeah, OK"));
             }
 
 
