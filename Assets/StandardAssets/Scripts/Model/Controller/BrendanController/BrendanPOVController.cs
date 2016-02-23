@@ -14,36 +14,80 @@ namespace DialogueSystems
         public struct Destinations
         {
 
-            public GameObject ElliDoor;
-            public GameObject LivingRoom;
 
         }
 
         public void PlayAudio(string AudioID)
         {
+            if (AudioID == "B1_S1")
+            {
+                BrendanSource.clip = BrendanAudio[0];
+                BrendanSource.PlayDelayed(1);
+            }
 
         }
 
-        public void DisplayScript(string AudioID) { 
 
-}
+        public void DisplayScript(string ScriptID)
+        {
+            if (ScriptID == "B1_S1")
+            {
+                DialogueText.text = BrendanScript[0];
+            }
+
+        }
 
         static int ScriptLogger = 0;
-
+        private CapsuleCollider BrendanCollider;
+        private CoreDialogueSystems Core;
         public List<string> BrendanScript = new List<string>(50);
         public AudioClip[] BrendanAudio = new AudioClip[30];
         public AudioSource BrendanSource;
         public Destinations Destination;
 
-        private CoreDialogueSystems Core;
-
         string FileName;
-
         Vector3 from;
         Vector3 there;
         float speed;
 
+        // Use this for initialization
+        void Start()
+        {
 
+            BrendanCollider = gameObject.GetComponent<CapsuleCollider>();
+            BrendanSource = GetComponent<AudioSource>();
+            DialogueText = GetComponent<Text>();
+
+            from = BrendanPOV.transform.position;
+            speed = 50;
+          
+        }
+
+        void InitializeCoreDialogueIDSequencer()
+        {
+
+            Core = GameObject.FindGameObjectWithTag("Core").GetComponent<CoreDialogueSystems>();
+            DialogueIDSequencer = Core.DialogueIDSequencer;
+
+
+        }
+
+
+        void DefineColliderParameters()
+        {
+
+            BrendanCollider.isTrigger = true;
+
+        }
+
+        void DefineCameraParameters()
+        {
+
+            BrendanPOV.GetComponent<Camera>();
+            BrendanPOV.ViewportToScreenPoint(position: from);
+            BrendanPOV.ScreenPointToRay(position: from);
+
+        }
 
 
 
@@ -62,49 +106,14 @@ namespace DialogueSystems
             {
                 BrendanScript.Add(DefineScript);
                 DialogueText.text = BrendanScript[BrendanInternalIterator];
-
-
-                //Makes sure that the entry point is in the next array
-                //Sneak in Co-routine to evaluate the term by seeing if the Audio is finished first
-                // yield return new WaitUntil(() => BrendanSource == AudioSource.FindObjectOfType<AudioSource>());
-
-                /*
-                GameObject TestGameObject = GameObject.Find("Brendan Player");
-
-                AudioSource TestAudioSource = (AudioSource)TestGameObject.GetComponent("Brendan Source");
-
-                yield return new WaitUntil(() => TestAudioSource.isPlaying == false);
-                */
-
                 BrendanInternalIterator++;
 
                 yield return null;
 
             }
 
-
         }
-        // Use this for initialization
-        void Start()
-        {
-            BrendanPOVController Brendan;
 
-            BrendanSource = GetComponent<AudioSource>();
-
-            DialogueText = GetComponent<Text>();
-
-            from = BrendanPOV.transform.position;
-            //there = Destination.ElliDoor.transform.position;
-            speed = 50;
-            BrendanPOV.GetComponent<Camera>();
-            BrendanPOV.ViewportToScreenPoint(position: from);
-            BrendanPOV.ScreenPointToRay(position: from);
-
-
-            Core = GameObject.FindGameObjectWithTag("Core").GetComponent<CoreDialogueSystems>();
-            DialogueIDSequencer = Core.DialogueIDSequencer;
-
-        }
 
 
       public bool BrendanFinishedTalking()
@@ -112,6 +121,7 @@ namespace DialogueSystems
             if (BrendanSource.isPlaying == false)
             {
                 return true;
+
             } else
             {
                 return false;
@@ -121,9 +131,6 @@ namespace DialogueSystems
 
         void InputController()
         {
-            Space CoordinateSpace = new Space();
-            CoordinateSpace = Space.Self;
-
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 //Iterate through text
@@ -577,26 +584,11 @@ namespace DialogueSystems
         }
 
 
-        /*
-        IEnumerator BrendanDialogueController()
-        {
-            if (BrendanSource.isPlaying == false)
-            {
-                //PrimarySource.clip.UnloadAudioData ();
-                BrendanSource.clip = BrendanAudio[MaritimeDialogueIterator];
-                BrendanSource.Play();
-                MaritimeDialogueIterator++;
-
-            }
-
-            //yield return new WaitWhile (() => PrimarySource.isPlaying == false);
-            yield return new WaitForSeconds(BrendanSource.clip.length);
-
-        }*/
-
         // Update is called once per frame
         void Update()
         {
+
+            InputController();
 
             if (from == there)
             {
@@ -604,6 +596,7 @@ namespace DialogueSystems
             }
 
             Vector3.Lerp(a: from, b: there, t: speed);
+
         }
     }
 

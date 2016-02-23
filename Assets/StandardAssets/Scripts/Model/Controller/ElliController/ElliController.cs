@@ -5,43 +5,27 @@ using System.Collections;
 
 namespace DialogueSystems
 {
-    
+
     public class ElliController : CoreDialogueSystems, IDialogueSystems
     {
 
         string FileName;
-        private BrendanPOVController Brendan;
-        private LukeController Luke;
+
         public AudioSource ElliSource = new AudioSource();
         public AudioClip[] ElliAudio = new AudioClip[10];
 
-
-        Dictionary<string, AudioClip> ClipDictionary = new Dictionary<string, AudioClip>(100);
         List<string> ElliScript = new List<string>(capacity: 60);
-        List<string> ElliScriptID = new List<string>(capacity: 60);
-
-
+    
 
         void Awake()
         {
-
             ElliSource = GetComponent<AudioSource>();
-
         }
 
-        public GameObject ElliGameObject;
 
         // Use this for initialization
         void Start()
-        {
-
-            Brendan = GameObject.FindGameObjectWithTag(tag:"Brendan Player").GetComponent<BrendanPOVController>();
-            Luke = GameObject.FindGameObjectWithTag(tag:"Luke").GetComponent<LukeController>();
-
-        
-            ElliScript.Capacity = 30;
- 
-
+        { 
             PopulateScript();
         }
 
@@ -58,31 +42,24 @@ namespace DialogueSystems
 
         }
 
-
+        int ScriptLogger = 0;
 
 
         public IEnumerator ScriptIDDefinition(ScriptID ScriptIdentification, string DefineScript)
         {
             //Use logger to check conditions, use iterators for dynamic functions
-            int ScriptLogger = 0;
+
             ScriptLogger++;
 
-            print("Result for Script Logger is " + ScriptLogger);
+            print("Result for Elli Script Logger is " + ScriptLogger);
 
             int ElliInternalIterator = 0;
 
             if (ScriptIdentification == ScriptID.Elli)
             {
-
                 ElliScript.Add(DefineScript);
 
-                //Makes sure that the entry point is in the next array
-                //Sneak in Co-routine to evaluate the term by seeing if the Audio is finished first
-                // yield return new WaitUntil(() => BrendanSource == AudioSource.FindObjectOfType<AudioSource>());
-
-                AudioSource TestAudioSource = (AudioSource)GetComponent("Elli Source");
-
-                yield return new WaitUntil(() => TestAudioSource.isPlaying == false);
+                yield return null;
 
                 ElliInternalIterator++;
             }

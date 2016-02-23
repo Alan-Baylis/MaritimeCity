@@ -14,96 +14,39 @@ namespace DialogueSystems
     public class CoreDialogueSystems : MonoBehaviour
     {
 
-
         public List<string> DialogueIDSequencer = new List<string>();
 
-        int MaxScript = 100;
-        int MaritimeDialogueIterator = 0;
+        public ElliController Elli;
+        public BrendanPOVController Brendan;
+        public LukeController Luke;
+        CoreEventSystems CoreEvents;
 
-        public Dictionary<string, UnityAction> SequenceOfEvents;
-
-
-
-        public enum ConversationState { Start, Active, End };
-
-        //Defined Types
-        // public ElliController Elli = new ElliController();
-
-        // public LukeController Luke = new LukeController();
-
-        // public BrendanPOVController Brendan = new BrendanPOVController();
-
-
+       
+        public enum ConversationState { Active, Inactive };
+        public ConversationState ConversationStateID = ConversationState.Inactive;
         public Text DialogueText;
         public enum ScriptID { Elli, Brendan, Luke };
-        enum DialogueStateID { None, Elli, Brendan, Luke };
-        DialogueStateID DialogueState;
-        private int SequencerIterator = 0;
-        int BrendanInternalIterator = 0;
+        int MaritimeDialogueIterator = 0;
         int ElliInternalIterator = 0;
         int LukeInternalIterator = 0;
 
-
-
-        /// <summary>
-        /// Checks to see which Audio Source is playing 
-        /// </summary>
-        /// <returns></returns>
-        /// 
-        /// 
-        /*
-        public AudioSource QueryAudioSource()
-        {
-
-            if (BrendanSource.isPlaying == true)
-            {
-                return BrendanSource;
-
-            }
-            else if (LukeSource.isPlaying == true)
-            {
-                return LukeSource;
-
-            }
-            else if (ElliSource.isPlaying == true)
-            {
-
-                return ElliSource;
-            }
-
-            return null;
-        }*/
-
-        IEnumerator ScriptIDDefinition(List<string> DynamicDialogueScript, string Script)
-        {
-            if (DynamicDialogueScript.Capacity > 1)
-            {
-                DynamicDialogueScript.Capacity = 100;
-            }
-
-
-            if (DynamicDialogueScript[MaritimeDialogueIterator] == "")
-            {
-                DynamicDialogueScript[MaritimeDialogueIterator] = Script;
-                DialogueText.text = DynamicDialogueScript[MaritimeDialogueIterator];
-
-                //Same as above
-                //MaritimeDialogueIterator++;
-            }
-
-            yield return null;
-
-        }
+ 
 
         void Awake()
         {
-            
+
             //DialogueIDSequencer.Capacity = MaxScript;
             //DialogueObject = GameObject.Find("Dialog Text");
             //DialogueText = GetComponent<Text>();
             //DialogueObject.AddComponent<AudioSource>();
             //DialogueObject.AddComponent<AudioSource>();
             //DialogueObject.AddComponent<AudioSource>();
+
+
+            Brendan = GameObject.FindGameObjectWithTag(tag: "Brendan Player").GetComponent<BrendanPOVController>();
+            Elli = GameObject.FindGameObjectWithTag(tag: "Elli").GetComponent<ElliController>();
+            Luke = GameObject.FindGameObjectWithTag(tag: "Luke").GetComponent<LukeController>();
+            CoreEvents = GameObject.FindGameObjectWithTag(tag: "Core Event").GetComponent<CoreEventSystems>();
 
             DialogueIDSequencer.Add("B1_S1");
             DialogueIDSequencer.Add("B1_S2");
@@ -218,35 +161,47 @@ namespace DialogueSystems
         }
 
 
+        IEnumerator AdvanceIterator()
+        {
+            yield return new WaitForSeconds(10);
+
+            StartCoroutine(AdvanceIterator());
+        }
+
+
         public IEnumerator DialogueIterator()
         {
-            //InitializeDialogueEvents();
-            //Should be moved
-            ConversationState ConversationStateID = ConversationState.Active;
+   
 
-
-            if (ConversationStateID == ConversationState.Start)
+            if (ConversationStateID == ConversationState.Active)
             {
 
-                int Iterator = 0;
-
-                if (DialogueIDSequencer[Iterator] == "B1_S1")
+                if (DialogueIDSequencer[MaritimeDialogueIterator] == "B1_S1")
                 {
-
-                    ElliController Elli = FindObjectOfType<ElliController>();
-
-                    //Makes sure what we are seeing is valid;
-                    Elli.PlayAudio(AudioID: DialogueIDSequencer[Iterator]);
-                    Elli.DisplayScript(ScriptID: DialogueIDSequencer[Iterator]);
+                    //Invokes Doorbell Function
+                    CoreEvents.SceneObject.Doorbell.Invoke();
+                  
+                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
                     //Invoke relevant Event here!
 
-                    Iterator++;
-                    yield return new WaitForSeconds(1);
+                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+
+                    MaritimeDialogueIterator++;
+                   
+                }
+
+
+                if(DialogueIDSequencer[MaritimeDialogueIterator] == "B1_S2")
+                {
+                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+
 
                 }
 
-                if (DialogueIDSequencer[Iterator] == "E10_S3")
+                if (DialogueIDSequencer[MaritimeDialogueIterator] == "E10_S3")
                 {
 
                     //Invoke Look at Cot Event
@@ -254,7 +209,7 @@ namespace DialogueSystems
                     yield return new WaitForSeconds(1);
                 }
 
-                if (DialogueIDSequencer[Iterator] == "L10_S1")
+                if (DialogueIDSequencer[MaritimeDialogueIterator] == "L10_S1")
                 {
 
                     ///Luke gets angry
@@ -262,7 +217,7 @@ namespace DialogueSystems
                     yield return new WaitForSeconds(1);
                 }
 
-                if (DialogueIDSequencer[Iterator] == "E29_S4")
+                if (DialogueIDSequencer[MaritimeDialogueIterator] == "E29_S4")
                 {
 
                     //Show Tara crying 

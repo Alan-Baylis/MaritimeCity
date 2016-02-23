@@ -12,25 +12,20 @@ namespace DialogueSystems
         private string FileName;
         
         private CoreDialogueSystems Core;
-        private List<string> LukeScript = new List<string>(50);
-        private List<AudioClip> LukeAudio = new List<AudioClip>(30);
-
+        public List<string> LukeScript = new List<string>(50);
+        public AudioClip[] LukeAudio = new AudioClip[18];
         public AudioSource LukeSource;
 
         // Use this for initialization
         void Start()
         {
-
             LukeSource = GetComponent<AudioSource>();
 
             Core = GameObject.FindGameObjectWithTag("Core").GetComponent<CoreDialogueSystems>();
             DialogueIDSequencer = Core.DialogueIDSequencer;
+            PopulateScript();
 
         }
-
-
-
-
 
         public IEnumerator ScriptIDDefinition(ScriptID ScriptIdentification, string DefineScript)
         {
@@ -38,14 +33,25 @@ namespace DialogueSystems
             int ScriptLogger = 0;
             ScriptLogger++;
 
-            print("Result for Script Logger is " + ScriptLogger);
+           
 
-            yield return new WaitForSeconds(19);
+            print("Result for Script Logger is " + ScriptLogger);
+            if (ScriptIdentification == ScriptID.Luke)
+            {
+                LukeScript.Add(DefineScript);
+                
+            }
+
+            yield return new WaitForEndOfFrame();
         }
 
 
         public void PlayAudio(string DialogueID)
         {
+            if (DialogueID == "L1_T1_S1")
+            {
+                LukeSource.clip = LukeAudio[1];
+            }
 
         }
 
@@ -56,8 +62,6 @@ namespace DialogueSystems
 
         public void PopulateScript()
         {
-
-
             FileName = LukeAudio[0].ToString();
 
             if (FileName.Contains("L1_S1_T1"))
@@ -125,56 +129,56 @@ namespace DialogueSystems
 
             if (FileName.Contains("L9_S2"))
             {
-                ScriptIDDefinition(ScriptID.Luke, "Kid said she wanted to see granny so I tooker her to her granny's, satisfied Mr Supernanny");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "Kid said she wanted to see granny so I took her to her granny's, satisfied Mr Supernanny"));
             }
 
             FileName = LukeAudio[10].ToString();
 
             if (FileName.Contains("L9_S3"))
             {
-                ScriptIDDefinition(ScriptID.Luke, "I just do what Elli and little princess asks see, got me wrapped around her little finger she has");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "I just do what Elli and little princess asks see, got me wrapped around her little finger she has"));
             }
 
             FileName = LukeAudio[11].ToString();
 
             if (FileName.Contains("L9_S4"))
             {
-                ScriptIDDefinition(ScriptID.Luke, "See what a great stepdad I am");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "See what a great stepdad I am"));
             }
 
             FileName = LukeAudio[12].ToString();
 
             if (FileName.Contains("L9_S5"))
             {
-                ScriptIDDefinition(ScriptID.Luke, "Do anything she wants");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "Do anything she wants"));
             }
 
             FileName = LukeAudio[13].ToString();
 
             if (FileName.Contains("L10_S1"))
             {
-                ScriptIDDefinition(ScriptID.Luke, "Never satisifed are you, bloody social workers. Should put 'em all in a sack and drown them at Birth");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "Never satisfied are you, bloody social workers. Should put 'em all in a sack and drown them at Birth"));
             }
 
             FileName = LukeAudio[14].ToString();
 
             if (FileName.Contains("L11_S1"))
             {
-                ScriptIDDefinition(ScriptID.Luke, "You leave my mum out of this you fucking nosy bastard now fuck off out of here before I throw you out");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "You leave my mum out of this you fucking nosy bastard now fuck off out of here before I throw you out"));
             }
 
             FileName = LukeAudio[15].ToString();
 
             if (FileName.Contains("L12_S1"))
             {
-                ScriptIDDefinition(ScriptID.Luke, "Oh fuck off you old woman");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "Oh fuck off you old woman"));
             }
 
             FileName = LukeAudio[16].ToString();
 
             if (FileName.Contains("L13_S1"))
             {
-                ScriptIDDefinition(ScriptID.Luke, "Gonna get ya mates are ya? Fucking wimp, you ain't worh it, it would be too easy");
+                StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "Gonna get ya mates are ya? Fucking wimp, you ain't worth it, it would be too easy"));
             }
 
 
