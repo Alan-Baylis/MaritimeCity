@@ -25,6 +25,72 @@ namespace DialogueSystems
                 BrendanSource.PlayDelayed(1);
             }
 
+            if(AudioID == "B1_S2")
+            {
+                BrendanSource.clip = BrendanAudio[1];
+                BrendanSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "B1_S3")
+            {
+                BrendanSource.clip = BrendanAudio[2];
+                BrendanSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "B1_S4")
+            {
+                BrendanSource.clip = BrendanAudio[3];
+                BrendanSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "B2_S1")
+            {
+                BrendanSource.clip = BrendanAudio[4];
+                BrendanSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "B2_S2")
+            {
+                BrendanSource.clip = BrendanAudio[5];
+                BrendanSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "B2_S3")
+            {
+                BrendanSource.clip = BrendanAudio[6];
+                BrendanSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "B3_S1")
+            {
+                BrendanSource.clip = BrendanAudio[7];
+                BrendanSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "B3_S2")
+            {
+                BrendanSource.clip = BrendanAudio[8];
+                BrendanSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "B3_S3")
+            {
+                BrendanSource.clip = BrendanAudio[9];
+                BrendanSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "B4_S1")
+            {
+                BrendanSource.clip = BrendanAudio[10];
+                BrendanSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "B4_S2")
+            {
+                BrendanSource.clip = BrendanAudio[11];
+                BrendanSource.PlayDelayed(1);
+            }
+
         }
 
         public void DisplayScript(string ScriptID)

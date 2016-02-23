@@ -46,11 +46,12 @@ namespace DialogueSystems
         }
 
 
-        public void PlayAudio(string DialogueID)
+        public void PlayAudio(string AudioID)
         {
-            if (DialogueID == "L1_T1_S1")
+            if (AudioID == "L1_T1_S1")
             {
                 LukeSource.clip = LukeAudio[1];
+                LukeSource.PlayDelayed(1);
             }
 
         }
