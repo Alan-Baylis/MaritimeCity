@@ -185,14 +185,6 @@ namespace DialogueSystems
         }
 
 
-        IEnumerator LukeDialogueController()
-        {
-            //yield return new WaitUntil (() => NewDialogueState == DialogueState.Luke);
-
-            yield return null;
-        }
-
-
         // Update is called once per frame
         void Update()
         {

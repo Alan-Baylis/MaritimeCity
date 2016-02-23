@@ -20,17 +20,12 @@ namespace DialogueSystems
         public BrendanPOVController Brendan;
         public LukeController Luke;
         CoreEventSystems CoreEvents;
-
-       
         public enum ConversationState { Active, Inactive };
         public ConversationState ConversationStateID = ConversationState.Inactive;
         public Text DialogueText;
         public enum ScriptID { Elli, Brendan, Luke };
-        int MaritimeDialogueIterator = 0;
-        int ElliInternalIterator = 0;
-        int LukeInternalIterator = 0;
-
- 
+        static int MaritimeDialogueIterator = 0;
+  
 
         void Awake()
         {
@@ -171,8 +166,6 @@ namespace DialogueSystems
 
         public IEnumerator DialogueIterator()
         {
-   
-
             if (ConversationStateID == ConversationState.Active)
             {
 
@@ -193,13 +186,52 @@ namespace DialogueSystems
                 }
 
 
-                if(DialogueIDSequencer[MaritimeDialogueIterator] == "B1_S2")
+                if (DialogueIDSequencer[MaritimeDialogueIterator] == "B1_S2")
                 {
                     Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
+                    //Invoke relevant Event here!
 
+                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+
+                    MaritimeDialogueIterator++;
 
                 }
+
+
+                if (DialogueIDSequencer[MaritimeDialogueIterator] == "B1_S3")
+                {
+                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                    //Invoke relevant Event here!
+
+                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+
+                    MaritimeDialogueIterator++;
+
+                }
+
+
+                if (DialogueIDSequencer[MaritimeDialogueIterator] == "B1_S4")
+                {
+                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                    //Invoke relevant Event here!
+
+                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+
+                    MaritimeDialogueIterator++;
+
+                }
+
+
+
+
+
+
 
                 if (DialogueIDSequencer[MaritimeDialogueIterator] == "E10_S3")
                 {

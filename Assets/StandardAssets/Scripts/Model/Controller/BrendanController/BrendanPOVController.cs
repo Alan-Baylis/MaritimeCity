@@ -27,7 +27,6 @@ namespace DialogueSystems
 
         }
 
-
         public void DisplayScript(string ScriptID)
         {
             if (ScriptID == "B1_S1")
@@ -72,7 +71,6 @@ namespace DialogueSystems
 
         }
 
-
         void DefineColliderParameters()
         {
 
@@ -88,7 +86,6 @@ namespace DialogueSystems
             BrendanPOV.ScreenPointToRay(position: from);
 
         }
-
 
 
         public IEnumerator ScriptIDDefinition(ScriptID ScriptIdentification, string DefineScript)
@@ -114,9 +111,7 @@ namespace DialogueSystems
 
         }
 
-
-
-      public bool BrendanFinishedTalking()
+        public bool BrendanFinishedTalking()
         {
             if (BrendanSource.isPlaying == false)
             {
@@ -137,7 +132,6 @@ namespace DialogueSystems
             }
 
         }
-
 
         public void PopulateScript()
         {
@@ -575,14 +569,12 @@ namespace DialogueSystems
 
         }
 
-
         void Awake()
         {
 
             PopulateScript();
 
         }
-
 
         // Update is called once per frame
         void Update()
