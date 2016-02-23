@@ -91,13 +91,569 @@ namespace DialogueSystems
                 BrendanSource.PlayDelayed(1);
             }
 
+            if(AudioID == "B5_S1")
+            {
+                BrendanSource.clip = BrendanAudio[12];
+                BrendanSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "B6_S1")
+            {
+                BrendanSource.clip = BrendanAudio[13];
+                BrendanSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "B6_S2")
+            {
+                BrendanSource.clip = BrendanAudio[14];
+                BrendanSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "B6_S3")
+            {
+                BrendanSource.clip = BrendanAudio[15];
+                BrendanSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "B6_S4")
+            {
+                BrendanSource.clip = BrendanAudio[16];
+                BrendanSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "B7_S1")
+            {
+                BrendanSource.clip = BrendanAudio[17];
+                BrendanSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "B7_S2")
+            {
+                BrendanSource.clip = BrendanAudio[18];
+                BrendanSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "B8_S1")
+            {
+                BrendanSource.clip = BrendanAudio[19];
+                BrendanSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "B9_S1")
+            {
+                BrendanSource.clip = BrendanAudio[20];
+                BrendanSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "B10_S1")
+            {
+                BrendanSource.clip = BrendanAudio[21];
+                BrendanSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "B10_S2")
+            {
+                BrendanSource.clip = BrendanAudio[22];
+                BrendanSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "B10_S3")
+            {
+                BrendanSource.clip = BrendanAudio[23];
+                BrendanSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "B11_S1")
+            {
+                BrendanSource.clip = BrendanAudio[24];
+                BrendanSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "B12_S1")
+            {
+                BrendanSource.clip = BrendanAudio[25];
+                BrendanSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "B13_S1")
+            {
+                BrendanSource.clip = BrendanAudio[26];
+                BrendanSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "B14_S1")
+            {
+                BrendanSource.clip = BrendanAudio[27];
+                BrendanSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "B15_S1")
+            {
+                BrendanSource.clip = BrendanAudio[28];
+                BrendanSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "B16_S1")
+            {
+                BrendanSource.clip = BrendanAudio[29];
+                BrendanSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "B16_S2")
+            {
+                BrendanSource.clip = BrendanAudio[30];
+                BrendanSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "B17_S1")
+            {
+                BrendanSource.clip = BrendanAudio[31];
+                BrendanSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "B18_S1")
+            {
+                BrendanSource.clip = BrendanAudio[32];
+                BrendanSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "B18_S2")
+            {
+                BrendanSource.clip = BrendanAudio[33];
+                BrendanSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "B18_S3")
+            {
+                BrendanSource.clip = BrendanAudio[34];
+                BrendanSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "B19_S1")
+            {
+                BrendanSource.clip = BrendanAudio[35];
+                BrendanSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "B20_S1")
+            {
+                BrendanSource.clip = BrendanAudio[36];
+                BrendanSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "B21_S1")
+            {
+                BrendanSource.clip = BrendanAudio[37];
+                BrendanSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "B22_S1")
+            {
+                BrendanSource.clip = BrendanAudio[38];
+                BrendanSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "B23_S1")
+            {
+                BrendanSource.clip = BrendanAudio[39];
+                BrendanSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "B24_S1")
+            {
+                BrendanSource.clip = BrendanAudio[40];
+                BrendanSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "B25_S1")
+            {
+                BrendanSource.clip = BrendanAudio[41];
+                BrendanSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "B26_S1")
+            {
+                BrendanSource.clip = BrendanAudio[42];
+                BrendanSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "B26_S2")
+            {
+                BrendanSource.clip = BrendanAudio[43];
+                BrendanSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "B27_S1")
+            {
+                BrendanSource.clip = BrendanAudio[44];
+                BrendanSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "B27_S2")
+            {
+                BrendanSource.clip = BrendanAudio[45];
+                BrendanSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "B27_S3")
+            {
+                BrendanSource.clip = BrendanAudio[46];
+                BrendanSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "B28_S1")
+            {
+                BrendanSource.clip = BrendanAudio[47];
+                BrendanSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "B29_S1")
+            {
+                BrendanSource.clip = BrendanAudio[48];
+                BrendanSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "B29_S2")
+            {
+                BrendanSource.clip = BrendanAudio[49];
+                BrendanSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "B29_S3")
+            {
+                BrendanSource.clip = BrendanAudio[50];
+                BrendanSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "B29_S4")
+            {
+                BrendanSource.clip = BrendanAudio[51];
+                BrendanSource.PlayDelayed(1);
+            }
+
+
         }
+
+        int InternalIterator = 0;
 
         public void DisplayScript(string ScriptID)
         {
             if (ScriptID == "B1_S1")
             {
-                DialogueText.text = BrendanScript[0];
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B1_S1")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B1_S2")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B1_S3")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B1_S4")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B2_S1")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B2_S2")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B2_S3")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B3_S1")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B3_S2")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B3_S3")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B4_S1")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B4_S2")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B5_S1")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B6_S1")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B6_S2")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B6_S3")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B6_S4")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B7_S1")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B7_S2")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B8_S1")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B9_S1")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B10_S1")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B10_S2")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B10_S3")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B11_S1")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B12_S1")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B13_S1")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B14_S1")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B15_S1")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B16_S1")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B16_S2")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B17_S1")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B18_S1")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B18_S2")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B18_S3")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B19_S1")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B20_S1")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B21_S1")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B22_S1")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B23_S1")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B24_S1")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B25_S1")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B26_S1")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B26_S2")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B27_S1")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B27_S2")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B27_S3")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B28_S1")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B29_S1")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B29_S2")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B29_S3")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
+            }
+
+            if (ScriptID == "B29_S4")
+            {
+                DialogueText.text = BrendanScript[InternalIterator];
+                InternalIterator++;
             }
 
         }
