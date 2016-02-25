@@ -31,7 +31,228 @@ namespace DialogueSystems
 
         public void PlayAudio(string AudioID)
         {
-            //ElliAudio.Find(AudioID);
+            if (AudioID == "E1_S1")
+            {
+                ElliSource.clip = ElliAudio[1];
+                ElliSource.Play();
+            }
+
+            if (AudioID == "E1_S2")
+            {
+                ElliSource.clip = ElliAudio[2];
+                ElliSource.Play();
+            }
+
+            if (AudioID == "E1_S3")
+            {
+                ElliSource.clip = ElliAudio[3];
+                ElliSource.Play();
+            }
+
+            if (AudioID == "E1_S4")
+            {
+                ElliSource.clip = ElliAudio[4];
+                ElliSource.Play();
+            }
+
+            if (AudioID == "E1_S5")
+            {
+                ElliSource.clip = ElliAudio[5];
+                ElliSource.Play();
+            }
+
+            if (AudioID == "E2_S1")
+            {
+                ElliSource.clip = ElliAudio[6];
+                ElliSource.Play();
+            }
+
+            if (AudioID == "E2_S2")
+            {
+                ElliSource.clip = ElliAudio[7];
+                ElliSource.Play();
+            }
+
+            if (AudioID == "E3_S1")
+            {
+                ElliSource.clip = ElliAudio[8];
+                ElliSource.Play();
+            }
+
+            if (AudioID == "E3_S2")
+            {
+                ElliSource.clip = ElliAudio[9];
+                ElliSource.Play();
+            }
+
+            if (AudioID == "E3_S3")
+            {
+                ElliSource.clip = ElliAudio[10];
+                ElliSource.Play();
+            }
+
+            if (AudioID == "E4_S1")
+            {
+                ElliSource.clip = ElliAudio[11];
+                ElliSource.Play();
+            }
+
+            if (AudioID == "E5_S1")
+            {
+                ElliSource.clip = ElliAudio[12];
+                ElliSource.Play();
+            }
+
+            if (AudioID == "E6_S1")
+            {
+                ElliSource.clip = ElliAudio[13];
+                ElliSource.Play();
+            }
+
+            if (AudioID == "E7_S1")
+            {
+                ElliSource.clip = ElliAudio[14];
+                ElliSource.Play();
+            }
+
+            if (AudioID == "E8_S1")
+            { 
+                ElliSource.clip = ElliAudio[15];
+                ElliSource.Play();
+            }
+
+            if (AudioID == "E9_S1")
+            {
+                ElliSource.clip = ElliAudio[16];
+                ElliSource.Play();
+            }
+
+            if (AudioID == "E10_S1")
+            {
+                ElliSource.clip = ElliAudio[17];
+                ElliSource.Play();
+            }
+
+            if (AudioID == "E10_S2")
+            {
+                ElliSource.clip = ElliAudio[18];
+                ElliSource.Play();
+            }
+
+            if (AudioID == "E10_S3")
+            {
+                ElliSource.clip = ElliAudio[19];
+                ElliSource.Play();
+            }
+
+            if (AudioID == "E11_S1")
+            {
+                ElliSource.clip = ElliAudio[20];
+                ElliSource.Play();
+            }
+
+            if (AudioID == "E11_S2")
+            {
+                ElliSource.clip = ElliAudio[21];
+                ElliSource.Play();
+            }
+
+            if (AudioID == "E12_S1")
+            {
+                ElliSource.clip = ElliAudio[22];
+                ElliSource.Play();
+            }
+
+            if (AudioID == "E12_S2")
+            {
+                ElliSource.clip = ElliAudio[23];
+                ElliSource.Play();
+            }
+
+            if (AudioID == "E13_S1")
+            {
+                ElliSource.clip = ElliAudio[26];
+                ElliSource.Play();
+            }
+
+            if (AudioID == "E14_S1")
+            {
+                ElliSource.clip = ElliAudio[27];
+                ElliSource.Play();
+            }
+
+            if (AudioID == "E15_S1")
+            {
+                ElliSource.clip = ElliAudio[28];
+                ElliSource.Play();
+            }
+
+            if (AudioID == "E15_S2")
+            {
+                ElliSource.clip = ElliAudio[29];
+                ElliSource.Play();
+            }
+
+            if (AudioID == "E15_S3")
+            {
+                ElliSource.clip = ElliAudio[30];
+                ElliSource.Play();
+            }
+
+            if (AudioID == "E16_S1")
+            {
+                ElliSource.clip = ElliAudio[31];
+                ElliSource.Play();
+            }
+
+            if (AudioID == "E17_S1")
+            {
+                ElliSource.clip = ElliAudio[32];
+                ElliSource.Play();
+            }
+
+            if (AudioID == "E18_S1")
+            {
+                ElliSource.clip = ElliAudio[33];
+                ElliSource.Play();
+            }
+
+            if (AudioID == "E18_S2")
+            {
+                ElliSource.clip = ElliAudio[34];
+                ElliSource.Play();
+            }
+
+            if (AudioID == "E19_S1")
+            {
+                ElliSource.clip = ElliAudio[35];
+                ElliSource.Play();
+            }
+
+            if (AudioID == "E19_S2")
+            {
+                ElliSource.clip = ElliAudio[36];
+                ElliSource.Play();
+            }
+
+            if (AudioID == "E19_S3")
+            {
+                ElliSource.clip = ElliAudio[37];
+                ElliSource.Play();
+            }
+
+            if (AudioID == "E20_S1")
+            {
+                ElliSource.clip = ElliAudio[38];
+                ElliSource.Play();
+            }
+
+            if (AudioID == "E21_S1")
+            {
+                ElliSource.clip = ElliAudio[39];
+                ElliSource.Play();
+            }
+
         }
 
         public void DisplayScript(string ScriptID)
