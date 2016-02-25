@@ -6,7 +6,7 @@ using System.Collections;
 namespace DialogueSystems
 {
 
-    public class LukeController : CoreDialogueSystems, IDialogueSystems
+    public class LukeController : CoreDialogueSystems
     {
 
 		[SerializeField] private string FileName;

@@ -7,16 +7,16 @@ using UnityEditor.Events;
 using UnityEditor.Callbacks;
 using System.Collections.Generic;
 using System.Collections;
+using DialogueSystems;
 using System;
 
-namespace DialogueSystems
-{
 
     public class CoreDialogueSystems : MonoBehaviour
     {
 
         //public List<string> DialogueIDSequencer = new List<string>();
         public string[] DialogueIDSequencer = new string[108];
+
 
 		private ElliController Elli;
 		private BrendanPOVController BrendanObject;
@@ -75,7 +75,7 @@ namespace DialogueSystems
 			}
 
 			if (Luke == null) {
-				Debug.Log ("Luke is not null and not working");
+				Debug.Log ("Luke is not working and is null");
 			}
           
           
@@ -203,8 +203,8 @@ namespace DialogueSystems
                 if (DialogueIDSequencer[MaritimeDialogueIterator] == "B1_S1")
                 {
                     //Invokes Doorbell Function
-                    //CoreEvents.SceneObject.Doorbell.Invoke();
-                    //CoreEvents.SceneObject.OpenDoor.Invoke();
+                    CoreEvents.SceneObject.Doorbell.Invoke();
+                    CoreEvents.SceneObject.OpenDoor.Invoke();
 
                     BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
                     BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
@@ -1738,9 +1738,7 @@ namespace DialogueSystems
 
 
    
-     
-    }
-
+ 
 
     public interface IDialogueSystems
     {

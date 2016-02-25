@@ -6,7 +6,7 @@ using System.Collections;
 namespace DialogueSystems
 {
 
-    public class ElliController : CoreDialogueSystems, IDialogueSystems
+    public class ElliController : CoreDialogueSystems
     {
 
         string FileName;

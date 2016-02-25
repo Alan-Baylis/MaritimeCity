@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace DialogueSystems
 {
 
-    public class BrendanPOVController : CoreDialogueSystems, IDialogueSystems
+    public class BrendanPOVController : CoreDialogueSystems
     {
 
         public struct Destinations
