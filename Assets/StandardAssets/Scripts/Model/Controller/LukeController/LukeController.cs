@@ -10,11 +10,19 @@ namespace DialogueSystems
     {
 
         private string FileName;
-        
+        int ScriptLogger = 0;
         private CoreDialogueSystems Core;
         public List<string> LukeScript = new List<string>(50);
         public AudioClip[] LukeAudio = new AudioClip[18];
         public AudioSource LukeSource;
+
+        void Awake()
+        {
+            PopulateScript();
+
+            DialogueText = Core.DialogueText;
+
+        }
 
         // Use this for initialization
         void Start()
@@ -23,19 +31,18 @@ namespace DialogueSystems
 
             Core = GameObject.FindGameObjectWithTag("Core").GetComponent<CoreDialogueSystems>();
             DialogueIDSequencer = Core.DialogueIDSequencer;
-            PopulateScript();
+           
 
         }
 
         public IEnumerator ScriptIDDefinition(ScriptID ScriptIdentification, string DefineScript)
         {
             //Use logger to check conditions, use iterators for dynamic functions
-            int ScriptLogger = 0;
+           
             ScriptLogger++;
-
            
 
-            print("Result for Script Logger is " + ScriptLogger);
+            print("Result for Luke Script Logger is " + ScriptLogger);
             if (ScriptIdentification == ScriptID.Luke)
             {
                 LukeScript.Add(DefineScript);
@@ -53,6 +60,92 @@ namespace DialogueSystems
                 LukeSource.clip = LukeAudio[1];
                 LukeSource.PlayDelayed(1);
             }
+
+            if(AudioID == "L2_S1")
+            {
+                LukeSource.clip = LukeAudio[2];
+                LukeSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "L3_S1")
+            {
+                LukeSource.clip = LukeAudio[3];
+                LukeSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "L4_S1")
+            {
+                LukeSource.clip = LukeAudio[4];
+                LukeSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "L5_S1")
+            {
+                LukeSource.clip = LukeAudio[5];
+                LukeSource.PlayDelayed(1);
+            }
+
+            if(AudioID == "L6_S1")
+            {
+                LukeSource.clip = LukeAudio[6];
+                LukeSource.PlayDelayed(1);
+            }
+
+            if (AudioID == "L7_S1")
+            {
+                LukeSource.clip = LukeAudio[7];
+                LukeSource.PlayDelayed(1);
+            }
+
+            if (AudioID == "L8_S1")
+            {
+                LukeSource.clip = LukeAudio[8];
+                LukeSource.PlayDelayed(1);
+            }
+
+            if (AudioID == "L9_S1")
+            {
+                LukeSource.clip = LukeAudio[9];
+                LukeSource.PlayDelayed(1);
+            }
+
+            if (AudioID == "L9_S2")
+            {
+                LukeSource.clip = LukeAudio[10];
+                LukeSource.PlayDelayed(1);
+            }
+
+            if (AudioID == "L9_S3")
+            {
+                LukeSource.clip = LukeAudio[11];
+                LukeSource.PlayDelayed(1);
+            }
+
+            if (AudioID == "L9_S4")
+            {
+                LukeSource.clip = LukeAudio[12];
+                LukeSource.PlayDelayed(1);
+            }
+
+            if (AudioID == "L9_S5")
+            {
+                LukeSource.clip = LukeAudio[13];
+                LukeSource.PlayDelayed(1);
+            }
+
+
+            if (AudioID == "L10_S1")
+            {
+                LukeSource.clip = LukeAudio[13];
+                LukeSource.PlayDelayed(1);
+            }
+
+
+
+
+
+
+
 
         }
 

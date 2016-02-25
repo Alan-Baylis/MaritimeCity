@@ -105,6 +105,7 @@ public class CoreEventSystems : MonoBehaviour {
     public void InitializeListeners()
     {
 
+        Animation NewAnimation;
         SceneObject.StructAddPersistantListeners(unityEvent: SceneObject.FrontDoor, call: FrontDoorObject.PlayDoorBell);
 
     }
@@ -136,4 +137,15 @@ public class CoreEventSystems : MonoBehaviour {
         //MaritimeCallState = UnityEventCallState.EditorAndRuntime;
 
     }
+}
+
+
+
+public interface IMixamoAnimationHandler
+{
+
+    void WalkTo(Vector3 Location);
+
+    void PlayAnimation(Animation MixamoAnimation);
+
 }

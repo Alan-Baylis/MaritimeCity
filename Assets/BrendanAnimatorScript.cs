@@ -1,13 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BrendanAnimatorScript : StateMachineBehaviour {
+public class BrendanAnimatorScript : StateMachineBehaviour, IMixamoAnimationHandler
+{
+
+
+    CoreEventSystems CoreEvent;
+
+    public void WalkTo(Vector3 Location)
+    {
+
+    }
+
+    public void PlayAnimation(Animation NewAnimation)
+    {
+
+    }
 
     // OnStateEnter is called before OnStateEnter is called on any state inside this state machine
 	override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-
-
-       
 
 
     }

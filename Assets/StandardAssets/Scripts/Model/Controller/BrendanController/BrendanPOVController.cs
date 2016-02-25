@@ -9,8 +9,6 @@ namespace DialogueSystems
     public class BrendanPOVController : CoreDialogueSystems, IDialogueSystems
     {
 
-        public Camera BrendanPOV = new Camera();
-
         public struct Destinations
         {
 
@@ -344,12 +342,6 @@ namespace DialogueSystems
                 InternalIterator++;
             }
 
-            if (ScriptID == "B1_S1")
-            {
-                DialogueText.text = BrendanScript[InternalIterator];
-                InternalIterator++;
-            }
-
             if (ScriptID == "B1_S2")
             {
                 DialogueText.text = BrendanScript[InternalIterator];
@@ -658,6 +650,7 @@ namespace DialogueSystems
 
         }
 
+        public Camera BrendanCamera;
         static int ScriptLogger = 0;
         private CapsuleCollider BrendanCollider;
         private CoreDialogueSystems Core;
@@ -667,9 +660,9 @@ namespace DialogueSystems
         public Destinations Destination;
 
         string FileName;
-        Vector3 from;
-        Vector3 there;
-        float speed;
+        public Vector3 from;
+        public Vector3 there =  Vector3.forward;
+        public float speed;
 
         // Use this for initialization
         void Start()
@@ -679,7 +672,7 @@ namespace DialogueSystems
             BrendanSource = GetComponent<AudioSource>();
             DialogueText = GetComponent<Text>();
 
-            from = BrendanPOV.transform.position;
+           
             speed = 50;
           
         }
@@ -703,9 +696,9 @@ namespace DialogueSystems
         void DefineCameraParameters()
         {
 
-            BrendanPOV.GetComponent<Camera>();
-            BrendanPOV.ViewportToScreenPoint(position: from);
-            BrendanPOV.ScreenPointToRay(position: from);
+            //BrendanPOV.GetComponent<Camera>();
+            //BrendanPOV.ViewportToScreenPoint(position: from);
+            //BrendanPOV.ScreenPointToRay(position: from);
 
         }
 
@@ -1209,7 +1202,9 @@ namespace DialogueSystems
                 Debug.Log("Success");
             }
 
-            Vector3.Lerp(a: from, b: there, t: speed);
+            BrendanCamera.WorldToScreenPoint(this.transform.position);
+
+
 
         }
     }
