@@ -27,7 +27,9 @@ using System;
         public ConversationState ConversationStateID = ConversationState.Inactive;
         public Text DialogueText;
         public enum ScriptID { Elli, Brendan, Luke };
-        static int MaritimeDialogueIterator = 0;
+        public int MaritimeDialogueIterator = 0;
+
+	    public bool bWaitUntilPreviousDialogueFinished = false;
        
 
 		void Start()
@@ -195,7 +197,7 @@ using System;
 
         }
 
-        public IEnumerator DialogueIterator()
+	    public IEnumerator DialogueIterator()
         {
             if (ConversationStateID == ConversationState.Active)
             {
@@ -203,8 +205,8 @@ using System;
                 if (DialogueIDSequencer[MaritimeDialogueIterator] == "B1_S1")
                 {
                     //Invokes Doorbell Function
-                    CoreEvents.SceneObject.Doorbell.Invoke();
-                    CoreEvents.SceneObject.OpenDoor.Invoke();
+                    //CoreEvents.SceneObject.Doorbell.Invoke();
+                    //CoreEvents.SceneObject.OpenDoor.Invoke();
 
                     BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
                     BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
@@ -260,20 +262,6 @@ using System;
                 }
 
 
-                if (DialogueIDSequencer[MaritimeDialogueIterator] == "E1_S1")
-                {
-                    yield return new WaitForSeconds(2);
-
-                    Elli.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Elli.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
-
-                    //Invoke relevant Event here!
-
-                    yield return new WaitUntil(() => Elli.ElliSource.isPlaying == false);
-
-                    MaritimeDialogueIterator++;
-
-                }
 
                 if (DialogueIDSequencer[MaritimeDialogueIterator] == "E1_S2")
                 {
@@ -566,7 +554,7 @@ using System;
 
                 if (DialogueIDSequencer[MaritimeDialogueIterator] == "B5_S1")
                 {
-                    CoreEvents.SceneObject.WalkDogUpstairs.Invoke();
+                    //CoreEvents.SceneObject.WalkDogUpstairs.Invoke();
                     yield return new WaitUntil(() => CoreEvents.ColliderObject.ElliFinishedTakingDogUpstairs());
 
                     BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
