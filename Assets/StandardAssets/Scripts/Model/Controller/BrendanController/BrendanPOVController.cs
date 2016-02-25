@@ -717,7 +717,6 @@ namespace DialogueSystems
             if (ScriptIdentification == ScriptID.Brendan)
             {
                 BrendanScript.Add(DefineScript);
-                DialogueText.text = BrendanScript[BrendanInternalIterator];
                 BrendanInternalIterator++;
 
                 yield return null;

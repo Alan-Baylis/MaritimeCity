@@ -16,9 +16,11 @@ namespace DialogueSystems
 
         //public List<string> DialogueIDSequencer = new List<string>();
         public string[] DialogueIDSequencer = new string[108];
+
         public ElliController Elli;
         public BrendanPOVController Brendan;
         public LukeController Luke;
+
         private CoreEventSystems CoreEvents;
         public enum ConversationState { Active, Inactive };
         public ConversationState ConversationStateID = ConversationState.Inactive;
@@ -30,7 +32,7 @@ namespace DialogueSystems
 
         void Awake()
         {
-
+			
             //DialogueIDSequencer.Capacity = MaxScript;
             //DialogueObject = GameObject.Find("Dialog Text");
             //DialogueText = GetComponent<Text>();
@@ -38,11 +40,10 @@ namespace DialogueSystems
             //DialogueObject.AddComponent<AudioSource>();
             //DialogueObject.AddComponent<AudioSource>();
 
-            DialogueIDSequencer.Initialize();
+			DialogueIDSequencer.Initialize ();
 
 
-
-            Brendan = GameObject.FindGameObjectWithTag(tag: "Brendan Player").GetComponent<BrendanPOVController>();
+           
             Elli = GameObject.FindGameObjectWithTag(tag: "Elli").GetComponent<ElliController>();
             Luke = GameObject.FindGameObjectWithTag(tag: "Luke").GetComponent<LukeController>();
             CoreEvents = GameObject.FindGameObjectWithTag(tag: "Core").GetComponent<CoreEventSystems>();
@@ -53,6 +54,9 @@ namespace DialogueSystems
 
         public void InitializeDialogueIterator()
         {
+
+			Brendan.Awake ();
+			Brendan.Start ();
 
             DialogueIDSequencer[0] = "B1_S1";
             DialogueIDSequencer[1] = ("B1_S2");
@@ -1522,8 +1526,7 @@ namespace DialogueSystems
 
                     Elli.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
                     Elli.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
-
-
+				
                     yield return new WaitUntil(() => Elli.ElliSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
@@ -1700,29 +1703,7 @@ namespace DialogueSystems
 
                     MaritimeDialogueIterator++;
                 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+					
 
             }
 
@@ -1733,7 +1714,7 @@ namespace DialogueSystems
         void Start()
         {
             Debug.Log("Core Dialogue Systems Active");
-
+			Brendan = GameObject.Find ("Brendan Player").GetComponent<BrendanPOVController> ();
             InitializeDialogueIterator();
         }
 
@@ -1741,8 +1722,12 @@ namespace DialogueSystems
         {
             StartCoroutine(DialogueIterator());
             //PassCurrentAudio();
-            //PassCurrentScript();
 
+			Brendan.Update ();
+			Elli.Update ();
+			Luke.Update ();
+
+			//PassCurrentScript();
         }
 
      

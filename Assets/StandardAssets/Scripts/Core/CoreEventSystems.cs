@@ -15,19 +15,19 @@ public class CoreEventSystems : MonoBehaviour {
 
     public struct SceneEvents
     {
-        public UnityEvent DogBarking;
-        public UnityEvent OpenDoor;
-        public UnityEvent FrontDoor;
-        public UnityEvent Doorbell;    
-        public UnityEvent ComeDownstairs;
-        public UnityEvent WalkDogUpstairs;
-        public UnityEvent EnterLivingRoom;
-        public UnityEvent CheckCot;
-        public UnityEvent ElliLukeCheckCot;
-        public UnityEvent BrendanChecksBottle;
-        public UnityEvent BrendanPicksBottle;
-        public UnityEvent PointsToBrokenGlass;
-        public UnityEvent BrendanLeavesHouse;
+		public UnityEvent DogBarking;
+		public UnityEvent OpenDoor;
+		public UnityEvent FrontDoor;
+		public UnityEvent Doorbell;    
+		public UnityEvent ComeDownstairs;
+		public UnityEvent WalkDogUpstairs;
+		public UnityEvent EnterLivingRoom;
+		public UnityEvent CheckCot;
+		public UnityEvent ElliLukeCheckCot;
+		public UnityEvent BrendanChecksBottle;
+		public UnityEvent BrendanPicksBottle;
+		public UnityEvent PointsToBrokenGlass;
+		public UnityEvent BrendanLeavesHouse;
     
 
         public void StructAddPersistantListeners(UnityEventBase unityEvent, UnityAction call)
@@ -37,6 +37,17 @@ public class CoreEventSystems : MonoBehaviour {
 
 
     }
+
+
+	void StructInitializers()
+	{
+
+		SceneObject.DogBarking = new UnityEvent ();
+		SceneObject.OpenDoor = new UnityEvent ();
+		SceneObject.FrontDoor = new UnityEvent ();
+		SceneObject.Doorbell = new UnityEvent ();
+
+	}
 
     public struct GUIEvents
     {
