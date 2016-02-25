@@ -656,7 +656,7 @@ namespace DialogueSystems
         private CoreDialogueSystems Core;
         public List<string> BrendanScript = new List<string>(50);
         public AudioClip[] BrendanAudio = new AudioClip[30];
-        public AudioSource BrendanSource;
+        public AudioSource BrendanSource ;
         public Destinations Destination;
 
         string FileName;
@@ -717,6 +717,7 @@ namespace DialogueSystems
             if (ScriptIdentification == ScriptID.Brendan)
             {
                 BrendanScript.Add(DefineScript);
+    
                 BrendanInternalIterator++;
 
                 yield return null;

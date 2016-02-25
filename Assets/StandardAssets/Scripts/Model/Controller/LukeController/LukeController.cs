@@ -9,7 +9,7 @@ namespace DialogueSystems
     public class LukeController : CoreDialogueSystems, IDialogueSystems
     {
 
-        private string FileName;
+		[SerializeField] private string FileName;
         int ScriptLogger = 0;
         private CoreDialogueSystems Core;
         public List<string> LukeScript = new List<string>(50);
@@ -19,9 +19,6 @@ namespace DialogueSystems
         void Awake()
         {
             PopulateScript();
-
-            DialogueText = Core.DialogueText;
-
         }
 
         // Use this for initialization
