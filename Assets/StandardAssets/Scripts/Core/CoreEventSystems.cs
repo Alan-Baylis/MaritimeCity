@@ -143,8 +143,7 @@ public class CoreEventSystems : MonoBehaviour {
 
 public interface IMixamoAnimationHandler
 {
-
-    void WalkTo(Vector3 Location);
+    
 
     void PlayAnimation(Animation MixamoAnimation);
 

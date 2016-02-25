@@ -10,17 +10,16 @@ namespace DialogueSystems
     {
 
         string FileName;
-
         public AudioSource ElliSource = new AudioSource();
         public AudioClip[] ElliAudio = new AudioClip[10];
-
         List<string> ElliScript = new List<string>(capacity: 60);
-    
+        Animation Test;
 
         void Awake()
         {
             ElliSource = GetComponent<AudioSource>();
-        }
+            
+         }
 
 
         // Use this for initialization
