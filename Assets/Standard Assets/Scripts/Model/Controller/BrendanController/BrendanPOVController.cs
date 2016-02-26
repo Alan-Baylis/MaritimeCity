@@ -3,11 +3,12 @@ using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using CoreSystems;
+using System;
 
 namespace DialogueSystems
 {
 
-    public class BrendanPOVController : Core.CoreDialogueSystems
+    public class BrendanPOVController : Core.CoreDialogueSystems, Core.CoreDialogueSystems.ICommunciation
     {
 
         public struct Destinations
@@ -793,7 +794,7 @@ namespace DialogueSystems
 
             if (DialogueIDSequencer[MaritimeDialogueIterator] == "B2_S1")
             {
-                yield return new WaitForSeconds(1);
+                yield return new WaitForReponse();
 
                 PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
                 DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
@@ -1467,6 +1468,7 @@ namespace DialogueSystems
                 return true;
 
             } else
+
             {
                 return false;
             }
@@ -1937,6 +1939,23 @@ namespace DialogueSystems
 
 
 
+        }
+
+
+
+        public IEnumerator DialogueIterator()
+        {
+            throw new NotImplementedException();
+        }
+
+        ICommunciation ICommunciation.ReturnType()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ReceiveResponse(ICommunciation CharacterType)
+        {
+            throw new NotImplementedException();
         }
     }
 

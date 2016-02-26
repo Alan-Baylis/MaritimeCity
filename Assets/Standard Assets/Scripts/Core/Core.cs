@@ -8,6 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using DialogueSystems;
+using System;
 
 namespace CoreSystems
 {
@@ -25,6 +26,13 @@ namespace CoreSystems
             MaritimeRuntimePlatform = RuntimePlatform.OSXEditor;
 
         }
+
+
+
+
+    
+
+
 
         // Use this for initialization
         void Start()
@@ -214,8 +222,27 @@ namespace CoreSystems
             public CoreEventSystem CoreEventSystemNestedType;
             public CoreDialogueSystems CoreDialogueObject;
             public ConversationState ConversationStateID = ConversationState.Inactive;
-         
-         
+
+
+
+            public interface ICommunciation
+            {
+
+                void PlayAudio(string AudioID);
+
+                void DisplayScript(string ScriptID);
+
+                ICommunciation ReturnType();
+
+                void ReceiveResponse(ICommunciation CharacterType);
+
+                IEnumerator DialogueIterator();
+
+
+            }
+
+
+
             public CoreDialogueSystems()
             {
 
@@ -229,6 +256,18 @@ namespace CoreSystems
             public CoreDialogueSystems (CoreEventSystem CoreEventSystemNestedType)
             {
                 this.CoreEventSystemNestedType = CoreEventSystemNestedType;
+            }
+
+
+            public class WaitForReponse : CustomYieldInstruction
+            {
+                public override bool keepWaiting
+                {
+                    get
+                    {
+                        throw new NotImplementedException();
+                    }
+                }
             }
 
 
@@ -439,7 +478,6 @@ namespace CoreSystems
 
 
         }
-
 
     }
 

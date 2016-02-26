@@ -23,15 +23,13 @@ namespace DialogueSystems
         {
             PopulateScript();
 
-		
         }
 
         // Use this for initialization
         void Start()
         {
             LukeSource = CoreNestedType.GetComponent<AudioSource>();
-      
-
+     
         }
 
         public IEnumerator ScriptIDDefinition(ScriptID ScriptIdentification, string DefineScript)
@@ -39,9 +37,9 @@ namespace DialogueSystems
             //Use logger to check conditions, use iterators for dynamic functions
            
             ScriptLogger++;
-           
 
-          //  print("Result for Luke Script Logger is " + ScriptLogger);
+            MonoBehaviour.print("Result for Luke Script Logger is " + ScriptLogger);
+
             if (ScriptIdentification == ScriptID.Luke)
             {
                 LukeScript.Add(DefineScript);
@@ -308,7 +306,6 @@ namespace DialogueSystems
 
 
         }
-
 
         public void PlayAudio(string AudioID)
         {
