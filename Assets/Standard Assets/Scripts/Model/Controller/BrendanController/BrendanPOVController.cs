@@ -668,9 +668,9 @@ namespace DialogueSystems
         void Start()
         {
 
-            BrendanCollider = gameObject.GetComponent<CapsuleCollider>();
-            BrendanSource = GetComponent<AudioSource>();
-            DialogueText = GetComponent<Text>();
+            BrendanCollider = CoreNestedType.gameObject.GetComponent<CapsuleCollider>();
+            BrendanSource = CoreNestedType.GetComponent<AudioSource>();
+            DialogueText = CoreNestedType.GetComponent<Text>();
 
            
             speed = 50;
@@ -712,7 +712,7 @@ namespace DialogueSystems
             
             ScriptLogger++;
 
-            print("Result for Script Logger is " + ScriptLogger);
+            //print("Result for Script Logger is " + ScriptLogger);
 
             if (ScriptIdentification == ScriptID.Brendan)
             {
@@ -732,8 +732,8 @@ namespace DialogueSystems
             if (DialogueIDSequencer[MaritimeDialogueIterator] == "B1_S1")
             {
                 //Invokes Doorbell Function
-                //CoreEvents.SceneObject.Doorbell.Invoke();
-                //CoreEvents.SceneObject.OpenDoor.Invoke();
+                //CoreEventSystemNestedType.SceneObject.Doorbell.Invoke();
+                //CoreEventSystemNestedType.SceneObject.OpenDoor.Invoke();
 
                 PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
                 DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
@@ -795,12 +795,12 @@ namespace DialogueSystems
             {
                 yield return new WaitForSeconds(1);
 
-                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
                 //Invoke relevant Event here!
 
-                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
 
@@ -811,12 +811,12 @@ namespace DialogueSystems
             {
                 yield return new WaitForSeconds(1);
 
-                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
                 //Invoke relevant Event here!
 
-                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
 
@@ -827,12 +827,12 @@ namespace DialogueSystems
             {
                 yield return new WaitForSeconds(1);
 
-                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
                 //Invoke relevant Event here!
 
-                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
 
@@ -843,12 +843,12 @@ namespace DialogueSystems
             {
                 yield return new WaitForSeconds(1);
 
-                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
                 //Invoke relevant Event here!
 
-                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
 
@@ -858,12 +858,12 @@ namespace DialogueSystems
             {
                 yield return new WaitForSeconds(1);
 
-                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
                 //Invoke relevant Event here!
 
-                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
 
@@ -873,12 +873,12 @@ namespace DialogueSystems
             {
                 yield return new WaitForSeconds(1);
 
-                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
                 //Invoke relevant Event here!
 
-                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
 
@@ -890,12 +890,12 @@ namespace DialogueSystems
             {
                 yield return new WaitForSeconds(1);
 
-                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
                 //Invoke relevant Event here!
 
-                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
 
@@ -906,12 +906,12 @@ namespace DialogueSystems
             {
                 yield return new WaitForSeconds(1);
 
-                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
                 //Invoke relevant Event here!
 
-                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
             }
@@ -920,18 +920,19 @@ namespace DialogueSystems
 
             if (DialogueIDSequencer[MaritimeDialogueIterator] == "B5_S1")
             {
-                //CoreEvents.SceneObject.WalkDogUpstairs.Invoke();
+                //SceneObject.WalkDogUpstairs.Invoke();
                 yield return new WaitUntil(() => CoreEventSystemNestedType.ColliderObject.ElliFinishedTakingDogUpstairs());
 
-                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
                 //Invoke relevant Event here!
 
-                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
             }
+
 
 
             if (DialogueIDSequencer[MaritimeDialogueIterator] == "B6_S1")
@@ -940,12 +941,12 @@ namespace DialogueSystems
                 yield return new WaitUntil(() => CoreEventSystemNestedType.ColliderObject.ElliEntersLivingRoom());
                 yield return new WaitUntil(() => CoreEventSystemNestedType.ColliderObject.BrendanEntersLivingRoom());
 
-                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
                 //Invoke relevant Event here!
 
-                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
             }
@@ -954,10 +955,10 @@ namespace DialogueSystems
             {
                 yield return new WaitForSeconds(1);
 
-                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
 
@@ -968,10 +969,10 @@ namespace DialogueSystems
             {
                 yield return new WaitForSeconds(1);
 
-                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
 
@@ -982,10 +983,10 @@ namespace DialogueSystems
             {
                 yield return new WaitForSeconds(1);
 
-                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
 
@@ -995,10 +996,10 @@ namespace DialogueSystems
             {
                 yield return new WaitForSeconds(1);
 
-                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
 
@@ -1008,10 +1009,10 @@ namespace DialogueSystems
             {
                 yield return new WaitForSeconds(1);
 
-                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
 
@@ -1021,10 +1022,10 @@ namespace DialogueSystems
             {
                 yield return new WaitForSeconds(1);
 
-                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
 
@@ -1034,10 +1035,10 @@ namespace DialogueSystems
             {
                 yield return new WaitForSeconds(1);
 
-                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
 
@@ -1049,10 +1050,10 @@ namespace DialogueSystems
             {
                 yield return new WaitForSeconds(1);
 
-                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
 
@@ -1062,10 +1063,10 @@ namespace DialogueSystems
             {
                 yield return new WaitForSeconds(1);
 
-                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
 
@@ -1075,10 +1076,10 @@ namespace DialogueSystems
             {
                 yield return new WaitForSeconds(1);
 
-                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
 
@@ -1088,10 +1089,10 @@ namespace DialogueSystems
             {
                 yield return new WaitForSeconds(1);
 
-                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
 
@@ -1101,10 +1102,10 @@ namespace DialogueSystems
             {
                 yield return new WaitForSeconds(1);
 
-                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
             }
@@ -1113,16 +1114,16 @@ namespace DialogueSystems
 
             if (DialogueIDSequencer[MaritimeDialogueIterator] == "B13_S1")
             {
-                SceneObject.CheckCot.Invoke();
+                CoreEventSystemNestedType.SceneObject.CheckCot.Invoke();
 
                 //BrendanObject checks cot
-                yield return new WaitUntil(() => ColliderObject.BrendanChecksCotCollider());
+                yield return new WaitUntil(() => CoreEventSystemNestedType.ColliderObject.BrendanChecksCotCollider());
                 yield return new WaitForSeconds(1);
 
-                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
             }
@@ -1130,15 +1131,15 @@ namespace DialogueSystems
 
             if (DialogueIDSequencer[MaritimeDialogueIterator] == "B14_S1")
             {
-                CoreEvents.SceneObject.BrendanChecksBottle.Invoke();
+                CoreEventSystemNestedType.SceneObject.BrendanChecksBottle.Invoke();
 
                 //BrendanObject checks cot
                 yield return new WaitForSeconds(1);
 
-                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
             }
@@ -1146,15 +1147,15 @@ namespace DialogueSystems
 
             if (DialogueIDSequencer[MaritimeDialogueIterator] == "B15_S1")
             {
-                CoreEvents.SceneObject.BrendanPicksBottle.Invoke();
+                CoreEventSystemNestedType.SceneObject.BrendanPicksBottle.Invoke();
 
                 //BrendanObject checks cot
                 yield return new WaitForSeconds(1);
 
-                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
             }
@@ -1162,15 +1163,15 @@ namespace DialogueSystems
 
             if (DialogueIDSequencer[MaritimeDialogueIterator] == "B16_S1")
             {
-                CoreEvents.SceneObject.PointsToBrokenGlass.Invoke();
+                CoreEventSystemNestedType.SceneObject.PointsToBrokenGlass.Invoke();
 
                 //BrendanObject checks cot
                 yield return new WaitForSeconds(1);
 
-                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
             }
@@ -1178,15 +1179,15 @@ namespace DialogueSystems
 
             if (DialogueIDSequencer[MaritimeDialogueIterator] == "B17_S1")
             {
-                //CoreEvents.SceneObject.PointsToBrokenGlass.Invoke();
+                //CoreEventSystemNestedType.SceneObject.PointsToBrokenGlass.Invoke();
 
                 //BrendanObject checks cot
                 yield return new WaitForSeconds(1);
 
-                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
             }
@@ -1195,15 +1196,15 @@ namespace DialogueSystems
 
             if (DialogueIDSequencer[MaritimeDialogueIterator] == "B18_S1")
             {
-                //CoreEvents.SceneObject.PointsToBrokenGlass.Invoke();
+                //CoreEventSystemNestedType.SceneObject.PointsToBrokenGlass.Invoke();
 
                 //BrendanObject checks cot
                 yield return new WaitForSeconds(1);
 
-                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
             }
@@ -1215,10 +1216,10 @@ namespace DialogueSystems
                 //BrendanObject checks cot
                 yield return new WaitForSeconds(1);
 
-                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
             }
@@ -1231,10 +1232,10 @@ namespace DialogueSystems
                 //BrendanObject checks cot
                 yield return new WaitForSeconds(1);
 
-                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
             }
@@ -1248,10 +1249,10 @@ namespace DialogueSystems
                 //BrendanObject checks cot
                 yield return new WaitForSeconds(1);
 
-                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
             }
@@ -1261,10 +1262,10 @@ namespace DialogueSystems
             {
                 yield return new WaitForSeconds(1);
 
-                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
             }
@@ -1276,10 +1277,10 @@ namespace DialogueSystems
                 //BrendanObject checks cot
                 yield return new WaitForSeconds(1);
 
-                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
             }
@@ -1290,10 +1291,10 @@ namespace DialogueSystems
 
                 yield return new WaitForSeconds(1);
 
-                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
             }
@@ -1304,10 +1305,10 @@ namespace DialogueSystems
 
                 yield return new WaitForSeconds(1);
 
-                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
             }
@@ -1317,10 +1318,10 @@ namespace DialogueSystems
 
                 yield return new WaitForSeconds(1);
 
-                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
             }
@@ -1331,10 +1332,10 @@ namespace DialogueSystems
 
                 yield return new WaitForSeconds(1);
 
-                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
             }
@@ -1345,10 +1346,10 @@ namespace DialogueSystems
 
                 yield return new WaitForSeconds(1);
 
-                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
             }
@@ -1360,10 +1361,10 @@ namespace DialogueSystems
 
                 yield return new WaitForSeconds(1);
 
-                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
             }
@@ -1374,10 +1375,10 @@ namespace DialogueSystems
 
                 yield return new WaitForSeconds(1);
 
-                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
             }
@@ -1389,10 +1390,10 @@ namespace DialogueSystems
 
                 yield return new WaitForSeconds(1);
 
-                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
             }
@@ -1403,10 +1404,10 @@ namespace DialogueSystems
 
                 yield return new WaitForSeconds(1);
 
-                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
             }
@@ -1418,10 +1419,10 @@ namespace DialogueSystems
 
                 yield return new WaitForSeconds(1);
 
-                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
             }
@@ -1430,14 +1431,14 @@ namespace DialogueSystems
 
             if (DialogueIDSequencer[MaritimeDialogueIterator] == "B29_S2")
             {
-                SceneObject.BrendanLeavesHouse.Invoke();
+                CoreEventSystemNestedType.SceneObject.BrendanLeavesHouse.Invoke();
 
-                yield return new WaitUntil(() => CoreEvents.ColliderObject.BrendanFrontDoor());
+                yield return new WaitUntil(() => CoreEventSystemNestedType.ColliderObject.BrendanFrontDoor());
 
-                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
             }
@@ -1449,23 +1450,13 @@ namespace DialogueSystems
 
                 yield return new WaitForSeconds(1);
 
-                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
             }
-
-
-
-
-
-
-
-
-
-
 
         }
 
@@ -1482,14 +1473,7 @@ namespace DialogueSystems
 
         }
 
-        void InputController()
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                //Iterate through text
-            }
 
-        }
 
         public void PopulateScript()
         {
@@ -1497,7 +1481,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B1_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Hi name is Brendan from Maritime Children's Services Safeguarding Team"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Hi name is Brendan from Maritime Children's Services Safeguarding Team"));
                 Debug.Log("B1_S1 Active");
             }
 
@@ -1507,7 +1491,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B1_S2"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Are you Ms Grove...Elli?"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Are you Ms Grove...Elli?"));
                 Debug.Log("B1_S2 Active");
             }
 
@@ -1515,7 +1499,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B1_S3"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "We have had an referral from an anonymous source raising concerns about the children living here"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "We have had an referral from an anonymous source raising concerns about the children living here"));
                 Debug.Log("B1_S3 Active");
 
             }
@@ -1524,7 +1508,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B1_S4"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Can I come in and talk to you about this"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Can I come in and talk to you about this"));
                 Debug.Log("B1_S4 Active");
             }
 
@@ -1534,7 +1518,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B2_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Erm sorry, no I can't"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Erm sorry, no I can't"));
                 Debug.Log("B2_S1 Active");
             }
 
@@ -1542,7 +1526,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B2_S2"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "The refererrer has told us there have been disturbances by adults at this address and that the childrten have been heard crying, distressed and upset"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "The referrer has told us there have been disturbances by adults at this address and that the children have been heard crying, distressed and upset"));
                 Debug.Log("B2_S2 Active");
             }
 
@@ -1550,7 +1534,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B2_S3"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "I need to talk to you about this and see the children, can I come in please?"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "I need to talk to you about this and see the children, can I come in please?"));
                 Debug.Log("B2_S3 Active");
             }
 
@@ -1558,7 +1542,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B3_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Erm, I like dogs"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Erm, I like dogs"));
                 Debug.Log("B3_S1 Active");
             }
 
@@ -1566,7 +1550,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B3_S2"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Got one of my own in fact, but Mable here doesn't look very friendly"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Got one of my own in fact, but Mable here doesn't look very friendly"));
                 Debug.Log("B3_S2 Active");
             }
 
@@ -1574,7 +1558,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B3_S3"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Can I ask you to move her please or does she bite?"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Can I ask you to move her please or does she bite?"));
                 Debug.Log("B3_S3 Active");
             }
 
@@ -1582,7 +1566,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B4_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Could I ask if you could take her upstairs or tie her outside if that's OK, I think she is a bit overexcited and I wouldn't like her to harm anyone."));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Could I ask if you could take her upstairs or tie her outside if that's OK, I think she is a bit overexcited and I wouldn't like her to harm anyone."));
                 Debug.Log("B4_S1 Active");
             }
 
@@ -1590,7 +1574,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B4_S2"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Who does she belong to?"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Who does she belong to?"));
                 Debug.Log("B4_S2 Active");
             }
 
@@ -1598,7 +1582,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B5_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Oh, shit"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Oh, shit"));
                 Debug.Log("B5_S1 Active");
             }
 
@@ -1606,7 +1590,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B6_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Hi, my name is Brendan, I’m from the Safeguarding Team at Maritime Social Services."));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Hi, my name is Brendan, I’m from the Safeguarding Team at Maritime Social Services."));
                 Debug.Log("B6_S1 Active");
             }
 
@@ -1614,7 +1598,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B6_S2"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "I’m here under Section 47 of the Children’s Act to investigate an anonymous referral that the two children living here have been heard crying and thought to be extremely distressed."));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "I’m here under Section 47 of the Children’s Act to investigate an anonymous referral that the two children living here have been heard crying and thought to be extremely distressed."));
                 Debug.Log("B6_S2 Active");
             }            
 
@@ -1622,7 +1606,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B6_S3"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "I've already met Elli and the very excitable Mable, can I ask who you are?"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "I've already met Elli and the very excitable Mable, can I ask who you are?"));
                 Debug.Log("B6_S3 Active");
             }
 
@@ -1630,7 +1614,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B6_S4"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Can I ask who you are"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Can I ask who you are"));
                 Debug.Log("B6_S4 Active");
             }
 
@@ -1638,7 +1622,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B7_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "I didn't know Brad lived around here!"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "I didn't know Brad lived around here!"));
                 Debug.Log("B7_S1 Active");
             }
 
@@ -1646,7 +1630,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B7_S2"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Are you related to either of the children"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Are you related to either of the children"));
                 Debug.Log("B7_S2 Active ");
             }
 
@@ -1654,7 +1638,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B8_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Is that right?"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Is that right?"));
                 Debug.Log("B8_S1 Active");
             }
 
@@ -1663,7 +1647,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B9_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Of course not, I just need to be clear who you are"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Of course not, I just need to be clear who you are"));
                 Debug.Log("B9_S1 Active");
 
             }
@@ -1672,7 +1656,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B10_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "I can't do that, as I've said we have had a referral that there have been late night parties, shouting, the sound of children crying and clearly distressed "));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "I can't do that, as I've said we have had a referral that there have been late night parties, shouting, the sound of children crying and clearly distressed "));
                 Debug.Log("B10_S1 Active");
             }
 
@@ -1680,7 +1664,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B10_S2"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "I need to be clear that the children are safe"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "I need to be clear that the children are safe"));
                 Debug.Log("B10_S2 Active");
             }
 
@@ -1688,7 +1672,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B10_S3"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Now, I understand you have two children, Liam, aged 5 months, and Tara aged 4. Are you the mother, Elli"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Now, I understand you have two children, Liam, aged 5 months, and Tara aged 4. Are you the mother, Elli"));
                 Debug.Log("B10_S3 Active");
             }
 
@@ -1698,7 +1682,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B11_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "I can see Liam, but where's Tara?"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "I can see Liam, but where's Tara?"));
                 Debug.Log("B11_S1 Active");
             }
 
@@ -1706,7 +1690,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B12_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Really, why is that?"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Really, why is that?"));
                 Debug.Log("B12_S1 Active");
 
             }
@@ -1715,7 +1699,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B13_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Liam is very wet"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Liam is very wet"));
                 Debug.Log("B13_S1 Active");
 
             }
@@ -1724,7 +1708,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B14_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Is that his bottle on the floor"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Is that his bottle on the floor"));
                 Debug.Log("B14_S1 Active");
             }
 
@@ -1732,7 +1716,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B15_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "I'll get it"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "I'll get it"));
                 Debug.Log("B15_S1 Active");
             }
 
@@ -1740,7 +1724,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B16_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "I think the teat might glass or something on it"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "I think the teat might glass or something on it"));
                 Debug.Log("B16_S1 Active");
             }
 
@@ -1748,7 +1732,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B16_S2"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Maybe from the broken beer bottle on the floor?"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Maybe from the broken beer bottle on the floor?"));
                 Debug.Log("B16_S2 Active");
             }
 
@@ -1756,7 +1740,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B17_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "You need to consider that it is not safe having broken glass around with small children"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "You need to consider that it is not safe having broken glass around with small children"));
                 Debug.Log("B17_S1 Active");
             }
 
@@ -1764,7 +1748,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B18_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "And look at this, he's red raw"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "And look at this, he's red raw"));
                 Debug.Log("B18_S1 Active");
             }
 
@@ -1772,7 +1756,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B18_S2"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Have you seen your GP or health visitor about this nappy rash?"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Have you seen your GP or health visitor about this nappy rash?"));
                 Debug.Log("B18_S2 Active");
             }
 
@@ -1780,7 +1764,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B18_S3"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "You really must change him, perhaps err, Brad could do it whilst you sort out his bottle Eli?"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "You really must change him, perhaps err, Brad could do it whilst you sort out his bottle Eli?"));
                 Debug.Log("B18_S3 Active");
             }
 
@@ -1788,7 +1772,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B19_S1)"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "I thought you said you were his father"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "I thought you said you were his father"));
                 Debug.Log("B19_S1 Active");
             }
 
@@ -1797,7 +1781,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B20_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "You're not Liam's father then?"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "You're not Liam's father then?"));
                 Debug.Log("B20_S1 Active");
 
             }
@@ -1806,7 +1790,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B21_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "And you have some cream now?"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "And you have some cream now?"));
                 Debug.Log("B21_S1 Active");
             }
 
@@ -1814,7 +1798,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B22_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Right... and what about Tara, where did you say she was?"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Right... and what about Tara, where did you say she was?"));
                 Debug.Log("B22_S1 Active");
             }
 
@@ -1822,7 +1806,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B23_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "And where's that?"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "And where's that?"));
                 Debug.Log("B23_S1 Active");
             }
 
@@ -1830,7 +1814,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B24_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Perhaps I could go and see Tara at her grandma's"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Perhaps I could go and see Tara at her grandma's"));
                 Debug.Log("B24_S1 Active");
             }
 
@@ -1838,7 +1822,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B25_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "So, I can go over and see Tara at her grandma's"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "So, I can go over and see Tara at her grandma's"));
                 Debug.Log("B25_S1 Active");
 
             }
@@ -1847,7 +1831,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B26_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "OK, I'll go but I do need to see Tara and I am not very happy about Liam"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "OK, I'll go but I do need to see Tara and I am not very happy about Liam"));
                 Debug.Log("B26_S1 Active");
             }
 
@@ -1855,7 +1839,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B26_S2"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "I really think he should be looked at by a doctor Elli, today, can you manage that?"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "I really think he should be looked at by a doctor Elli, today, can you manage that?"));
                 Debug.Log("B26_S2 Active");
             }
 
@@ -1863,7 +1847,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B27_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Luke there is no need to be abusive"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Luke there is no need to be abusive"));
                 Debug.Log("B27_S1 Active");
             }
 
@@ -1871,7 +1855,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B27_S2"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "I have a duty to ensure that the children are safe"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "I have a duty to ensure that the children are safe"));
                 Debug.Log("B27_S2 Active");
             }
 
@@ -1879,7 +1863,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B27_S3"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "If I go now I'll only need to come back again later today with my senior, possibly a police officer"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "If I go now I'll only need to come back again later today with my senior, possibly a police officer"));
                 Debug.Log("B27_S3 Active");
             }
 
@@ -1887,7 +1871,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B28_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Here is my card, I am going back to my office now and will come back in an hour with a colleague to see Tara, do you understand Elli?"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Here is my card, I am going back to my office now and will come back in an hour with a colleague to see Tara, do you understand Elli?"));
                 Debug.Log("B28_S1 Active");
             }
 
@@ -1895,7 +1879,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B29_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Hi Steve, it's Me"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Hi Steve, it's Me"));
                 Debug.Log("B29_S1 Active");
 
             }
@@ -1904,7 +1888,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B29_S2"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Err, things not too good here - no, I'm not alright. I didn't get to see Tara and Liam was in a state"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Err, things not too good here - no, I'm not alright. I didn't get to see Tara and Liam was in a state"));
                 Debug.Log("B29_S2 Active");
             }
 
@@ -1912,7 +1896,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B29_S3"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Yeah, I'm a bit shaken to be honest, this guy Luke seems to have moved in with a seriously scary dog, I wasn't expecting that, he was real piece of work"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "Yeah, I'm a bit shaken to be honest, this guy Luke seems to have moved in with a seriously scary dog, I wasn't expecting that, he was real piece of work"));
                 Debug.Log("B29_S3 Active");
             }
 
@@ -1920,7 +1904,7 @@ namespace DialogueSystems
 
             if (FileName.Contains("B29_S4"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "I am going to call the Police we really need to get back in there"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Brendan, "I am going to call the Police we really need to get back in there"));
                 Debug.Log("B29_S4 Active");
             }
 
@@ -1938,14 +1922,18 @@ namespace DialogueSystems
         void Update()
         {
 
-            InputController();
+            //InputController();
 
             if (from == there)
             {
                 Debug.Log("Success");
             }
 
-            BrendanCamera.WorldToScreenPoint(this.transform.position);
+
+
+            //Will fix later
+            GameObject Brendan = CoreNestedType.gameObject;
+            BrendanCamera.WorldToScreenPoint(Brendan.transform.position);
 
 
 

@@ -61,6 +61,28 @@ namespace CoreSystems
             public ColliderFunctions ColliderObject = new ColliderFunctions();
             public AnimationFunctions AnimationObject = new AnimationFunctions();
 
+
+            public Core CoreNestedType;
+            public CoreDialogueSystems CoreDialogueSystemNestedType;
+            public CoreEventSystem CoreEventObject;
+
+            public CoreEventSystem()
+            {
+
+            }
+
+            public CoreEventSystem(Core CoreNestedType)
+            {
+                this.CoreNestedType = CoreNestedType;
+            }
+
+            public CoreEventSystem(CoreDialogueSystems CoreDialogueSystemNestedType)
+            {
+                this.CoreDialogueSystemNestedType = CoreDialogueSystemNestedType;
+            }
+
+
+
             public struct SceneEvents
             {
                 public UnityEvent DogBarking;

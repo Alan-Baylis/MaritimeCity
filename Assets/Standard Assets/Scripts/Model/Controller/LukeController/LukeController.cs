@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using CoreSystems;
 using System.Collections.Generic;
 using System.Collections;
 
@@ -6,15 +7,14 @@ using System.Collections;
 namespace DialogueSystems
 {
 
-    public class LukeController : CoreDialogueSystems
+    public class LukeController : Core.CoreDialogueSystems
     {
 
-		InputController NewController;
+		//InputController NewController;
 	
 
 		[SerializeField] private string FileName;
         int ScriptLogger = 0;
-        private CoreDialogueSystems Core;
         public List<string> LukeScript = new List<string>(50);
         public AudioClip[] LukeAudio = new AudioClip[18];
         public AudioSource LukeSource;
@@ -29,11 +29,8 @@ namespace DialogueSystems
         // Use this for initialization
         void Start()
         {
-            LukeSource = GetComponent<AudioSource>();
-
-            Core = GameObject.FindGameObjectWithTag("Core").GetComponent<CoreDialogueSystems>();
-            DialogueIDSequencer = Core.DialogueIDSequencer;
-           
+            LukeSource = CoreNestedType.GetComponent<AudioSource>();
+      
 
         }
 
@@ -44,7 +41,7 @@ namespace DialogueSystems
             ScriptLogger++;
            
 
-            print("Result for Luke Script Logger is " + ScriptLogger);
+          //  print("Result for Luke Script Logger is " + ScriptLogger);
             if (ScriptIdentification == ScriptID.Luke)
             {
                 LukeScript.Add(DefineScript);
@@ -62,10 +59,10 @@ namespace DialogueSystems
             {
                 yield return new WaitForSeconds(1);
 
-                Luke.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                Luke.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => Luke.LukeSource.isPlaying == false);
+                yield return new WaitUntil(() => LukeSource.isPlaying == false);
 
                 //Turns to BrendanObject and gives a smile
 
@@ -78,10 +75,10 @@ namespace DialogueSystems
             {
                 yield return new WaitForSeconds(1);
 
-                Luke.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                Luke.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => Luke.LukeSource.isPlaying == false);
+                yield return new WaitUntil(() => LukeSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
 
@@ -93,11 +90,11 @@ namespace DialogueSystems
             {
                 yield return new WaitForSeconds(1);
 
-                Luke.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                Luke.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => Luke.LukeSource.isPlaying == false);
-                yield return new WaitUntil(() => CoreEvents.AnimationObject.LukePointsFinger());
+                yield return new WaitUntil(() => LukeSource.isPlaying == false);
+                yield return new WaitUntil(() => CoreEventSystemNestedType.AnimationObject.LukePointsFinger());
 
                 MaritimeDialogueIterator++;
 
@@ -110,10 +107,10 @@ namespace DialogueSystems
             {
                 yield return new WaitForSeconds(1);
 
-                Luke.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                Luke.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => Luke.LukeSource.isPlaying == false);
+                yield return new WaitUntil(() => LukeSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
 
@@ -124,10 +121,10 @@ namespace DialogueSystems
             {
                 yield return new WaitForSeconds(1);
 
-                Luke.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                Luke.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => Luke.LukeSource.isPlaying == false);
+                yield return new WaitUntil(() => LukeSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
 
@@ -139,10 +136,10 @@ namespace DialogueSystems
             {
                 yield return new WaitForSeconds(1);
 
-                Luke.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                Luke.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => Luke.LukeSource.isPlaying == false);
+                yield return new WaitUntil(() => LukeSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
 
@@ -153,10 +150,10 @@ namespace DialogueSystems
             {
                 yield return new WaitForSeconds(1);
 
-                Luke.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                Luke.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => Luke.LukeSource.isPlaying == false);
+                yield return new WaitUntil(() => LukeSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
 
@@ -169,10 +166,10 @@ namespace DialogueSystems
             {
                 yield return new WaitForSeconds(1);
 
-                Luke.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                Luke.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => Luke.LukeSource.isPlaying == false);
+                yield return new WaitUntil(() => LukeSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
 
@@ -184,10 +181,10 @@ namespace DialogueSystems
             {
                 yield return new WaitForSeconds(1);
 
-                Luke.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                Luke.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => Luke.LukeSource.isPlaying == false);
+                yield return new WaitUntil(() => LukeSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
 
@@ -198,10 +195,10 @@ namespace DialogueSystems
             {
                 yield return new WaitForSeconds(1);
 
-                Luke.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                Luke.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => Luke.LukeSource.isPlaying == false);
+                yield return new WaitUntil(() => LukeSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
 
@@ -212,10 +209,10 @@ namespace DialogueSystems
             {
                 yield return new WaitForSeconds(1);
 
-                Luke.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                Luke.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => Luke.LukeSource.isPlaying == false);
+                yield return new WaitUntil(() => LukeSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
 
@@ -226,10 +223,10 @@ namespace DialogueSystems
             {
                 yield return new WaitForSeconds(1);
 
-                Luke.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                Luke.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => Luke.LukeSource.isPlaying == false);
+                yield return new WaitUntil(() => LukeSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
 
@@ -240,10 +237,10 @@ namespace DialogueSystems
             {
                 yield return new WaitForSeconds(1);
 
-                Luke.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                Luke.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => Luke.LukeSource.isPlaying == false);
+                yield return new WaitUntil(() => LukeSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
 
@@ -255,10 +252,10 @@ namespace DialogueSystems
             {
                 yield return new WaitForSeconds(1);
 
-                Luke.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                Luke.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => Luke.LukeSource.isPlaying == false);
+                yield return new WaitUntil(() => LukeSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
 
@@ -269,10 +266,10 @@ namespace DialogueSystems
             {
                 yield return new WaitForSeconds(1);
 
-                Luke.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                Luke.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => Luke.LukeSource.isPlaying == false);
+                yield return new WaitUntil(() => LukeSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
 
@@ -285,10 +282,10 @@ namespace DialogueSystems
             {
                 yield return new WaitForSeconds(1);
 
-                Luke.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                Luke.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => Luke.LukeSource.isPlaying == false);
+                yield return new WaitUntil(() => LukeSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
 
@@ -299,10 +296,10 @@ namespace DialogueSystems
             {
                 yield return new WaitForSeconds(1);
 
-                Luke.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                Luke.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                yield return new WaitUntil(() => Luke.LukeSource.isPlaying == false);
+                yield return new WaitUntil(() => LukeSource.isPlaying == false);
 
                 MaritimeDialogueIterator++;
 
@@ -420,119 +417,119 @@ namespace DialogueSystems
 
             if (FileName.Contains("L1_S1_T1"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "What's it to you?"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "What's it to you?"));
             }
 
             FileName = LukeAudio[1].ToString();
 
             if (FileName.Contains("L2_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "Are you calling her a Liar"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "Are you calling her a Liar"));
             }
 
             FileName = LukeAudio[2].ToString();
 
             if (FileName.Contains("L3_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "I told ya, Brad-fucking-pitt, now piss off"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "I told ya, Brad-fucking-pitt, now piss off"));
             }
 
             FileName = LukeAudio[3].ToString();
 
             if (FileName.Contains("L4_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "He's always bleedin' hungry"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "He's always bleedin' hungry"));
             }
 
             FileName = LukeAudio[4].ToString();
 
             if (FileName.Contains("L5_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "Let him clear it up if he's so bloody worried"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "Let him clear it up if he's so bloody worried"));
             }
 
             FileName = LukeAudio[5].ToString();
 
             if (FileName.Contains("L6_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "Fuck off, he's nothing to do with me"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "Fuck off, he's nothing to do with me"));
             }
 
             FileName = LukeAudio[6].ToString();
 
             if (FileName.Contains("L7_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "No I fucking didn't"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "No I fucking didn't"));
             }
 
             FileName = LukeAudio[7].ToString();
 
             if (FileName.Contains("L8_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "Just piss off and leave us alone"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "Just piss off and leave us alone"));
             }
 
             FileName = LukeAudio[8].ToString();
 
             if (FileName.Contains("L9_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "Yeah, I took her and left her with her fucking granny, just like Elli said"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "Yeah, I took her and left her with her fucking granny, just like Elli said"));
             }
 
             FileName = LukeAudio[9].ToString();
 
             if (FileName.Contains("L9_S2"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "Kid said she wanted to see granny so I took her to her granny's, satisfied Mr Supernanny"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "Kid said she wanted to see granny so I took her to her granny's, satisfied Mr Supernanny"));
             }
 
             FileName = LukeAudio[10].ToString();
 
             if (FileName.Contains("L9_S3"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "I just do what Elli and little princess asks see, got me wrapped around her little finger she has"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "I just do what Elli and little princess asks see, got me wrapped around her little finger she has"));
             }
 
             FileName = LukeAudio[11].ToString();
 
             if (FileName.Contains("L9_S4"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "See what a great stepdad I am"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "See what a great stepdad I am"));
             }
 
             FileName = LukeAudio[12].ToString();
 
             if (FileName.Contains("L9_S5"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "Do anything she wants"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "Do anything she wants"));
             }
 
             FileName = LukeAudio[13].ToString();
 
             if (FileName.Contains("L10_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "Never satisfied are you, bloody social workers. Should put 'em all in a sack and drown them at Birth"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "Never satisfied are you, bloody social workers. Should put 'em all in a sack and drown them at Birth"));
             }
 
             FileName = LukeAudio[14].ToString();
 
             if (FileName.Contains("L11_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "You leave my mum out of this you fucking nosy bastard now fuck off out of here before I throw you out"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "You leave my mum out of this you fucking nosy bastard now fuck off out of here before I throw you out"));
             }
 
             FileName = LukeAudio[15].ToString();
 
             if (FileName.Contains("L12_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "Oh fuck off you old woman"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "Oh fuck off you old woman"));
             }
 
             FileName = LukeAudio[16].ToString();
 
             if (FileName.Contains("L13_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "Gonna get ya mates are ya? Fucking wimp, you ain't worth it, it would be too easy"));
+                CoreNestedType.StartCoroutine(ScriptIDDefinition(ScriptID.Luke, "Gonna get ya mates are ya? Fucking wimp, you ain't worth it, it would be too easy"));
             }
 
 

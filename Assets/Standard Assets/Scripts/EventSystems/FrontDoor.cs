@@ -1,24 +1,26 @@
 ﻿using UnityEngine;
+using CoreSystems;
 using DialogueSystems;
 using System.Collections;
 
-public class FrontDoor : CoreEventSystems {
+public class FrontDoor : Core.CoreEventSystem {
 
     private GameObject FrontDoorGameObject;
     private BoxCollider BoxFrontDoor;
-	private AudioSource FrontDoorSource;
-    private CoreDialogueSystems Core;
+    private AudioSource FrontDoorSource;
     public AudioClip DoorBell;
 
 	// Use this for initialization
 	void Start () {
 		
-        FrontDoorGameObject = this.gameObject;
+
+        
+        FrontDoorGameObject = CoreEventObject.CoreNestedType.gameObject;
         FrontDoorGameObject.AddComponent<AudioSource>();
-		FrontDoorSource = GetComponent<AudioSource> ();
+        FrontDoorSource = CoreEventObject.CoreNestedType.GetComponent<AudioSource>();
         FrontDoorSource.clip = DoorBell;
-        BoxFrontDoor = GetComponent<BoxCollider>();
-        Core = GameObject.FindGameObjectWithTag("Core").GetComponent<CoreDialogueSystems>();
+        BoxFrontDoor = CoreEventObject.CoreNestedType.GetComponent<BoxCollider>();
+ 
   
     }
 
@@ -26,7 +28,7 @@ public class FrontDoor : CoreEventSystems {
     {
       if (BoxFrontDoor.isTrigger == true)
       {
-            Core.ConversationStateID = CoreDialogueSystems.ConversationState.Active;
+            CoreDialogueSystemNestedType.ConversationStateID = Core.CoreDialogueSystems.ConversationState.Active;
       }
 
     }
