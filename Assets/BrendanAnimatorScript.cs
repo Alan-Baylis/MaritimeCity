@@ -79,12 +79,12 @@ public class BrendanAnimatorScript : StateMachineBehaviour, IMixamoAnimationHand
 	//
 	//}
 
-	// OnStateMachineEnter is called when entering a statemachine via its Entry Node
+	// OnStateMachineEnter is called when entering a state machine via its Entry Node
 	//override public void OnStateMachineEnter(Animator animator, int stateMachinePathHash){
 	//
 	//}
 
-	// OnStateMachineExit is called when exiting a statemachine via its Exit Node
+	// OnStateMachineExit is called when exiting a state machine via its Exit Node
 	//override public void OnStateMachineExit(Animator animator, int stateMachinePathHash) {
 	//
 	//}
