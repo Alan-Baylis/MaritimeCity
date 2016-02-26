@@ -14,20 +14,15 @@ namespace CoreSystems
 
     public class Core : MonoBehaviour
     {
-
-        public int newone;
-
         public enum SceneState { Cutscene, Dicussion_Box, Conversation, MainMenu };
-
-        //UnityAction StartButton = new UnityAction(GUIEvent_StartButtonEvent());
-
-
-
         RuntimePlatform MaritimeRuntimePlatform = RuntimePlatform.OSXEditor;
+
+
 
         public Core()
         {
-           
+
+            MaritimeRuntimePlatform = RuntimePlatform.OSXEditor;
 
         }
 
@@ -40,13 +35,13 @@ namespace CoreSystems
             if (MaritimeRuntimePlatform == RuntimePlatform.WindowsEditor)
             {
 
-                Debug.Log("Optimised for Windows");
+                Debug.Log("Optimized for Windows");
 
             }
             else if (MaritimeRuntimePlatform == RuntimePlatform.WindowsPlayer)
             {
 
-                Debug.Log("Optimised for Windows");
+                Debug.Log("Optimized for Windows");
 
             } else if (MaritimeRuntimePlatform == RuntimePlatform.OSXEditor)
             {
@@ -150,8 +145,6 @@ namespace CoreSystems
                     return false;
                 }
 
-
-
             }
 
             public struct AnimationFunctions
@@ -169,40 +162,38 @@ namespace CoreSystems
             public void InitializeListeners()
             {
 
-                Animation NewAnimation;
+   
                 SceneObject.StructAddPersistantListeners(unityEvent: SceneObject.FrontDoor, call: FrontDoorObject.PlayDoorBell);
 
             }
 
-            int test;
+  
 
 
         }
+
+
         public class CoreDialogueSystems 
         {
 
-
-            
-
-            //public List<string> DialogueIDSequencer = new List<string>();
+            //Dialog types
             public string[] DialogueIDSequencer = new string[108];
-
-            public Core CoreNestedType;
-            public CoreEventSystem CoreEventSystemNestedType;
-            private ElliController Elli;
-            private BrendanPOVController BrendanObject;
-            private LukeController Luke;
-
-           
-            public enum ConversationState { Active, Inactive };
-            public ConversationState ConversationStateID = ConversationState.Inactive;
             public Text DialogueText;
-            public enum ScriptID { Elli, Brendan, Luke };
             public int MaritimeDialogueIterator = 0;
-            public CoreDialogueSystems CoreObject;
+
+            //Custom enums & bools
+            public enum ScriptID { Elli, Brendan, Luke };
+            public enum ConversationState { Active, Inactive };
             public bool bWaitUntilPreviousDialogueFinished = false;
 
 
+            //Custom type objects
+            public Core CoreNestedType;
+            public CoreEventSystem CoreEventSystemNestedType;
+            public CoreDialogueSystems CoreDialogueObject;
+            public ConversationState ConversationStateID = ConversationState.Inactive;
+         
+         
             public CoreDialogueSystems()
             {
 
@@ -218,54 +209,22 @@ namespace CoreSystems
                 this.CoreEventSystemNestedType = CoreEventSystemNestedType;
             }
 
-        
+
+            void Awake()
+            {
+                InitializeDialogueIterator();
+
+            }
+
 
             void Start()
             {
-                Debug.Log("Core Dialog Systems Active");
 
             }
 
             void Update()
             {
-                 CoreNestedType.StartCoroutine(DialogueIterator());
                
-                //PassCurrentAudio();
-
-                //BrendanObject.Update ();
-                //Elli.Update ();
-                //Luke.Update ();
-               
-
-                //PassCurrentScript();
-            }
-
-
-
-            void Awake()
-            {
-                InitializeDialogueIterator();
-  
-
-                DialogueIDSequencer.Initialize();
-
-                //Elli = GameObject.FindGameObjectWithTag(tag: "Elli").GetComponent<ElliController>();
-                //Luke = GameObject.FindGameObjectWithTag(tag: "Luke").GetComponent<LukeController>();
-                //BrendanObject = GameObject.FindGameObjectWithTag ("Brendan Player").GetComponent<BrendanPOVController> ();
-                
-
-                if (Elli == null)
-                {
-                    Debug.Log("Elli is not working and is null");
-
-                }
-
-                if (Luke == null)
-                {
-                    Debug.Log("Luke is not working and is null");
-                }
-
-
             }
 
             public void InitializeDialogueIterator()
@@ -383,7 +342,6 @@ namespace CoreSystems
             }
 
 
-
             public interface IDialogueSystems
             {
 
@@ -398,14 +356,68 @@ namespace CoreSystems
 
         }
 
-
-
-        // Update is called once per frame
-        void Update()
+        public class CoreInput 
         {
 
 
+            public AnimationClip BrendanWalk = new AnimationClip();
+
+            // Use this for initialization
+            void Start()
+            {
+
+                Debug.Log("Core Input Active");
+
+            }
+
+            // Update is called once per frame
+            void Update()
+            {
+
+            }
         }
+
+
+        public class CoreUI : MonoBehaviour
+        {
+
+            // Use this for initialization
+            void Start()
+            {
+
+                Debug.Log("Core UI Active");
+
+            }
+
+            // Update is called once per frame
+            void Update()
+            {
+
+            }
+
+
+
+            public void DialogueBoxOpen()
+            {
+                GameObject DialogueBox = GameObject.Find("Dialog Box");
+
+                DialogueBox.gameObject.SetActive(true);
+
+                //NewDialogueUIState = DialogueControllerState.Open;
+            }
+
+            public void DialogueBoxClose()
+            {
+                GameObject DialogueBox = GameObject.Find("Dialog Box");
+
+                DialogueBox.gameObject.SetActive(false);
+
+                //NewDialogueUIState = DialogueControllerState.Closed;
+            }
+
+
+        }
+
 
     }
 

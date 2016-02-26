@@ -1,12 +1,13 @@
-<<<<<<< HEAD
+
 ﻿using UnityEngine;
+using CoreSystems;
 using System.Collections;
 
-public class BrendanAnimatorScript : StateMachineBehaviour, IMixamoAnimationHandler
+public class BrendanAnimatorScript : StateMachineBehaviour
 {
 
 
-    CoreEventSystems CoreEvent;
+    Core.CoreEventSystem CoreEvent;
     bool bFrontDoorTriggerBreached = false;
     bool bDogGoneUpstairs = false;
 
