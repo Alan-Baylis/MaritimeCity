@@ -3,7 +3,7 @@ using CoreSystems;
 using DialogueSystems;
 using System.Collections;
 
-public class FrontDoor : Core.CoreEventSystem {
+public class FrontDoor : Core {
 
     private GameObject FrontDoorGameObject;
     private BoxCollider BoxFrontDoor;
@@ -11,32 +11,30 @@ public class FrontDoor : Core.CoreEventSystem {
     public AudioClip DoorBell;
 
 	// Use this for initialization
-	void Start () {
-		
-
-        
-        FrontDoorGameObject = CoreEventObject.CoreNestedType.gameObject;
+	void Start ()
+    {
+		    
+        FrontDoorGameObject = gameObject;
         FrontDoorGameObject.AddComponent<AudioSource>();
-        FrontDoorSource = CoreEventObject.CoreNestedType.GetComponent<AudioSource>();
+        FrontDoorSource = GetComponent<AudioSource>();
         FrontDoorSource.clip = DoorBell;
-        BoxFrontDoor = CoreEventObject.CoreNestedType.GetComponent<BoxCollider>();
- 
-  
+        BoxFrontDoor = GetComponent<BoxCollider>();
+
     }
 
     void OnTriggerEnter(Collider other)
     {
       if (BoxFrontDoor.isTrigger == true)
       {
-            CoreDialogueSystemNestedType.ConversationStateID = Core.CoreDialogueSystems.ConversationState.Active;
+            
+            GetCoreDialogueSystemObject().ConversationStateID = CoreDialogueSystems.ConversationState.Active;
       }
 
     }
 
-
     public void PlayDoorBell()
     {
-        FrontDoorSource.PlayDelayed(delay: 5.0f);
+        FrontDoorSource.PlayDelayed(delay: 1.0f);
     }
 	
 	// Update is called once per frame

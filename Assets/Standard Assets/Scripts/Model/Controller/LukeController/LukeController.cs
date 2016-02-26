@@ -2,12 +2,12 @@
 using CoreSystems;
 using System.Collections.Generic;
 using System.Collections;
-
+using System;
 
 namespace DialogueSystems
 {
 
-    public class LukeController : Core.CoreDialogueSystems
+    public class LukeController : Core.CoreDialogueSystems, ICommunciation
     {
 
 		//InputController NewController;
@@ -537,6 +537,21 @@ namespace DialogueSystems
         void Update()
         {
 
+        }
+
+        public ICommunciation ReturnType()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ReceiveResponse(ICommunciation CharacterType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerator DialogueIterator()
+        {
+            throw new NotImplementedException();
         }
     }
 

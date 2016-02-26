@@ -19,17 +19,81 @@ namespace CoreSystems
         RuntimePlatform MaritimeRuntimePlatform = RuntimePlatform.OSXEditor;
 
 
-
         public Core()
         {
-
             MaritimeRuntimePlatform = RuntimePlatform.OSXEditor;
 
         }
 
+        public CoreDialogueSystems CoreDialogueObject;
+        public CoreEventSystem CoreEventSystemObject;
+        public CoreInput CoreInputObject;
+        public CoreUI CoreUIObject;
 
 
+        public CoreUI GetCoreUIObject()
+        {
+            return CoreUIObject;
+        }
 
+        public CoreUI GetCoreUIObject(CoreUI Object)
+        {
+            return Object;
+        }
+
+        public CoreInput GetCoreInputObject()
+        {
+            return CoreInputObject;
+        }
+
+        public CoreInput GetCoreInputObject(CoreInput Object)
+        {
+            return Object;
+        }
+
+        public CoreEventSystem GetCoreEventSystemObject()
+        {
+            return CoreEventSystemObject;
+        }
+
+        public CoreEventSystem GetCoreEventSystemObject(CoreEventSystem Object)
+        {
+            return Object;
+        }
+
+        public CoreDialogueSystems GetCoreDialogueSystemObject()
+        {
+            return CoreDialogueObject;
+        }
+
+        public CoreDialogueSystems GetCoreDialogueSystemObject(CoreDialogueSystems Object)
+        {
+            return Object;
+
+        }
+
+       
+        //Object constructors
+
+        Core (CoreDialogueSystems CoreDialogueObject)
+        {
+            this.CoreDialogueObject = CoreDialogueObject;
+        }
+
+        Core (CoreEventSystem CoreEventSystemObject)
+        {
+            this.CoreEventSystemObject = CoreEventSystemObject;
+        }
+
+        Core (CoreInput CoreInputObject)
+        {
+            this.CoreInputObject = CoreInputObject;
+        }
+
+        Core(CoreUI CoreUIObject)
+        {
+            this.CoreUIObject = CoreUIObject;
+        }
     
 
 
@@ -64,12 +128,17 @@ namespace CoreSystems
         {
 
             public FrontDoor FrontDoorObject;
+
+
+            //Struct Object
             public GUIEvents GUIObject = new GUIEvents();
             public SceneEvents SceneObject = new SceneEvents();
             public ColliderFunctions ColliderObject = new ColliderFunctions();
             public AnimationFunctions AnimationObject = new AnimationFunctions();
 
-
+            /// <summary>
+            /// This a nested type to allow for access to Core functions and variables
+            /// </summary>
             public Core CoreNestedType;
             public CoreDialogueSystems CoreDialogueSystemNestedType;
             public CoreEventSystem CoreEventObject;
@@ -224,25 +293,7 @@ namespace CoreSystems
             public ConversationState ConversationStateID = ConversationState.Inactive;
 
 
-
-            public interface ICommunciation
-            {
-
-                void PlayAudio(string AudioID);
-
-                void DisplayScript(string ScriptID);
-
-                ICommunciation ReturnType();
-
-                void ReceiveResponse(ICommunciation CharacterType);
-
-                IEnumerator DialogueIterator();
-
-
-            }
-
-
-
+    
             public CoreDialogueSystems()
             {
 
@@ -478,6 +529,24 @@ namespace CoreSystems
 
 
         }
+
+    }
+
+
+
+    public interface ICommunciation
+    {
+
+        void PlayAudio(string AudioID);
+
+        void DisplayScript(string ScriptID);
+
+        ICommunciation ReturnType();
+
+        void ReceiveResponse(ICommunciation CharacterType);
+
+        IEnumerator DialogueIterator();
+
 
     }
 

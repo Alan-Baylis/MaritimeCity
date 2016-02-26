@@ -15,14 +15,15 @@ public class InputController : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-	
+
+        NewHit = new RaycastHit();
 		int a = 0;
 		int b = 0;
 
 		NewRay.direction = gameObject.transform.position;
 		NewRay.origin = Player.gameObject.transform.position;
 		Physics.Raycast (NewRay);
-		Animator NewAnimator = (Animator)GetComponent("Brendan Animator");
+		Animator DefaultAnimator = (Animator)GetComponent("Brendan Animator");
 
 
 		foreach(GameObject go in SubdivisionEntities)
@@ -89,9 +90,7 @@ public class InputController : MonoBehaviour
 		Ray NewRay = new Ray();
 
 		Physics.Raycast (NewRay);
-
-		Vector3 Instantiate;
-
+        
 		for(int n = 0; n < MAXCOUNT; n++)
 		{
 			Vector3[] SceneLocations = new Vector3[MAXCOUNT];

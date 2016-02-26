@@ -8,8 +8,8 @@ using System;
 namespace DialogueSystems
 {
 
-    public class BrendanPOVController : Core.CoreDialogueSystems, Core.CoreDialogueSystems.ICommunciation
-    {
+       public class BrendanPOVController : Core.CoreDialogueSystems, ICommunciation
+        { 
 
         public struct Destinations
         {
@@ -333,9 +333,7 @@ namespace DialogueSystems
 
 
         }
-
         int InternalIterator = 0;
-
         public void DisplayScript(string ScriptID)
         {
             if (ScriptID == "B1_S1")
