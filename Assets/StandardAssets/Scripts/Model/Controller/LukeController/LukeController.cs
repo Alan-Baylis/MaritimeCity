@@ -55,6 +55,264 @@ namespace DialogueSystems
         }
 
 
+        public IEnumerator LukeDialogueController()
+        {
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "L1_S1_T1")
+            {
+                yield return new WaitForSeconds(1);
+
+                Luke.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                Luke.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => Luke.LukeSource.isPlaying == false);
+
+                //Turns to BrendanObject and gives a smile
+
+                MaritimeDialogueIterator++;
+
+            }
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "L2_S1")
+            {
+                yield return new WaitForSeconds(1);
+
+                Luke.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                Luke.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => Luke.LukeSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+
+            }
+
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "L3_S1")
+            {
+                yield return new WaitForSeconds(1);
+
+                Luke.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                Luke.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => Luke.LukeSource.isPlaying == false);
+                yield return new WaitUntil(() => CoreEvents.AnimationObject.LukePointsFinger());
+
+                MaritimeDialogueIterator++;
+
+            }
+
+
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "L4_S1")
+            {
+                yield return new WaitForSeconds(1);
+
+                Luke.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                Luke.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => Luke.LukeSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+
+            }
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "L5_S1")
+            {
+                yield return new WaitForSeconds(1);
+
+                Luke.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                Luke.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => Luke.LukeSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+
+            }
+
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "L6_S1")
+            {
+                yield return new WaitForSeconds(1);
+
+                Luke.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                Luke.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => Luke.LukeSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+
+            }
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "L7_S1")
+            {
+                yield return new WaitForSeconds(1);
+
+                Luke.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                Luke.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => Luke.LukeSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+
+            }
+
+
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "L8_S1")
+            {
+                yield return new WaitForSeconds(1);
+
+                Luke.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                Luke.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => Luke.LukeSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+
+            }
+
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "L9_S1")
+            {
+                yield return new WaitForSeconds(1);
+
+                Luke.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                Luke.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => Luke.LukeSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+
+            }
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "L9_S2")
+            {
+                yield return new WaitForSeconds(1);
+
+                Luke.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                Luke.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => Luke.LukeSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+
+            }
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "L9_S3")
+            {
+                yield return new WaitForSeconds(1);
+
+                Luke.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                Luke.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => Luke.LukeSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+
+            }
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "L9_S4")
+            {
+                yield return new WaitForSeconds(1);
+
+                Luke.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                Luke.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => Luke.LukeSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+
+            }
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "L9_S5")
+            {
+                yield return new WaitForSeconds(1);
+
+                Luke.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                Luke.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => Luke.LukeSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+
+            }
+
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "L10_S1")
+            {
+                yield return new WaitForSeconds(1);
+
+                Luke.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                Luke.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => Luke.LukeSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+
+            }
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "L11_S1")
+            {
+                yield return new WaitForSeconds(1);
+
+                Luke.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                Luke.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => Luke.LukeSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+
+            }
+
+
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "L12_S1")
+            {
+                yield return new WaitForSeconds(1);
+
+                Luke.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                Luke.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => Luke.LukeSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+
+            }
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "L13_S1")
+            {
+                yield return new WaitForSeconds(1);
+
+                Luke.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                Luke.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => Luke.LukeSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+
+            }
+
+
+
+        }
+
+
         public void PlayAudio(string AudioID)
         {
             if (AudioID == "L1_T1_S1")

@@ -2,11 +2,12 @@
 using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using CoreSystems;
 
 namespace DialogueSystems
 {
 
-    public class BrendanPOVController : CoreDialogueSystems
+    public class BrendanPOVController : Core.CoreDialogueSystems
     {
 
         public struct Destinations
@@ -723,6 +724,749 @@ namespace DialogueSystems
                 yield return null;
 
             }
+
+        }
+
+        public IEnumerator BrendanDialogueIterator()
+        {
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "B1_S1")
+            {
+                //Invokes Doorbell Function
+                //CoreEvents.SceneObject.Doorbell.Invoke();
+                //CoreEvents.SceneObject.OpenDoor.Invoke();
+
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                //Invoke relevant Event here!
+
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+
+            }
+
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "B1_S2")
+            {
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                //Invoke relevant Event here!
+
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+
+            }
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "B1_S3")
+            {
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                //Invoke relevant Event here!
+
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+
+            }
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "B1_S4")
+            {
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                
+                //Invoke relevant Event here!
+
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+
+            }
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "B2_S1")
+            {
+                yield return new WaitForSeconds(1);
+
+                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                //Invoke relevant Event here!
+
+                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+
+            }
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "B2_S2")
+            {
+                yield return new WaitForSeconds(1);
+
+                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                //Invoke relevant Event here!
+
+                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+
+            }
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "B2_S3")
+            {
+                yield return new WaitForSeconds(1);
+
+                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                //Invoke relevant Event here!
+
+                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+
+            }
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "B3_S1")
+            {
+                yield return new WaitForSeconds(1);
+
+                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                //Invoke relevant Event here!
+
+                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+
+            }
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "B3_S2")
+            {
+                yield return new WaitForSeconds(1);
+
+                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                //Invoke relevant Event here!
+
+                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+
+            }
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "B3_S3")
+            {
+                yield return new WaitForSeconds(1);
+
+                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                //Invoke relevant Event here!
+
+                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+
+            }
+
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "B4_S1")
+            {
+                yield return new WaitForSeconds(1);
+
+                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                //Invoke relevant Event here!
+
+                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+
+            }
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "B4_S2")
+            {
+                yield return new WaitForSeconds(1);
+
+                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                //Invoke relevant Event here!
+
+                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+            }
+
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "B5_S1")
+            {
+                //CoreEvents.SceneObject.WalkDogUpstairs.Invoke();
+                yield return new WaitUntil(() => CoreEventSystemNestedType.ColliderObject.ElliFinishedTakingDogUpstairs());
+
+                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                //Invoke relevant Event here!
+
+                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+            }
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "B6_S1")
+            {
+                CoreEventSystemNestedType.SceneObject.EnterLivingRoom.Invoke();
+                yield return new WaitUntil(() => CoreEventSystemNestedType.ColliderObject.ElliEntersLivingRoom());
+                yield return new WaitUntil(() => CoreEventSystemNestedType.ColliderObject.BrendanEntersLivingRoom());
+
+                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                //Invoke relevant Event here!
+
+                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+            }
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "B6_S2")
+            {
+                yield return new WaitForSeconds(1);
+
+                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+
+            }
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "B6_S3")
+            {
+                yield return new WaitForSeconds(1);
+
+                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+
+            }
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "B6_S4")
+            {
+                yield return new WaitForSeconds(1);
+
+                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+
+            }
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "B7_S1")
+            {
+                yield return new WaitForSeconds(1);
+
+                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+
+            }
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "B7_S2")
+            {
+                yield return new WaitForSeconds(1);
+
+                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+
+            }
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "B8_S1")
+            {
+                yield return new WaitForSeconds(1);
+
+                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+
+            }
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "B9_S1")
+            {
+                yield return new WaitForSeconds(1);
+
+                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+
+            }
+
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "B10_S1")
+            {
+                yield return new WaitForSeconds(1);
+
+                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+
+            }
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "B10_S2")
+            {
+                yield return new WaitForSeconds(1);
+
+                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+
+            }
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "B10_S3")
+            {
+                yield return new WaitForSeconds(1);
+
+                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+
+            }
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "B11_S1")
+            {
+                yield return new WaitForSeconds(1);
+
+                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+
+            }
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "B12_S1")
+            {
+                yield return new WaitForSeconds(1);
+
+                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+            }
+
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "B13_S1")
+            {
+                SceneObject.CheckCot.Invoke();
+
+                //BrendanObject checks cot
+                yield return new WaitUntil(() => ColliderObject.BrendanChecksCotCollider());
+                yield return new WaitForSeconds(1);
+
+                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+            }
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "B14_S1")
+            {
+                CoreEvents.SceneObject.BrendanChecksBottle.Invoke();
+
+                //BrendanObject checks cot
+                yield return new WaitForSeconds(1);
+
+                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+            }
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "B15_S1")
+            {
+                CoreEvents.SceneObject.BrendanPicksBottle.Invoke();
+
+                //BrendanObject checks cot
+                yield return new WaitForSeconds(1);
+
+                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+            }
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "B16_S1")
+            {
+                CoreEvents.SceneObject.PointsToBrokenGlass.Invoke();
+
+                //BrendanObject checks cot
+                yield return new WaitForSeconds(1);
+
+                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+            }
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "B17_S1")
+            {
+                //CoreEvents.SceneObject.PointsToBrokenGlass.Invoke();
+
+                //BrendanObject checks cot
+                yield return new WaitForSeconds(1);
+
+                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+            }
+
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "B18_S1")
+            {
+                //CoreEvents.SceneObject.PointsToBrokenGlass.Invoke();
+
+                //BrendanObject checks cot
+                yield return new WaitForSeconds(1);
+
+                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+            }
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "B18_S2")
+            {
+
+
+                //BrendanObject checks cot
+                yield return new WaitForSeconds(1);
+
+                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+            }
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "B18_S3")
+            {
+
+
+                //BrendanObject checks cot
+                yield return new WaitForSeconds(1);
+
+                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+            }
+
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "B19_S1")
+            {
+
+
+                //BrendanObject checks cot
+                yield return new WaitForSeconds(1);
+
+                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+            }
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "B20_S1")
+            {
+                yield return new WaitForSeconds(1);
+
+                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+            }
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "B21_S1")
+            {
+
+                //BrendanObject checks cot
+                yield return new WaitForSeconds(1);
+
+                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+            }
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "B22_S1")
+            {
+
+                yield return new WaitForSeconds(1);
+
+                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+            }
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "B23_S1")
+            {
+
+                yield return new WaitForSeconds(1);
+
+                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+            }
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "B24_S1")
+            {
+
+                yield return new WaitForSeconds(1);
+
+                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+            }
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "B25_S1")
+            {
+
+                yield return new WaitForSeconds(1);
+
+                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+            }
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "B26_S1")
+            {
+
+                yield return new WaitForSeconds(1);
+
+                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+            }
+
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "B27_S1")
+            {
+
+                yield return new WaitForSeconds(1);
+
+                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+            }
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "B27_S2")
+            {
+
+                yield return new WaitForSeconds(1);
+
+                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+            }
+
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "B27_S3")
+            {
+
+                yield return new WaitForSeconds(1);
+
+                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+            }
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "B28_S1")
+            {
+
+                yield return new WaitForSeconds(1);
+
+                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+            }
+
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "B29_S1")
+            {
+
+                yield return new WaitForSeconds(1);
+
+                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+            }
+
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "B29_S2")
+            {
+                SceneObject.BrendanLeavesHouse.Invoke();
+
+                yield return new WaitUntil(() => CoreEvents.ColliderObject.BrendanFrontDoor());
+
+                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+            }
+
+
+
+            if (DialogueIDSequencer[MaritimeDialogueIterator] == "B29_S3")
+            {
+
+                yield return new WaitForSeconds(1);
+
+                BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+                yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
+
+                MaritimeDialogueIterator++;
+            }
+
+
+
+
+
+
+
+
+
+
 
         }
 
