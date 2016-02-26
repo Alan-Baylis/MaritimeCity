@@ -6,18 +6,18 @@ public class FrontDoor : CoreEventSystems {
 
     private GameObject FrontDoorGameObject;
     private BoxCollider BoxFrontDoor;
-    private AudioSource FrontDoorSource;
+	private AudioSource FrontDoorSource;
     private CoreDialogueSystems Core;
     public AudioClip DoorBell;
 
 	// Use this for initialization
 	void Start () {
-
+		
         FrontDoorGameObject = this.gameObject;
         FrontDoorGameObject.AddComponent<AudioSource>();
+		FrontDoorSource = GetComponent<AudioSource> ();
         FrontDoorSource.clip = DoorBell;
         BoxFrontDoor = GetComponent<BoxCollider>();
-
         Core = GameObject.FindGameObjectWithTag("Core").GetComponent<CoreDialogueSystems>();
   
     }

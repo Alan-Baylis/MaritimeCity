@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace DialogueSystems
 {
 
-    public class BrendanPOVController : CoreDialogueSystems, IDialogueSystems
+    public class BrendanPOVController : CoreDialogueSystems
     {
 
         public struct Destinations
@@ -656,7 +656,7 @@ namespace DialogueSystems
         private CoreDialogueSystems Core;
         public List<string> BrendanScript = new List<string>(50);
         public AudioClip[] BrendanAudio = new AudioClip[30];
-        public AudioSource BrendanSource;
+        public AudioSource BrendanSource ;
         public Destinations Destination;
 
         string FileName;
@@ -717,7 +717,7 @@ namespace DialogueSystems
             if (ScriptIdentification == ScriptID.Brendan)
             {
                 BrendanScript.Add(DefineScript);
-                DialogueText.text = BrendanScript[BrendanInternalIterator];
+    
                 BrendanInternalIterator++;
 
                 yield return null;

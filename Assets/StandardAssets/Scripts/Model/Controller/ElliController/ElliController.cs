@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using DialogueSystems;
 using System.Collections.Generic;
 using System.Collections;
@@ -6,27 +8,69 @@ using System.Collections;
 namespace DialogueSystems
 {
 
-    public class ElliController : CoreDialogueSystems, IDialogueSystems
+    public class ElliController : CoreDialogueSystems
     {
+		private CoreDialogueSystems Core;
+
 
         string FileName;
-        public AudioSource ElliSource = new AudioSource();
+		public AudioSource ElliSource = new AudioSource();
         public AudioClip[] ElliAudio = new AudioClip[10];
-        List<string> ElliScript = new List<string>(capacity: 60);
-        Animation Test;
+		private List<string> ElliScript = new List<string> (capacity: 60);
 
         void Awake()
         {
+			Core = GameObject.FindGameObjectWithTag ("Core").GetComponent<CoreDialogueSystems> ();
             ElliSource = GetComponent<AudioSource>();
+
             
          }
 
 
         // Use this for initialization
         void Start()
-        { 
-            PopulateScript();
-        }
+		{ 
+			PopulateScript ();
+
+
+		}
+
+		public IEnumerator ElliDialogueIterator()
+		{
+
+			if (DialogueIDSequencer[Core.MaritimeDialogueIterator] == "E1_S1")
+			{
+				yield return new WaitUntil(() => bWaitUntilPreviousDialogueFinished == true);
+
+				PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+				DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+				//Invoke relevant Event here!
+
+				yield return new WaitUntil(() => ElliSource.isPlaying == false);
+
+				MaritimeDialogueIterator++;
+
+			}
+
+
+			if (DialogueIDSequencer[MaritimeDialogueIterator] == "E1_S2")
+			{
+				yield return new WaitForSeconds(1);
+
+				PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+				DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+
+				//Invoke relevant Event here!
+
+				yield return new WaitUntil(() => ElliSource.isPlaying == false);
+
+				MaritimeDialogueIterator++;
+
+			}
+
+
+		}
 
         public void PlayAudio(string AudioID)
         {

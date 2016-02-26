@@ -6,10 +6,13 @@ using System.Collections;
 namespace DialogueSystems
 {
 
-    public class LukeController : CoreDialogueSystems, IDialogueSystems
+    public class LukeController : CoreDialogueSystems
     {
 
-        private string FileName;
+		InputController NewController;
+	
+
+		[SerializeField] private string FileName;
         int ScriptLogger = 0;
         private CoreDialogueSystems Core;
         public List<string> LukeScript = new List<string>(50);
@@ -20,8 +23,7 @@ namespace DialogueSystems
         {
             PopulateScript();
 
-            DialogueText = Core.DialogueText;
-
+		
         }
 
         // Use this for initialization

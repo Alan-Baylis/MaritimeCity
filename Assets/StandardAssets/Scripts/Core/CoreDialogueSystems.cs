@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -6,31 +7,55 @@ using UnityEditor.Events;
 using UnityEditor.Callbacks;
 using System.Collections.Generic;
 using System.Collections;
+using DialogueSystems;
 using System;
 
-namespace DialogueSystems
-{
 
     public class CoreDialogueSystems : MonoBehaviour
     {
 
         //public List<string> DialogueIDSequencer = new List<string>();
         public string[] DialogueIDSequencer = new string[108];
-        public ElliController Elli;
-        public BrendanPOVController Brendan;
-        public LukeController Luke;
+
+
+		private ElliController Elli;
+		private BrendanPOVController BrendanObject;
+		private LukeController Luke;
+
         private CoreEventSystems CoreEvents;
         public enum ConversationState { Active, Inactive };
         public ConversationState ConversationStateID = ConversationState.Inactive;
         public Text DialogueText;
         public enum ScriptID { Elli, Brendan, Luke };
-        static int MaritimeDialogueIterator = 0;
-        int Random = 0;
+        public int MaritimeDialogueIterator = 0;
+
+	    public bool bWaitUntilPreviousDialogueFinished = false;
+       
+
+		void Start()
+		{
+			Debug.Log("Core Dialogue Systems Active");
+
+
+		}
+
+		void Update()
+		{
+			StartCoroutine(DialogueIterator());
+			//PassCurrentAudio();
+
+			//BrendanObject.Update ();
+			//Elli.Update ();
+			//Luke.Update ();
+
+			//PassCurrentScript();
+		}
+
 
 
         void Awake()
         {
-
+			InitializeDialogueIterator();
             //DialogueIDSequencer.Capacity = MaxScript;
             //DialogueObject = GameObject.Find("Dialog Text");
             //DialogueText = GetComponent<Text>();
@@ -38,15 +63,22 @@ namespace DialogueSystems
             //DialogueObject.AddComponent<AudioSource>();
             //DialogueObject.AddComponent<AudioSource>();
 
-            DialogueIDSequencer.Initialize();
-
-
-
-            Brendan = GameObject.FindGameObjectWithTag(tag: "Brendan Player").GetComponent<BrendanPOVController>();
-            Elli = GameObject.FindGameObjectWithTag(tag: "Elli").GetComponent<ElliController>();
-            Luke = GameObject.FindGameObjectWithTag(tag: "Luke").GetComponent<LukeController>();
+			DialogueIDSequencer.Initialize ();
+		    
+            //Elli = GameObject.FindGameObjectWithTag(tag: "Elli").GetComponent<ElliController>();
+            //Luke = GameObject.FindGameObjectWithTag(tag: "Luke").GetComponent<LukeController>();
+			//BrendanObject = GameObject.FindGameObjectWithTag ("Brendan Player").GetComponent<BrendanPOVController> ();
             CoreEvents = GameObject.FindGameObjectWithTag(tag: "Core").GetComponent<CoreEventSystems>();
 
+
+			if (Elli == null) {
+				Debug.Log ("Elli is not working and is null");
+
+			}
+
+			if (Luke == null) {
+				Debug.Log ("Luke is not working and is null");
+			}
           
           
         }
@@ -165,7 +197,7 @@ namespace DialogueSystems
 
         }
 
-        public IEnumerator DialogueIterator()
+	    public IEnumerator DialogueIterator()
         {
             if (ConversationStateID == ConversationState.Active)
             {
@@ -173,15 +205,15 @@ namespace DialogueSystems
                 if (DialogueIDSequencer[MaritimeDialogueIterator] == "B1_S1")
                 {
                     //Invokes Doorbell Function
-                    CoreEvents.SceneObject.Doorbell.Invoke();
-                    CoreEvents.SceneObject.OpenDoor.Invoke();
+                    //CoreEvents.SceneObject.Doorbell.Invoke();
+                    //CoreEvents.SceneObject.OpenDoor.Invoke();
 
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
                     //Invoke relevant Event here!
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
 
@@ -190,12 +222,12 @@ namespace DialogueSystems
 
                 if (DialogueIDSequencer[MaritimeDialogueIterator] == "B1_S2")
                 {
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
                     //Invoke relevant Event here!
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
 
@@ -204,12 +236,12 @@ namespace DialogueSystems
 
                 if (DialogueIDSequencer[MaritimeDialogueIterator] == "B1_S3")
                 {
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
                     //Invoke relevant Event here!
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
 
@@ -218,32 +250,18 @@ namespace DialogueSystems
 
                 if (DialogueIDSequencer[MaritimeDialogueIterator] == "B1_S4")
                 {
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
                     //Invoke relevant Event here!
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
 
                 }
 
 
-                if (DialogueIDSequencer[MaritimeDialogueIterator] == "E1_S1")
-                {
-                    yield return new WaitForSeconds(2);
-
-                    Elli.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Elli.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
-
-                    //Invoke relevant Event here!
-
-                    yield return new WaitUntil(() => Elli.ElliSource.isPlaying == false);
-
-                    MaritimeDialogueIterator++;
-
-                }
 
                 if (DialogueIDSequencer[MaritimeDialogueIterator] == "E1_S2")
                 {
@@ -313,12 +331,12 @@ namespace DialogueSystems
                 {
                     yield return new WaitForSeconds(1);
 
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
                     //Invoke relevant Event here!
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
 
@@ -329,12 +347,12 @@ namespace DialogueSystems
                 {
                     yield return new WaitForSeconds(1);
 
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
                     //Invoke relevant Event here!
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
 
@@ -345,12 +363,12 @@ namespace DialogueSystems
                 {
                     yield return new WaitForSeconds(1);
 
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
                     //Invoke relevant Event here!
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
 
@@ -393,12 +411,12 @@ namespace DialogueSystems
                 {
                     yield return new WaitForSeconds(1);
 
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
                     //Invoke relevant Event here!
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
 
@@ -408,12 +426,12 @@ namespace DialogueSystems
                 {
                     yield return new WaitForSeconds(1);
 
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
                     //Invoke relevant Event here!
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
 
@@ -423,12 +441,12 @@ namespace DialogueSystems
                 {
                     yield return new WaitForSeconds(1);
 
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
                     //Invoke relevant Event here!
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
 
@@ -489,12 +507,12 @@ namespace DialogueSystems
                 {
                     yield return new WaitForSeconds(1);
 
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
                     //Invoke relevant Event here!
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
 
@@ -505,12 +523,12 @@ namespace DialogueSystems
                 {
                     yield return new WaitForSeconds(1);
 
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
                     //Invoke relevant Event here!
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
                 }
@@ -536,15 +554,15 @@ namespace DialogueSystems
 
                 if (DialogueIDSequencer[MaritimeDialogueIterator] == "B5_S1")
                 {
-                    CoreEvents.SceneObject.WalkDogUpstairs.Invoke();
+                    //CoreEvents.SceneObject.WalkDogUpstairs.Invoke();
                     yield return new WaitUntil(() => CoreEvents.ColliderObject.ElliFinishedTakingDogUpstairs());
 
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
                     //Invoke relevant Event here!
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
                 }
@@ -574,12 +592,12 @@ namespace DialogueSystems
                     yield return new WaitUntil(() => CoreEvents.ColliderObject.ElliEntersLivingRoom());
                     yield return new WaitUntil(() => CoreEvents.ColliderObject.BrendanEntersLivingRoom());
 
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
                     //Invoke relevant Event here!
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
                 }
@@ -588,10 +606,10 @@ namespace DialogueSystems
                 {
                     yield return new WaitForSeconds(1);
 
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
 
@@ -602,10 +620,10 @@ namespace DialogueSystems
                 {
                     yield return new WaitForSeconds(1);
 
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
 
@@ -616,10 +634,10 @@ namespace DialogueSystems
                 {
                     yield return new WaitForSeconds(1);
 
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
 
@@ -634,7 +652,7 @@ namespace DialogueSystems
 
                     yield return new WaitUntil(() => Luke.LukeSource.isPlaying == false);
 
-                    //Turns to Brendan and gives a smile
+                    //Turns to BrendanObject and gives a smile
 
                     MaritimeDialogueIterator++;
 
@@ -645,10 +663,10 @@ namespace DialogueSystems
                 {
                     yield return new WaitForSeconds(1);
 
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
 
@@ -658,10 +676,10 @@ namespace DialogueSystems
                 {
                     yield return new WaitForSeconds(1);
 
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
 
@@ -689,10 +707,10 @@ namespace DialogueSystems
                 {
                     yield return new WaitForSeconds(1);
 
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
 
@@ -729,10 +747,10 @@ namespace DialogueSystems
                 {
                     yield return new WaitForSeconds(1);
 
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
 
@@ -756,10 +774,10 @@ namespace DialogueSystems
                 {
                     yield return new WaitForSeconds(1);
 
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
 
@@ -769,10 +787,10 @@ namespace DialogueSystems
                 {
                     yield return new WaitForSeconds(1);
 
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
 
@@ -782,10 +800,10 @@ namespace DialogueSystems
                 {
                     yield return new WaitForSeconds(1);
 
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
 
@@ -811,10 +829,10 @@ namespace DialogueSystems
                 {
                     yield return new WaitForSeconds(1);
 
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
 
@@ -840,10 +858,10 @@ namespace DialogueSystems
                 {
                     yield return new WaitForSeconds(1);
 
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
                 }
@@ -894,14 +912,14 @@ namespace DialogueSystems
                 {
                     CoreEvents.SceneObject.CheckCot.Invoke();
 
-                    //Brendan checks cot
+                    //BrendanObject checks cot
                     yield return new WaitUntil(() => CoreEvents.ColliderObject.BrendanChecksCotCollider());
                     yield return new WaitForSeconds(1);
 
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
                 }
@@ -940,13 +958,13 @@ namespace DialogueSystems
                 {
                     CoreEvents.SceneObject.BrendanChecksBottle.Invoke();
 
-                    //Brendan checks cot
+                    //BrendanObject checks cot
                     yield return new WaitForSeconds(1);
 
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
                 }
@@ -970,13 +988,13 @@ namespace DialogueSystems
                 {
                     CoreEvents.SceneObject.BrendanPicksBottle.Invoke();
 
-                    //Brendan checks cot
+                    //BrendanObject checks cot
                     yield return new WaitForSeconds(1);
 
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
                 }
@@ -1000,13 +1018,13 @@ namespace DialogueSystems
                 {
                     CoreEvents.SceneObject.PointsToBrokenGlass.Invoke();
 
-                    //Brendan checks cot
+                    //BrendanObject checks cot
                     yield return new WaitForSeconds(1);
 
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
                 }
@@ -1029,13 +1047,13 @@ namespace DialogueSystems
                 {
                     //CoreEvents.SceneObject.PointsToBrokenGlass.Invoke();
 
-                    //Brendan checks cot
+                    //BrendanObject checks cot
                     yield return new WaitForSeconds(1);
 
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
                 }
@@ -1088,13 +1106,13 @@ namespace DialogueSystems
                 {
                     //CoreEvents.SceneObject.PointsToBrokenGlass.Invoke();
 
-                    //Brendan checks cot
+                    //BrendanObject checks cot
                     yield return new WaitForSeconds(1);
 
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
                 }
@@ -1103,13 +1121,13 @@ namespace DialogueSystems
                 {
 
 
-                    //Brendan checks cot
+                    //BrendanObject checks cot
                     yield return new WaitForSeconds(1);
 
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
                 }
@@ -1119,13 +1137,13 @@ namespace DialogueSystems
                 {
 
 
-                    //Brendan checks cot
+                    //BrendanObject checks cot
                     yield return new WaitForSeconds(1);
 
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
                 }
@@ -1148,13 +1166,13 @@ namespace DialogueSystems
                 {
 
 
-                    //Brendan checks cot
+                    //BrendanObject checks cot
                     yield return new WaitForSeconds(1);
 
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
                 }
@@ -1178,10 +1196,10 @@ namespace DialogueSystems
                 {
                     yield return new WaitForSeconds(1);
 
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
                 }
@@ -1204,13 +1222,13 @@ namespace DialogueSystems
                 if (DialogueIDSequencer[MaritimeDialogueIterator] == "B19_S1")
                 {
 
-                    //Brendan checks cot
+                    //BrendanObject checks cot
                     yield return new WaitForSeconds(1);
 
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
                 }
@@ -1268,10 +1286,10 @@ namespace DialogueSystems
 
                     yield return new WaitForSeconds(1);
 
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
                 }
@@ -1297,10 +1315,10 @@ namespace DialogueSystems
 
                     yield return new WaitForSeconds(1);
 
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
                 }
@@ -1325,10 +1343,10 @@ namespace DialogueSystems
 
                     yield return new WaitForSeconds(1);
 
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
                 }
@@ -1438,10 +1456,10 @@ namespace DialogueSystems
 
                     yield return new WaitForSeconds(1);
 
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
                 }
@@ -1465,10 +1483,10 @@ namespace DialogueSystems
 
                     yield return new WaitForSeconds(1);
 
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
                 }
@@ -1522,8 +1540,7 @@ namespace DialogueSystems
 
                     Elli.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
                     Elli.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
-
-
+				
                     yield return new WaitUntil(() => Elli.ElliSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
@@ -1535,10 +1552,10 @@ namespace DialogueSystems
 
                     yield return new WaitForSeconds(1);
 
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
                 }
@@ -1549,10 +1566,10 @@ namespace DialogueSystems
 
                     yield return new WaitForSeconds(1);
 
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
                 }
@@ -1576,10 +1593,10 @@ namespace DialogueSystems
 
                     yield return new WaitForSeconds(1);
 
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
                 }
@@ -1590,10 +1607,10 @@ namespace DialogueSystems
 
                     yield return new WaitForSeconds(1);
 
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
                 }
@@ -1604,10 +1621,10 @@ namespace DialogueSystems
 
                     yield return new WaitForSeconds(1);
 
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
                 }
@@ -1646,10 +1663,10 @@ namespace DialogueSystems
 
                     yield return new WaitForSeconds(1);
 
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
                 }
@@ -1678,10 +1695,10 @@ namespace DialogueSystems
 
                     yield return new WaitUntil(() => CoreEvents.ColliderObject.BrendanFrontDoor());
 
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
                 }
@@ -1693,36 +1710,14 @@ namespace DialogueSystems
 
                     yield return new WaitForSeconds(1);
 
-                    Brendan.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
-                    Brendan.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.PlayAudio(AudioID: DialogueIDSequencer[MaritimeDialogueIterator]);
+                    BrendanObject.DisplayScript(ScriptID: DialogueIDSequencer[MaritimeDialogueIterator]);
 
-                    yield return new WaitUntil(() => Brendan.BrendanSource.isPlaying == false);
+                    yield return new WaitUntil(() => BrendanObject.BrendanSource.isPlaying == false);
 
                     MaritimeDialogueIterator++;
                 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+					
 
             }
 
@@ -1730,24 +1725,8 @@ namespace DialogueSystems
         }
 
 
-        void Start()
-        {
-            Debug.Log("Core Dialogue Systems Active");
-
-            InitializeDialogueIterator();
-        }
-
-        void Update()
-        {
-            StartCoroutine(DialogueIterator());
-            //PassCurrentAudio();
-            //PassCurrentScript();
-
-        }
-
-     
-    }
-
+   
+ 
 
     public interface IDialogueSystems
     {
