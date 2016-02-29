@@ -124,6 +124,84 @@ namespace CoreSystems
 
         }
 
+
+        public class MaritimeListSystem<T> : CollectionBase
+        {
+
+            T[] InternalList;
+            readonly int Size;
+            int ListIterator;
+
+
+            public MaritimeListSystem()
+            {
+
+
+
+            }
+
+           public MaritimeListSystem(T[] InternalList, int Size)
+           {
+
+                this.InternalList = InternalList;
+                this.Size = Size;
+                ListIterator = 0;
+
+                Initialize(this.Size);
+
+           }
+
+        
+            public void Initialize(int Size)
+            {
+                InternalList = new T[100];
+            }
+
+            public T Find(T Value)
+            {
+                for (int a = 0; a > InternalList.Length; a++)
+                {
+                    if (InternalList[a].Equals(Value))
+                    {
+                        return Value;
+                    }
+
+                    else return default(T);
+                }
+
+                return default(T);
+            }
+
+
+            public void Add(T Value)
+            {
+
+               //Alternative >>> List.Add();
+
+                if (InternalList[ListIterator] == null)
+                {
+                    InternalList[ListIterator] = Value;
+                    ListIterator++;
+
+                }
+                else if (InternalList[ListIterator] != null)
+                {
+
+                }
+
+               
+            }
+
+            public void Remove(int Index)
+            {
+
+               
+            }
+         
+            
+
+        }
+
         public class CoreEventSystem
         {
 
