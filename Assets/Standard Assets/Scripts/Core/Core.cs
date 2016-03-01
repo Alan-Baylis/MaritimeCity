@@ -30,6 +30,14 @@ namespace CoreSystems
         private CoreInput CoreInputObject;
         public CoreUI CoreUIObject;
 
+        public ElliController ElliObject;
+        public LukeController LukeObject;
+        public BrendanPOVController BrendanObject;
+
+
+        public bool bBrendanFinishedTalking = false;
+        public bool bElliFinishedTalking = false;
+        public bool bLukeFinishedTalking = false;
 
         public enum CoroutineID : short { Elli, Brendan, Luke };
 
@@ -205,6 +213,11 @@ namespace CoreSystems
                 Debug.Log("Not optimized for this platform");
 
             }
+
+
+            BrendanObject = GameObject.FindGameObjectWithTag("/Brendan Player").GetComponent<BrendanPOVController>();
+            LukeObject = GameObject.FindGameObjectWithTag("/Luke").GetComponent<LukeController>();
+            ElliObject = GameObject.FindGameObjectWithTag("/Elli").GetComponent<ElliController>();
 
         }
 

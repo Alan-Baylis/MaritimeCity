@@ -1,7 +1,8 @@
 
-﻿using UnityEngine;
+using UnityEngine;
 using CoreSystems;
 using System.Collections;
+using DialogueSystems;
 
 public class BrendanAnimatorScript : StateMachineBehaviour
 {
@@ -13,13 +14,28 @@ public class BrendanAnimatorScript : StateMachineBehaviour
 
     public enum LocationsForBrendan {FrontDoor, LivingRoom, BackOutside};
     LocationsForBrendan Locations;
+    static BrendanPOVController BrendanObject;
+    GameObject BrendanGameObject = BrendanObject.gameObject;
+    Animator BrendanAnimator;
+    Vector3[] VectorLocations = new Vector3[20];
+
+
+    public BrendanAnimatorScript(BrendanPOVController BrendanObject)
+    {
+        //this.BrendanObject = BrendanObject;
+
+     BrendanAnimator = BrendanGameObject.GetComponent<Animator>();
+
+
+    }
 
     public void WalkTo(LocationsForBrendan _Locations)
     {
 
         if (_Locations == LocationsForBrendan.FrontDoor)
         {
-
+            BrendanAnimator.SetLookAtPosition(VectorLocations[0]);
+            BrendanAnimator.Update(1.0f);
         }
 
         if (_Locations == LocationsForBrendan.LivingRoom)
@@ -36,14 +52,13 @@ public class BrendanAnimatorScript : StateMachineBehaviour
 
     public void PlayAnimation(Animation NewAnimation)
     {
-
+        NewAnimation.GetClip("Walk");
     }
 
     // OnStateEnter is called before OnStateEnter is called on any state inside this state machine
 	override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
 
-     
-
+       
     }
 
      // OnStateUpdate is called before OnStateUpdate is called on any state inside this state machine
@@ -60,7 +75,7 @@ public class BrendanAnimatorScript : StateMachineBehaviour
         //template code for Idle
         if(bDogGoneUpstairs == true && stateInfo.IsTag("Idle"))
         {
-            animator.SetBool("bAllowWalkign", true);
+            animator.SetBool("bAllowWalking", true);
             WalkTo(LocationsForBrendan.LivingRoom);
         }
 

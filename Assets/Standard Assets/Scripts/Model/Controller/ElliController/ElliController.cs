@@ -78,10 +78,10 @@ namespace DialogueSystems
 
             if (GetCoreDialogueSystemObject().ConversationStateID == CoreDialogueSystems.ConversationState.Active)
             {
-
+               
                 if (GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator] == "E1_S1")
                 {
-                    yield return new WaitUntil(() => GetCoreDialogueSystemObject().bWaitUntilPreviousDialogueFinished == true);
+                    yield return new WaitUntil(() => BrendanObject.BrendanFinishedTalking() == true);
 
                     PlayAudio(AudioID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
                     DisplayScript(ScriptID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
@@ -175,7 +175,7 @@ namespace DialogueSystems
 
                 if (GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator] == "E2_S1")
                 {
-                    yield return new WaitForSeconds(1);
+                    yield return new WaitUntil(() => BrendanObject.BrendanFinishedTalking() == true);
 
                     PlayAudio(AudioID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
                     DisplayScript(ScriptID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
@@ -210,9 +210,7 @@ namespace DialogueSystems
 
                 if (GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator] == "E3_S1")
                 {
-                    yield return new WaitForSeconds(1);
-
-                   
+                    yield return new WaitUntil(() => BrendanObject.BrendanFinishedTalking() == true);
 
                     PlayAudio(AudioID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
                     DisplayScript(ScriptID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
