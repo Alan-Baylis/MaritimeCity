@@ -25,10 +25,94 @@ namespace CoreSystems
 
         }
 
-        public CoreDialogueSystems CoreDialogueObject;
-        public CoreEventSystem CoreEventSystemObject;
-        public CoreInput CoreInputObject;
+        private CoreDialogueSystems CoreDialogueObject;
+        private CoreEventSystem CoreEventSystemObject;
+        private CoreInput CoreInputObject;
         public CoreUI CoreUIObject;
+
+
+        public enum CoroutineID : short { Elli, Brendan, Luke };
+
+         /// <summary>
+         /// Designed to send a response to Character
+         /// </summary>
+        public class SendResponse : CustomYieldInstruction
+        {
+            public override bool keepWaiting
+            {
+                get
+                {
+                    throw new NotImplementedException();
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// Designed to receive a Response from Character
+        /// </summary>
+        public class ReceiveResponse : CustomYieldInstruction
+        {
+            public CoroutineID response;
+            ElliController ElliObject;
+            LukeController LukeObject;
+            BrendanPOVController BrendanObject;
+
+            int BrendanInternalIterator = 0;
+            int ElliInternalIterator = 0;
+            int LukeInternalIterator = 0;
+          
+
+
+            public ReceiveResponse(ElliController ElliObject, LukeController LukeObject, BrendanPOVController BrendanObject)
+            {
+                this.ElliObject = ElliObject;
+                this.LukeObject = LukeObject;
+                this.BrendanObject = BrendanObject;
+
+                BrendanInternalIterator = BrendanPOVController.GetInternalIterator();
+                ElliInternalIterator = ElliController.GetInternalIterator();
+                LukeInternalIterator = LukeController.GetInternalIterator();
+            }
+
+
+            public ReceiveResponse(CoroutineID response)
+            {
+                this.response = response;
+
+
+                if (this.response == CoroutineID.Brendan)
+                {
+                    BrendanObject.StartCoroutine(BrendanObject.BrendanDialogueIterator());
+                }
+
+                if(this.response == CoroutineID.Elli)
+                {
+                    ElliObject.StartCoroutine(ElliObject.DialogueIterator());
+                }
+
+                if(this.response == CoroutineID.Luke)
+                {
+                    LukeObject.StartCoroutine(LukeObject.DialogueIterator());
+                }
+            }
+
+           
+
+            public override bool keepWaiting
+            {
+                get
+                {
+                    throw new NotImplementedException();
+                }
+
+                
+
+            }
+
+
+        }
+
 
 
         public CoreUI GetCoreUIObject()
@@ -387,17 +471,6 @@ namespace CoreSystems
                 this.CoreEventSystemNestedType = CoreEventSystemNestedType;
             }
 
-
-            public class WaitForReponse : CustomYieldInstruction
-            {
-                public override bool keepWaiting
-                {
-                    get
-                    {
-                        throw new NotImplementedException();
-                    }
-                }
-            }
 
 
             void Awake()

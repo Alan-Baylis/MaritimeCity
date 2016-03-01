@@ -18,7 +18,7 @@ namespace DialogueSystems
         int InternalIterator = 0;
         public Camera BrendanCamera;
         static int ScriptLogger = 0;
-        int BrendanInternalIterator = 0;
+        static int BrendanInternalIterator = 0;
         string[] DialogueIDSequencer = new string[108];
         string FileName;
         public float speed;
@@ -41,8 +41,13 @@ namespace DialogueSystems
         private MaritimeListSystem<bool> MLS_Conditions_List = new MaritimeListSystem<bool>();
 
 
+        public static int GetInternalIterator()
+        {
+            return BrendanInternalIterator;
+        }
 
-        public void PlayAudio(string AudioID)
+
+        public async void PlayAudio(string AudioID)
         {
             if (AudioID == "B1_S1")
             {
@@ -407,7 +412,7 @@ namespace DialogueSystems
 
 
 
-        public void DisplayScript(string ScriptID)
+        public async void DisplayScript(string ScriptID)
         {
             if (ScriptID == "B1_S1")
             {
@@ -737,7 +742,7 @@ namespace DialogueSystems
 
         void InitializeCoreDialogueIDSequencer()
         {
-            DialogueIDSequencer = CoreDialogueObject.DialogueIDSequencer;
+            DialogueIDSequencer = GetCoreDialogueSystemObject().DialogueIDSequencer;
         }
 
         void DefineColliderParameters()
@@ -782,6 +787,8 @@ namespace DialogueSystems
 
         public IEnumerator BrendanDialogueIterator()
         {
+            CoroutineID Response = CoroutineID.Brendan;
+
 
             if (DialogueIDSequencer[BrendanInternalIterator] == "B1_S1")
             {
@@ -844,10 +851,11 @@ namespace DialogueSystems
 
             }
 
+          
 
             if (DialogueIDSequencer[BrendanInternalIterator] == "B2_S1")
             {
-                yield return new CoreDialogueSystems.WaitForReponse();
+                yield return new ReceiveResponse(Response);
 
                 PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
                 DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
@@ -975,7 +983,7 @@ namespace DialogueSystems
             if (DialogueIDSequencer[BrendanInternalIterator] == "B5_S1")
             {
                 //SceneObject.WalkDogUpstairs.Invoke();
-                yield return new WaitUntil(() => CoreEventSystemObject.ColliderObject.ElliFinishedTakingDogUpstairs());
+                yield return new WaitUntil(() => GetCoreEventSystemObject().ColliderObject.ElliFinishedTakingDogUpstairs());
 
                 PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
                 DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
@@ -991,9 +999,9 @@ namespace DialogueSystems
 
             if (DialogueIDSequencer[BrendanInternalIterator] == "B6_S1")
             {
-                CoreEventSystemObject.SceneObject.EnterLivingRoom.Invoke();
-                yield return new WaitUntil(() => CoreEventSystemObject.ColliderObject.ElliEntersLivingRoom());
-                yield return new WaitUntil(() => CoreEventSystemObject.ColliderObject.BrendanEntersLivingRoom());
+                GetCoreEventSystemObject().SceneObject.EnterLivingRoom.Invoke();
+                yield return new WaitUntil(() => GetCoreEventSystemObject().ColliderObject.ElliEntersLivingRoom());
+                yield return new WaitUntil(() => GetCoreEventSystemObject().ColliderObject.BrendanEntersLivingRoom());
 
                 PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
                 DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
@@ -1168,10 +1176,10 @@ namespace DialogueSystems
 
             if (DialogueIDSequencer[BrendanInternalIterator] == "B13_S1")
             {
-                CoreEventSystemObject.SceneObject.CheckCot.Invoke();
+                GetCoreEventSystemObject().SceneObject.CheckCot.Invoke();
 
                 //BrendanObject checks cot
-                yield return new WaitUntil(() => CoreEventSystemObject.ColliderObject.BrendanChecksCotCollider());
+                yield return new WaitUntil(() => GetCoreEventSystemObject().ColliderObject.BrendanChecksCotCollider());
                 yield return new WaitForSeconds(1);
 
                 PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
@@ -1185,7 +1193,7 @@ namespace DialogueSystems
 
             if (DialogueIDSequencer[BrendanInternalIterator] == "B14_S1")
             {
-                CoreEventSystemObject.SceneObject.BrendanChecksBottle.Invoke();
+                GetCoreEventSystemObject().SceneObject.BrendanChecksBottle.Invoke();
 
                 //BrendanObject checks cot
                 yield return new WaitForSeconds(1);
@@ -1201,7 +1209,7 @@ namespace DialogueSystems
 
             if (DialogueIDSequencer[BrendanInternalIterator] == "B15_S1")
             {
-                CoreEventSystemObject.SceneObject.BrendanPicksBottle.Invoke();
+                GetCoreEventSystemObject().SceneObject.BrendanPicksBottle.Invoke();
 
                 //BrendanObject checks cot
                 yield return new WaitForSeconds(1);
@@ -1217,7 +1225,7 @@ namespace DialogueSystems
 
             if (DialogueIDSequencer[BrendanInternalIterator] == "B16_S1")
             {
-                CoreEventSystemObject.SceneObject.PointsToBrokenGlass.Invoke();
+                GetCoreEventSystemObject().SceneObject.PointsToBrokenGlass.Invoke();
 
                 //BrendanObject checks cot
                 yield return new WaitForSeconds(1);
@@ -1485,9 +1493,9 @@ namespace DialogueSystems
 
             if (DialogueIDSequencer[BrendanInternalIterator] == "B29_S2")
             {
-                CoreEventSystemObject.SceneObject.BrendanLeavesHouse.Invoke();
+                GetCoreEventSystemObject().SceneObject.BrendanLeavesHouse.Invoke();
 
-                yield return new WaitUntil(() => CoreEventSystemObject.ColliderObject.BrendanFrontDoor());
+                yield return new WaitUntil(() => GetCoreEventSystemObject().ColliderObject.BrendanFrontDoor());
 
                 PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
                 DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
@@ -1975,7 +1983,6 @@ namespace DialogueSystems
         // Update is called once per frame
         void Update()
         {
-
             //InputController();
 
             if (from == there)
@@ -1983,13 +1990,9 @@ namespace DialogueSystems
                 Debug.Log("Success");
             }
 
-
-
             //Will fix later
             GameObject Brendan = gameObject;
             BrendanCamera.WorldToScreenPoint(Brendan.transform.position);
-
-
 
         }
 

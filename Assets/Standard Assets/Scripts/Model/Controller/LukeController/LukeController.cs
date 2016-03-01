@@ -18,15 +18,15 @@ namespace DialogueSystems
         public List<string> LukeScript = new List<string>(50);
         public AudioClip[] LukeAudio = new AudioClip[18];
         public AudioSource LukeSource;
-        int LukeDialogueIterator = 0;
+        static int LukeDialogueIterator = 0;
         string[] DialogueIDSequencer = new string[108];
 
         void Awake()
         {
             PopulateScript();
 
-            LukeDialogueIterator = CoreDialogueObject.MaritimeDialogueIterator;
-            DialogueIDSequencer = CoreDialogueObject.DialogueIDSequencer;
+            LukeDialogueIterator = GetCoreDialogueSystemObject().MaritimeDialogueIterator;
+            DialogueIDSequencer = GetCoreDialogueSystemObject().DialogueIDSequencer;
         }
 
         // Use this for initialization
@@ -96,7 +96,7 @@ namespace DialogueSystems
                 DisplayScript(ScriptID: DialogueIDSequencer[LukeDialogueIterator]);
 
                 yield return new WaitUntil(() => LukeSource.isPlaying == false);
-                yield return new WaitUntil(() => CoreEventSystemObject.AnimationObject.LukePointsFinger());
+                yield return new WaitUntil(() => GetCoreEventSystemObject().AnimationObject.LukePointsFinger());
 
                 LukeDialogueIterator++;
 
@@ -396,13 +396,6 @@ namespace DialogueSystems
                 LukeSource.PlayDelayed(1);
             }
 
-
-
-
-
-
-
-
         }
 
         public void DisplayScript(string ScriptID)
@@ -546,7 +539,7 @@ namespace DialogueSystems
             throw new NotImplementedException();
         }
 
-        public void ReceiveResponse(ICommunciation CharacterType)
+        new public void ReceiveResponse(ICommunciation CharacterType)
         {
             throw new NotImplementedException();
         }
@@ -555,6 +548,12 @@ namespace DialogueSystems
         {
             throw new NotImplementedException();
         }
+
+        public static int GetInternalIterator()
+        {
+            return LukeDialogueIterator;
+        }
+
     }
 
 }
