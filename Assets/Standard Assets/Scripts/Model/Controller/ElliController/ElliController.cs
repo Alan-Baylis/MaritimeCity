@@ -15,24 +15,45 @@ namespace DialogueSystems
     {
 
         private int ElliScriptLogger = 0;
-        private static int ElliInternalDialogueIterator = 0;
-        private List<string> ElliScript = new List<string>(capacity: 60);
+        [SerializeField] private List<string> ElliScript = new List<string>(capacity: 60);
         private string ElliStringFileName;
         private int InternalDisplayIterator = 0;
         private Text ElliDialogueText;
+        [SerializeField] private string[] DialogueIDSequencer = new string [108];
+
+
+        [SerializeField]
+        public static ScriptState ScriptStateID;
 
         //Serialized Fields
 
         [SerializeField]
         private AudioSource ElliSource = new AudioSource();
         [SerializeField]
-        private AudioClip[] ElliAudio = new AudioClip[10];
+        private AudioClip[] ElliAudio = new AudioClip[38];
 
+        public static ElliController ElliInstance;
 
         void Awake()
         {
             ElliSource = GetComponent<AudioSource>();
+            DialogueIDSequencer = CoreDialogueSystems.DialogueIDSequencer;
 
+        }
+
+        public bool ElliFinishedTalking()
+        {
+            if (ElliSource.isPlaying == true)
+            {
+                return false;
+
+            } else if (ElliSource.isPlaying == false)
+            {
+
+                return true;
+            }
+
+            return false;
         }
 
         //Object types
@@ -58,7 +79,7 @@ namespace DialogueSystems
 
         public static int GetInternalIterator()
         {
-            return ElliInternalDialogueIterator;
+            return MaritimeInternalIterator;
         }
 
 
@@ -66,141 +87,141 @@ namespace DialogueSystems
         void Start()
         {
             PopulateScript();
+            CoreDialogueSystems.InitializeDialogueIterator(DialogueIDSequencer: DialogueIDSequencer);
+            ElliDialogueText = CoreDialogueSystems.DialogueText;
 
-            ElliObject = new ElliController();
-
-            ElliDialogueText = GetCoreDialogueSystemObject().DialogueText;
+            StartCoroutine(DialogueIterator());
 
         }
 
         public IEnumerator DialogueIterator()
         {
+            State = CoreDialogueSystems.ConversationState.Active;
 
-            if (GetCoreDialogueSystemObject().ConversationStateID == CoreDialogueSystems.ConversationState.Active)
+            if (State == CoreDialogueSystems.ConversationState.Active)
             {
-
-                if (GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator] == "E1_S1")
+                if (DialogueIDSequencer[ElliIterator] == "E1_S1")
                 {
-                    yield return new WaitUntil(() => GetCoreDialogueSystemObject().bWaitUntilPreviousDialogueFinished == true);
+                    //yield return new WaitUntil(() => ScriptStateID == ScriptState.Elli);
 
-                    PlayAudio(AudioID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
-                    DisplayScript(ScriptID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
+                    PlayAudio(AudioID: DialogueIDSequencer[ElliIterator]);
+                    DisplayScript(ScriptID: DialogueIDSequencer[ElliIterator]);
 
                     //Invoke relevant Event here!
 
                     yield return new WaitUntil(() => ElliSource.isPlaying == false);
 
-                    ElliInternalDialogueIterator++;
+                    ElliIterator++;
 
                 }
 
 
-                if (GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator] == "E1_S2")
-                {
-                    yield return new WaitForSeconds(1);
-
-                    PlayAudio(AudioID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
-                    DisplayScript(ScriptID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
-
-                    //Invoke relevant Event here!
-
-                    yield return new WaitUntil(() => ElliSource.isPlaying == false);
-
-                    ElliInternalDialogueIterator++;
-
-                }
-
-                if (GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator] == "E1_S2")
+                if (DialogueIDSequencer[MaritimeInternalIterator] == "E1_S2")
                 {
                     yield return new WaitForSeconds(1);
 
-                    PlayAudio(AudioID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
-                    DisplayScript(ScriptID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
+                    PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
+                    DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
 
                     //Invoke relevant Event here!
 
                     yield return new WaitUntil(() => ElliSource.isPlaying == false);
 
-                    ElliInternalDialogueIterator++;
+                    MaritimeInternalIterator++;
 
                 }
 
-                if (GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator] == "E1_S3")
+                if (DialogueIDSequencer[MaritimeInternalIterator] == "E1_S2")
                 {
                     yield return new WaitForSeconds(1);
 
-                    PlayAudio(AudioID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
-                    DisplayScript(ScriptID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
+                    PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
+                    DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
 
                     //Invoke relevant Event here!
 
                     yield return new WaitUntil(() => ElliSource.isPlaying == false);
 
-                    ElliInternalDialogueIterator++;
+                    MaritimeInternalIterator++;
 
                 }
 
-                if (GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator] == "E1_S4")
+                if (DialogueIDSequencer[MaritimeInternalIterator] == "E1_S3")
                 {
                     yield return new WaitForSeconds(1);
 
-                    PlayAudio(AudioID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
-                    DisplayScript(ScriptID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
+                    PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
+                    DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
 
                     //Invoke relevant Event here!
 
                     yield return new WaitUntil(() => ElliSource.isPlaying == false);
 
-                    ElliInternalDialogueIterator++;
+                    MaritimeInternalIterator++;
 
                 }
 
-
-
-                if (GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator] == "E1_S5")
+                if (DialogueIDSequencer[MaritimeInternalIterator] == "E1_S4")
                 {
                     yield return new WaitForSeconds(1);
 
-                    PlayAudio(AudioID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
-                    DisplayScript(ScriptID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
+                    PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
+                    DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
 
                     //Invoke relevant Event here!
 
                     yield return new WaitUntil(() => ElliSource.isPlaying == false);
 
-                    ElliInternalDialogueIterator++;
+                    MaritimeInternalIterator++;
 
                 }
 
 
-                if (GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator] == "E2_S1")
+
+                if (DialogueIDSequencer[MaritimeInternalIterator] == "E1_S5")
                 {
                     yield return new WaitForSeconds(1);
 
-                    PlayAudio(AudioID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
-                    DisplayScript(ScriptID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
+                    PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
+                    DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
 
                     //Invoke relevant Event here!
 
                     yield return new WaitUntil(() => ElliSource.isPlaying == false);
 
-                    ElliInternalDialogueIterator++;
+                    MaritimeInternalIterator++;
 
                 }
 
 
-                if (GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator] == "E2_S2")
+                if (DialogueIDSequencer[MaritimeInternalIterator] == "E2_S1")
                 {
                     yield return new WaitForSeconds(1);
 
-                    PlayAudio(AudioID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
-                    DisplayScript(ScriptID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
+                    PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
+                    DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
 
                     //Invoke relevant Event here!
 
                     yield return new WaitUntil(() => ElliSource.isPlaying == false);
 
-                    ElliInternalDialogueIterator++;
+                    MaritimeInternalIterator++;
+
+                }
+
+
+                if (DialogueIDSequencer[MaritimeInternalIterator] == "E2_S2")
+                {
+                    yield return new WaitForSeconds(1);
+
+                    PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
+                    DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
+
+                    //Invoke relevant Event here!
+
+                    yield return new WaitUntil(() => ElliSource.isPlaying == false);
+
+                    MaritimeInternalIterator++;
 
                 }
 
@@ -208,477 +229,471 @@ namespace DialogueSystems
 
 
 
-                if (GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator] == "E3_S1")
+                if (DialogueIDSequencer[MaritimeInternalIterator] == "E3_S1")
                 {
                     yield return new WaitForSeconds(1);
 
                    
 
-                    PlayAudio(AudioID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
-                    DisplayScript(ScriptID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
+                    PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
+                    DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
 
                     //Invoke relevant Event here!
 
                     yield return new WaitUntil(() => ElliSource.isPlaying == false);
 
-                    ElliInternalDialogueIterator++;
+                    MaritimeInternalIterator++;
 
                 }
 
 
-                if (GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator] == "E3_S2")
+                if (DialogueIDSequencer[MaritimeInternalIterator] == "E3_S2")
                 {
                     yield return new WaitForSeconds(1);
 
-                    PlayAudio(AudioID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
-                    DisplayScript(ScriptID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
+                    PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
+                    DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
 
                     //Invoke relevant Event here!
 
                     yield return new WaitUntil(() => ElliSource.isPlaying == false);
 
-                    ElliInternalDialogueIterator++;
+                    MaritimeInternalIterator++;
 
                 }
 
 
-                if (GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator] == "E3_S3")
+                if (DialogueIDSequencer[MaritimeInternalIterator] == "E3_S3")
                 {
                     yield return new WaitForSeconds(1);
 
-                    PlayAudio(AudioID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
-                    DisplayScript(ScriptID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
+                    PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
+                    DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
 
                     //Invoke relevant Event here!
 
                     yield return new WaitUntil(() => ElliSource.isPlaying == false);
 
-                    ElliInternalDialogueIterator++;
+                    MaritimeInternalIterator++;
 
                 }
 
 
-                if (GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator] == "E4_S1")
+                if (DialogueIDSequencer[MaritimeInternalIterator] == "E4_S1")
                 {
                     yield return new WaitForSeconds(1);
 
-                    PlayAudio(AudioID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
-                    DisplayScript(ScriptID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
+                    PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
+                    DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
 
                     //Invoke relevant Event here!
 
                     yield return new WaitUntil(() => ElliSource.isPlaying == false);
 
-                    ElliInternalDialogueIterator++;
+                    MaritimeInternalIterator++;
 
                 }
 
 
 
-                if (GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator] == "E5_S1")
+                if (DialogueIDSequencer[MaritimeInternalIterator] == "E5_S1")
                 {
                   
                     GetCoreEventSystemObject().SceneObject.ComeDownstairs.Invoke();
                     yield return new WaitUntil(() => GetCoreEventSystemObject().ColliderObject.ElliComesBackDownStairs());
 
-                    PlayAudio(AudioID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
-                    DisplayScript(ScriptID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
+                    PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
+                    DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
 
                     //Invoke relevant Event here!
 
                     yield return new WaitUntil(() => ElliSource.isPlaying == false);
 
-                    ElliInternalDialogueIterator++;
+                    MaritimeInternalIterator++;
 
                 }
 
 
-                if (GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator] == "E6_S1")
+                if (DialogueIDSequencer[MaritimeInternalIterator] == "E6_S1")
                 {
 
                     yield return new WaitForSeconds(1);
 
-                    PlayAudio(AudioID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
-                    DisplayScript(ScriptID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
+                    PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
+                    DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
 
                     //Invoke relevant Event here!
 
                     yield return new WaitUntil(() => ElliSource.isPlaying == false);
 
-                    ElliInternalDialogueIterator++;
+                    MaritimeInternalIterator++;
 
                 }
 
 
 
 
-                if (GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator] == "E7_S1")
+                if (DialogueIDSequencer[MaritimeInternalIterator] == "E7_S1")
                 {
                     yield return new WaitForSeconds(1);
 
-                    PlayAudio(AudioID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
-                    DisplayScript(ScriptID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
+                    PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
+                    DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
 
                     //Nods head
 
                     yield return new WaitUntil(() => ElliSource.isPlaying == false);
 
-                    ElliInternalDialogueIterator++;
+                    MaritimeInternalIterator++;
                 }
 
 
 
 
-                if (GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator] == "E8_S1")
+                if (DialogueIDSequencer[MaritimeInternalIterator] == "E8_S1")
                 {
                     yield return new WaitForSeconds(1);
 
-                    PlayAudio(AudioID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
-                    DisplayScript(ScriptID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
+                    PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
+                    DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
 
                     //Nods head
 
                     yield return new WaitUntil(() => ElliSource.isPlaying == false);
 
-                    ElliInternalDialogueIterator++;
+                    MaritimeInternalIterator++;
                 }
 
 
 
 
 
-                if (GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator] == "E9_S1")
+                if (DialogueIDSequencer[MaritimeInternalIterator] == "E9_S1")
                 {
                     yield return new WaitForSeconds(1);
 
-                    PlayAudio(AudioID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
-                    DisplayScript(ScriptID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
+                    PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
+                    DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
 
                     //Nods head
 
                     yield return new WaitUntil(() => ElliSource.isPlaying == false);
 
-                    ElliInternalDialogueIterator++;
+                    MaritimeInternalIterator++;
                 }
 
 
 
 
-                if (GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator] == "E10_S1")
+                if (DialogueIDSequencer[MaritimeInternalIterator] == "E10_S1")
                 {
                     yield return new WaitForSeconds(1);
 
-                    PlayAudio(AudioID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
-                    DisplayScript(ScriptID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
+                    PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
+                    DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
 
 
 
                     yield return new WaitUntil(() => ElliSource.isPlaying == false);
 
-                    ElliInternalDialogueIterator++;
+                    MaritimeInternalIterator++;
                 }
 
-                if (GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator] == "E10_S2")
+                if (DialogueIDSequencer[MaritimeInternalIterator] == "E10_S2")
                 {
                     yield return new WaitForSeconds(1);
 
-                    PlayAudio(AudioID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
-                    DisplayScript(ScriptID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
+                    PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
+                    DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
 
 
 
                     yield return new WaitUntil(() => ElliSource.isPlaying == false);
 
-                    ElliInternalDialogueIterator++;
+                    MaritimeInternalIterator++;
                 }
 
-                if (GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator] == "E10_S3")
+                if (DialogueIDSequencer[MaritimeInternalIterator] == "E10_S3")
                 {
                     yield return new WaitForSeconds(1);
 
-                    PlayAudio(AudioID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
-                    DisplayScript(ScriptID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
+                    PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
+                    DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
 
 
                     yield return new WaitUntil(() => ElliSource.isPlaying == false);
 
-                    ElliInternalDialogueIterator++;
+                    MaritimeInternalIterator++;
                 }
 
 
 
-                if (GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator] == "E11_S1")
+                if (DialogueIDSequencer[MaritimeInternalIterator] == "E11_S1")
                 {
                     GetCoreEventSystemObject().SceneObject.ElliLukeCheckCot.Invoke();
 
                     yield return new WaitForSeconds(1);
 
-                    PlayAudio(AudioID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
-                    DisplayScript(ScriptID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
+                    PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
+                    DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
 
 
                     yield return new WaitUntil(() => ElliSource.isPlaying == false);
 
-                    ElliInternalDialogueIterator++;
+                    MaritimeInternalIterator++;
                 }
 
-                if (GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator] == "E11_S2")
+                if (DialogueIDSequencer[MaritimeInternalIterator] == "E11_S2")
                 {
                     GetCoreEventSystemObject().SceneObject.ElliLukeCheckCot.Invoke();
 
                     yield return new WaitForSeconds(1);
 
-                    PlayAudio(AudioID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
-                    DisplayScript(ScriptID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
+                    PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
+                    DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
 
 
                     yield return new WaitUntil(() => ElliSource.isPlaying == false);
 
-                    ElliInternalDialogueIterator++;
+                    MaritimeInternalIterator++;
                 }
 
 
 
-                if (GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator] == "E12_S1")
+                if (DialogueIDSequencer[MaritimeInternalIterator] == "E12_S1")
                 {
 
                     yield return new WaitForSeconds(1);
 
-                    PlayAudio(AudioID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
-                    DisplayScript(ScriptID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
+                    PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
+                    DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
 
 
                     yield return new WaitUntil(() => ElliSource.isPlaying == false);
 
-                    ElliInternalDialogueIterator++;
+                    MaritimeInternalIterator++;
                 }
 
-                if (GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator] == "E13_S1")
+                if (DialogueIDSequencer[MaritimeInternalIterator] == "E13_S1")
                 {
 
                     yield return new WaitForSeconds(1);
 
-                    PlayAudio(AudioID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
-                    DisplayScript(ScriptID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
+                    PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
+                    DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
 
 
                     yield return new WaitUntil(() => ElliSource.isPlaying == false);
 
-                    ElliInternalDialogueIterator++;
+                    MaritimeInternalIterator++;
                 }
 
-                if (GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator] == "E14_S1")
+                if (DialogueIDSequencer[MaritimeInternalIterator] == "E14_S1")
                 {
 
                     yield return new WaitForSeconds(1);
 
-                    PlayAudio(AudioID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
-                    DisplayScript(ScriptID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
+                    PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
+                    DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
 
 
                     yield return new WaitUntil(() => ElliSource.isPlaying == false);
 
-                    ElliInternalDialogueIterator++;
-                }
-
-
-
-                if (GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator] == "E14_S2")
-                {
-
-                    yield return new WaitForSeconds(1);
-
-                    PlayAudio(AudioID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
-                    DisplayScript(ScriptID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
-
-
-                    yield return new WaitUntil(() => ElliSource.isPlaying == false);
-
-                    ElliInternalDialogueIterator++;
-                }
-
-
-                if (GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator] == "E15_S1")
-                {
-
-                    yield return new WaitForSeconds(1);
-
-                    PlayAudio(AudioID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
-                    DisplayScript(ScriptID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
-
-
-                    yield return new WaitUntil(() => ElliSource.isPlaying == false);
-
-                    ElliInternalDialogueIterator++;
+                    MaritimeInternalIterator++;
                 }
 
 
 
-                if (GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator] == "E15_S2")
+                if (DialogueIDSequencer[MaritimeInternalIterator] == "E14_S2")
                 {
 
                     yield return new WaitForSeconds(1);
 
-                    PlayAudio(AudioID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
-                    DisplayScript(ScriptID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
+                    PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
+                    DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
 
 
                     yield return new WaitUntil(() => ElliSource.isPlaying == false);
 
-                    ElliInternalDialogueIterator++;
+                    MaritimeInternalIterator++;
                 }
 
 
-                if (GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator] == "E15_S3")
+                if (DialogueIDSequencer[MaritimeInternalIterator] == "E15_S1")
                 {
 
                     yield return new WaitForSeconds(1);
 
-                    PlayAudio(AudioID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
-                    DisplayScript(ScriptID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
+                    PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
+                    DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
 
 
                     yield return new WaitUntil(() => ElliSource.isPlaying == false);
 
-                    ElliInternalDialogueIterator++;
-                }
-
-
-
-
-                if (GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator] == "E16_S1")
-                {
-
-                    yield return new WaitForSeconds(1);
-
-                    PlayAudio(AudioID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
-                    DisplayScript(ScriptID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
-
-
-                    yield return new WaitUntil(() => ElliSource.isPlaying == false);
-
-                    ElliInternalDialogueIterator++;
-                }
-
-
-                if (GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator] == "E17_S1")
-                {
-
-                    yield return new WaitForSeconds(1);
-
-                    PlayAudio(AudioID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
-                    DisplayScript(ScriptID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
-
-
-                    yield return new WaitUntil(() => ElliSource.isPlaying == false);
-
-                    ElliInternalDialogueIterator++;
+                    MaritimeInternalIterator++;
                 }
 
 
 
-
-
-                if (GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator] == "E18_S1")
+                if (DialogueIDSequencer[MaritimeInternalIterator] == "E15_S2")
                 {
 
                     yield return new WaitForSeconds(1);
 
-                    PlayAudio(AudioID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
-                    DisplayScript(ScriptID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
+                    PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
+                    DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
 
 
                     yield return new WaitUntil(() => ElliSource.isPlaying == false);
 
-                    ElliInternalDialogueIterator++;
-                }
-
-                if (GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator] == "E18_S2")
-                {
-
-                    yield return new WaitForSeconds(1);
-
-                    PlayAudio(AudioID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
-                    DisplayScript(ScriptID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
-
-
-                    yield return new WaitUntil(() => ElliSource.isPlaying == false);
-
-                    ElliInternalDialogueIterator++;
+                    MaritimeInternalIterator++;
                 }
 
 
-
-                if (GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator] == "E19_S1")
+                if (DialogueIDSequencer[MaritimeInternalIterator] == "E15_S3")
                 {
 
                     yield return new WaitForSeconds(1);
 
-                    PlayAudio(AudioID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
-                    DisplayScript(ScriptID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
+                    PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
+                    DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
 
 
                     yield return new WaitUntil(() => ElliSource.isPlaying == false);
 
-                    ElliInternalDialogueIterator++;
+                    MaritimeInternalIterator++;
                 }
 
-                if (GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator] == "E19_S2")
+                if (DialogueIDSequencer[MaritimeInternalIterator] == "E16_S1")
                 {
 
                     yield return new WaitForSeconds(1);
 
-                    PlayAudio(AudioID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
-                    DisplayScript(ScriptID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
+                    PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
+                    DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
 
 
                     yield return new WaitUntil(() => ElliSource.isPlaying == false);
 
-                    ElliInternalDialogueIterator++;
-                }
-
-                if (GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator] == "E19_S3")
-                {
-
-                    yield return new WaitForSeconds(1);
-
-                    PlayAudio(AudioID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
-                    DisplayScript(ScriptID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
-
-                    yield return new WaitUntil(() => ElliSource.isPlaying == false);
-
-                    ElliInternalDialogueIterator++;
+                    MaritimeInternalIterator++;
                 }
 
 
-                if (GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator] == "E20_S1")
+                if (DialogueIDSequencer[MaritimeInternalIterator] == "E17_S1")
                 {
 
                     yield return new WaitForSeconds(1);
 
-                    PlayAudio(AudioID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
-                    DisplayScript(ScriptID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
+                    PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
+                    DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
 
 
                     yield return new WaitUntil(() => ElliSource.isPlaying == false);
 
-                    ElliInternalDialogueIterator++;
+                    MaritimeInternalIterator++;
+                }
+
+
+                if (DialogueIDSequencer[MaritimeInternalIterator] == "E18_S1")
+                {
+
+                    yield return new WaitForSeconds(1);
+
+                    PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
+                    DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
+
+
+                    yield return new WaitUntil(() => ElliSource.isPlaying == false);
+
+                    MaritimeInternalIterator++;
+                }
+
+                if (DialogueIDSequencer[MaritimeInternalIterator] == "E18_S2")
+                {
+
+                    yield return new WaitForSeconds(1);
+
+                    PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
+                    DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
+
+
+                    yield return new WaitUntil(() => ElliSource.isPlaying == false);
+
+                    MaritimeInternalIterator++;
                 }
 
 
 
-                if (GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator] == "E21_S1")
+                if (DialogueIDSequencer[MaritimeInternalIterator] == "E19_S1")
                 {
 
                     yield return new WaitForSeconds(1);
 
-                    PlayAudio(AudioID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
-                    DisplayScript(ScriptID: GetCoreDialogueSystemObject().DialogueIDSequencer[ElliInternalDialogueIterator]);
+                    PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
+                    DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
 
 
                     yield return new WaitUntil(() => ElliSource.isPlaying == false);
 
-                    ElliInternalDialogueIterator++;
+                    MaritimeInternalIterator++;
+                }
+
+                if (DialogueIDSequencer[MaritimeInternalIterator] == "E19_S2")
+                {
+
+                    yield return new WaitForSeconds(1);
+
+                    PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
+                    DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
+
+
+                    yield return new WaitUntil(() => ElliSource.isPlaying == false);
+
+                    MaritimeInternalIterator++;
+                }
+
+                if (DialogueIDSequencer[MaritimeInternalIterator] == "E19_S3")
+                {
+
+                    yield return new WaitForSeconds(1);
+
+                    PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
+                    DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
+
+                    yield return new WaitUntil(() => ElliSource.isPlaying == false);
+
+                    MaritimeInternalIterator++;
+                }
+
+
+                if (DialogueIDSequencer[MaritimeInternalIterator] == "E20_S1")
+                {
+
+                    yield return new WaitForSeconds(1);
+
+                    PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
+                    DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
+
+
+                    yield return new WaitUntil(() => ElliSource.isPlaying == false);
+
+                    MaritimeInternalIterator++;
+                }
+
+
+
+                if (DialogueIDSequencer[MaritimeInternalIterator] == "E21_S1")
+                {
+
+                    yield return new WaitForSeconds(1);
+
+                    PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
+                    DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
+
+
+                    yield return new WaitUntil(() => ElliSource.isPlaying == false);
+
+                    MaritimeInternalIterator++;
                 }
 
             }
@@ -1496,13 +1511,20 @@ namespace DialogueSystems
 
         }
 
+        int ElliIterator = 0;
 
         // Update is called once per frame
         void Update()
         {
+      
 
-            ElliInternalDialogueIterator = GetCoreDialogueSystemObject().MaritimeDialogueIterator;
+            Debug.Log("This is the current state of Maritime Internal Iterator for Elli " + ElliIterator);
+            Debug.Log("Query dialog state for Elli " + ScriptStateID);
+            Debug.Log("Query conversation state for Elli " + State);
 
+            ElliIterator = BrendanPOVController.BrendanIterator;
+            BrendanPOVController.BrendanIterator = ElliIterator;
+        
         }
 
 

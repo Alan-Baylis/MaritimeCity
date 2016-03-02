@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 using UnityEngine.Events;
 using System.Collections.Generic;
 using CoreSystems;
@@ -13,13 +12,12 @@ namespace DialogueSystems
     public class BrendanPOVController : Core, ICommunciation
     {
 
-     
         //Core types
         int InternalIterator = 0;
         public Camera BrendanCamera;
         static int ScriptLogger = 0;
-        static int BrendanInternalIterator = 0;
-        string[] DialogueIDSequencer = new string[108];
+        public static int BrendanIterator = 0;
+        [SerializeField] string[] DialogueIDSequencer = new string[108];
         string FileName;
         public float speed;
 
@@ -40,37 +38,44 @@ namespace DialogueSystems
         private MaritimeListSystem<int> MLS_Iterator_List = new MaritimeListSystem<int>();
         private MaritimeListSystem<bool> MLS_Conditions_List = new MaritimeListSystem<bool>();
 
+        [SerializeField]
+        public static ScriptState ScriptStateID;
+
+        //Singleton Object
+        public static BrendanPOVController Brendan;
+
+
 
         public static int GetInternalIterator()
         {
-            return BrendanInternalIterator;
+            return BrendanIterator;
         }
 
 
-        public async void PlayAudio(string AudioID)
+        public void PlayAudio(string AudioID)
         {
             if (AudioID == "B1_S1")
             {
                 BrendanSource.clip = BrendanAudio[0];
-                BrendanSource.PlayDelayed(1);
+                BrendanSource.PlayDelayed(0.5f);
             }
 
             if (AudioID == "B1_S2")
             {
                 BrendanSource.clip = BrendanAudio[1];
-                BrendanSource.PlayDelayed(1);
+                BrendanSource.PlayDelayed(0.5f);
             }
 
             if (AudioID == "B1_S3")
             {
                 BrendanSource.clip = BrendanAudio[2];
-                BrendanSource.PlayDelayed(1);
+                BrendanSource.PlayDelayed(0.5f);
             }
 
             if (AudioID == "B1_S4")
             {
                 BrendanSource.clip = BrendanAudio[3];
-                BrendanSource.PlayDelayed(1);
+                BrendanSource.PlayDelayed(0.5f);
             }
 
             if (AudioID == "B2_S1")
@@ -408,11 +413,8 @@ namespace DialogueSystems
 
         }
 
-     
-
-
-
-        public async void DisplayScript(string ScriptID)
+    
+        public void DisplayScript(string ScriptID)
         {
             if (ScriptID == "B1_S1")
             {
@@ -731,18 +733,19 @@ namespace DialogueSystems
         // Use this for initialization
         void Start()
         {
+            string UITag = "UI";
 
             BrendanCollider = GetComponent<CapsuleCollider>();
             BrendanSource = GetComponent<AudioSource>();
-            LinkDialogueText = GetComponent<Text>();
 
-            MLS_Dialogue_List.Find(DialogueIDSequencer[2]);
-
+            StartCoroutine(BrendanDialogueIterator());
+              
+       
         }
 
         void InitializeCoreDialogueIDSequencer()
         {
-            DialogueIDSequencer = GetCoreDialogueSystemObject().DialogueIDSequencer;
+            DialogueIDSequencer = CoreDialogueSystems.DialogueIDSequencer;
         }
 
         void DefineColliderParameters()
@@ -765,7 +768,7 @@ namespace DialogueSystems
         public IEnumerator ScriptIDDefinition(CoreDialogueSystems.ScriptID ScriptIdentification, string DefineScript)
         {
 
-            int BrendanInternalIterator = 0;
+            int MaritimeDialogueIterator = 0;
 
             //Use logger to check conditions, use iterators for dynamic functions
 
@@ -777,7 +780,7 @@ namespace DialogueSystems
             {
                 BrendanScript.Add(DefineScript);
 
-                BrendanInternalIterator++;
+                MaritimeDialogueIterator++;
 
                 yield return new WaitForSeconds(0.1f);
 
@@ -785,396 +788,401 @@ namespace DialogueSystems
 
         }
 
+        
+
         public IEnumerator BrendanDialogueIterator()
         {
-            CoroutineID Response = CoroutineID.Brendan;
+            if(State == CoreDialogueSystems.ConversationState.Active)
 
-
-            if (DialogueIDSequencer[BrendanInternalIterator] == "B1_S1")
+            if (DialogueIDSequencer[BrendanIterator] == "B1_S1")
             {
                 //Invokes Doorbell Function
                 //CoreEventSystemNestedType.SceneObject.Doorbell.Invoke();
                 //CoreEventSystemNestedType.SceneObject.OpenDoor.Invoke();
 
-                PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[BrendanIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[BrendanIterator]);
 
                 //Invoke relevant Event here!
 
                 yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
-                BrendanInternalIterator++;
+                BrendanIterator++;
+
+                    Debug.Log(BrendanIterator);
 
             }
 
 
 
-            if (DialogueIDSequencer[BrendanInternalIterator] == "B1_S2")
+            if (DialogueIDSequencer[BrendanIterator] == "B1_S2")
             {
-                PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[BrendanIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[BrendanIterator]);
 
                 //Invoke relevant Event here!
 
                 yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
-                BrendanInternalIterator++;
+                BrendanIterator++;
 
             }
 
 
-            if (DialogueIDSequencer[BrendanInternalIterator] == "B1_S3")
+            if (DialogueIDSequencer[BrendanIterator] == "B1_S3")
             {
-                PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[BrendanIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[BrendanIterator]);
 
                 //Invoke relevant Event here!
 
                 yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
-                BrendanInternalIterator++;
+                BrendanIterator++;
 
             }
 
 
-            if (DialogueIDSequencer[BrendanInternalIterator] == "B1_S4")
+            if (DialogueIDSequencer[BrendanIterator] == "B1_S4")
             {
-                PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[BrendanIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[BrendanIterator]);
 
 
                 //Invoke relevant Event here!
 
                 yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
-                BrendanInternalIterator++;
+                BrendanIterator++;
+
+                ScriptStateID = ScriptState.Elli;
 
             }
 
           
 
-            if (DialogueIDSequencer[BrendanInternalIterator] == "B2_S1")
+            if (DialogueIDSequencer[BrendanIterator] == "B2_S1")
             {
-                yield return new ReceiveResponse(Response);
+                yield return new WaitUntil(() => ScriptStateID == ScriptState.Brendan); 
 
-                PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[BrendanIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[BrendanIterator]);
 
                 //Invoke relevant Event here!
 
                 yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
-                BrendanInternalIterator++;
+                BrendanIterator++;
 
             }
 
 
-            if (DialogueIDSequencer[BrendanInternalIterator] == "B2_S2")
-            {
-                yield return new WaitForSeconds(1);
-
-                PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
-
-                //Invoke relevant Event here!
-
-                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
-
-                BrendanInternalIterator++;
-
-            }
-
-
-            if (DialogueIDSequencer[BrendanInternalIterator] == "B2_S3")
+            if (DialogueIDSequencer[BrendanIterator] == "B2_S2")
             {
                 yield return new WaitForSeconds(1);
 
-                PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[BrendanIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[BrendanIterator]);
 
                 //Invoke relevant Event here!
 
                 yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
-                BrendanInternalIterator++;
+                BrendanIterator++;
 
             }
 
 
-            if (DialogueIDSequencer[BrendanInternalIterator] == "B3_S1")
+            if (DialogueIDSequencer[BrendanIterator] == "B2_S3")
             {
                 yield return new WaitForSeconds(1);
 
-                PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[BrendanIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[BrendanIterator]);
 
                 //Invoke relevant Event here!
 
                 yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
-                BrendanInternalIterator++;
+                BrendanIterator++;
 
             }
 
-            if (DialogueIDSequencer[BrendanInternalIterator] == "B3_S2")
+
+            if (DialogueIDSequencer[BrendanIterator] == "B3_S1")
             {
                 yield return new WaitForSeconds(1);
 
-                PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[BrendanIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[BrendanIterator]);
 
                 //Invoke relevant Event here!
 
                 yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
-                BrendanInternalIterator++;
+                BrendanIterator++;
 
             }
 
-            if (DialogueIDSequencer[BrendanInternalIterator] == "B3_S3")
+            if (DialogueIDSequencer[BrendanIterator] == "B3_S2")
             {
                 yield return new WaitForSeconds(1);
 
-                PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[BrendanIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[BrendanIterator]);
 
                 //Invoke relevant Event here!
 
                 yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
-                BrendanInternalIterator++;
+                BrendanIterator++;
 
             }
 
-
-
-            if (DialogueIDSequencer[BrendanInternalIterator] == "B4_S1")
+            if (DialogueIDSequencer[BrendanIterator] == "B3_S3")
             {
                 yield return new WaitForSeconds(1);
 
-                PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[BrendanIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[BrendanIterator]);
 
                 //Invoke relevant Event here!
 
                 yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
-                BrendanInternalIterator++;
+                BrendanIterator++;
 
             }
 
 
-            if (DialogueIDSequencer[BrendanInternalIterator] == "B4_S2")
+
+            if (DialogueIDSequencer[BrendanIterator] == "B4_S1")
             {
                 yield return new WaitForSeconds(1);
 
-                PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[BrendanIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[BrendanIterator]);
 
                 //Invoke relevant Event here!
 
                 yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
-                BrendanInternalIterator++;
+                BrendanIterator++;
+
+            }
+
+
+            if (DialogueIDSequencer[BrendanIterator] == "B4_S2")
+            {
+                yield return new WaitForSeconds(1);
+
+                PlayAudio(AudioID: DialogueIDSequencer[BrendanIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[BrendanIterator]);
+
+                //Invoke relevant Event here!
+
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
+
+                BrendanIterator++;
             }
 
 
 
-            if (DialogueIDSequencer[BrendanInternalIterator] == "B5_S1")
+            if (DialogueIDSequencer[BrendanIterator] == "B5_S1")
             {
                 //SceneObject.WalkDogUpstairs.Invoke();
                 yield return new WaitUntil(() => GetCoreEventSystemObject().ColliderObject.ElliFinishedTakingDogUpstairs());
 
-                PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[BrendanIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[BrendanIterator]);
 
                 //Invoke relevant Event here!
 
                 yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
-                BrendanInternalIterator++;
+                BrendanIterator++;
             }
 
 
 
-            if (DialogueIDSequencer[BrendanInternalIterator] == "B6_S1")
+            if (DialogueIDSequencer[BrendanIterator] == "B6_S1")
             {
                 GetCoreEventSystemObject().SceneObject.EnterLivingRoom.Invoke();
                 yield return new WaitUntil(() => GetCoreEventSystemObject().ColliderObject.ElliEntersLivingRoom());
                 yield return new WaitUntil(() => GetCoreEventSystemObject().ColliderObject.BrendanEntersLivingRoom());
 
-                PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[BrendanIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[BrendanIterator]);
 
                 //Invoke relevant Event here!
 
                 yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
-                BrendanInternalIterator++;
+                BrendanIterator++;
             }
 
-            if (DialogueIDSequencer[BrendanInternalIterator] == "B6_S2")
+            if (DialogueIDSequencer[BrendanIterator] == "B6_S2")
             {
                 yield return new WaitForSeconds(1);
 
-                PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[BrendanIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[BrendanIterator]);
 
                 yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
-                BrendanInternalIterator++;
+                BrendanIterator++;
 
             }
 
 
-            if (DialogueIDSequencer[BrendanInternalIterator] == "B6_S3")
+            if (DialogueIDSequencer[BrendanIterator] == "B6_S3")
             {
                 yield return new WaitForSeconds(1);
 
-                PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[BrendanIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[BrendanIterator]);
 
                 yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
-                BrendanInternalIterator++;
+                BrendanIterator++;
 
             }
 
 
-            if (DialogueIDSequencer[BrendanInternalIterator] == "B6_S4")
+            if (DialogueIDSequencer[BrendanIterator] == "B6_S4")
             {
                 yield return new WaitForSeconds(1);
 
-                PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[BrendanIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[BrendanIterator]);
 
                 yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
-                BrendanInternalIterator++;
+                BrendanIterator++;
 
             }
 
-            if (DialogueIDSequencer[BrendanInternalIterator] == "B7_S1")
+            if (DialogueIDSequencer[BrendanIterator] == "B7_S1")
             {
                 yield return new WaitForSeconds(1);
 
-                PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[BrendanIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[BrendanIterator]);
 
                 yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
-                BrendanInternalIterator++;
+                BrendanIterator++;
 
             }
 
-            if (DialogueIDSequencer[BrendanInternalIterator] == "B7_S2")
+            if (DialogueIDSequencer[BrendanIterator] == "B7_S2")
             {
                 yield return new WaitForSeconds(1);
 
-                PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[BrendanIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[BrendanIterator]);
 
                 yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
-                BrendanInternalIterator++;
+                BrendanIterator++;
 
             }
 
-            if (DialogueIDSequencer[BrendanInternalIterator] == "B8_S1")
+            if (DialogueIDSequencer[BrendanIterator] == "B8_S1")
             {
                 yield return new WaitForSeconds(1);
 
-                PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[BrendanIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[BrendanIterator]);
 
                 yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
-                BrendanInternalIterator++;
+                BrendanIterator++;
 
             }
 
-            if (DialogueIDSequencer[BrendanInternalIterator] == "B9_S1")
+            if (DialogueIDSequencer[BrendanIterator] == "B9_S1")
             {
                 yield return new WaitForSeconds(1);
 
-                PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[BrendanIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[BrendanIterator]);
 
                 yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
-                BrendanInternalIterator++;
+                BrendanIterator++;
 
             }
 
 
 
-            if (DialogueIDSequencer[BrendanInternalIterator] == "B10_S1")
+            if (DialogueIDSequencer[BrendanIterator] == "B10_S1")
             {
                 yield return new WaitForSeconds(1);
 
-                PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[BrendanIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[BrendanIterator]);
 
                 yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
-                BrendanInternalIterator++;
+                BrendanIterator++;
 
             }
 
-            if (DialogueIDSequencer[BrendanInternalIterator] == "B10_S2")
+            if (DialogueIDSequencer[BrendanIterator] == "B10_S2")
             {
                 yield return new WaitForSeconds(1);
 
-                PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[BrendanIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[BrendanIterator]);
 
                 yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
-                BrendanInternalIterator++;
+                BrendanIterator++;
 
             }
 
-            if (DialogueIDSequencer[BrendanInternalIterator] == "B10_S3")
+            if (DialogueIDSequencer[BrendanIterator] == "B10_S3")
             {
                 yield return new WaitForSeconds(1);
 
-                PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[BrendanIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[BrendanIterator]);
 
                 yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
-                BrendanInternalIterator++;
+                BrendanIterator++;
 
             }
 
-            if (DialogueIDSequencer[BrendanInternalIterator] == "B11_S1")
+            if (DialogueIDSequencer[BrendanIterator] == "B11_S1")
             {
                 yield return new WaitForSeconds(1);
 
-                PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[BrendanIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[BrendanIterator]);
 
                 yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
-                BrendanInternalIterator++;
+                BrendanIterator++;
 
             }
 
-            if (DialogueIDSequencer[BrendanInternalIterator] == "B12_S1")
+            if (DialogueIDSequencer[BrendanIterator] == "B12_S1")
             {
                 yield return new WaitForSeconds(1);
 
-                PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[BrendanIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[BrendanIterator]);
 
                 yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
-                BrendanInternalIterator++;
+                BrendanIterator++;
             }
 
 
 
-            if (DialogueIDSequencer[BrendanInternalIterator] == "B13_S1")
+            if (DialogueIDSequencer[BrendanIterator] == "B13_S1")
             {
                 GetCoreEventSystemObject().SceneObject.CheckCot.Invoke();
 
@@ -1182,342 +1190,342 @@ namespace DialogueSystems
                 yield return new WaitUntil(() => GetCoreEventSystemObject().ColliderObject.BrendanChecksCotCollider());
                 yield return new WaitForSeconds(1);
 
-                PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[BrendanIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[BrendanIterator]);
 
                 yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
-                BrendanInternalIterator++;
+                BrendanIterator++;
             }
 
 
-            if (DialogueIDSequencer[BrendanInternalIterator] == "B14_S1")
+            if (DialogueIDSequencer[BrendanIterator] == "B14_S1")
             {
                 GetCoreEventSystemObject().SceneObject.BrendanChecksBottle.Invoke();
 
                 //BrendanObject checks cot
                 yield return new WaitForSeconds(1);
 
-                PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[BrendanIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[BrendanIterator]);
 
                 yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
-                BrendanInternalIterator++;
+                BrendanIterator++;
             }
 
 
-            if (DialogueIDSequencer[BrendanInternalIterator] == "B15_S1")
+            if (DialogueIDSequencer[BrendanIterator] == "B15_S1")
             {
                 GetCoreEventSystemObject().SceneObject.BrendanPicksBottle.Invoke();
 
                 //BrendanObject checks cot
                 yield return new WaitForSeconds(1);
 
-                PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[BrendanIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[BrendanIterator]);
 
                 yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
-                BrendanInternalIterator++;
+                BrendanIterator++;
             }
 
 
-            if (DialogueIDSequencer[BrendanInternalIterator] == "B16_S1")
+            if (DialogueIDSequencer[BrendanIterator] == "B16_S1")
             {
                 GetCoreEventSystemObject().SceneObject.PointsToBrokenGlass.Invoke();
 
                 //BrendanObject checks cot
                 yield return new WaitForSeconds(1);
 
-                PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[BrendanIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[BrendanIterator]);
 
                 yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
-                BrendanInternalIterator++;
+                BrendanIterator++;
             }
 
 
-            if (DialogueIDSequencer[BrendanInternalIterator] == "B17_S1")
+            if (DialogueIDSequencer[BrendanIterator] == "B17_S1")
             {
                 //CoreEventSystemNestedType.SceneObject.PointsToBrokenGlass.Invoke();
 
                 //BrendanObject checks cot
                 yield return new WaitForSeconds(1);
 
-                PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[BrendanIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[BrendanIterator]);
 
                 yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
-                BrendanInternalIterator++;
+                BrendanIterator++;
             }
 
 
 
-            if (DialogueIDSequencer[BrendanInternalIterator] == "B18_S1")
+            if (DialogueIDSequencer[BrendanIterator] == "B18_S1")
             {
                 //CoreEventSystemNestedType.SceneObject.PointsToBrokenGlass.Invoke();
 
                 //BrendanObject checks cot
                 yield return new WaitForSeconds(1);
 
-                PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[BrendanIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[BrendanIterator]);
 
                 yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
-                BrendanInternalIterator++;
+                BrendanIterator++;
             }
 
-            if (DialogueIDSequencer[BrendanInternalIterator] == "B18_S2")
+            if (DialogueIDSequencer[BrendanIterator] == "B18_S2")
             {
 
 
                 //BrendanObject checks cot
                 yield return new WaitForSeconds(1);
 
-                PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[BrendanIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[BrendanIterator]);
 
                 yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
-                BrendanInternalIterator++;
+                BrendanIterator++;
             }
 
 
-            if (DialogueIDSequencer[BrendanInternalIterator] == "B18_S3")
+            if (DialogueIDSequencer[BrendanIterator] == "B18_S3")
             {
 
 
                 //BrendanObject checks cot
                 yield return new WaitForSeconds(1);
 
-                PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[BrendanIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[BrendanIterator]);
 
                 yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
-                BrendanInternalIterator++;
+                BrendanIterator++;
             }
 
 
 
-            if (DialogueIDSequencer[BrendanInternalIterator] == "B19_S1")
+            if (DialogueIDSequencer[BrendanIterator] == "B19_S1")
             {
 
 
                 //BrendanObject checks cot
                 yield return new WaitForSeconds(1);
 
-                PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[BrendanIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[BrendanIterator]);
 
                 yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
-                BrendanInternalIterator++;
+                BrendanIterator++;
             }
 
 
-            if (DialogueIDSequencer[BrendanInternalIterator] == "B20_S1")
+            if (DialogueIDSequencer[BrendanIterator] == "B20_S1")
             {
                 yield return new WaitForSeconds(1);
 
-                PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[BrendanIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[BrendanIterator]);
 
                 yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
-                BrendanInternalIterator++;
+                BrendanIterator++;
             }
 
 
-            if (DialogueIDSequencer[BrendanInternalIterator] == "B21_S1")
+            if (DialogueIDSequencer[BrendanIterator] == "B21_S1")
             {
 
                 //BrendanObject checks cot
                 yield return new WaitForSeconds(1);
 
-                PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[BrendanIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[BrendanIterator]);
 
                 yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
-                BrendanInternalIterator++;
+                BrendanIterator++;
             }
 
 
-            if (DialogueIDSequencer[BrendanInternalIterator] == "B22_S1")
+            if (DialogueIDSequencer[BrendanIterator] == "B22_S1")
             {
 
                 yield return new WaitForSeconds(1);
 
-                PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[BrendanIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[BrendanIterator]);
 
                 yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
-                BrendanInternalIterator++;
+                BrendanIterator++;
             }
 
 
-            if (DialogueIDSequencer[BrendanInternalIterator] == "B23_S1")
+            if (DialogueIDSequencer[BrendanIterator] == "B23_S1")
             {
 
                 yield return new WaitForSeconds(1);
 
-                PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[BrendanIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[BrendanIterator]);
 
                 yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
-                BrendanInternalIterator++;
+                BrendanIterator++;
             }
 
-            if (DialogueIDSequencer[BrendanInternalIterator] == "B24_S1")
+            if (DialogueIDSequencer[BrendanIterator] == "B24_S1")
             {
 
                 yield return new WaitForSeconds(1);
 
-                PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[BrendanIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[BrendanIterator]);
 
                 yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
-                BrendanInternalIterator++;
+                BrendanIterator++;
             }
 
 
-            if (DialogueIDSequencer[BrendanInternalIterator] == "B25_S1")
+            if (DialogueIDSequencer[BrendanIterator] == "B25_S1")
             {
 
                 yield return new WaitForSeconds(1);
 
-                PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[BrendanIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[BrendanIterator]);
 
                 yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
-                BrendanInternalIterator++;
+                BrendanIterator++;
             }
 
 
-            if (DialogueIDSequencer[BrendanInternalIterator] == "B26_S1")
+            if (DialogueIDSequencer[BrendanIterator] == "B26_S1")
             {
 
                 yield return new WaitForSeconds(1);
 
-                PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[BrendanIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[BrendanIterator]);
 
                 yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
-                BrendanInternalIterator++;
+                BrendanIterator++;
             }
 
 
 
-            if (DialogueIDSequencer[BrendanInternalIterator] == "B27_S1")
+            if (DialogueIDSequencer[BrendanIterator] == "B27_S1")
             {
 
                 yield return new WaitForSeconds(1);
 
-                PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[BrendanIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[BrendanIterator]);
 
                 yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
-                BrendanInternalIterator++;
+                BrendanIterator++;
             }
 
 
-            if (DialogueIDSequencer[BrendanInternalIterator] == "B27_S2")
+            if (DialogueIDSequencer[BrendanIterator] == "B27_S2")
             {
 
                 yield return new WaitForSeconds(1);
 
-                PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[BrendanIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[BrendanIterator]);
 
                 yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
-                BrendanInternalIterator++;
+                BrendanIterator++;
             }
 
 
 
-            if (DialogueIDSequencer[BrendanInternalIterator] == "B27_S3")
+            if (DialogueIDSequencer[BrendanIterator] == "B27_S3")
             {
 
                 yield return new WaitForSeconds(1);
 
-                PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[BrendanIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[BrendanIterator]);
 
                 yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
-                BrendanInternalIterator++;
+                BrendanIterator++;
             }
 
 
-            if (DialogueIDSequencer[BrendanInternalIterator] == "B28_S1")
+            if (DialogueIDSequencer[BrendanIterator] == "B28_S1")
             {
 
                 yield return new WaitForSeconds(1);
 
-                PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[BrendanIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[BrendanIterator]);
 
                 yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
-                BrendanInternalIterator++;
+                BrendanIterator++;
             }
 
 
 
-            if (DialogueIDSequencer[BrendanInternalIterator] == "B29_S1")
+            if (DialogueIDSequencer[BrendanIterator] == "B29_S1")
             {
 
                 yield return new WaitForSeconds(1);
 
-                PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[BrendanIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[BrendanIterator]);
 
                 yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
-                BrendanInternalIterator++;
+                BrendanIterator++;
             }
 
 
 
-            if (DialogueIDSequencer[BrendanInternalIterator] == "B29_S2")
+            if (DialogueIDSequencer[BrendanIterator] == "B29_S2")
             {
                 GetCoreEventSystemObject().SceneObject.BrendanLeavesHouse.Invoke();
 
                 yield return new WaitUntil(() => GetCoreEventSystemObject().ColliderObject.BrendanFrontDoor());
 
-                PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[BrendanIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[BrendanIterator]);
 
                 yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
-                BrendanInternalIterator++;
+                BrendanIterator++;
             }
 
 
 
-            if (DialogueIDSequencer[BrendanInternalIterator] == "B29_S3")
+            if (DialogueIDSequencer[BrendanIterator] == "B29_S3")
             {
 
                 yield return new WaitForSeconds(1);
 
-                PlayAudio(AudioID: DialogueIDSequencer[BrendanInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[BrendanInternalIterator]);
+                PlayAudio(AudioID: DialogueIDSequencer[BrendanIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[BrendanIterator]);
 
                 yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
-                BrendanInternalIterator++;
+                BrendanIterator++;
             }
 
         }
@@ -1978,6 +1986,9 @@ namespace DialogueSystems
 
             PopulateScript();
 
+           
+            CoreDialogueSystems.InitializeDialogueIterator(DialogueIDSequencer: DialogueIDSequencer);
+
         }
 
         // Update is called once per frame
@@ -1993,6 +2004,10 @@ namespace DialogueSystems
             //Will fix later
             GameObject Brendan = gameObject;
             BrendanCamera.WorldToScreenPoint(Brendan.transform.position);
+
+            ElliController.ScriptStateID = BrendanPOVController.ScriptStateID;
+
+            Debug.Log("This is the current state of Maritime Internal Iterator for Brendan " + BrendanIterator);
 
         }
 
