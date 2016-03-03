@@ -116,7 +116,24 @@ namespace DialogueSystems
                 }
 
 
-                if (DialogueIDSequencer[MaritimeInternalIterator] == "E1_S2")
+               else if (DialogueIDSequencer[MaritimeInternalIterator] == "E1_S2")
+                {
+                    yield return new WaitForSeconds(1);
+
+                    PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
+                    DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
+
+                    //Invoke relevant Event here!
+
+                    yield return new WaitUntil(() => ElliSource.isPlaying == false);
+
+                    MaritimeInternalIterator++;
+
+                    StartCoroutine(DialogueIterator());
+
+                }
+
+              else if (DialogueIDSequencer[MaritimeInternalIterator] == "E1_S2")
                 {
                     yield return new WaitForSeconds(1);
 
@@ -131,22 +148,7 @@ namespace DialogueSystems
 
                 }
 
-                if (DialogueIDSequencer[MaritimeInternalIterator] == "E1_S2")
-                {
-                    yield return new WaitForSeconds(1);
-
-                    PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
-                    DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
-
-                    //Invoke relevant Event here!
-
-                    yield return new WaitUntil(() => ElliSource.isPlaying == false);
-
-                    MaritimeInternalIterator++;
-
-                }
-
-                if (DialogueIDSequencer[MaritimeInternalIterator] == "E1_S3")
+              else if (DialogueIDSequencer[MaritimeInternalIterator] == "E1_S3")
                 {
                     yield return new WaitForSeconds(1);
 
