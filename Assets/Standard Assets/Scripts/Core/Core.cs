@@ -219,9 +219,9 @@ namespace CoreSystems
             }
 
 
-            BrendanObject = GameObject.FindGameObjectWithTag("/Brendan Player").GetComponent<BrendanPOVController>();
-            LukeObject = GameObject.FindGameObjectWithTag("/Luke").GetComponent<LukeController>();
-            ElliObject = GameObject.FindGameObjectWithTag("/Elli").GetComponent<ElliController>();
+            //BrendanObject = GameObject.FindGameObjectWithTag("Brendan Player").GetComponent<BrendanPOVController>();
+            //LukeObject = GameObject.FindGameObjectWithTag("/Luke").GetComponent<LukeController>();
+            //ElliObject = GameObject.FindGameObjectWithTag("/Elli").GetComponent<ElliController>();
 
         }
 
@@ -428,8 +428,7 @@ namespace CoreSystems
             public void InitializeListeners()
             {
 
-   
-                SceneObject.StructAddPersistantListeners(unityEvent: SceneObject.FrontDoor, call: FrontDoorObject.PlayDoorBell);
+                SceneObject.StructAddPersistantListeners(unityEvent: SceneObject.FrontDoor, call: FrontDoor.PlayDoorBell);
 
             }
 

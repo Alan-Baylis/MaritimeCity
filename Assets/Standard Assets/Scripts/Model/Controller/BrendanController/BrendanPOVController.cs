@@ -52,10 +52,7 @@ namespace DialogueSystems
             return BrendanIterator;
         }
 
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/master
         public void PlayAudio(string AudioID)
         {
             if (AudioID == "B1_S1")
@@ -373,8 +370,7 @@ namespace DialogueSystems
 
         }
 
-<<<<<<< HEAD
-=======
+
         //Custom modules
         private struct AutomatedCoreDialogueSystem
         {
@@ -420,7 +416,7 @@ namespace DialogueSystems
         }
 
     
->>>>>>> origin/master
+   
         public void DisplayScript(string ScriptID)
         {
             if (ScriptID == "B1_S1")
@@ -737,50 +733,6 @@ namespace DialogueSystems
 
         }
 
-        //Custom modules
-        private struct AutomatedCoreDialogueSystem
-        {
-
-            Text DialogueText;
-            int InternalIterator;
-
-
-            public void DisplayScript()
-            {
-
-            }
-
-            public AutomatedCoreDialogueSystem(Text IDText, int InternalIterator, UnityEvent DisplayScriptDelegate)
-            {
-                DialogueText = IDText;
-                this.InternalIterator = InternalIterator;
-                DisplayScriptDelegate = new UnityEvent();
-                DisplayScriptDelegate.AddListener(DisplayScript);
-
-
-                for (int a = 0; a > 100; a++)
-                {
-
-                   AutomatedCoreDialogueSystem[] StructArray = new AutomatedCoreDialogueSystem[a];
-
-                   if(StructArray[a].InternalIterator == 1)
-                   {
-
-                        //StructCoreDialogueSystem(IDText, 1, );
-
-                   }
-
-                }
-
-            }
-
-        }
-
-        private struct AutomatedNavigationSystem
-        {
-
-        }
-   
         // Use this for initialization
         void Start()
         {
@@ -789,15 +741,15 @@ namespace DialogueSystems
             BrendanCollider = GetComponent<CapsuleCollider>();
             BrendanSource = GetComponent<AudioSource>();
 
+            CoreDialogueSystems.InitializeDialogueIterator(DialogueIDSequencer);
+
             StartCoroutine(BrendanDialogueIterator());
+
+            State = CoreDialogueSystems.ConversationState.Active;
               
        
         }
 
-        void InitializeCoreDialogueIDSequencer()
-        {
-            DialogueIDSequencer = CoreDialogueSystems.DialogueIDSequencer;
-        }
 
         void DefineColliderParameters()
         {
@@ -816,7 +768,7 @@ namespace DialogueSystems
         public IEnumerator ScriptIDDefinition(CoreDialogueSystems.ScriptID ScriptIdentification, string DefineScript)
         {
 
-            int MaritimeDialogueIterator = 0;
+            //int MaritimeDialogueIterator = 0;
 
             ScriptLogger++;
             print("Result for Script Logger is " + ScriptLogger);
@@ -824,12 +776,10 @@ namespace DialogueSystems
             if (ScriptIdentification == CoreDialogueSystems.ScriptID.Brendan)
             {
                 BrendanScript.Add(DefineScript);
-<<<<<<< HEAD
-                BrendanInternalIterator++;
-=======
 
-                MaritimeDialogueIterator++;
->>>>>>> origin/master
+                //BrendanInternalIterator++;
+
+                //MaritimeDialogueIterator++;
 
                 yield return new WaitForSeconds(0.1f);
 
@@ -858,7 +808,7 @@ namespace DialogueSystems
 
                 BrendanIterator++;
 
-                    Debug.Log(BrendanIterator);
+                
 
             }
 
@@ -2048,6 +1998,8 @@ namespace DialogueSystems
             BrendanFinishedTalking();
 
             ElliController.ScriptStateID = BrendanPOVController.ScriptStateID;
+
+            Debug.Log("If this shows this class is functional");
 
             Debug.Log("This is the current state of Maritime Internal Iterator for Brendan " + BrendanIterator);
 
