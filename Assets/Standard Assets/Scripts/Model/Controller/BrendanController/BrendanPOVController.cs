@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using System.Collections.Generic;
+using System.Threading;
 using CoreSystems;
 using System;
 
@@ -369,6 +370,7 @@ namespace DialogueSystems
 
         }
 
+
         //Custom modules
         private struct AutomatedCoreDialogueSystem
         {
@@ -414,6 +416,7 @@ namespace DialogueSystems
         }
 
     
+   
         public void DisplayScript(string ScriptID)
         {
             if (ScriptID == "B1_S1")
@@ -422,31 +425,31 @@ namespace DialogueSystems
                 InternalIterator++;
             }
 
-            if (ScriptID == "B1_S2")
+           else if (ScriptID == "B1_S2")
             {
                 LinkDialogueText.text = BrendanScript[InternalIterator];
                 InternalIterator++;
             }
 
-            if (ScriptID == "B1_S3")
+           else if (ScriptID == "B1_S3")
             {
                 LinkDialogueText.text = BrendanScript[InternalIterator];
                 InternalIterator++;
             }
 
-            if (ScriptID == "B1_S4")
+           else if (ScriptID == "B1_S4")
             {
                 LinkDialogueText.text = BrendanScript[InternalIterator];
                 InternalIterator++;
             }
 
-            if (ScriptID == "B2_S1")
+           else if (ScriptID == "B2_S1")
             {
                 LinkDialogueText.text = BrendanScript[InternalIterator];
                 InternalIterator++;
             }
 
-            if (ScriptID == "B2_S2")
+           else if (ScriptID == "B2_S2")
             {
                 LinkDialogueText.text = BrendanScript[InternalIterator];
                 InternalIterator++;
@@ -738,15 +741,15 @@ namespace DialogueSystems
             BrendanCollider = GetComponent<CapsuleCollider>();
             BrendanSource = GetComponent<AudioSource>();
 
+            CoreDialogueSystems.InitializeDialogueIterator(DialogueIDSequencer);
+
             StartCoroutine(BrendanDialogueIterator());
+
+            State = CoreDialogueSystems.ConversationState.Active;
               
        
         }
 
-        void InitializeCoreDialogueIDSequencer()
-        {
-            DialogueIDSequencer = CoreDialogueSystems.DialogueIDSequencer;
-        }
 
         void DefineColliderParameters()
         {
@@ -757,30 +760,26 @@ namespace DialogueSystems
 
         void DefineCameraParameters()
         {
-
             //BrendanPOV.GetComponent<Camera>();
             //BrendanPOV.ViewportToScreenPoint(position: from);
             //BrendanPOV.ScreenPointToRay(position: from);
-
         }
-
 
         public IEnumerator ScriptIDDefinition(CoreDialogueSystems.ScriptID ScriptIdentification, string DefineScript)
         {
 
-            int MaritimeDialogueIterator = 0;
-
-            //Use logger to check conditions, use iterators for dynamic functions
+            //int MaritimeDialogueIterator = 0;
 
             ScriptLogger++;
-
-            //print("Result for Script Logger is " + ScriptLogger);
+            print("Result for Script Logger is " + ScriptLogger);
 
             if (ScriptIdentification == CoreDialogueSystems.ScriptID.Brendan)
             {
                 BrendanScript.Add(DefineScript);
 
-                MaritimeDialogueIterator++;
+                //BrendanInternalIterator++;
+
+                //MaritimeDialogueIterator++;
 
                 yield return new WaitForSeconds(0.1f);
 
@@ -809,7 +808,7 @@ namespace DialogueSystems
 
                 BrendanIterator++;
 
-                    Debug.Log(BrendanIterator);
+                
 
             }
 
@@ -1534,13 +1533,14 @@ namespace DialogueSystems
         {
             if (BrendanSource.isPlaying == false)
             {
-                return true;
+                return bBrendanFinishedTalking = true;
 
             }
+
             else
 
             {
-                return false;
+                return bBrendanFinishedTalking = false;
             }
 
         }
@@ -1978,7 +1978,6 @@ namespace DialogueSystems
                 Debug.Log("B29_S4 Active");
             }
 
-
         }
 
         void Awake()
@@ -1994,24 +1993,17 @@ namespace DialogueSystems
         // Update is called once per frame
         void Update()
         {
-            //InputController();
+            //InputController
 
-            if (from == there)
-            {
-                Debug.Log("Success");
-            }
-
-            //Will fix later
-            GameObject Brendan = gameObject;
-            BrendanCamera.WorldToScreenPoint(Brendan.transform.position);
+            BrendanFinishedTalking();
 
             ElliController.ScriptStateID = BrendanPOVController.ScriptStateID;
+
+            Debug.Log("If this shows this class is functional");
 
             Debug.Log("This is the current state of Maritime Internal Iterator for Brendan " + BrendanIterator);
 
         }
-
-
 
         public IEnumerator DialogueIterator()
         {

@@ -36,6 +36,14 @@ namespace CoreSystems
         public static CoreDialogueSystems.ConversationState State = CoreDialogueSystems.ConversationState.Active;
         public static int MaritimeInternalIterator = 0;
 
+        public ElliController ElliObject;
+        public LukeController LukeObject;
+        public BrendanPOVController BrendanObject;
+
+
+        public bool bBrendanFinishedTalking = false;
+        public bool bElliFinishedTalking = false;
+        public bool bLukeFinishedTalking = false;
 
         /*
 
@@ -209,6 +217,11 @@ namespace CoreSystems
                 Debug.Log("Not optimized for this platform");
 
             }
+
+
+            //BrendanObject = GameObject.FindGameObjectWithTag("Brendan Player").GetComponent<BrendanPOVController>();
+            //LukeObject = GameObject.FindGameObjectWithTag("/Luke").GetComponent<LukeController>();
+            //ElliObject = GameObject.FindGameObjectWithTag("/Elli").GetComponent<ElliController>();
 
         }
 
@@ -415,8 +428,7 @@ namespace CoreSystems
             public void InitializeListeners()
             {
 
-   
-                SceneObject.StructAddPersistantListeners(unityEvent: SceneObject.FrontDoor, call: FrontDoorObject.PlayDoorBell);
+                SceneObject.StructAddPersistantListeners(unityEvent: SceneObject.FrontDoor, call: FrontDoor.PlayDoorBell);
 
             }
 
