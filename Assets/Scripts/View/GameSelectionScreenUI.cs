@@ -11,6 +11,8 @@ public class GameSelectionScreenUI : MonoBehaviour {
 	
 		GameSelectionScreen.gameObject.SetActive (false);
 
+
+
 	}
 	
 	// Update is called once per frame
