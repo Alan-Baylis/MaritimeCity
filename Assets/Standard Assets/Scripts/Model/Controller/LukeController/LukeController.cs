@@ -25,8 +25,8 @@ namespace DialogueSystems
         {
             PopulateScript();
 
-            LukeDialogueIterator = GetCoreDialogueSystemObject().MaritimeDialogueIterator;
-            DialogueIDSequencer = GetCoreDialogueSystemObject().DialogueIDSequencer;
+            LukeDialogueIterator = CoreDialogueSystems.MaritimeDialogueIterator;
+            DialogueIDSequencer = CoreDialogueSystems.DialogueIDSequencer;
         }
 
         // Use this for initialization
