@@ -57,25 +57,7 @@ namespace DialogueSystems
         }
 
         //Object types
-        ElliController ElliObject;
-        LukeController LukeObject;
-        BrendanPOVController BrendanObject;
 
-        public ElliController()
-        {
-
-        }
-
-        public ElliController(LukeController LukeObject)
-        {
-            this.LukeObject = LukeObject;
-        }
-
-        public ElliController(BrendanPOVController BrendanObject)
-        {
-
-            this.BrendanObject = BrendanObject;
-        }
 
         public static int GetInternalIterator()
         {
@@ -133,20 +115,6 @@ namespace DialogueSystems
 
                 }
 
-              else if (DialogueIDSequencer[MaritimeInternalIterator] == "E1_S2")
-                {
-                    yield return new WaitForSeconds(1);
-
-                    PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
-                    DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
-
-                    //Invoke relevant Event here!
-
-                    yield return new WaitUntil(() => ElliSource.isPlaying == false);
-
-                    MaritimeInternalIterator++;
-
-                }
 
               else if (DialogueIDSequencer[MaritimeInternalIterator] == "E1_S3")
                 {
@@ -331,9 +299,6 @@ namespace DialogueSystems
                     MaritimeInternalIterator++;
 
                 }
-
-
-
 
                 if (DialogueIDSequencer[MaritimeInternalIterator] == "E7_S1")
                 {
@@ -1191,9 +1156,6 @@ namespace DialogueSystems
             }
            
 
-
-
-
             //Likely to be wrong need a dictionary or a two dimensional array to ensure that we are only using ElliScript
             /*
             string[] ElliDialogueIDSequencer = new string[GetCoreDialogueSystemObject().DialogueIDSequencer.Length];
@@ -1214,13 +1176,8 @@ namespace DialogueSystems
 
         }
 
-
-
-
         public IEnumerator ScriptIDDefinition(CoreDialogueSystems.ScriptID ScriptIdentification, string DefineScript)
         {
-
-
 
             //Use logger to check conditions, use iterators for dynamic functions
 
