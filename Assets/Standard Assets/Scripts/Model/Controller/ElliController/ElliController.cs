@@ -11,25 +11,24 @@ using System;
 namespace DialogueSystems
 {
 
-    public class ElliController : Core
+    public class ElliController : Core, ICommunciation
     {
 
-        private int ElliScriptLogger = 0;
+        
         [SerializeField] private List<string> ElliScript = new List<string>(capacity: 60);
+        [SerializeField] private Text ElliDialogueText;
+        [SerializeField] private AudioSource ElliSource = new AudioSource();
+        [SerializeField] private AudioClip[] ElliAudio = new AudioClip[38];
+
         private string ElliStringFileName;
         private int InternalDisplayIterator = 0;
-        [SerializeField] private Text ElliDialogueText;
-        [SerializeField] private string[] DialogueIDSequencer = new string[108];
-        private int ElliIterator;
-		public AnimationClip[] AdHocAnimationClips = new AnimationClip[10];
+        private int ElliScriptLogger = 0;
+        private string[] DialogueIDSequencer = new string[108];
+
+
 		public Animator ElliAnimator;
 
         //Serialized Fields
-
-        [SerializeField]
-        private AudioSource ElliSource = new AudioSource();
-        [SerializeField]
-        private AudioClip[] ElliAudio = new AudioClip[38];
 
         public static ElliController ElliInstance;
 
@@ -42,16 +41,6 @@ namespace DialogueSystems
 
         }
 			
-
-        //Object types
-
-
-        public int GetInternalIterator()
-        {
-            return ElliIterator;
-        }
-
-
         // Use this for initialization
         void Start()
         {
@@ -70,19 +59,7 @@ namespace DialogueSystems
         }
 
 
-		void SetBodyPosition(Vector3 Position)
-		{
-			ElliAnimator.bodyPosition = Position;
 
-			Debug.Log ("Function fires correctly");
-		}
-
-		void SetBodyRotation(Quaternion Rotation)
-		{
-
-			ElliAnimator.bodyRotation = Rotation;
-
-		}
 
         public IEnumerator DialogueIterator()
         {
@@ -288,8 +265,8 @@ namespace DialogueSystems
                 else if (DialogueIDSequencer[MaritimeInternalIterator] == "E5_S1")
                 {
 
-					CoreEventSystem.SceneObject.ComeDownstairs.Invoke();
-					yield return new WaitUntil(() => CoreEventSystem.ColliderObject.ElliComesBackDownStairs());
+					CoreEventSystem.SceneEvents.ComeDownstairs.Invoke();
+					yield return new WaitUntil(() => CoreEventSystem.ColliderFunctions.ElliComesBackDownStairs());
 
                     PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
                     DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
@@ -419,7 +396,7 @@ namespace DialogueSystems
 
                 else if (DialogueIDSequencer[MaritimeInternalIterator] == "E11_S1")
                 {
-					CoreEventSystem.SceneObject.ElliLukeCheckCot.Invoke();
+					CoreEventSystem.SceneEvents.ElliLukeCheckCot.Invoke();
 
                     yield return new WaitForSeconds(1);
 
@@ -434,7 +411,7 @@ namespace DialogueSystems
 
                 else if (DialogueIDSequencer[MaritimeInternalIterator] == "E11_S2")
                 {
-					CoreEventSystem.SceneObject.ElliLukeCheckCot.Invoke();
+					CoreEventSystem.SceneEvents.ElliLukeCheckCot.Invoke();
 
                     yield return new WaitForSeconds(1);
 
@@ -1524,8 +1501,6 @@ namespace DialogueSystems
 
 			if (MaritimeInternalIterator == 1) 
 			{
-
-				SetBodyPosition (BrendanPOVController.PlayerPosition);
 
 			}
 

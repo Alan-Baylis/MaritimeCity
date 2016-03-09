@@ -28,14 +28,14 @@ namespace DialogueSystems
 			get { return BrendanObject; }
 
 		}
-			
 
-		public Transform[] GameObjectPoints = new Transform[15];
+
+        public Transform[] GameObjectPoints = new Transform[15];
 
 
         //Core types
         private int InternalIterator = 0;
-		public static Vector3 PlayerPosition;
+		
         private Camera BrendanCamera;
         private static int ScriptLogger = 0;
         public static int BrendanIterator = 0;
@@ -45,12 +45,12 @@ namespace DialogueSystems
 		[SerializeField] private AnimationClip[] AdHocCameraAnimationClips = new AnimationClip[10];
 
         //Reference types
-        public CapsuleCollider BrendanCollider;
+        public static CapsuleCollider BrendanCollider;
         public List<string> BrendanScript = new List<string>(50);
         public Text LinkDialogueText;
         public AudioClip[] BrendanAudio = new AudioClip[50];
 		public static AudioSource BrendanSource;
-
+        public static Vector3 PlayerPosition;
         private static AutomatedCoreDialogueSystem ACDSObject;
 
         /*prototype, intended to replace arrays with our own lists because Microsoft lists don't work as intended
@@ -58,13 +58,7 @@ namespace DialogueSystems
         private MaritimeListSystem<int> MLS_Iterator_List = new MaritimeListSystem<int>();
         private MaritimeListSystem<bool> MLS_Conditions_List = new MaritimeListSystem<bool>();
         */
-
-
-        [SerializeField]
-        public static ScriptState ScriptStateID;
-
-        //Singleton Object
-        public static BrendanPOVController Brendan;
+       
 	
 
 		void Awake()
@@ -739,11 +733,18 @@ namespace DialogueSystems
 
             CoreDialogueSystems.InitializeDialogueIterator(DialogueIDSequencer);
 
-            StartCoroutine(BrendanDialogueIterator());
+            StartCoroutine(DialogueIterator());
 
             State = CoreDialogueSystems.ConversationState.Active;
-		  
-       
+
+            CoreDialogueSystems.SetConversationStateInactive();
+
+
+        }
+
+        public static CapsuleCollider ReturnCollider()
+        {
+            return BrendanCollider;
         }
 
 
@@ -751,7 +752,6 @@ namespace DialogueSystems
         {
 
             BrendanCollider.isTrigger = true;
-
         }
 
         void DefineCameraParameters()
@@ -785,8 +785,10 @@ namespace DialogueSystems
 
         
 
-        public IEnumerator BrendanDialogueIterator()
+        public IEnumerator DialogueIterator()
         {
+            
+
             if(State == CoreDialogueSystems.ConversationState.Active)
 
             if (DialogueIDSequencer[MaritimeInternalIterator] == "B1_S1")
@@ -798,8 +800,8 @@ namespace DialogueSystems
 				yield return new WaitUntil (() => AdHocCameraAnimations [1].isPlaying == false);
 
                 //Invokes Doorbell Function
-                //CoreEventSystemNestedType.SceneObject.Doorbell.Invoke();
-                //CoreEventSystemNestedType.SceneObject.OpenDoor.Invoke();
+                //CoreEventSystemNestedType.SceneEvents.Doorbell.Invoke();
+                //CoreEventSystemNestedType.SceneEvents.OpenDoor.Invoke();
 
                 PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
                 DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
@@ -989,8 +991,8 @@ namespace DialogueSystems
 
             if (DialogueIDSequencer[MaritimeInternalIterator] == "B5_S1")
             {
-                //SceneObject.WalkDogUpstairs.Invoke();
-				yield return new WaitUntil(() => CoreEventSystem.ColliderObject.ElliFinishedTakingDogUpstairs());
+                //SceneEvents.WalkDogUpstairs.Invoke();
+				yield return new WaitUntil(() => CoreEventSystem.ColliderFunctions.ElliFinishedTakingDogUpstairs());
 
                 PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
                 DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
@@ -1006,9 +1008,9 @@ namespace DialogueSystems
 
             if (DialogueIDSequencer[MaritimeInternalIterator] == "B6_S1")
             {
-				CoreEventSystem.SceneObject.EnterLivingRoom.Invoke();
-				yield return new WaitUntil(() => CoreEventSystem.ColliderObject.ElliEntersLivingRoom());
-				yield return new WaitUntil(() => CoreEventSystem.ColliderObject.BrendanEntersLivingRoom());
+				CoreEventSystem.SceneEvents.EnterLivingRoom.Invoke();
+				yield return new WaitUntil(() => CoreEventSystem.ColliderFunctions.ElliEntersLivingRoom());
+				yield return new WaitUntil(() => CoreEventSystem.ColliderFunctions.BrendanEntersLivingRoom());
 
                 PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
                 DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
@@ -1185,10 +1187,10 @@ namespace DialogueSystems
             {
 
 				//Not implemented
-				CoreEventSystem.SceneObject.CheckCot.Invoke();
+				CoreEventSystem.SceneEvents.CheckCot.Invoke();
 
                 //BrendanObject checks cot
-				yield return new WaitUntil(() => CoreEventSystem.ColliderObject.BrendanChecksCotCollider());
+				yield return new WaitUntil(() => CoreEventSystem.ColliderFunctions.BrendanChecksCotCollider());
                 yield return new WaitForSeconds(1);
 
                 PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
@@ -1202,7 +1204,7 @@ namespace DialogueSystems
 
             if (DialogueIDSequencer[MaritimeInternalIterator] == "B14_S1")
             {
-				CoreEventSystem.SceneObject.BrendanChecksBottle.Invoke();
+				CoreEventSystem.SceneEvents.BrendanChecksBottle.Invoke();
 
                 //BrendanObject checks cot
                 yield return new WaitForSeconds(1);
@@ -1218,7 +1220,7 @@ namespace DialogueSystems
 
             if (DialogueIDSequencer[MaritimeInternalIterator] == "B15_S1")
             {
-				CoreEventSystem.SceneObject.BrendanPicksBottle.Invoke();
+				CoreEventSystem.SceneEvents.BrendanPicksBottle.Invoke();
 
                 //BrendanObject checks cot
                 yield return new WaitForSeconds(1);
@@ -1234,7 +1236,7 @@ namespace DialogueSystems
 
             if (DialogueIDSequencer[MaritimeInternalIterator] == "B16_S1")
             {
-				CoreEventSystem.SceneObject.PointsToBrokenGlass.Invoke();
+				CoreEventSystem.SceneEvents.PointsToBrokenGlass.Invoke();
 
                 //BrendanObject checks cot
                 yield return new WaitForSeconds(1);
@@ -1250,7 +1252,7 @@ namespace DialogueSystems
 
             if (DialogueIDSequencer[MaritimeInternalIterator] == "B17_S1")
             {
-                //CoreEventSystemNestedType.SceneObject.PointsToBrokenGlass.Invoke();
+                //CoreEventSystemNestedType.SceneEvents.PointsToBrokenGlass.Invoke();
 
                 //BrendanObject checks cot
                 yield return new WaitForSeconds(1);
@@ -1267,7 +1269,7 @@ namespace DialogueSystems
 
             if (DialogueIDSequencer[MaritimeInternalIterator] == "B18_S1")
             {
-                //CoreEventSystemNestedType.SceneObject.PointsToBrokenGlass.Invoke();
+                //CoreEventSystemNestedType.SceneEvents.PointsToBrokenGlass.Invoke();
 
                 //BrendanObject checks cot
                 yield return new WaitForSeconds(1);
@@ -1502,9 +1504,9 @@ namespace DialogueSystems
 
             if (DialogueIDSequencer[MaritimeInternalIterator] == "B29_S2")
             {
-				CoreEventSystem.SceneObject.BrendanLeavesHouse.Invoke();
+				CoreEventSystem.SceneEvents.BrendanLeavesHouse.Invoke();
 
-				yield return new WaitUntil(() => CoreEventSystem.ColliderObject.BrendanFrontDoor());
+				yield return new WaitUntil(() => CoreEventSystem.ColliderFunctions.BrendanFrontDoor());
 
                 PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
                 DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
@@ -1531,7 +1533,7 @@ namespace DialogueSystems
 
 
 			yield return new WaitForSeconds (3);
-			StartCoroutine (BrendanDialogueIterator ());
+			StartCoroutine (DialogueIterator());
 
         }
 			
@@ -1997,20 +1999,9 @@ namespace DialogueSystems
 
         }
 
-        public IEnumerator DialogueIterator()
-        {
-            throw new NotImplementedException();
-        }
+    
 
-        ICommunciation ICommunciation.ReturnType()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ReceiveResponse(ICommunciation CharacterType)
-        {
-            throw new NotImplementedException();
-        }
+     
     }
 
 }
