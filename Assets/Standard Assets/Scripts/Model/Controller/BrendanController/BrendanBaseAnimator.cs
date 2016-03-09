@@ -61,7 +61,7 @@ public class BrendanBaseAnimator : MonoBehaviour {
 
         }
 
-        return testAnimator;
+        
     }
 
 
