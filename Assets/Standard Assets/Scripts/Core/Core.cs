@@ -863,12 +863,96 @@ namespace CoreSystems
     public interface IAnimatorBase
     {
 
+  
+
+    }
+
+    public interface INavigationInfrastructure
+    {
+
         void TurnToSpecifiedAngle();
 
-        void WalkTo();
+        void WalkTo(Vector3 Position);
 
         void Stop();
 
+        void SendCoordinates(Vector3 Coordinates);
+
+        void ReceiveCoordinates(Vector3 Coordinates);
+
+
+        //This string will identify itself according to which GameObject that it is in
+        string IdentificationProcess();
+
+    }
+
+    [InitializeOnLoad]
+    public class NavigationSystem : Core, INavigationInfrastructure
+    {
+
+        GameObject CurrentObject;
+        GameObject[] ObjectColliders = new GameObject[10];
+
+        void Start()
+        {
+
+            //Assigns object the script is loaded to CurrentObject
+            CurrentObject = GameObject.FindGameObjectWithTag(gameObject.name);
+            CurrentObject.AddComponent<BoxCollider>().isTrigger = true;
+
+        }
+
+
+        void Update()
+        {
+
+
+
+
+        }
+
+        //Provide a list of the gameObjects so we know what they are
+
+        public void OnTriggerEnter(Collider other)
+        {
+            if (other.name == "Elli" && CurrentObject.name == "FrontDoor")
+            {   
+                //Walk to living room
+                WalkTo(ObjectColliders[1].transform.position);
+            }
+
+        }
+
+        public string IdentificationProcess()
+        {
+            string ID = gameObject.name;
+            return ID;
+        }
+
+        public void ReceiveCoordinates(Vector3 Coordinates)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SendCoordinates(Vector3 Coordinates)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Stop()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void TurnToSpecifiedAngle()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void WalkTo(Vector3 Position)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }
