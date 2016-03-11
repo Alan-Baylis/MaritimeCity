@@ -10,11 +10,13 @@ public class MaritimeRuntimeInfrastructure : MonoBehaviour {
 	int MaritimeDialogueIterator = 0;
 	GameObject BrendanInstanceObject;
 
+	public Transform[] Locations = new Transform[10];
+
 
 	// Use this for initialization
 	void Start () {
 	
-		BrendanInstanceObject = BrendanPOVController.BrendanInstance;
+		BrendanInstanceObject = BrendanPOVController.BrendanSingletonObjectInstance.gameObject;
 
 		StartCoroutine(OpeningSequence_FrontDoorBell ());
 
@@ -24,6 +26,13 @@ public class MaritimeRuntimeInfrastructure : MonoBehaviour {
 	void Update () {
 		
 		MaritimeDialogueIterator = Core.CoreDialogueSystems.MaritimeDialogueIterator;
+
+
+		if (MaritimeDialogueIterator == 0) {
+
+			LerpOpeningSequence ();
+
+		}
 
 	}
 
@@ -36,10 +45,10 @@ public class MaritimeRuntimeInfrastructure : MonoBehaviour {
 		if (MaritimeDialogueIterator == 0) {
 
 			FrontDoor.PlayDoorBell ();
-			BrendanPOVController.BrendanInstance.transform.position = Vector3.Lerp(BrendanInstanceObject.transform.position, FrontDoor.FrontDoorGameObject.transform.position, 1.0f);
+
+
 
 			yield return new WaitForSeconds (FrontDoor.FrontDoorSource.clip.length * 1.1f);
-
 
 			Quaternion FrontDoorOpen = FrontDoor.FrontDoorGameObject.transform.rotation;
 
@@ -48,6 +57,13 @@ public class MaritimeRuntimeInfrastructure : MonoBehaviour {
 			Core.State = Core.CoreDialogueSystems.ConversationState.Active;
 
 		}
+	}
+
+	void LerpOpeningSequence() 
+	{
+		
+
+		BrendanPOVController.BrendanSingletonObjectInstance.transform.localPosition = Vector3.LerpUnclamped(Locations[0].transform.position, Locations[1].transform.position, Time.time / 10);
 	}
 
 

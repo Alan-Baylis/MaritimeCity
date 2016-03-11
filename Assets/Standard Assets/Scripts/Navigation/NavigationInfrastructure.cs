@@ -26,7 +26,7 @@ public class NavigationInfrastructure : Core {
 		foreach (INavigation Nav in NavInfrastructureList) {
 
 
-			if (Nav.GetName == "FrontDoor") {
+			if (Nav.GetName() == "FrontDoor") {
 
 
 			}

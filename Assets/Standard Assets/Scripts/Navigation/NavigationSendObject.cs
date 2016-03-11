@@ -28,7 +28,7 @@ public class NavigationSendObject : NavigationInfrastructure, INavigation {
 
 	public string GetName() {
 
-		this.gameObject.tag;
+		return gameObject.name;
 
 	}
 }

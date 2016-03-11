@@ -15,8 +15,8 @@ namespace DialogueSystems
 
 
 		//True singleton object instance of it's kind in Maritime City
-		/*
-		private BrendanPOVController BrendanCoreObject;
+
+		private static BrendanPOVController BrendanCoreObject;
 
 		private BrendanPOVController()
 		{
@@ -24,26 +24,24 @@ namespace DialogueSystems
 			
 		}
 
-		public static BrendanPOVController BrendanSingletonInstance {
+		public static BrendanPOVController BrendanSingletonObjectInstance {
 
 			get { return BrendanCoreObject; }
 
-		}*/
+		}
 
 
 
 		//Needs to be replaced with actual object
 		private static GameObject BrendanObject;
 
-		public static GameObject BrendanInstance
+		public static GameObject BrendanSingletonGameObjectInstance
 		{
 
 			get { return BrendanObject; }
 
 		}
-
-
-
+			
 
         //Core types
         private int InternalIterator = 0;
@@ -61,6 +59,7 @@ namespace DialogueSystems
         public Text LinkDialogueText;
         public AudioClip[] BrendanAudio = new AudioClip[50];
 		public static AudioSource BrendanSource;
+		public Vector3 TrackLocation;
 
         private static AutomatedCoreDialogueSystem ACDSObject;
 
@@ -78,8 +77,10 @@ namespace DialogueSystems
 
 		void Awake()
 		{
-			//BrendanCoreObject = FindObjectOfType<BrendanPOVController> ();
-			BrendanObject = this.gameObject;
+			BrendanCoreObject = FindObjectOfType<BrendanPOVController> ();
+			BrendanObject = BrendanSingletonObjectInstance.gameObject;
+
+			//BrendanObject =  GameObject.CreatePrimitive (PrimitiveType.Cube);
 
 			PopulateScript();
 			PlayerPosition = gameObject.transform.position;
@@ -1973,14 +1974,15 @@ namespace DialogueSystems
         {
             //InputController
 
-            ElliController.ScriptStateID = BrendanPOVController.ScriptStateID;
+           
 
             Debug.Log("If this shows this class is functional");
 
             Debug.Log("This is the current state of Maritime Internal Iterator for Brendan " + MaritimeInternalIterator);
 
-			transform.position = BrendanInstance.transform.position;
+			transform.position = BrendanSingletonGameObjectInstance.transform.position;
 
+			TrackLocation = transform.position;
 
         }
 			

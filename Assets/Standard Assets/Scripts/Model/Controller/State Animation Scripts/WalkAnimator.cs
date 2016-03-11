@@ -1,33 +1,19 @@
 ﻿using UnityEngine;
-using CoreSystems;
 using System.Collections;
 
 public class WalkAnimator : StateMachineBehaviour {
 
-    // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-    
-        
+	 // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
+	//override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
+	//
+	//}
 
-    }
+	// OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
+	override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
 
-
-
-    // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
 
         //if trigger hit, animation stop
-        Vector3 TemplatePosition = new Vector3();
-        Quaternion TemplateRotation = new Quaternion();
 
-        if (Core.CoreDialogueSystems.MaritimeDialogueIterator == 2)
-        {
-            Core.CoreInput.SetBodyPosition (animator: animator, Position: TemplatePosition);
-            Core.CoreInput.SetBodyRotation (animator: animator, Rotation: TemplateRotation);
-
-        }
-
-        //etc
 	}
 
 	// OnStateExit is called when a transition ends and the state machine finishes evaluating this state
@@ -35,6 +21,8 @@ public class WalkAnimator : StateMachineBehaviour {
 
 
         
+        
+
 	}
 
 	// OnStateMove is called right after Animator.OnAnimatorMove(). Code that processes and affects root motion should be implemented here

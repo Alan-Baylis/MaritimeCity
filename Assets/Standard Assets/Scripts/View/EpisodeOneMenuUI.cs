@@ -10,13 +10,12 @@ public class EpisodeOneMenuUI : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		Menu.gameObject.SetActive (true);
+		Menu.gameObject.SetActive (false);
 	
 	}
 	
 	// Update is called once per frame
-	void Update ()
-    {
+	void Update () {
 	
 	}
 }

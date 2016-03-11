@@ -96,7 +96,7 @@ namespace DialogueSystems
                 DisplayScript(ScriptID: DialogueIDSequencer[LukeDialogueIterator]);
 
                 yield return new WaitUntil(() => LukeSource.isPlaying == false);
-				yield return new WaitUntil(() => CoreEventSystem.AnimationFunctions.LukePointsFinger());
+				yield return new WaitUntil(() => CoreEventSystem.AnimationObject.LukePointsFinger());
 
                 LukeDialogueIterator++;
 
@@ -539,7 +539,7 @@ namespace DialogueSystems
             throw new NotImplementedException();
         }
 
-        public void ReceiveResponse(ICommunciation CharacterType)
+        new public void ReceiveResponse(ICommunciation CharacterType)
         {
             throw new NotImplementedException();
         }
