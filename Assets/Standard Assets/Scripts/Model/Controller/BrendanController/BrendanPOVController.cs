@@ -14,76 +14,124 @@ namespace DialogueSystems
     {
 
 
+		//True singleton object instance of it's kind in Maritime City
+
+		private static BrendanPOVController BrendanCoreObject;
 
 		private BrendanPOVController()
 		{
 			
+			
 		}
 
-		private static GameObject BrendanObject;
+		public static BrendanPOVController BrendanSingletonObjectInstance {
 
-		public static GameObject BrendanInstance
-		{
-
-			get { return BrendanObject; }
+			get { return BrendanCoreObject; }
 
 		}
-
-
-        public Transform[] GameObjectPoints = new Transform[15];
-
 
         //Core types
         private int InternalIterator = 0;
-		
+		public static Vector3 PlayerPosition;
         private Camera BrendanCamera;
         private static int ScriptLogger = 0;
         public static int BrendanIterator = 0;
         [SerializeField] string[] DialogueIDSequencer = new string[108];
         private string FileName;
-		[SerializeField] private Animation[] AdHocCameraAnimations = new Animation[10];
-		[SerializeField] private AnimationClip[] AdHocCameraAnimationClips = new AnimationClip[10];
+        private CharacterController BrendanCharacterController = new CharacterController();
 
         //Reference types
-        public static CapsuleCollider BrendanCollider;
+        public BoxCollider BrendanCollider;
         public List<string> BrendanScript = new List<string>(50);
         public Text LinkDialogueText;
         public AudioClip[] BrendanAudio = new AudioClip[50];
 		public static AudioSource BrendanSource;
-        public static Vector3 PlayerPosition;
-        private static AutomatedCoreDialogueSystem ACDSObject;
+		public Vector3 TrackLocation;
 
         /*prototype, intended to replace arrays with our own lists because Microsoft lists don't work as intended
         private MaritimeListSystem<string> MLS_Dialogue_List = new MaritimeListSystem<string>();
         private MaritimeListSystem<int> MLS_Iterator_List = new MaritimeListSystem<int>();
         private MaritimeListSystem<bool> MLS_Conditions_List = new MaritimeListSystem<bool>();
         */
-       
+
+
+        [SerializeField]
+        public static ScriptState ScriptStateID;
+	
 	
 
 		void Awake()
 		{
-		
-			BrendanObject = this.gameObject;
-
+			
+            InitializeBrendanCollider();
+            InitializeClassObjectProperties();
+            InitializeCameraParameters();
+            InitializeBrendanSource();
+                
 			PopulateScript();
-			PlayerPosition = gameObject.transform.position;
 
 			CoreDialogueSystems.InitializeDialogueIterator(DialogueIDSequencer: DialogueIDSequencer);
 
 		}
 
 
+
+       public static Vector3 GetPosition()
+       {
+            return BrendanCoreObject.transform.position;
+       }
+
+
+        // Use this for initialization
+        void Start()
+        {
+            string UITag = "UI";
+
+
+            StartCoroutine(DialogueIterator());
+
+            //State = CoreDialogueSystems.ConversationState.Inactive;
+
+
+        }
+
+        private void InitializeBrendanCollider()
+        {
+            Vector3 ColliderSize = new Vector3(5, 5, 5);
+
+            gameObject.AddComponent<BoxCollider>();
+            BrendanCollider = GetComponent<BoxCollider>();
+
+            BrendanCollider.size = ColliderSize;
+
+        }
+
+        private void InitializeClassObjectProperties()
+        {
+            BrendanCoreObject = FindObjectOfType<BrendanPOVController>();
+        }
+
+        private void InitializeBrendanSource()
+        {
+            BrendanSource = GetComponent<AudioSource>();
+
+        }
+
+        private void InitializeCameraParameters()
+        {
+            //BrendanPOV.GetComponent<Camera>();
+            //BrendanPOV.ViewportToScreenPoint(position: from);
+            //BrendanPOV.ScreenPointToRay(position: from);
+        }
+
         public static int GetInternalIterator()
         {
             return BrendanIterator;
         }
 
-		public void PlayAnimation(string AnimationID){
 
-		
-
-		}
+        //Beginning of ICommunication interface
+        //////////////////////////////////////
 
         public void PlayAudio(string AudioID)
         {
@@ -114,19 +162,19 @@ namespace DialogueSystems
             if (AudioID == "B2_S1")
             {
                 BrendanSource.clip = BrendanAudio[4];
-                BrendanSource.PlayDelayed(1);
+                BrendanSource.PlayDelayed(0.5f);
             }
 
             if (AudioID == "B2_S2")
             {
                 BrendanSource.clip = BrendanAudio[5];
-                BrendanSource.PlayDelayed(1);
+                BrendanSource.PlayDelayed(0.5f);
             }
 
             if (AudioID == "B2_S3")
             {
                 BrendanSource.clip = BrendanAudio[6];
-                BrendanSource.PlayDelayed(1);
+                BrendanSource.PlayDelayed(0.5f);
             }
 
             if (AudioID == "B3_S1")
@@ -400,12 +448,7 @@ namespace DialogueSystems
             }
 
 
-        }
-
-
-       
-
-    
+        }   
    
         public void DisplayScript(string ScriptID)
         {
@@ -445,13 +488,13 @@ namespace DialogueSystems
                 InternalIterator++;
             }
 
-            if (ScriptID == "B2_S3")
+           else if (ScriptID == "B2_S3")
             {
                 LinkDialogueText.text = BrendanScript[InternalIterator];
                 InternalIterator++;
             }
 
-            if (ScriptID == "B3_S1")
+           else if (ScriptID == "B3_S1")
             {
                 LinkDialogueText.text = BrendanScript[InternalIterator];
                 InternalIterator++;
@@ -723,43 +766,10 @@ namespace DialogueSystems
 
         }
 
-        // Use this for initialization
-        void Start()
-        {
-            string UITag = "UI";
 
-            BrendanCollider = GetComponent<CapsuleCollider>();
-            BrendanSource = GetComponent<AudioSource>();
-
-            CoreDialogueSystems.InitializeDialogueIterator(DialogueIDSequencer);
-
-            StartCoroutine(DialogueIterator());
-
-            State = CoreDialogueSystems.ConversationState.Active;
-
-            CoreDialogueSystems.SetConversationStateInactive();
-
-
-        }
-
-        public static CapsuleCollider ReturnCollider()
-        {
-            return BrendanCollider;
-        }
-
-
-        void DefineColliderParameters()
-        {
-
-            BrendanCollider.isTrigger = true;
-        }
-
-        void DefineCameraParameters()
-        {
-            //BrendanPOV.GetComponent<Camera>();
-            //BrendanPOV.ViewportToScreenPoint(position: from);
-            //BrendanPOV.ScreenPointToRay(position: from);
-        }
+        //End of ICommunication interface
+        /////////////////////////////////////
+       
 
         public IEnumerator ScriptIDDefinition(CoreDialogueSystems.ScriptID ScriptIdentification, string DefineScript)
         {
@@ -777,31 +787,19 @@ namespace DialogueSystems
 
                 //MaritimeDialogueIterator++;
 
-                yield return new WaitForSeconds(0.1f);
+                yield return null;
 
             }
 
         }
 
-        
-
+            
         public IEnumerator DialogueIterator()
         {
-            
-
             if(State == CoreDialogueSystems.ConversationState.Active)
 
             if (DialogueIDSequencer[MaritimeInternalIterator] == "B1_S1")
             {
-
-				//AdHocCameraAnimations [1].Play ();
-		
-
-				yield return new WaitUntil (() => AdHocCameraAnimations [1].isPlaying == false);
-
-                //Invokes Doorbell Function
-                //CoreEventSystemNestedType.SceneEvents.Doorbell.Invoke();
-                //CoreEventSystemNestedType.SceneEvents.OpenDoor.Invoke();
 
                 PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
                 DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
@@ -857,8 +855,6 @@ namespace DialogueSystems
                 yield return new WaitUntil(() => BrendanSource.isPlaying == false);
 
                 MaritimeInternalIterator++;
-
-                ScriptStateID = ScriptState.Elli;
 
             }
 
@@ -991,8 +987,8 @@ namespace DialogueSystems
 
             if (DialogueIDSequencer[MaritimeInternalIterator] == "B5_S1")
             {
-                //SceneEvents.WalkDogUpstairs.Invoke();
-				yield return new WaitUntil(() => CoreEventSystem.ColliderFunctions.ElliFinishedTakingDogUpstairs());
+                //SceneObject.WalkDogUpstairs.Invoke();
+				//yield return new WaitUntil(() => CoreEventSystem.ColliderObject.ElliFinishedTakingDogUpstairs());
 
                 PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
                 DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
@@ -1008,9 +1004,9 @@ namespace DialogueSystems
 
             if (DialogueIDSequencer[MaritimeInternalIterator] == "B6_S1")
             {
-				CoreEventSystem.SceneEvents.EnterLivingRoom.Invoke();
-				yield return new WaitUntil(() => CoreEventSystem.ColliderFunctions.ElliEntersLivingRoom());
-				yield return new WaitUntil(() => CoreEventSystem.ColliderFunctions.BrendanEntersLivingRoom());
+				//CoreEventSystem.SceneObject.EnterLivingRoom.Invoke();
+				//yield return new WaitUntil(() => CoreEventSystem.ColliderObject.ElliEntersLivingRoom());
+				//yield return new WaitUntil(() => CoreEventSystem.ColliderObject.BrendanEntersLivingRoom());
 
                 PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
                 DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
@@ -1187,10 +1183,10 @@ namespace DialogueSystems
             {
 
 				//Not implemented
-				CoreEventSystem.SceneEvents.CheckCot.Invoke();
+				//CoreEventSystem.SceneObject.CheckCot.Invoke();
 
                 //BrendanObject checks cot
-				yield return new WaitUntil(() => CoreEventSystem.ColliderFunctions.BrendanChecksCotCollider());
+				//yield return new WaitUntil(() => CoreEventSystem.ColliderObject.BrendanChecksCotCollider());
                 yield return new WaitForSeconds(1);
 
                 PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
@@ -1204,7 +1200,7 @@ namespace DialogueSystems
 
             if (DialogueIDSequencer[MaritimeInternalIterator] == "B14_S1")
             {
-				CoreEventSystem.SceneEvents.BrendanChecksBottle.Invoke();
+				//CoreEventSystem.SceneObject.BrendanChecksBottle.Invoke();
 
                 //BrendanObject checks cot
                 yield return new WaitForSeconds(1);
@@ -1220,7 +1216,7 @@ namespace DialogueSystems
 
             if (DialogueIDSequencer[MaritimeInternalIterator] == "B15_S1")
             {
-				CoreEventSystem.SceneEvents.BrendanPicksBottle.Invoke();
+				//CoreEventSystem.SceneObject.BrendanPicksBottle.Invoke();
 
                 //BrendanObject checks cot
                 yield return new WaitForSeconds(1);
@@ -1236,7 +1232,7 @@ namespace DialogueSystems
 
             if (DialogueIDSequencer[MaritimeInternalIterator] == "B16_S1")
             {
-				CoreEventSystem.SceneEvents.PointsToBrokenGlass.Invoke();
+				//CoreEventSystem.SceneObject.PointsToBrokenGlass.Invoke();
 
                 //BrendanObject checks cot
                 yield return new WaitForSeconds(1);
@@ -1252,7 +1248,7 @@ namespace DialogueSystems
 
             if (DialogueIDSequencer[MaritimeInternalIterator] == "B17_S1")
             {
-                //CoreEventSystemNestedType.SceneEvents.PointsToBrokenGlass.Invoke();
+                //CoreEventSystemNestedType.SceneObject.PointsToBrokenGlass.Invoke();
 
                 //BrendanObject checks cot
                 yield return new WaitForSeconds(1);
@@ -1269,7 +1265,7 @@ namespace DialogueSystems
 
             if (DialogueIDSequencer[MaritimeInternalIterator] == "B18_S1")
             {
-                //CoreEventSystemNestedType.SceneEvents.PointsToBrokenGlass.Invoke();
+                //CoreEventSystemNestedType.SceneObject.PointsToBrokenGlass.Invoke();
 
                 //BrendanObject checks cot
                 yield return new WaitForSeconds(1);
@@ -1504,9 +1500,9 @@ namespace DialogueSystems
 
             if (DialogueIDSequencer[MaritimeInternalIterator] == "B29_S2")
             {
-				CoreEventSystem.SceneEvents.BrendanLeavesHouse.Invoke();
+				//CoreEventSystem.SceneObject.BrendanLeavesHouse.Invoke();
 
-				yield return new WaitUntil(() => CoreEventSystem.ColliderFunctions.BrendanFrontDoor());
+				//yield return new WaitUntil(() => CoreEventSystem.ColliderObject.BrendanFrontDoor());
 
                 PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
                 DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
@@ -1533,7 +1529,7 @@ namespace DialogueSystems
 
 
 			yield return new WaitForSeconds (3);
-			StartCoroutine (DialogueIterator());
+			StartCoroutine (DialogueIterator ());
 
         }
 			
@@ -1970,6 +1966,7 @@ namespace DialogueSystems
                 StartCoroutine(ScriptIDDefinition(CoreDialogueSystems.ScriptID.Brendan, "I am going to call the Police we really need to get back in there"));
                 Debug.Log("B29_S4 Active");
             }
+        
 
         }
 
@@ -1977,31 +1974,20 @@ namespace DialogueSystems
         // Update is called once per frame
         void Update()
         {
-            //InputController
-
-		
-			gameObject.transform.position = Vector3.Lerp(GameObjectPoints[0].transform.position, GameObjectPoints[1].transform.position, Time.time / 4);
-			//gameObject.transform.Rotate );
-
-
-			//gameObject.transform.position = Vector3.Lerp (GameObjectPoints [1].transform.position, GameObjectPoints [2].transform.position, Time.time / 4);
-
-            ElliController.ScriptStateID = BrendanPOVController.ScriptStateID;
-
+   
             Debug.Log("If this shows this class is functional");
 
             Debug.Log("This is the current state of Maritime Internal Iterator for Brendan " + MaritimeInternalIterator);
 
-			//AutomatedNavigationSystem.Walk (GameObject.FindObjectOfType<Animator> ());
-
-
-			//AutomatedNavigationSystem.TravelTo (this.gameObject.transform, FrontDoor.FrontDoorGameObject.gameObject.transform, 10.0f);
+			TrackLocation = transform.position;
 
         }
+			
 
-    
-
-     
+        public void ReceiveResponse(ICommunciation CharacterType)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }

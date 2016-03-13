@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using CoreSystems;
+using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Collections;
 using System;
@@ -18,8 +19,12 @@ namespace DialogueSystems
         public List<string> LukeScript = new List<string>(50);
         public AudioClip[] LukeAudio = new AudioClip[18];
         public AudioSource LukeSource;
+        public Text LukeDialogueText;
         static int LukeDialogueIterator = 0;
         string[] DialogueIDSequencer = new string[108];
+
+
+        private int InternalDisplayIterator = 0;
 
         void Awake()
         {
@@ -27,6 +32,8 @@ namespace DialogueSystems
 
             LukeDialogueIterator = CoreDialogueSystems.MaritimeDialogueIterator;
             DialogueIDSequencer = CoreDialogueSystems.DialogueIDSequencer;
+
+            LukeDialogueText = GetComponent<Text>();
         }
 
         // Use this for initialization
@@ -96,7 +103,7 @@ namespace DialogueSystems
                 DisplayScript(ScriptID: DialogueIDSequencer[LukeDialogueIterator]);
 
                 yield return new WaitUntil(() => LukeSource.isPlaying == false);
-				yield return new WaitUntil(() => CoreEventSystem.AnimationFunctions.LukePointsFinger());
+				//yield return new WaitUntil(() => CoreEventSystem.AnimationObject.LukePointsFinger());
 
                 LukeDialogueIterator++;
 
@@ -400,7 +407,95 @@ namespace DialogueSystems
 
         public void DisplayScript(string ScriptID)
         {
+            if (ScriptID == "L1_T1_S1")
+            {
+                LukeDialogueText.text = LukeScript[InternalDisplayIterator];
+                InternalDisplayIterator++;
 
+            }
+           
+
+            if (ScriptID == "L2_S1")
+            {
+                LukeDialogueText.text = LukeScript[InternalDisplayIterator];
+                InternalDisplayIterator++;
+               
+            }
+
+            if (ScriptID == "L3_S1")
+            {
+                LukeDialogueText.text = LukeScript[InternalDisplayIterator];
+                InternalDisplayIterator++;
+            }
+
+            if (ScriptID == "L4_S1")
+            {
+                LukeDialogueText.text = LukeScript[InternalDisplayIterator];
+                InternalDisplayIterator++;
+            }
+
+            if (ScriptID == "L5_S1")
+            {
+                LukeDialogueText.text = LukeScript[InternalDisplayIterator];
+                InternalDisplayIterator++;
+            }
+
+            if (ScriptID == "L6_S1")
+            {
+                LukeDialogueText.text = LukeScript[InternalDisplayIterator];
+                InternalDisplayIterator++;
+            }
+
+            if (ScriptID == "L7_S1")
+            {
+                LukeDialogueText.text = LukeScript[InternalDisplayIterator];
+                InternalDisplayIterator++;
+            }
+
+            if (ScriptID == "L8_S1")
+            {
+                LukeDialogueText.text = LukeScript[InternalDisplayIterator];
+                InternalDisplayIterator++;
+            }
+
+            if (ScriptID == "L9_S1")
+            {
+                LukeDialogueText.text = LukeScript[InternalDisplayIterator];
+                InternalDisplayIterator++;
+            }
+
+            if (ScriptID == "L9_S2")
+            {
+                LukeDialogueText.text = LukeScript[InternalDisplayIterator];
+                InternalDisplayIterator++;
+            }
+
+            if (ScriptID == "L9_S3")
+            {
+                LukeDialogueText.text = LukeScript[InternalDisplayIterator];
+                InternalDisplayIterator++;
+            }
+
+            if (ScriptID == "L9_S4")
+            {
+                LukeDialogueText.text = LukeScript[InternalDisplayIterator];
+                InternalDisplayIterator++;
+            }
+
+            if (ScriptID == "L9_S5")
+            {
+                LukeDialogueText.text = LukeScript[InternalDisplayIterator];
+                InternalDisplayIterator++;
+            }
+
+
+            if (ScriptID == "L10_S1")
+            {
+                LukeDialogueText.text = LukeScript[InternalDisplayIterator];
+                InternalDisplayIterator++;
+            }
+
+        
         }
 
         public void PopulateScript()
@@ -539,7 +634,7 @@ namespace DialogueSystems
             throw new NotImplementedException();
         }
 
-        public void ReceiveResponse(ICommunciation CharacterType)
+        new public void ReceiveResponse(ICommunciation CharacterType)
         {
             throw new NotImplementedException();
         }

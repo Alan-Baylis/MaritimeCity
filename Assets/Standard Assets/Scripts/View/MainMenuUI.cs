@@ -30,5 +30,8 @@ public class MainMenuUI : MonoBehaviour {
 
 	}
 	
-
+	// Update is called once per frame
+	void Update () {
+	
+	}
 }
