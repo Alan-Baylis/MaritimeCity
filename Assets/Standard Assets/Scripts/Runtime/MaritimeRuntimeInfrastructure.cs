@@ -19,8 +19,10 @@ public class MaritimeRuntimeInfrastructure : MonoBehaviour
 
     }
 
-    public enum SceneID { Start, Pause, End };
+    //Runtime Begins Here
+    ///////////////////////
 
+    public enum SceneID { Start, Pause, End };
 
     /// <summary>
     /// This code is just to inform the Runtime of the current state
