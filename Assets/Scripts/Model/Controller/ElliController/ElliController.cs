@@ -1410,7 +1410,7 @@ namespace DialogueSystems
         void Update()
         {
 
-            Debug.Log("This is the current state of Maritime Internal Iterator for Elli " + MaritimeInternalIterator);
+            //Debug.Log("This is the current state of Maritime Internal Iterator for Elli " + MaritimeInternalIterator);
             Debug.Log("Query dialog state for Elli is " + ScriptStateID);
             Debug.Log("Query conversation state for Elli is " + State);
 

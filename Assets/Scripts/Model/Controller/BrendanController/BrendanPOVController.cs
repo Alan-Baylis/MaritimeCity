@@ -824,11 +824,30 @@ namespace DialogueSystems
 
 				MaritimeInternalIterator++;
 
+                    Debug.Log("This is the current state of Maritime Internal Iterator for Brendan " + MaritimeInternalIterator);
+
+
+                }
+
+
+
+          else if (DialogueIDSequencer[MaritimeInternalIterator] == "B1_S2")
+            {
+                PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
+                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
+
+                //Invoke relevant Event here!
+
+                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
+
+                MaritimeInternalIterator++;
+
+                Debug.Log("This is the current state of Maritime Internal Iterator for Brendan " + MaritimeInternalIterator);
+
             }
 
 
-
-            if (DialogueIDSequencer[MaritimeInternalIterator] == "B1_S2")
+           else if (DialogueIDSequencer[MaritimeInternalIterator] == "B1_S3")
             {
                 PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
                 DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
@@ -842,21 +861,7 @@ namespace DialogueSystems
             }
 
 
-            if (DialogueIDSequencer[MaritimeInternalIterator] == "B1_S3")
-            {
-                PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
-                DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
-
-                //Invoke relevant Event here!
-
-                yield return new WaitUntil(() => BrendanSource.isPlaying == false);
-
-                MaritimeInternalIterator++;
-
-            }
-
-
-            if (DialogueIDSequencer[MaritimeInternalIterator] == "B1_S4")
+          else if (DialogueIDSequencer[MaritimeInternalIterator] == "B1_S4")
             {
                 PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
                 DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
@@ -872,7 +877,7 @@ namespace DialogueSystems
 
           
 
-            if (DialogueIDSequencer[MaritimeInternalIterator] == "B2_S1")
+           else if (DialogueIDSequencer[MaritimeInternalIterator] == "B2_S1")
             {
                 yield return new WaitUntil(() => ElliController.IsElliFinished() == true);
 
@@ -888,7 +893,7 @@ namespace DialogueSystems
             }
 
 
-            if (DialogueIDSequencer[MaritimeInternalIterator] == "B2_S2")
+          else if (DialogueIDSequencer[MaritimeInternalIterator] == "B2_S2")
             {
 
                 PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
@@ -903,7 +908,7 @@ namespace DialogueSystems
             }
 
 
-            if (DialogueIDSequencer[MaritimeInternalIterator] == "B2_S3")
+          else if (DialogueIDSequencer[MaritimeInternalIterator] == "B2_S3")
             {
          
                 PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
@@ -918,9 +923,8 @@ namespace DialogueSystems
             }
 
 
-            if (DialogueIDSequencer[MaritimeInternalIterator] == "B3_S1")
+          else  if (DialogueIDSequencer[MaritimeInternalIterator] == "B3_S1")
             {
-                yield return new WaitUntil(() => ElliController.IsElliFinished() == true);
 
                 PlayAudio(AudioID: DialogueIDSequencer[MaritimeInternalIterator]);
                 DisplayScript(ScriptID: DialogueIDSequencer[MaritimeInternalIterator]);
@@ -1989,8 +1993,7 @@ namespace DialogueSystems
    
             Debug.Log("If this shows this class is functional");
 
-            Debug.Log("This is the current state of Maritime Internal Iterator for Brendan " + MaritimeInternalIterator);
-
+           
 			TrackLocation = transform.position;
 
         }
