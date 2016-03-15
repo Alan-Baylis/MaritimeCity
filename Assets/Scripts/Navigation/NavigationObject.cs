@@ -21,13 +21,13 @@ public class NavigationObject : NavigationInfrastructure, INavigation
 
         NavigationGameObject = gameObject;
 
+        Debug.Log("Name of the current Object is " + gameObject.name);
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        Debug.Log("Name of the current Object is " + gameObject.name);
     }
 
     void OnTriggerEnter(Collider other)

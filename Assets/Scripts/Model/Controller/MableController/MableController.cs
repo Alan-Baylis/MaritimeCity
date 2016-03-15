@@ -1,14 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
+using CoreSystems;
 
 public class MableController : MonoBehaviour {
 
 
     [SerializeField] private AudioSource MableSource;
-    [SerializeField] private AudioClip MableBark;
+    [SerializeField] private AudioClip[] MableBark;
      private Animator MableAnimator;
      private AnimationClip cMableBarkAnimation;
      private AnimationClip cMableWalkAnimation;
+    private AnimationClip cMableIdledAnimation;
+
+    int DogBarkingIterator = 0;
+    int BarkIterator = 0;
+
     [SerializeField]
     private Animation MableCoreAnimation;
 
@@ -30,22 +36,32 @@ public class MableController : MonoBehaviour {
         //Find object and assign it to instance
         MableSingletonObjectInstance = FindObjectOfType<MableController>();
 
-        MableBark = GetComponent<AudioClip>();
-
         gameObject.AddComponent<AudioSource>();
         gameObject.AddComponent<Animator>();
         MableAnimator = GetComponent<Animator>();
         MableSource = GetComponent<AudioSource>();
         MableCoreAnimation = GetComponent<Animation>();
 
+        MableSource.clip = MableBark[0];
+
+       
+
+        InitializeSourceVariables();
 
         cMableWalkAnimation = MableCoreAnimation.GetClip("Walk");
         cMableBarkAnimation = MableCoreAnimation.GetClip("Barking");
-      
+        cMableIdledAnimation = MableCoreAnimation.GetClip("Idled");
+
+             
     }
 
 
+     private void InitializeSourceVariables()
+    {
 
+        MableSource.volume = 0.5f;
+
+    }
     
 
   public void WalkingVectorAssignment(INavigation PointA, INavigation PointB, Animation Walking)
@@ -63,11 +79,51 @@ public class MableController : MonoBehaviour {
 
     }
 
-
     public void Play()
     {
-        MableSource.clip = MableBark;
-        MableSource.Play();
+   
+
+        if (Core.MaritimeInternalIterator == 4)
+        {
+            MableCoreAnimation.Play("Barking");
+
+            if (MableCoreAnimation.isPlaying == false)
+            {
+                MableCoreAnimation.Play("Barking");
+            }
+
+        }
+
+
+    }
+
+    IEnumerator Bark()
+    {
+
+        while (Core.MaritimeInternalIterator > 4)
+        {
+            MableSource.clip = MableBark[BarkIterator];
+            MableSource.Play();
+
+            BarkIterator++;
+
+            if (BarkIterator == 2)
+            {
+
+                BarkIterator = 0;
+                StartCoroutine(Bark());
+
+            }
+
+            yield return new WaitForSeconds(5.0f);
+
+            StartCoroutine(Bark());
+
+        }
+
+        yield return new WaitForSeconds(2.0f);
+
+        StartCoroutine(Bark());
 
     }
 
@@ -75,15 +131,24 @@ public class MableController : MonoBehaviour {
 	void Start () 
     {
 
-	}
+        StartCoroutine(Bark());
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
 
-        if (CoreSystems.Core.CoreDialogueSystems.MaritimeDialogueIterator == 5)
+        if(Core.MaritimeInternalIterator == 0 && MableCoreAnimation.isPlaying == false)
+        {
+            MableCoreAnimation.Play("Idled");
+        }
+
+        if (Core.CoreDialogueSystems.MaritimeDialogueIterator == 5)
         {
            // WalkingVectorAssignment(NavigationInfrastructure.NavigationObjects[0], NavigationInfrastructure.NavigationObjects[1], cMableWalkAnimation);
         }
+
+        Play();
 
 	}
 }

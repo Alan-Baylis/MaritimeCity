@@ -15,9 +15,11 @@ public class FrontDoor : Core {
 	Ray FrontDoorRay;
 	RaycastHit FrontDoorInfo;
 
+    Transform FrontDoorTransform;
 
 
-	void Awake()
+
+    void Awake()
 	{
 		FrontDoorGameObject = gameObject;
 		FrontDoorRay = new Ray (FrontDoorGameObject.transform.localPosition, FrontDoorGameObject.transform.forward);
@@ -31,7 +33,7 @@ public class FrontDoor : Core {
 
 	void Start ()
     {
-
+ 
         StartCoroutine(mUpdate());
     }
 
@@ -44,13 +46,13 @@ public class FrontDoor : Core {
 
         StartCoroutine(MaritimeRuntimeInfrastructure.cFrontDoorBell());
 
-		Destroy (gameObject);
+		Destroy (other.gameObject);
 
     }
 
 	void ResetDirection(Vector3 A, Vector3 B)
 	{
-		gameObject.transform.rotation = Quaternion.FromToRotation (A, B);
+		//gameObject.transform.rotation = Quaternion.FromToRotation (A, B);
 
 	}
 
@@ -83,6 +85,8 @@ public class FrontDoor : Core {
 	
     IEnumerator mUpdate()
     {
+
+        //transform.rotation = Quaternion.Lerp(Quaternion.Euler(FrontDoorTransform.eulerAngles), Quaternion.Euler(x: 0, y: 90, z: 0), Time.time / 50);
 
         PlayDoorBell();
 

@@ -55,8 +55,12 @@ namespace DialogueSystems
 			ElliAnimator = GetComponent<Animator> ();
             DialogueIDSequencer = CoreDialogueSystems.DialogueIDSequencer;
 
+            Debug.Log("Query dialog state for Elli is " + ScriptStateID);
+            Debug.Log("Query conversation state for Elli is " + State);
+
+
         }
-			
+
         // Use this for initialization
         void Start()
         {
@@ -94,8 +98,6 @@ namespace DialogueSystems
 		void SetBodyPosition(Vector3 Position)
 		{
 			ElliAnimator.bodyPosition = Position;
-
-			Debug.Log ("Function fires correctly");
 		}
 
 		void SetBodyRotation(Quaternion Rotation)
@@ -107,8 +109,6 @@ namespace DialogueSystems
 
         public IEnumerator DialogueIterator()
 		{
-
-            Debug.Log("State is fully functional");
 
 			if (State == CoreDialogueSystems.ConversationState.Active) {
 
@@ -1411,9 +1411,7 @@ namespace DialogueSystems
         {
 
             //Debug.Log("This is the current state of Maritime Internal Iterator for Elli " + MaritimeInternalIterator);
-            Debug.Log("Query dialog state for Elli is " + ScriptStateID);
-            Debug.Log("Query conversation state for Elli is " + State);
-
+    
 			float ElliTime = 10.0f;
 
 			if (ElliTime < Time.deltaTime) {

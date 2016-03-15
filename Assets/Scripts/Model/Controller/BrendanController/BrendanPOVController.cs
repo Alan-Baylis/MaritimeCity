@@ -824,7 +824,7 @@ namespace DialogueSystems
 
 				MaritimeInternalIterator++;
 
-                    Debug.Log("This is the current state of Maritime Internal Iterator for Brendan " + MaritimeInternalIterator);
+               Debug.Log("This is the current state of Maritime Internal Iterator for Brendan " + MaritimeInternalIterator);
 
 
                 }
@@ -858,7 +858,9 @@ namespace DialogueSystems
 
                 MaritimeInternalIterator++;
 
-            }
+               Debug.Log("This is the current state of Maritime Internal Iterator for Brendan " + MaritimeInternalIterator);
+
+                }
 
 
           else if (DialogueIDSequencer[MaritimeInternalIterator] == "B1_S4")
@@ -873,7 +875,9 @@ namespace DialogueSystems
 
                 MaritimeInternalIterator++;
 
-            }
+                Debug.Log("This is the current state of Maritime Internal Iterator for Brendan " + MaritimeInternalIterator);
+
+                }
 
           
 
@@ -890,6 +894,7 @@ namespace DialogueSystems
 
                 MaritimeInternalIterator++;
 
+                Debug.Log("This is the current state of Maritime Internal Iterator for Brendan " + MaritimeInternalIterator);
             }
 
 
@@ -905,7 +910,9 @@ namespace DialogueSystems
 
                 MaritimeInternalIterator++;
 
-            }
+               Debug.Log("This is the current state of Maritime Internal Iterator for Brendan " + MaritimeInternalIterator);
+
+                }
 
 
           else if (DialogueIDSequencer[MaritimeInternalIterator] == "B2_S3")
@@ -1991,7 +1998,7 @@ namespace DialogueSystems
         void Update()
         {
    
-            Debug.Log("If this shows this class is functional");
+           // Debug.Log("If this shows this class is functional");
 
            
 			TrackLocation = transform.position;

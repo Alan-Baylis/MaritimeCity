@@ -1,15 +1,20 @@
 ﻿using UnityEngine;
+using CoreSystems;
 using UnityEngine.UI;
 using System.Collections;
 
 public class GameSelectionScreenUI : MonoBehaviour {
 
+    private GameObject GameSelectionScreenGameObject;
 	public Canvas GameSelectionScreen;
 
 	// Use this for initialization
 	void Start () {
-	
-		GameSelectionScreen.gameObject.SetActive (false);
+
+
+        GameSelectionScreenGameObject = GameSelectionScreen.gameObject;
+
+		//GameSelectionScreen.gameObject.SetActive (false);
 
 	}
 	
@@ -17,10 +22,9 @@ public class GameSelectionScreenUI : MonoBehaviour {
 	void Update () {
 	
 
-		if(Input.GetKeyDown(KeyCode.O))
+		if(Core.MaritimeInternalIterator == 1)
 		{
-			GameSelectionScreen.gameObject.SetActive (true);
-			Debug.Log ("Keyboard Event Fired");
+            GameSelectionScreenGameObject.gameObject.SetActive(true);
 		}
 
 	}
