@@ -225,12 +225,20 @@ public class MaritimeRuntimeInfrastructure : MonoBehaviour
 
         public void StructAddPersistantListeners(UnityEventBase unityEvent, UnityAction call)
         {
+			
             //UnityEventTools.AddVoidPersistentListener (unityEvent: unityEvent, call: call);
         }
 
 
     }
 
+	public interface ISystem
+	{
 
+		void Pause();
+
+		void Play();
+	
+	}
 }
 
