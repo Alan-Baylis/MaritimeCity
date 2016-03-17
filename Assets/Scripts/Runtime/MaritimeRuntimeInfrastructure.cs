@@ -80,6 +80,13 @@ public class MaritimeRuntimeInfrastructure : MonoBehaviour
            BrendanInstanceObject.transform.position = Vector3.Lerp(BrendanPOVController.GetPosition(), PointsOfInterest[0].position, Time.time / 20);
         }
 
+        if (MaritimeDialogueIterator == 11)
+        {
+            BrendanInstanceObject.transform.position = Vector3.Lerp(BrendanPOVController.GetPosition(), PointsOfInterest[1].position, Time.time / 20);
+
+            BrendanInstanceObject.transform.position = Vector3.Lerp(BrendanPOVController.GetPosition(), PointsOfInterest[2].position, Time.time / 20);
+        }
+
     }
 
 
