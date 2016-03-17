@@ -248,6 +248,8 @@ namespace DialogueSystems
 
 					yield return new WaitUntil (() => ElliSource.isPlaying == false);
 
+					yield return new WaitUntil (() => MableController.MableSingletonObject.gameObject.activeInHierarchy == false);
+
 					MaritimeInternalIterator++;
 
 				} else if (DialogueIDSequencer [MaritimeInternalIterator] == "E5_S1") {
