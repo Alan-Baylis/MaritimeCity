@@ -12,7 +12,7 @@ using System;
 namespace CoreSystems
 {
 
-	public class Core : MonoBehaviour
+	public class Core : MaritimeRuntimeInfrastructure
 	{
 		public enum SceneState
 		{
@@ -36,8 +36,10 @@ namespace CoreSystems
 
 		;
 
+        public static int MaritimeInternalIterator = 0;
 
-		public Core ()
+
+        public Core ()
 		{
 			MaritimeRuntimePlatform = RuntimePlatform.OSXEditor;
             
@@ -141,7 +143,6 @@ namespace CoreSystems
 
 		public static CoreDialogueSystems.ConversationState State = CoreDialogueSystems.ConversationState.Inactive;
 
-		public static int MaritimeInternalIterator = 0;
 
 
 

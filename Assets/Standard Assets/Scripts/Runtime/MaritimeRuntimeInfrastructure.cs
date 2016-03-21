@@ -13,8 +13,11 @@ public class MaritimeRuntimeInfrastructure : MonoBehaviour {
 	public Transform[] Locations = new Transform[10];
 
 
-	// Use this for initialization
-	void Start () {
+
+    
+
+    // Use this for initialization
+    void Start () {
 	
 		BrendanInstanceObject = BrendanPOVController.BrendanSingletonObjectInstance.gameObject;
 
@@ -45,8 +48,6 @@ public class MaritimeRuntimeInfrastructure : MonoBehaviour {
 		if (MaritimeDialogueIterator == 0) {
 
 			FrontDoor.PlayDoorBell ();
-
-
 
 			yield return new WaitForSeconds (FrontDoor.FrontDoorSource.clip.length * 1.1f);
 
