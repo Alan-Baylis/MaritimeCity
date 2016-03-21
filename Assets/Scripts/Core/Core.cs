@@ -46,6 +46,30 @@ namespace CoreSystems
 		[SerializeField]
 		public static ScriptState ScriptStateID = ScriptState.NULL;
 
+
+	   public virtual void ISystemPause (string MethodName){
+
+			if (MethodName.Contains("Controller"))
+			{
+
+				this.StopCoroutine (MethodName);
+			}
+		
+		}
+
+		public virtual void ISystemPause ()
+		{
+
+				this.StopAllCoroutines ();
+
+		}
+
+		public virtual void ISystemPlay(){
+
+
+
+		}
+
         /*Redacted
 		//Custom modules
 		public struct AutomatedCoreDialogueSystem

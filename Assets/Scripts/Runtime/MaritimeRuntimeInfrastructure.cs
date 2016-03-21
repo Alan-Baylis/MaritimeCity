@@ -2,6 +2,7 @@
 using CoreSystems;
 using UnityEngine.Events;
 using System.Collections;
+using System.Collections.Generic;
 using DialogueSystems;
 
 
@@ -18,6 +19,13 @@ public class MaritimeRuntimeInfrastructure : MonoBehaviour
    
 
     }
+
+
+	Core[] SystemObjects = new Core[10];
+
+
+
+	Vector3 ElliLocation;
 
     //Runtime Begins Here
     ///////////////////////
@@ -48,9 +56,37 @@ public class MaritimeRuntimeInfrastructure : MonoBehaviour
     void Start()
     {
 
+		SystemObjects = FindObjectsOfType <Core> ();
+
         BrendanInstanceObject = BrendanPOVController.BrendanSingletonObjectInstance.gameObject;
         MaritimeCoreObject = FindObjectOfType<MaritimeRuntimeInfrastructure>();
     }
+
+
+	void mPause()
+	{
+		
+		//If button is pressed go to next part
+
+		for (int a = 0; a < SystemObjects.Length; a++) 
+		{
+			SystemObjects [a].ISystemPause();
+		}
+
+	}
+
+
+	void mPlay()
+	{
+
+		for (int a = 0; a < SystemObjects.Length; a++) 
+		{
+
+			SystemObjects [a].ISystemPlay();
+
+		}
+
+	}
 
     // Update is called once per frame
     void Update()
@@ -73,15 +109,22 @@ public class MaritimeRuntimeInfrastructure : MonoBehaviour
 
     public void mRuntimeSceneLogic()
     {
+		ElliLocation = ElliController.GetPosition ();
 
         //Goes to Local Street
         if (MaritimeDialogueIterator == 0)
         {
-           BrendanInstanceObject.transform.position = Vector3.Lerp(BrendanPOVController.GetPosition(), PointsOfInterest[0].position, Time.time / 20);
+			
+            BrendanInstanceObject.transform.position = Vector3.Lerp(BrendanPOVController.GetPosition(), PointsOfInterest[0].position, Time.time / 20);
+
+			ElliLocation.y = 2.0f;
+
+			BrendanInstanceObject.transform.LookAt (ElliLocation);
+
         }
 
         if (MaritimeDialogueIterator == 11)
-        {
+		{
             BrendanInstanceObject.transform.position = Vector3.Lerp(BrendanPOVController.GetPosition(), PointsOfInterest[1].position, Time.time / 20);
 
             BrendanInstanceObject.transform.position = Vector3.Lerp(BrendanPOVController.GetPosition(), PointsOfInterest[2].position, Time.time / 20);
@@ -106,6 +149,8 @@ public class MaritimeRuntimeInfrastructure : MonoBehaviour
             FrontDoorOpen = Quaternion.FromToRotation(FrontDoor.FrontDoorGameObject.transform.parent.right, FrontDoor.FrontDoorGameObject.transform.up);
 
             Core.State = Core.CoreDialogueSystems.ConversationState.Active;
+
+		
 
         }
     }
@@ -239,12 +284,20 @@ public class MaritimeRuntimeInfrastructure : MonoBehaviour
 
     }
 
-	public interface ISystem
-	{
+	public class ISystem{
 
-		void Pause();
 
-		void Play();
+		public virtual void Play(){
+
+
+		}
+
+		public virtual void Pause(){
+
+
+
+		}
+
 	
 	}
 }

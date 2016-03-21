@@ -58,8 +58,13 @@ namespace DialogueSystems
             Debug.Log("Query dialog state for Elli is " + ScriptStateID);
             Debug.Log("Query conversation state for Elli is " + State);
 
-
+			ElliSingletonObjectInstance = FindObjectOfType<ElliController> ();
         }
+
+		public static Vector3 GetPosition()
+		{
+			return ElliSingletonObjectInstance.gameObject.transform.position;
+		}
 
         // Use this for initialization
         void Start()

@@ -30,6 +30,23 @@ namespace DialogueSystems
 
 		}
 
+
+		#region ISystem implementation
+
+		public void Pause ()
+		{
+			this.StopAllCoroutines ();
+		}
+
+		public void Play ()
+		{
+			this.StartCoroutine ("DialogueIterator");
+
+		}
+
+		#endregion
+
+		#region BrendanPOVController Variables 
         //Core types
         private int InternalIterator = 0;
 		public static Vector3 PlayerPosition;
@@ -52,11 +69,11 @@ namespace DialogueSystems
         private MaritimeListSystem<int> MLS_Iterator_List = new MaritimeListSystem<int>();
         private MaritimeListSystem<bool> MLS_Conditions_List = new MaritimeListSystem<bool>();
         */
-
-
+	
         [SerializeField]
         public static ScriptState ScriptStateID;
 	
+		#endregion
 	
 
 		void Awake()
@@ -2005,6 +2022,11 @@ namespace DialogueSystems
 
         }
 			
+
+		override public void ISystemPause(string MethodName){
+
+
+		}
 
         public void ReceiveResponse(ICommunciation CharacterType)
         {
