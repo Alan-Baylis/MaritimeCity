@@ -51,7 +51,6 @@ namespace CoreSystems
 
 			if (MethodName.Contains("Controller"))
 			{
-
 				this.StopCoroutine (MethodName);
 			}
 		
@@ -60,13 +59,13 @@ namespace CoreSystems
 		public virtual void ISystemPause ()
 		{
 
-				this.StopAllCoroutines ();
+			this.StopCoroutine(methodName: "DialogueIterator");
 
 		}
 
-		public virtual void ISystemPlay(){
-
-
+		public virtual void ISystemPlay()
+		{
+			this.StartCoroutine (methodName: "DialogueIterator");
 
 		}
 
@@ -202,7 +201,6 @@ namespace CoreSystems
 		{
 			Debug.Log ("Core Active");
 
-
 			if (MaritimeRuntimePlatform == RuntimePlatform.WindowsEditor) {
 
 				Debug.Log ("Optimized for Windows");
@@ -217,12 +215,11 @@ namespace CoreSystems
 
 			}
 
-
-			//BrendanObject = GameObject.FindGameObjectWithTag("Brendan Player").GetComponent<BrendanPOVController>();
-			//LukeObject = GameObject.FindGameObjectWithTag("/Luke").GetComponent<LukeController>();
-			//ElliObject = GameObject.FindGameObjectWithTag("/Elli").GetComponent<ElliController>();
-
 		}
+
+
+#region MaritimeListSystem
+    
 
 		/*
 		public class MaritimeListSystem<T> : CollectionBase
@@ -299,6 +296,8 @@ namespace CoreSystems
 		}
 
 */
+
+#endregion
 
 		public static class CoreDialogueSystems
 		{
@@ -449,7 +448,6 @@ namespace CoreSystems
 
 			}
 
-
 			public static void InitializeDialogueIterator ()
 			{
 
@@ -563,7 +561,6 @@ namespace CoreSystems
 				DialogueIDSequencer [107] = ("B29_S4");
 
 			}
-
 
 			public interface IDialogueSystems
 			{

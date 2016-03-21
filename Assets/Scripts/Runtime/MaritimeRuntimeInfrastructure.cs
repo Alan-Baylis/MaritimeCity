@@ -22,6 +22,7 @@ public class MaritimeRuntimeInfrastructure : MonoBehaviour
 
 
 	Core[] SystemObjects = new Core[10];
+	public string[] SystemObjectNames = new string[10];
 
 
 
@@ -57,13 +58,20 @@ public class MaritimeRuntimeInfrastructure : MonoBehaviour
     {
 
 		SystemObjects = FindObjectsOfType <Core> ();
-
         BrendanInstanceObject = BrendanPOVController.BrendanSingletonObjectInstance.gameObject;
         MaritimeCoreObject = FindObjectOfType<MaritimeRuntimeInfrastructure>();
+
+
+		for (int a = 0; a < SystemObjects.Length; a++) 
+		{
+			
+			SystemObjectNames [a] = SystemObjects [a].name;
+
+		}
     }
 
 
-	void mPause()
+	void mRuntimePause()
 	{
 		
 		//If button is pressed go to next part
@@ -76,14 +84,12 @@ public class MaritimeRuntimeInfrastructure : MonoBehaviour
 	}
 
 
-	void mPlay()
+	void mRuntimePlay()
 	{
 
 		for (int a = 0; a < SystemObjects.Length; a++) 
 		{
-
 			SystemObjects [a].ISystemPlay();
-
 		}
 
 	}
@@ -101,11 +107,12 @@ public class MaritimeRuntimeInfrastructure : MonoBehaviour
     }
 
 
-    //Master functions
+	#region Master Runtime Functions
     void mLerp(Transform PointA, Transform PointB)
     {
         BrendanInstanceObject.transform.position = Vector3.LerpUnclamped(PointA.position, PointB.position, Time.time / 10);
     }
+
 
     public void mRuntimeSceneLogic()
     {
@@ -123,7 +130,7 @@ public class MaritimeRuntimeInfrastructure : MonoBehaviour
 
         }
 
-        if (MaritimeDialogueIterator == 11)
+        if (MaritimeDialogueIterator == 16)
 		{
             BrendanInstanceObject.transform.position = Vector3.Lerp(BrendanPOVController.GetPosition(), PointsOfInterest[1].position, Time.time / 20);
 
@@ -132,6 +139,7 @@ public class MaritimeRuntimeInfrastructure : MonoBehaviour
 
     }
 
+	#endregion
 
     /// <summary>
     /// When the scene first starts
