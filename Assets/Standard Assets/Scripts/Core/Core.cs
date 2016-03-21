@@ -808,7 +808,7 @@ namespace CoreSystems
 				//NewDialogueUIState = DialogueControllerState.Closed;
 			}
 
-
+            
 		}
 
 	}
