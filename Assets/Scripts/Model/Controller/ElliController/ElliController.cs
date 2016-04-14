@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -11,7 +11,7 @@ using System;
 namespace DialogueSystems
 {
 
-    public class ElliController : Core
+    public class ElliController : MaritimeRuntimeInfrastructure, ICommunciation
     {
 
         private static ElliController ElliSingletonObjectInstance;
@@ -51,35 +51,23 @@ namespace DialogueSystems
 
         void Awake()
         {
+
+            ElliSingletonObjectInstance = FindObjectOfType<ElliController>();
             ElliSource = GetComponent<AudioSource>();
 			ElliAnimator = GetComponent<Animator> ();
-            DialogueIDSequencer = CoreDialogueSystems.DialogueIDSequencer;
+            DialogueIDSequencer = MaritimeRuntimeInfrastructure.DialogueIDSequencer;
 
-            Debug.Log("Query dialog state for Elli is " + ScriptStateID);
-            Debug.Log("Query conversation state for Elli is " + State);
-
-			ElliSingletonObjectInstance = FindObjectOfType<ElliController> ();
         }
-
-		public static Vector3 GetPosition()
-		{
-			return ElliSingletonObjectInstance.gameObject.transform.position;
-		}
 
         // Use this for initialization
         void Start()
         {
+
             PopulateScript();
-			CoreDialogueSystems.InitializeDialogueIterator (DialogueIDSequencer: DialogueIDSequencer);
+			InitializeDialogueIterator (DialogueIDSequencer: DialogueIDSequencer);
             StartCoroutine(DialogueIterator());
 
-
 			ElliAnimator.applyRootMotion = true;
-			//ElliAnimator.bodyPosition = null;
-			//ElliAnimator.bodyRotation = null;
-
-			//ElliAnimator.PlayInFixedTime ("look_around");
-			//ElliAnimator.SetLookAtPosition (BrendanPOVController.PlayerPosition);
 
         }
 
@@ -99,23 +87,16 @@ namespace DialogueSystems
 
         }
 
+        public static Vector3 GetPosition()
+        {
+            return ElliInstance.transform.position;
+        }
 
-		void SetBodyPosition(Vector3 Position)
-		{
-			ElliAnimator.bodyPosition = Position;
-		}
-
-		void SetBodyRotation(Quaternion Rotation)
-		{
-
-			ElliAnimator.bodyRotation = Rotation;
-
-		}
 
         public IEnumerator DialogueIterator()
 		{
 
-			if (State == CoreDialogueSystems.ConversationState.Active) {
+			if (State == ConversationState.Active) {
 
 				if (DialogueIDSequencer [MaritimeInternalIterator] == "E1_S1") {
 
@@ -128,7 +109,9 @@ namespace DialogueSystems
 
 					MaritimeInternalIterator++;
 
-					yield return new WaitUntil (() => ElliSource.isPlaying == false);
+                    Debug.Log("This is the current state of Maritime Internal Iterator for Elli " + MaritimeInternalIterator + " for " + DialogueIDSequencer[MaritimeInternalIterator]);
+
+                    yield return new WaitUntil (() => ElliSource.isPlaying == false);
 
 				} else if (DialogueIDSequencer [MaritimeInternalIterator] == "E1_S2") {
                    
@@ -141,9 +124,12 @@ namespace DialogueSystems
 
 					MaritimeInternalIterator++;
 
-                    
 
-				} else if (DialogueIDSequencer [MaritimeInternalIterator] == "E1_S3") {
+                  Debug.Log("This is the current state of Maritime Internal Iterator for Elli " + MaritimeInternalIterator + " for " + DialogueIDSequencer[MaritimeInternalIterator]);
+
+
+
+                } else if (DialogueIDSequencer [MaritimeInternalIterator] == "E1_S3") {
                
 
 					PlayAudio (AudioID: DialogueIDSequencer [MaritimeInternalIterator]);
@@ -155,7 +141,9 @@ namespace DialogueSystems
 
 					MaritimeInternalIterator++;
 
-				} else if (DialogueIDSequencer [MaritimeInternalIterator] == "E1_S4") {
+                  Debug.Log("This is the current state of Maritime Internal Iterator for Elli " + MaritimeInternalIterator + " for " + DialogueIDSequencer[MaritimeInternalIterator]);
+
+                } else if (DialogueIDSequencer [MaritimeInternalIterator] == "E1_S4") {
     
 
 					PlayAudio (AudioID: DialogueIDSequencer [MaritimeInternalIterator]);
@@ -167,7 +155,9 @@ namespace DialogueSystems
 
 					MaritimeInternalIterator++;
 
-				} 
+                  Debug.Log("This is the current state of Maritime Internal Iterator for Elli " + MaritimeInternalIterator + " for " + DialogueIDSequencer[MaritimeInternalIterator]);
+
+                } 
 				    else if (DialogueIDSequencer [MaritimeInternalIterator] == "E1_S5") {
                   
 
@@ -180,8 +170,10 @@ namespace DialogueSystems
 
 					MaritimeInternalIterator++;
 
+                  Debug.Log("This is the current state of Maritime Internal Iterator for Elli " + MaritimeInternalIterator + " for " + DialogueIDSequencer[MaritimeInternalIterator]);
 
-				} else if (DialogueIDSequencer [MaritimeInternalIterator] == "E2_S1") {
+
+                } else if (DialogueIDSequencer [MaritimeInternalIterator] == "E2_S1") {
 					
 					//yield return new WaitUntil (() => BrendanPOVController.BrendanSource.isPlaying == false);
 					//replace with static class 
@@ -196,7 +188,9 @@ namespace DialogueSystems
 
 					MaritimeInternalIterator++;
 
-				} else if (DialogueIDSequencer [MaritimeInternalIterator] == "E2_S2") {
+                  Debug.Log("This is the current state of Maritime Internal Iterator for Elli " + MaritimeInternalIterator + " for " + DialogueIDSequencer[MaritimeInternalIterator]);
+
+                } else if (DialogueIDSequencer [MaritimeInternalIterator] == "E2_S2") {
 
 					PlayAudio (AudioID: DialogueIDSequencer [MaritimeInternalIterator]);
 					DisplayScript (ScriptID: DialogueIDSequencer [MaritimeInternalIterator]);
@@ -207,7 +201,9 @@ namespace DialogueSystems
 
 					MaritimeInternalIterator++;
 
-				} else if (DialogueIDSequencer [MaritimeInternalIterator] == "E3_S1") {
+                  Debug.Log("This is the current state of Maritime Internal Iterator for Elli " + MaritimeInternalIterator + " for " + DialogueIDSequencer[MaritimeInternalIterator]);
+
+                } else if (DialogueIDSequencer [MaritimeInternalIterator] == "E3_S1") {
 					//yield return new WaitUntil(() => BrendanObject.BrendanFinishedTalking() == true);
 
 					PlayAudio (AudioID: DialogueIDSequencer [MaritimeInternalIterator]);
@@ -219,7 +215,9 @@ namespace DialogueSystems
 
 					MaritimeInternalIterator++;
 
-				} else if (DialogueIDSequencer [MaritimeInternalIterator] == "E3_S2") {
+                  Debug.Log("This is the current state of Maritime Internal Iterator for Elli " + MaritimeInternalIterator + " for " + DialogueIDSequencer[MaritimeInternalIterator]);
+
+                } else if (DialogueIDSequencer [MaritimeInternalIterator] == "E3_S2") {
 					yield return new WaitForSeconds (1);
 
 					PlayAudio (AudioID: DialogueIDSequencer [MaritimeInternalIterator]);
@@ -231,7 +229,9 @@ namespace DialogueSystems
 
 					MaritimeInternalIterator++;
 
-				} else if (DialogueIDSequencer [MaritimeInternalIterator] == "E3_S3") {
+                  Debug.Log("This is the current state of Maritime Internal Iterator for Elli " + MaritimeInternalIterator + " for " + DialogueIDSequencer[MaritimeInternalIterator]);
+
+                } else if (DialogueIDSequencer [MaritimeInternalIterator] == "E3_S3") {
 					yield return new WaitForSeconds (1);
 
 					PlayAudio (AudioID: DialogueIDSequencer [MaritimeInternalIterator]);
@@ -243,7 +243,9 @@ namespace DialogueSystems
 
 					MaritimeInternalIterator++;
 
-				} else if (DialogueIDSequencer [MaritimeInternalIterator] == "E4_S1") {
+                  Debug.Log("This is the current state of Maritime Internal Iterator for Elli " + MaritimeInternalIterator + " for " + DialogueIDSequencer[MaritimeInternalIterator]);
+
+                } else if (DialogueIDSequencer [MaritimeInternalIterator] == "E4_S1") {
 					yield return new WaitForSeconds (1);
 
 					PlayAudio (AudioID: DialogueIDSequencer [MaritimeInternalIterator]);
@@ -253,11 +255,13 @@ namespace DialogueSystems
 
 					yield return new WaitUntil (() => ElliSource.isPlaying == false);
 
-					yield return new WaitUntil (() => MableController.MableSingletonObject.gameObject.activeInHierarchy == false);
+					//yield return new WaitUntil (() => MableController.MableSingletonObject.gameObject.activeInHierarchy == false);
 
 					MaritimeInternalIterator++;
 
-				} else if (DialogueIDSequencer [MaritimeInternalIterator] == "E5_S1") {
+                  Debug.Log("This is the current state of Maritime Internal Iterator for Elli " + MaritimeInternalIterator + " for " + DialogueIDSequencer[MaritimeInternalIterator]);
+
+                } else if (DialogueIDSequencer [MaritimeInternalIterator] == "E5_S1") {
 
 					//CoreEventSystem.SceneObject.ComeDownstairs.Invoke ();
 					//yield return new WaitUntil (() => CoreEventSystem.ColliderObject.ElliComesBackDownStairs ());
@@ -271,7 +275,9 @@ namespace DialogueSystems
 
 					MaritimeInternalIterator++;
 
-				} else if (DialogueIDSequencer [MaritimeInternalIterator] == "E6_S1") {
+                  Debug.Log("This is the current state of Maritime Internal Iterator for Elli " + MaritimeInternalIterator + " for " + DialogueIDSequencer[MaritimeInternalIterator]);
+
+                } else if (DialogueIDSequencer [MaritimeInternalIterator] == "E6_S1") {
 
 					yield return new WaitForSeconds (1);
 
@@ -284,7 +290,9 @@ namespace DialogueSystems
 
 					MaritimeInternalIterator++;
 
-				} else if (DialogueIDSequencer [MaritimeInternalIterator] == "E7_S1") {
+                  Debug.Log("This is the current state of Maritime Internal Iterator for Elli " + MaritimeInternalIterator + " for " + DialogueIDSequencer[MaritimeInternalIterator]);
+
+                } else if (DialogueIDSequencer [MaritimeInternalIterator] == "E7_S1") {
 					yield return new WaitForSeconds (1);
 
 					PlayAudio (AudioID: DialogueIDSequencer [MaritimeInternalIterator]);
@@ -295,7 +303,10 @@ namespace DialogueSystems
 					yield return new WaitUntil (() => ElliSource.isPlaying == false);
 
 					MaritimeInternalIterator++;
-				} else if (DialogueIDSequencer [MaritimeInternalIterator] == "E8_S1") {
+
+                  Debug.Log("This is the current state of Maritime Internal Iterator for Elli " + MaritimeInternalIterator + " for " + DialogueIDSequencer[MaritimeInternalIterator]);
+
+                } else if (DialogueIDSequencer [MaritimeInternalIterator] == "E8_S1") {
 					yield return new WaitForSeconds (1);
 
 					PlayAudio (AudioID: DialogueIDSequencer [MaritimeInternalIterator]);
@@ -306,40 +317,23 @@ namespace DialogueSystems
 					yield return new WaitUntil (() => ElliSource.isPlaying == false);
 
 					MaritimeInternalIterator++;
-				} else if (DialogueIDSequencer [MaritimeInternalIterator] == "E9_S1") {
+
+                  Debug.Log("This is the current state of Maritime Internal Iterator for Elli " + MaritimeInternalIterator + " for " + DialogueIDSequencer[MaritimeInternalIterator]);
+
+                } else if (DialogueIDSequencer [MaritimeInternalIterator] == "E9_S1") {
+
 					yield return new WaitForSeconds (1);
 
 					PlayAudio (AudioID: DialogueIDSequencer [MaritimeInternalIterator]);
 					DisplayScript (ScriptID: DialogueIDSequencer [MaritimeInternalIterator]);
 
-					//Nods head
-
 					yield return new WaitUntil (() => ElliSource.isPlaying == false);
 
 					MaritimeInternalIterator++;
-				} else if (DialogueIDSequencer [MaritimeInternalIterator] == "E10_S1") {
-					yield return new WaitForSeconds (1);
 
-					PlayAudio (AudioID: DialogueIDSequencer [MaritimeInternalIterator]);
-					DisplayScript (ScriptID: DialogueIDSequencer [MaritimeInternalIterator]);
+                  Debug.Log("This is the current state of Maritime Internal Iterator for Elli " + MaritimeInternalIterator + " for " + DialogueIDSequencer[MaritimeInternalIterator]);
 
-
-
-					yield return new WaitUntil (() => ElliSource.isPlaying == false);
-
-					MaritimeInternalIterator++;
-				} else if (DialogueIDSequencer [MaritimeInternalIterator] == "E10_S2") {
-					yield return new WaitForSeconds (1);
-
-					PlayAudio (AudioID: DialogueIDSequencer [MaritimeInternalIterator]);
-					DisplayScript (ScriptID: DialogueIDSequencer [MaritimeInternalIterator]);
-
-
-
-					yield return new WaitUntil (() => ElliSource.isPlaying == false);
-
-					MaritimeInternalIterator++;
-				} else if (DialogueIDSequencer [MaritimeInternalIterator] == "E10_S3") {
+                } else if (DialogueIDSequencer [MaritimeInternalIterator] == "E10_S1") {
 					yield return new WaitForSeconds (1);
 
 					PlayAudio (AudioID: DialogueIDSequencer [MaritimeInternalIterator]);
@@ -349,7 +343,35 @@ namespace DialogueSystems
 					yield return new WaitUntil (() => ElliSource.isPlaying == false);
 
 					MaritimeInternalIterator++;
-				} else if (DialogueIDSequencer [MaritimeInternalIterator] == "E11_S1") {
+
+                  Debug.Log("This is the current state of Maritime Internal Iterator for Elli " + MaritimeInternalIterator + " for " + DialogueIDSequencer[MaritimeInternalIterator]);
+
+                } else if (DialogueIDSequencer [MaritimeInternalIterator] == "E10_S2") {
+					yield return new WaitForSeconds (1);
+
+					PlayAudio (AudioID: DialogueIDSequencer [MaritimeInternalIterator]);
+					DisplayScript (ScriptID: DialogueIDSequencer [MaritimeInternalIterator]);
+
+
+					yield return new WaitUntil (() => ElliSource.isPlaying == false);
+
+					MaritimeInternalIterator++;
+
+                  Debug.Log("This is the current state of Maritime Internal Iterator for Elli " + MaritimeInternalIterator + " for " + DialogueIDSequencer[MaritimeInternalIterator]);
+
+                } else if (DialogueIDSequencer [MaritimeInternalIterator] == "E10_S3") {
+					yield return new WaitForSeconds (1);
+
+					PlayAudio (AudioID: DialogueIDSequencer [MaritimeInternalIterator]);
+					DisplayScript (ScriptID: DialogueIDSequencer [MaritimeInternalIterator]);
+
+
+					yield return new WaitUntil (() => ElliSource.isPlaying == false);
+
+					MaritimeInternalIterator++;
+
+                  Debug.Log("This is the current state of Maritime Internal Iterator for Elli " + MaritimeInternalIterator + " for " + DialogueIDSequencer[MaritimeInternalIterator]);
+                } else if (DialogueIDSequencer [MaritimeInternalIterator] == "E11_S1") {
 					//CoreEventSystem.SceneObject.ElliLukeCheckCot.Invoke ();
 
 					yield return new WaitForSeconds (1);
@@ -361,7 +383,10 @@ namespace DialogueSystems
 					yield return new WaitUntil (() => ElliSource.isPlaying == false);
 
 					MaritimeInternalIterator++;
-				} else if (DialogueIDSequencer [MaritimeInternalIterator] == "E11_S2") {
+
+                  Debug.Log("This is the current state of Maritime Internal Iterator for Elli " + MaritimeInternalIterator + " for " + DialogueIDSequencer[MaritimeInternalIterator]);
+
+                } else if (DialogueIDSequencer [MaritimeInternalIterator] == "E11_S2") {
 					//CoreEventSystem.SceneObject.ElliLukeCheckCot.Invoke ();
 
 					yield return new WaitForSeconds (1);
@@ -373,7 +398,11 @@ namespace DialogueSystems
 					yield return new WaitUntil (() => ElliSource.isPlaying == false);
 
 					MaritimeInternalIterator++;
-				} else if (DialogueIDSequencer [MaritimeInternalIterator] == "E12_S1") {
+
+                  Debug.Log("This is the current state of Maritime Internal Iterator for Elli " + MaritimeInternalIterator + " for " + DialogueIDSequencer[MaritimeInternalIterator]);
+
+
+                } else if (DialogueIDSequencer [MaritimeInternalIterator] == "E12_S1") {
 
 					yield return new WaitForSeconds (1);
 
@@ -384,7 +413,11 @@ namespace DialogueSystems
 					yield return new WaitUntil (() => ElliSource.isPlaying == false);
 
 					MaritimeInternalIterator++;
-				} else if (DialogueIDSequencer [MaritimeInternalIterator] == "E13_S1") {
+
+                  Debug.Log("This is the current state of Maritime Internal Iterator for Elli " + MaritimeInternalIterator + " for " + DialogueIDSequencer[MaritimeInternalIterator]);
+
+
+                } else if (DialogueIDSequencer [MaritimeInternalIterator] == "E13_S1") {
 
 					yield return new WaitForSeconds (1);
 
@@ -395,7 +428,9 @@ namespace DialogueSystems
 					yield return new WaitUntil (() => ElliSource.isPlaying == false);
 
 					MaritimeInternalIterator++;
-				} else if (DialogueIDSequencer [MaritimeInternalIterator] == "E14_S1") {
+
+                  Debug.Log("This is the current state of Maritime Internal Iterator for Elli " + MaritimeInternalIterator + " for " + DialogueIDSequencer[MaritimeInternalIterator]);
+                } else if (DialogueIDSequencer [MaritimeInternalIterator] == "E14_S1") {
 
 					yield return new WaitForSeconds (1);
 
@@ -406,7 +441,10 @@ namespace DialogueSystems
 					yield return new WaitUntil (() => ElliSource.isPlaying == false);
 
 					MaritimeInternalIterator++;
-				} else if (DialogueIDSequencer [MaritimeInternalIterator] == "E14_S2") {
+
+                  Debug.Log("This is the current state of Maritime Internal Iterator for Elli " + MaritimeInternalIterator + " for " + DialogueIDSequencer[MaritimeInternalIterator]);
+
+                } else if (DialogueIDSequencer [MaritimeInternalIterator] == "E14_S2") {
 
 					yield return new WaitForSeconds (1);
 
@@ -417,7 +455,10 @@ namespace DialogueSystems
 					yield return new WaitUntil (() => ElliSource.isPlaying == false);
 
 					MaritimeInternalIterator++;
-				} else if (DialogueIDSequencer [MaritimeInternalIterator] == "E15_S1") {
+
+                  Debug.Log("This is the current state of Maritime Internal Iterator for Elli " + MaritimeInternalIterator + " for " + DialogueIDSequencer[MaritimeInternalIterator]);
+
+                } else if (DialogueIDSequencer [MaritimeInternalIterator] == "E15_S1") {
 
 					yield return new WaitForSeconds (1);
 
@@ -428,7 +469,10 @@ namespace DialogueSystems
 					yield return new WaitUntil (() => ElliSource.isPlaying == false);
 
 					MaritimeInternalIterator++;
-				} else if (DialogueIDSequencer [MaritimeInternalIterator] == "E15_S2") {
+
+                  Debug.Log("This is the current state of Maritime Internal Iterator for Elli " + MaritimeInternalIterator + " for " + DialogueIDSequencer[MaritimeInternalIterator]);
+
+                } else if (DialogueIDSequencer [MaritimeInternalIterator] == "E15_S2") {
 
 					yield return new WaitForSeconds (1);
 
@@ -439,7 +483,10 @@ namespace DialogueSystems
 					yield return new WaitUntil (() => ElliSource.isPlaying == false);
 
 					MaritimeInternalIterator++;
-				} else if (DialogueIDSequencer [MaritimeInternalIterator] == "E15_S3") {
+
+                  Debug.Log("This is the current state of Maritime Internal Iterator for Elli " + MaritimeInternalIterator + " for " + DialogueIDSequencer[MaritimeInternalIterator]);
+
+                } else if (DialogueIDSequencer [MaritimeInternalIterator] == "E15_S3") {
 
 					yield return new WaitForSeconds (1);
 
@@ -450,7 +497,10 @@ namespace DialogueSystems
 					yield return new WaitUntil (() => ElliSource.isPlaying == false);
 
 					MaritimeInternalIterator++;
-				} else if (DialogueIDSequencer [MaritimeInternalIterator] == "E16_S1") {
+
+                  Debug.Log("This is the current state of Maritime Internal Iterator for Elli " + MaritimeInternalIterator + " for " + DialogueIDSequencer[MaritimeInternalIterator]);
+
+                } else if (DialogueIDSequencer [MaritimeInternalIterator] == "E16_S1") {
 
 					yield return new WaitForSeconds (1);
 
@@ -461,7 +511,9 @@ namespace DialogueSystems
 					yield return new WaitUntil (() => ElliSource.isPlaying == false);
 
 					MaritimeInternalIterator++;
-				} else if (DialogueIDSequencer [MaritimeInternalIterator] == "E17_S1") {
+
+                  Debug.Log("This is the current state of Maritime Internal Iterator for Elli " + MaritimeInternalIterator + " for " + DialogueIDSequencer[MaritimeInternalIterator]);
+                } else if (DialogueIDSequencer [MaritimeInternalIterator] == "E17_S1") {
 
 					yield return new WaitForSeconds (1);
 
@@ -472,7 +524,10 @@ namespace DialogueSystems
 					yield return new WaitUntil (() => ElliSource.isPlaying == false);
 
 					MaritimeInternalIterator++;
-				} else if (DialogueIDSequencer [MaritimeInternalIterator] == "E18_S1") {
+
+                  Debug.Log("This is the current state of Maritime Internal Iterator for Elli " + MaritimeInternalIterator + " for " + DialogueIDSequencer[MaritimeInternalIterator]);
+
+                } else if (DialogueIDSequencer [MaritimeInternalIterator] == "E18_S1") {
 
 					yield return new WaitForSeconds (1);
 
@@ -483,7 +538,9 @@ namespace DialogueSystems
 					yield return new WaitUntil (() => ElliSource.isPlaying == false);
 
 					MaritimeInternalIterator++;
-				} else if (DialogueIDSequencer [MaritimeInternalIterator] == "E18_S2") {
+
+                  Debug.Log("This is the current state of Maritime Internal Iterator for Elli " + MaritimeInternalIterator + " for " + DialogueIDSequencer[MaritimeInternalIterator]);
+                } else if (DialogueIDSequencer [MaritimeInternalIterator] == "E18_S2") {
 
 					yield return new WaitForSeconds (1);
 
@@ -494,7 +551,10 @@ namespace DialogueSystems
 					yield return new WaitUntil (() => ElliSource.isPlaying == false);
 
 					MaritimeInternalIterator++;
-				} else if (DialogueIDSequencer [MaritimeInternalIterator] == "E19_S1") {
+
+                  Debug.Log("This is the current state of Maritime Internal Iterator for Elli " + MaritimeInternalIterator + " for " + DialogueIDSequencer[MaritimeInternalIterator]);
+
+                } else if (DialogueIDSequencer [MaritimeInternalIterator] == "E19_S1") {
 
 					yield return new WaitForSeconds (1);
 
@@ -505,7 +565,10 @@ namespace DialogueSystems
 					yield return new WaitUntil (() => ElliSource.isPlaying == false);
 
 					MaritimeInternalIterator++;
-				} else if (DialogueIDSequencer [MaritimeInternalIterator] == "E19_S2") {
+
+                  Debug.Log("This is the current state of Maritime Internal Iterator for Elli " + MaritimeInternalIterator + " for " + DialogueIDSequencer[MaritimeInternalIterator]);
+
+                } else if (DialogueIDSequencer [MaritimeInternalIterator] == "E19_S2") {
 
 					yield return new WaitForSeconds (1);
 
@@ -516,7 +579,10 @@ namespace DialogueSystems
 					yield return new WaitUntil (() => ElliSource.isPlaying == false);
 
 					MaritimeInternalIterator++;
-				} else if (DialogueIDSequencer [MaritimeInternalIterator] == "E19_S3") {
+
+                  Debug.Log("This is the current state of Maritime Internal Iterator for Elli " + MaritimeInternalIterator + " for " + DialogueIDSequencer[MaritimeInternalIterator]);
+
+                } else if (DialogueIDSequencer [MaritimeInternalIterator] == "E19_S3") {
 
 					yield return new WaitForSeconds (1);
 
@@ -526,18 +592,10 @@ namespace DialogueSystems
 					yield return new WaitUntil (() => ElliSource.isPlaying == false);
 
 					MaritimeInternalIterator++;
-				} else if (DialogueIDSequencer [MaritimeInternalIterator] == "E20_S1") {
 
-					yield return new WaitForSeconds (1);
+                  Debug.Log("This is the current state of Maritime Internal Iterator for Elli " + MaritimeInternalIterator + " for " + DialogueIDSequencer[MaritimeInternalIterator]);
 
-					PlayAudio (AudioID: DialogueIDSequencer [MaritimeInternalIterator]);
-					DisplayScript (ScriptID: DialogueIDSequencer [MaritimeInternalIterator]);
-
-
-					yield return new WaitUntil (() => ElliSource.isPlaying == false);
-
-					MaritimeInternalIterator++;
-				} else if (DialogueIDSequencer [MaritimeInternalIterator] == "E21_S1") {
+                } else if (DialogueIDSequencer [MaritimeInternalIterator] == "E20_S1") {
 
 					yield return new WaitForSeconds (1);
 
@@ -548,7 +606,24 @@ namespace DialogueSystems
 					yield return new WaitUntil (() => ElliSource.isPlaying == false);
 
 					MaritimeInternalIterator++;
-				}
+
+                  Debug.Log("This is the current state of Maritime Internal Iterator for Elli " + MaritimeInternalIterator + " for " + DialogueIDSequencer[MaritimeInternalIterator]);
+
+
+                } else if (DialogueIDSequencer [MaritimeInternalIterator] == "E21_S1") {
+
+					yield return new WaitForSeconds (1);
+
+					PlayAudio (AudioID: DialogueIDSequencer [MaritimeInternalIterator]);
+					DisplayScript (ScriptID: DialogueIDSequencer [MaritimeInternalIterator]);
+
+
+					yield return new WaitUntil (() => ElliSource.isPlaying == false);
+
+					MaritimeInternalIterator++;
+
+                  Debug.Log("This is the current state of Maritime Internal Iterator for Elli " + MaritimeInternalIterator + " for " + DialogueIDSequencer[MaritimeInternalIterator]);
+                }
 
 				yield return new WaitForSeconds (1.0f);
 
@@ -556,16 +631,59 @@ namespace DialogueSystems
 			} 
 
 			//Failsafe was not working correctly
-			else if (MaritimeInternalIterator != 4) 
-			{
-				
+			else if (MaritimeInternalIterator != 99)
+            { 
 				yield return new WaitForSeconds(3.0f);
 
 				StartCoroutine(DialogueIterator());
 
 			}
 
-		
+
+            if (bStopCoroutine() == true)
+            {
+                StopCoroutine(DialogueIterator());
+
+            }
+
+        }
+
+        public void Internal_StopDialogueIterator()
+        {
+            StopCoroutine("DialogueIterator");
+        }
+
+        private static bool internal_bool = false;
+
+        public static bool bStopCoroutine()
+        {
+            if (internal_bool == true)
+            {
+                return true;
+
+            }
+            else if (internal_bool == false)
+            {
+                return false;
+            }
+
+            return false;
+        }
+
+        public static bool bStopCoroutine(bool bTrueOrFalse)
+        {
+            internal_bool = bTrueOrFalse;
+
+            if (internal_bool == true)
+            {
+                return true;
+
+            }
+            else if (internal_bool == false)
+            {
+                return false;
+            }
+            return false;
         }
 
         public void PlayAudio(string AudioID)
@@ -1117,10 +1235,8 @@ namespace DialogueSystems
 
         }
     
-        public IEnumerator ScriptIDDefinition(CoreDialogueSystems.ScriptID ScriptIdentification, string DefineScript)
+        public IEnumerator ScriptIDDefinition(ScriptID ScriptIdentification, string DefineScript)
         {
-
-
 
             //Use logger to check conditions, use iterators for dynamic functions
 
@@ -1130,7 +1246,7 @@ namespace DialogueSystems
 
             int ElliInternalIterator = 0;
 
-            if (ScriptIdentification == CoreDialogueSystems.ScriptID.Elli)
+            if (ScriptIdentification == ScriptID.Elli)
             {
                 ElliScript.Add(DefineScript);
 
@@ -1141,7 +1257,6 @@ namespace DialogueSystems
 
         }
 
-
         public void PopulateScript()
         {
 
@@ -1149,14 +1264,14 @@ namespace DialogueSystems
 
             if (ElliStringFileName.Contains("E1_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(CoreDialogueSystems.ScriptID.Elli, "Yeah, I'm Elli Grove"));
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "Yeah, I'm Elli Grove"));
             }
 
             ElliStringFileName = ElliAudio[1].ToString();
 
             if (ElliStringFileName.Contains("E1_S2"))
             {
-                StartCoroutine(ScriptIDDefinition(CoreDialogueSystems.ScriptID.Elli, "Um, err, um, err, well you can hear that Liam is crying"));
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "Um, err, um, err, well you can hear that Liam is crying"));
 
             }
 
@@ -1164,7 +1279,7 @@ namespace DialogueSystems
 
             if (ElliStringFileName.Contains("E1_S3"))
             {
-                StartCoroutine(ScriptIDDefinition(CoreDialogueSystems.ScriptID.Elli, "He cries, all the time with his Belly Ache. And his teething"));
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "He cries, all the time with his Belly Ache. And his teething"));
 
             }
 
@@ -1172,7 +1287,7 @@ namespace DialogueSystems
 
             if (ElliStringFileName.Contains("E1_S4"))
             {
-                StartCoroutine(ScriptIDDefinition(CoreDialogueSystems.ScriptID.Elli, "Erm... it's not really convenient at the moment"));
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "Erm... it's not really convenient at the moment"));
 
             }
 
@@ -1180,56 +1295,56 @@ namespace DialogueSystems
 
             if (ElliStringFileName.Contains("E1_S5"))
             {
-                StartCoroutine(ScriptIDDefinition(CoreDialogueSystems.ScriptID.Elli, "Could you come back tomorrow"));
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "Could you come back tomorrow"));
             }
 
             ElliStringFileName = ElliAudio[5].ToString();
 
             if (ElliStringFileName.Contains("E2_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(CoreDialogueSystems.ScriptID.Elli, "Well, OK, only for a little while"));
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "Well, OK, only for a little while"));
             }
 
             ElliStringFileName = ElliAudio[6].ToString();
 
             if (ElliStringFileName.Contains("E2_S2"))
             {
-                StartCoroutine(ScriptIDDefinition(CoreDialogueSystems.ScriptID.Elli, "You'll have to get past Mable though, she don't like strangers"));
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "You'll have to get past Mable though, she don't like strangers"));
             }
 
             ElliStringFileName = ElliAudio[7].ToString();
 
             if (ElliStringFileName.Contains("E3_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(CoreDialogueSystems.ScriptID.Elli, "I told you, she don't like strangers"));
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "I told you, she don't like strangers"));
             }
 
             ElliStringFileName = ElliAudio[8].ToString();
 
             if (ElliStringFileName.Contains("E3_S2"))
             {
-                StartCoroutine(ScriptIDDefinition(CoreDialogueSystems.ScriptID.Elli, "Anyway she ain't my dog"));
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "Anyway she ain't my dog"));
             }
 
             ElliStringFileName = ElliAudio[9].ToString();
 
             if (ElliStringFileName.Contains("E3_S3"))
             {
-                StartCoroutine(ScriptIDDefinition(CoreDialogueSystems.ScriptID.Elli, "'ere, I'll hold her while you get by"));
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "'ere, I'll hold her while you get by"));
             }
 
             ElliStringFileName = ElliAudio[10].ToString();
 
             if (ElliStringFileName.Contains("E4_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(CoreDialogueSystems.ScriptID.Elli, "Oh, err, just a friend"));
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "Oh, err, just a friend"));
             }
 
             ElliStringFileName = ElliAudio[11].ToString();
 
             if (ElliStringFileName.Contains("E5_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(CoreDialogueSystems.ScriptID.Elli, "Well, you better go into the front room now your in"));
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "Well, you better go into the front room now your in"));
 
             }
 
@@ -1237,7 +1352,7 @@ namespace DialogueSystems
 
             if (ElliStringFileName.Contains("E6_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(CoreDialogueSystems.ScriptID.Elli, "Oh...yeah, he's...Liam's dad"));
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "Oh...yeah, he's...Liam's dad"));
             }
 
 
@@ -1245,56 +1360,56 @@ namespace DialogueSystems
 
             if (ElliStringFileName.Contains("E7_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(CoreDialogueSystems.ScriptID.Elli, "Yeah"));
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "Yeah"));
             }
 
             ElliStringFileName = ElliAudio[14].ToString();
 
             if (ElliStringFileName.Contains("E8_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(CoreDialogueSystems.ScriptID.Elli, "Yeah, that's right"));
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "Yeah, that's right"));
             }
 
             ElliStringFileName = ElliAudio[15].ToString();
 
             if (ElliStringFileName.Contains("E9_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(CoreDialogueSystems.ScriptID.Elli, "Oh, err, well, she usually goes to nursery, erm... but she's staying with...err.. Luke's mum at the moment"));
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "Oh, err, well, she usually goes to nursery, erm... but she's staying with...err.. Luke's mum at the moment"));
             }
 
             ElliStringFileName = ElliAudio[16].ToString();
 
             if (ElliStringFileName.Contains("E10_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(CoreDialogueSystems.ScriptID.Elli, "Cos of Liam's crying"));
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "Cos of Liam's crying"));
             }
 
             ElliStringFileName = ElliAudio[17].ToString();
 
             if (ElliStringFileName.Contains("E10_S2"))
             {
-                StartCoroutine(ScriptIDDefinition(CoreDialogueSystems.ScriptID.Elli, "He goes on and on, all night, I'm knackered."));
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "He goes on and on, all night, I'm knackered."));
             }
 
             ElliStringFileName = ElliAudio[18].ToString();
 
             if (ElliStringFileName.Contains("E10_S3"))
             {
-                StartCoroutine(ScriptIDDefinition(CoreDialogueSystems.ScriptID.Elli, "I can't cope with him and her, it's too much"));
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "I can't cope with him and her, it's too much"));
             }
 
             ElliStringFileName = ElliAudio[19].ToString();
 
             if (ElliStringFileName.Contains("E11_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(CoreDialogueSystems.ScriptID.Elli, "Is he, I only just changed him, little monkey"));
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "Is he, I only just changed him, little monkey"));
             }
 
             ElliStringFileName = ElliAudio[20].ToString();
 
             if (ElliStringFileName.Contains("E11_S2"))
             {
-                StartCoroutine(ScriptIDDefinition(CoreDialogueSystems.ScriptID.Elli, "It's all that milk"));
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "It's all that milk"));
 
             }
 
@@ -1302,112 +1417,112 @@ namespace DialogueSystems
 
             if (ElliStringFileName.Contains("E12_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(CoreDialogueSystems.ScriptID.Elli, "Most have dropped it"));
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "Most have dropped it"));
             }
 
             ElliStringFileName = ElliAudio[22].ToString();
 
             if (ElliStringFileName.Contains("E12_S2"))
             {
-                StartCoroutine(ScriptIDDefinition(CoreDialogueSystems.ScriptID.Elli, "See how tired I am"));
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "See how tired I am"));
             }
 
             ElliStringFileName = ElliAudio[23].ToString();
 
             if (ElliStringFileName.Contains("E13_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(CoreDialogueSystems.ScriptID.Elli, "Thanks"));
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "Thanks"));
             }
 
             ElliStringFileName = ElliAudio[24].ToString();
 
             if (ElliStringFileName.Contains("E14_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(CoreDialogueSystems.ScriptID.Elli, "Oh don't worry, I will clear it up"));
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "Oh don't worry, I will clear it up"));
             }
 
             ElliStringFileName = ElliAudio[25].ToString();
 
             if (ElliStringFileName.Contains("E14_S2"))
             {
-                StartCoroutine(ScriptIDDefinition(CoreDialogueSystems.ScriptID.Elli, "I was about to pick it up when you rang the bell"));
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "I was about to pick it up when you rang the bell"));
             }
 
             ElliStringFileName = ElliAudio[26].ToString();
 
             if (ElliStringFileName.Contains("E15_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(CoreDialogueSystems.ScriptID.Elli, "I'll do his nappy in a minute"));
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "I'll do his nappy in a minute"));
             }
 
             ElliStringFileName = ElliAudio[27].ToString();
 
             if (ElliStringFileName.Contains("E15_S2"))
             {
-                StartCoroutine(ScriptIDDefinition(CoreDialogueSystems.ScriptID.Elli, "I did ask the health visitor about the rash, said I was worried, but I ran out of cream, didn't I?"));
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "I did ask the health visitor about the rash, said I was worried, but I ran out of cream, didn't I?"));
             }
 
             ElliStringFileName = ElliAudio[28].ToString();
 
             if (ElliStringFileName.Contains("E15_S3"))
             {
-                StartCoroutine(ScriptIDDefinition(CoreDialogueSystems.ScriptID.Elli, "Nothing to worry about really"));
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "Nothing to worry about really"));
             }
 
             ElliStringFileName = ElliAudio[29].ToString();
 
             if (ElliStringFileName.Contains("E16_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(CoreDialogueSystems.ScriptID.Elli, "I was just gonna get some"));
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "I was just gonna get some"));
             }
 
             ElliStringFileName = ElliAudio[30].ToString();
 
             if (ElliStringFileName.Contains("E17_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(CoreDialogueSystems.ScriptID.Elli, "I told you, she's with Luke's mum"));
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "I told you, she's with Luke's mum"));
             }
 
             ElliStringFileName = ElliAudio[31].ToString();
 
             if (ElliStringFileName.Contains("E18_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(CoreDialogueSystems.ScriptID.Elli, "Over near Seagulls Hospital, Luke took her yesterday"));
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "Over near Seagulls Hospital, Luke took her yesterday"));
             }
 
             ElliStringFileName = ElliAudio[32].ToString();
 
             if (ElliStringFileName.Contains("E19_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(CoreDialogueSystems.ScriptID.Elli, "Luke, please"));
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "Luke, please"));
             }
 
             ElliStringFileName = ElliAudio[33].ToString();
 
             if (ElliStringFileName.Contains("E19_S2"))
             {
-                StartCoroutine(ScriptIDDefinition(CoreDialogueSystems.ScriptID.Elli, "He don't mean it, he's had a bad head all day; and you've just rubbed him up the wrong way"));
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "He don't mean it, he's had a bad head all day; and you've just rubbed him up the wrong way"));
             }
 
             ElliStringFileName = ElliAudio[34].ToString();
 
             if (ElliStringFileName.Contains("E19_S3"))
             {
-                StartCoroutine(ScriptIDDefinition(CoreDialogueSystems.ScriptID.Elli, "Best if you go now, I'll ring you later and take the baby to the clinic tomorrow, just like you said."));
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "Best if you go now, I'll ring you later and take the baby to the clinic tomorrow, just like you said."));
             }
 
             ElliStringFileName = ElliAudio[35].ToString();
 
             if (ElliStringFileName.Contains("E20_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(CoreDialogueSystems.ScriptID.Elli, "I'll show you out"));
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "I'll show you out"));
             }
 
             ElliStringFileName = ElliAudio[36].ToString();
 
             if (ElliStringFileName.Contains("E21_S1"))
             {
-                StartCoroutine(ScriptIDDefinition(CoreDialogueSystems.ScriptID.Elli, "Yeah, OK"));
+                StartCoroutine(ScriptIDDefinition(ScriptID.Elli, "Yeah, OK"));
             }
 
 
@@ -1417,7 +1532,16 @@ namespace DialogueSystems
         void Update()
         {
 
-            //Debug.Log("This is the current state of Maritime Internal Iterator for Elli " + MaritimeInternalIterator);
+            if(MaritimeInternalIterator > 1)
+            {
+              
+
+                //This works
+                //ElliAnimator.Play("look_around");
+            }
+
+
+            //Debug.Log("This is the current state of Maritime Internal Iterator for Elli " + MaritimeInternalIterator + "for " + DialogueIDSequencer[MaritimeInternalIterator]);
     
 			float ElliTime = 10.0f;
 
@@ -1427,12 +1551,15 @@ namespace DialogueSystems
 
 			}
 
+            else if (ElliTime < Time.deltaTime)
+            {
+                ElliAnimator.PlayInFixedTime("idle");
+            }
+
            
 
 			if (MaritimeInternalIterator == 1) 
 			{
-
-				SetBodyPosition (BrendanPOVController.PlayerPosition);
 
 			}
 
@@ -1443,5 +1570,4 @@ namespace DialogueSystems
 
 
     }
-
 

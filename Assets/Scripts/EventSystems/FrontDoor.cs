@@ -6,7 +6,7 @@ using System.Collections;
 
 
 
-public class FrontDoor : Core {
+public class FrontDoor : MaritimeRuntimeInfrastructure {
 
     public static GameObject FrontDoorGameObject;
     private BoxCollider BoxFrontDoor;
@@ -27,14 +27,16 @@ public class FrontDoor : Core {
 		FrontDoorSource = FrontDoorGameObject.GetComponent<AudioSource>();
 		FrontDoorSource.clip = DoorBell;
 		BoxFrontDoor = GetComponent<BoxCollider> ();
-	}
 
 
-
-	void Start ()
-    {
- 
         StartCoroutine(mUpdate());
+    
+}
+
+    void Start()
+    {
+
+
     }
 
     void OnTriggerEnter(Collider other)
@@ -44,8 +46,7 @@ public class FrontDoor : Core {
 
 		other.Raycast(FrontDoorRay, out FrontDoorInfo, 10.0f);
 
-        StartCoroutine(MaritimeRuntimeInfrastructure.cFrontDoorBell());
-
+      
 		Destroy (other.gameObject);
 
     }
@@ -85,10 +86,12 @@ public class FrontDoor : Core {
 	
     IEnumerator mUpdate()
     {
-
         //transform.rotation = Quaternion.Lerp(Quaternion.Euler(FrontDoorTransform.eulerAngles), Quaternion.Euler(x: 0, y: 90, z: 0), Time.time / 50);
 
-        PlayDoorBell();
+        if (MaritimeInternalIterator == 0)
+        {
+            PlayDoorBell();
+        }
 
         float DoorBellLength = FrontDoorSource.clip.length * 1.2f;
 
@@ -105,13 +108,12 @@ public class FrontDoor : Core {
 
         //Debug.Log ("This was the collider that was hit " + FrontDoorInfo.collider);
 
-        if (MaritimeRuntimeInfrastructure.RuntimeID == MaritimeRuntimeInfrastructure.SceneID.Start)
+        if (RuntimeID == SceneID.Start)
         {
 
             if (IsDoorBellFinished() == true)
             {
-
-                State = CoreDialogueSystems.ConversationState.Active;
+                State = ConversationState.Active;
                 DialogueBoxUI.SetDialogBoxActive();
 
             }

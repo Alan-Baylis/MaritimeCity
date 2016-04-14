@@ -1,14 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class IdleAnimator : StateMachineBehaviour {
+public class MaritimeDefaultAnimator : StateMachineBehaviour {
 
-	bool bWalkToFrontDoor = false;
+    bool bIdleSwayActive = false;
+    bool bAwkwardActive = false;
+    bool bThinkingActive = false;
+    bool bTalkingActive = false;
+    bool bLookAroundActive = false;
+
 
 	 // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
 	override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
 
-
+        animator.SetBool("bIdleSwayActive", bIdleSwayActive);
+        animator.SetBool("bAwkwardActive", bAwkwardActive);
+        animator.SetBool("bThinkingActive", bThinkingActive);
+        animator.SetBool("bLookAroundActive", bLookAroundActive);
+        animator.SetBool("bTalkingActive", bTalkingActive);
 	}
 
 	// OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

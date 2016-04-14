@@ -13,6 +13,14 @@ public class NavigationInfrastructure : Core {
     public static NavigationObject[] NavigationObjects;
 	List <INavigation> NavInfrastructureList;
 
+
+    public NavigationInfrastructure()
+    {
+
+
+
+    }
+
 	// Use this for initialization
 	void Start () {
 
@@ -28,66 +36,22 @@ public class NavigationInfrastructure : Core {
 	}
 
 
-	void Test()
-    {
-
-		foreach (NavigationObject Nav in NavInfrastructureList) 
-        {
-
-            if (Nav.GetName() == "Front Door")
-            {
-                //Add a float to decide for how long the subject should walk
-                Nav.Play("Walking");
-
-            }
-
-            else if (Nav.GetName() == "Bottom of Stairs")
-            {
-
-
-            }
-
-            else if (Nav.GetName() == "Top of Stairs")
-            {
-
-            }
-
-            else if (Nav.GetName() == "Living Room Door")
-            {
-
-
-            }
-
-            else if (Nav.GetName() == "Elli Standing Position")
-            {
-
-
-            }
-
-            else if (Nav.GetName() == "Lawn")
-            {
-
-
-            }
-
-
-		}
-
-
-	}
-
-
 }
 
 public interface INavigation{
 
-	void Stop ();
-
-	void Play (string StateName);
-
-	string GetName();
+    string GetName();
 
     Vector3 GetPosition();
+
+}
+
+public interface INavigationCommunicationBridge
+{
+
+    void PlayAnimation(ICharacterSystem Character, Collider Target, string AnimationState);
+
+    NavigationObject GetObject(string ObjectName);
 
 }
 

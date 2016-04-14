@@ -1,22 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 using CoreSystems;
+using System;
 
 public class MableController : MonoBehaviour {
 
 
     [SerializeField] private AudioSource MableSource;
     [SerializeField] private AudioClip[] MableBark;
-     private Animator MableAnimator;
-     private AnimationClip cMableBarkAnimation;
-     private AnimationClip cMableWalkAnimation;
+    [SerializeField] private Animation MableCoreAnimation;
+    private Animator MableAnimator;
+    private AnimationClip cMableBarkAnimation;
+    private AnimationClip cMableWalkAnimation;
     private AnimationClip cMableIdledAnimation;
+    private int PlayLogger = 0;
+    private int BarkIterator = 0;
+    public enum MableActive {Active, Inactive };
 
-    int DogBarkingIterator = 0;
-    int BarkIterator = 0;
 
-    [SerializeField]
-    private Animation MableCoreAnimation;
+
+    MableActive MableActiveID;
 
     private static MableController MableSingletonObjectInstance;
 
@@ -31,8 +34,13 @@ public class MableController : MonoBehaviour {
     }
 
 
+
+
     void Awake()
     {
+
+        MableActiveID = MableActive.Active;
+
         //Find object and assign it to instance
         MableSingletonObjectInstance = FindObjectOfType<MableController>();
 
@@ -44,63 +52,92 @@ public class MableController : MonoBehaviour {
 
         MableSource.clip = MableBark[0];
 
-       
-
         InitializeSourceVariables();
 
         cMableWalkAnimation = MableCoreAnimation.GetClip("Walk");
         cMableBarkAnimation = MableCoreAnimation.GetClip("Barking");
         cMableIdledAnimation = MableCoreAnimation.GetClip("Idled");
-
-             
+    
     }
 
 
-     private void InitializeSourceVariables()
+    // Use this for initialization
+    void Start()
     {
 
-        MableSource.volume = 0.5f;
+        StartCoroutine(Bark());
 
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+        if (MaritimeRuntimeInfrastructure.MaritimeInternalIterator == 0 && MableCoreAnimation.isPlaying == false && MableActiveID == MableActive.Active)
+        {
+            StartCoroutine(Play());
+        }
+
+        if (MaritimeRuntimeInfrastructure.MaritimeInternalIterator == 5)
+        {
+
+        }
+
+    }
+
+
+    private void InitializeSourceVariables()
+    {
+        MableSource.volume = 0.5f;
     }
     
-
-  public void WalkingVectorAssignment(INavigation PointA, INavigation PointB, Animation Walking)
+  
+    public IEnumerator Play()
     {
-
-        float Distance = 0;
-
-        if (Walking.IsPlaying("Walking"))
-        { 
-          //We find the distance and we make the character walk the distance using abstractions 
-          Distance = Vector3.Distance(PointA.GetPosition(), PointB.GetPosition());
-          gameObject.transform.position = Vector3.MoveTowards(PointA.GetPosition(), PointB.GetPosition(), Distance);
-          
-        }
-
-    }
-
-    public void Play()
-    {
-   
-
-        if (Core.MaritimeInternalIterator == 4)
+  
+        if (MaritimeRuntimeInfrastructure.MaritimeInternalIterator >= 12 && MaritimeRuntimeInfrastructure.MaritimeInternalIterator <= 16)
         {
+            StartCoroutine(Bark());
+
             MableCoreAnimation.Play("Barking");
 
-            if (MableCoreAnimation.isPlaying == false)
-            {
-                MableCoreAnimation.Play("Barking");
-            }
+            yield return new WaitUntil(() => MableCoreAnimation.isPlaying == false);
+
+            Debug.Log("Mable play works correctly and is starting again for the " + PlayLogger + " time.");
+
+            PlayLogger++;
+
+            StartCoroutine(Play());
+
+        } else if (MaritimeRuntimeInfrastructure.MaritimeInternalIterator < 12 || MaritimeRuntimeInfrastructure.MaritimeInternalIterator > 16)
+        {
+            MableCoreAnimation.Play("Fight Idle");
+
+            yield return new WaitUntil(() => MableCoreAnimation.isPlaying == false);
+
+            Debug.Log("Mable play works correctly and is starting again for the " + PlayLogger + " time.");
+
+            PlayLogger++;
+
+            StartCoroutine(Play());
 
         }
 
+        if (MaritimeRuntimeInfrastructure.MaritimeInternalIterator == 24)
+        {
+            MableCoreAnimation.Play("Walk");
+
+        } else if (MaritimeRuntimeInfrastructure.MaritimeInternalIterator != 24)
+        {
+            StartCoroutine(Play());
+        }
 
     }
 
-    IEnumerator Bark()
+    public IEnumerator Bark()
     {
 
-        while (Core.MaritimeInternalIterator > 4)
+        if (MaritimeRuntimeInfrastructure.MaritimeInternalIterator > 12 && MaritimeRuntimeInfrastructure.MaritimeInternalIterator < 18 && MableActiveID == MableActive.Active)
         {
             MableSource.clip = MableBark[BarkIterator];
             MableSource.Play();
@@ -109,46 +146,31 @@ public class MableController : MonoBehaviour {
 
             if (BarkIterator == 2)
             {
-
                 BarkIterator = 0;
                 StartCoroutine(Bark());
-
             }
 
-            yield return new WaitForSeconds(5.0f);
+            yield return new WaitForSeconds(3.0f);
 
             StartCoroutine(Bark());
 
         }
 
-        yield return new WaitForSeconds(2.0f);
+        if (MaritimeRuntimeInfrastructure.MaritimeInternalIterator == 18)
+        {
 
-        StartCoroutine(Bark());
+            StopCoroutine(Bark());
+            MableActiveID = MableActive.Inactive;
+
+        }
+
 
     }
 
-	// Use this for initialization
-	void Start () 
+    public static Vector3 GetPosition()
     {
-
-        StartCoroutine(Bark());
-
+        return MableSingletonObject.transform.position;
     }
-	
-	// Update is called once per frame
-	void Update () {
 
-        if(Core.MaritimeInternalIterator == 0 && MableCoreAnimation.isPlaying == false)
-        {
-            MableCoreAnimation.Play("Idled");
-        }
 
-        if (Core.CoreDialogueSystems.MaritimeDialogueIterator == 5)
-        {
-           // WalkingVectorAssignment(NavigationInfrastructure.NavigationObjects[0], NavigationInfrastructure.NavigationObjects[1], cMableWalkAnimation);
-        }
-
-        Play();
-
-	}
 }

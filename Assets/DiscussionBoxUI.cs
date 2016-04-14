@@ -23,7 +23,8 @@ public class DiscussionBoxUI : MonoBehaviour {
 	[SerializeField] private Image DiscussionBoxImage;
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
 	
 		DiscussionBoxUISingletonObject = FindObjectOfType<DiscussionBoxUI> ();
 
