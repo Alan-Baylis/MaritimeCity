@@ -6,10 +6,8 @@ using System.Collections.Generic;
 using DialogueSystems;
 using UnityEngine.UI;
 
-
 public class MaritimeRuntimeInfrastructure : MonoBehaviour
 {
-
     public MaritimeRuntimeInfrastructure()
     {
 
@@ -48,8 +46,6 @@ public class MaritimeRuntimeInfrastructure : MonoBehaviour
     Vector3 MableLocation;
     Animator ElliAnimatorRuntime;
 
-
-
     #endregion
 
     #region C# Objects
@@ -58,8 +54,6 @@ public class MaritimeRuntimeInfrastructure : MonoBehaviour
     public static MaritimeRuntimeInfrastructure MaritimeCoreObject;
     public static Core[] SystemObjects = new Core[10];
     public static string[] SystemObjectNames = new string[10];
-
-
     public static string[] DialogueIDSequencer = new string[108];
     public static int MaritimeInternalIterator = 0;
 
@@ -107,16 +101,13 @@ public class MaritimeRuntimeInfrastructure : MonoBehaviour
         Brendan,
         Luke
     }
-
     ;
 
     public enum ConversationState
     {
         Active,
         Inactive
-
     };
-
 
     public enum NavigationSequences
     {
@@ -132,31 +123,21 @@ public class MaritimeRuntimeInfrastructure : MonoBehaviour
         Sequence10
     }
 
-
-    
-
-
-
     #endregion
 
     #region Runtime Instances
 
     //Custom type objects
     public static ConversationState ConversationStateID = ConversationState.Inactive;
-
     public static RuntimePlatform MaritimeRuntimePlatform = RuntimePlatform.WindowsPlayer;
-
 
     //Enum Instances
     public static SceneID RuntimeID;
-
     public static UISelectionRuntimeID_Menu SelectionRuntimeID_Menu;
-
     public static UISelectionRuntimeID_DiscussionBox SelectionRuntime_DiscussionBox;
 
     #endregion
     
-
     enum WalkingDestination { FrontDoor, BackDoor, FrontDoor2 };
     public Vector3 tBrendanPosition = BrendanPOVController.GetPosition();
 
@@ -198,10 +179,8 @@ public class MaritimeRuntimeInfrastructure : MonoBehaviour
 
     #region Runtime Logic
 
-
     public static void InitializeDialogueIterator(string[] DialogueIDSequencer)
     {
-
         DialogueIDSequencer[0] = "B1_S1";
         DialogueIDSequencer[1] = ("B1_S2");
         DialogueIDSequencer[2] = ("B1_S3");
@@ -424,13 +403,10 @@ public class MaritimeRuntimeInfrastructure : MonoBehaviour
         DialogueIDSequencer[105] = ("B29_S2");
         DialogueIDSequencer[106] = ("B29_S3");
         DialogueIDSequencer[107] = ("B29_S4");
-
     }
-
-
+    
     SceneFocus SceneFocusID;
   
-
     bool TestMableMovement1 = false;
     bool TestMableMovement2 = false;
     bool TestMableMovement3 = false;
@@ -464,14 +440,12 @@ public class MaritimeRuntimeInfrastructure : MonoBehaviour
         StartCoroutine(Coroutine);
         StartCoroutine(Coroutine2);
         StartCoroutine(Coroutine3);
-
     }
 
     public void StopDialogueIterator(ICommunciation Object)
     {
         Coroutine = Object.DialogueIterator();
         StopCoroutine(Coroutine);
-
     }
     
     public void StopDialogueIterator(ICommunciation ObjectA, ICommunciation ObjectB)
@@ -481,9 +455,10 @@ public class MaritimeRuntimeInfrastructure : MonoBehaviour
    
         StopCoroutine(Coroutine);
         StopCoroutine(Coroutine);
-
     }
 
+
+    //@TODO Write a runtime engine that automatically calls Coroutines and stops at designated points called by the code.
     IEnumerator RuntimeMovementLogic()
     {
         if (MaritimeInternalIterator == 1)
