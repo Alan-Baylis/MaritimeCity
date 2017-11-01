@@ -155,14 +155,10 @@ public class MaritimeRuntimeInfrastructure : MonoBehaviour
     public static UISelectionRuntimeID_DiscussionBox SelectionRuntime_DiscussionBox;
 
     #endregion
-
-
-
     
 
     enum WalkingDestination { FrontDoor, BackDoor, FrontDoor2 };
     public Vector3 tBrendanPosition = BrendanPOVController.GetPosition();
-
 
     void Awake()
     {
@@ -183,39 +179,21 @@ public class MaritimeRuntimeInfrastructure : MonoBehaviour
         ElliGameObject = ElliController.ElliInstance.gameObject;
         ElliAnimatorRuntime = ElliController.ElliAnimator;
 
-
         StartCoroutine(RuntimeMovementLogic());
         StartCoroutine(mRuntimeTracking());
-
-
     }
 
     void Start()
     {
         ElliUpdatePosition = ElliController.GetPosition();
-
         SceneFocusID = SceneFocus.Elli;
-
-        /*
-        ElliPosition = PointsOfInterest[1].transform.position;
-
-        ElliPosition.y = 0.0f;
-
-        ElliGameObject.transform.LookAt(ElliPosition);
-
-        bElliReturn = false;
-        */
-
     }
 
     void Update()
     {
         mRuntimeSceneLogic();
-
         mRuntimeSceneFocus();
-
         InputUI();
-
     }
 
     #region Runtime Logic
